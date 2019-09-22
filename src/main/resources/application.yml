@@ -1,5 +1,8 @@
 server:
   port: 8088
+  servlet:
+    context-path: /rwx
+
 spring:
   datasource:
     username: root
@@ -25,6 +28,12 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  thymeleaf:
+    cache: false
+  messages:
+    basename: i18n.login
+
 mybatis:
   check-config-location: true
   config-location: classpath:mybatis/mybatis-config.xml
