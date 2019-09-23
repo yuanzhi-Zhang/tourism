@@ -40,8 +40,8 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
 
 #当前项目下生成Renwoxing.log日志
-logging:
-  file: Renwoxing.log
+#logging:
+#  file: Renwoxing.log
   # 修改输出到文件的日志格式
 #  pattern:
 #    file: %d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n

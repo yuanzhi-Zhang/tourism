@@ -44,13 +44,12 @@
 
 	<body>
 		<!-- 引入topbar -->
-		<!--<div th:replace="commons/bar::topbar"></div>-->
-
-		<!--<div class="container-fluid">-->
-			<!--<div class="row">-->
+		<div th:replace="admin/common/bar::topbar"></div>
+		<div class="container-fluid">
+			<div class="row">
 
 				<!--&lt;!&ndash; 引入sidebar &ndash;&gt;-->
-				<!--<div th:replace="commons/bar::#sidebar(activeUri='adminIndex.html')"></div>-->
+				<div th:replace="admin/common/bar::#sidebar(activeUri='adminIndex.html')"></div>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
