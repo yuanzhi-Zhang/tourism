@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发现世界@任我行,旅游攻略</title>
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="./public/css/layui2.css">
+    <link rel="stylesheet" href="./css/background.css">
+    <link rel="stylesheet" href="css/destiny.css">
+    <link rel="stylesheet" href="css/own.css">
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <script src="public/js/jquery-3.2.1.min.js"></script>
+    <script src="./public/layui.js"></script>
+</head>
+<body>
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+	<!--头部导航-->
+    <div class="own_head" style="position:fixed;left:0px;">
+        <ul class="layui-nav" lay-filter="" id="des_nav">
+            <li class="layui-nav-item"><a href="background.html" target="_blank">首页</a></li>
+            <!--layui-this 表示当前停留地方-->
+            <li class="layui-nav-item"><a href="destiny.html" target="_blank">目的地</a></li>
+            <li class="layui-nav-item"><a href="#/advice">旅游攻略</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">去旅行</a>
+                <dl class="layui-nav-child">
+                    <!-- 二级菜单 -->
+                    <dd><a href="#/freedom">自由行</a></dd>
+                    <dd><a href="#/follow">跟团游</a></dd>
+                    <dd><a href="#/local">当地游</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="#/ticket">机票</a></li>
+            <li class="layui-nav-item"><a href="#/order">订酒店</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">社区</a>
+                <dl class="layui-nav-child">
+                    <!-- 二级菜单 -->
+                    <dd><a href="#/answer">问答</a></dd>
+                    <dd><a href="#/around">周边</a></dd>
+                    <dd><a href="#/company">结伴</a></dd>
+                </dl>
+            </li>
+            <!--登录状态显示区-->
+            <!-- <li class="layui-nav-item login">
+                <a href="#" style="font-size:18px;">登录</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="#" style="font-size:18px;">注册</a>
+            </li> -->
+            <!-- <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li> -->
+            <li class="layui-nav-item layui-this">
+                <a href=""><img src="./images/logo.png" class="layui-nav-img">我</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">修改信息</a></dd>
+                    <dd><a href="javascript:;">安全管理</a></dd>
+                    <dd><a href="javascript:;">退了</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Panel (Banner) -->
+        <section class="panel banner right">
+            <div class="content color0 span-3-75">
+                <h1 class="major" style="color: #9F9F9F;font-family: '幼圆'">@任我行</h1>
+                <p>河山大好，当然要出去走走。云卷云舒、鸟语花香，这些都是前人的发掘，还有其他美好的事物，我们希望你挖出来:)</p>
+                <p>下面让我们来一起站在他人的肩膀上探索这个美丽的世界吧...</p>
+                <ul class="actions">
+                    <li>
+                        <a href="#first" class="button special color1 circle icon fa-angle-right">Next</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="image filtered span-1-75" data-position="25% 25%">
+                <img src="images/pic01.jpg" alt=""/>
+            </div>
+        </section>
+
+        <!-- Panel (Spotlight) -->
+        <section class="panel spotlight medium right" id="first">
+            <div class="content span-7">
+                <a href="#"><h2 class="major">【in 杭州】江南忆最忆是杭州&不止西湖春夏秋冬</h2></a>
+                <p>江南 忆，最忆是 杭州 。一说 杭州 ，一想到的便是西湖。</p>
+            </div>
+            <div class="image filtered tinted" data-position="top left">
+                <img src="images/pic02.jpg" alt="" />
+            </div>
+        </section>
+        <section class="panel">
+            <div class="gallery">
+                <div class="group span-3">
+                    <a href="images/slide_03.jpg" class="image filtered span-3" data-position="bottom"><img src="images/gallery/fulls/slide_03.jpg" alt="" /></a>
+                    <a href="images/slide_02.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/fulls/slide_02.jpg" alt="" /></a>
+                    <a href="images/slide_01.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/fulls/slide_01.jpg" alt="" /></a>
+                </div>
+                <a href="images/slide_04.jpg" class="image filtered span-2-5" data-position="top"><img src="images/gallery/fulls/slide_04.jpg" alt="" /></a>
+            </div>
+        </section>
+
+        <!-- Panel (Spotlight) -->
+        <section class="panel spotlight large left">
+            <div class="content span-5">
+                <a href="#"><h2 class="major">于清迈 观自在</h2></a>
+                <p>如果选择一座小城，需要马上就走，它闲适，静谧，但仍旧拥有惊喜与雀跃， 清迈 这座古城应该立即出现在你的旅行名单里。</p>
+            </div>
+            <div class="image filtered tinted" data-position="top right">
+                <img src="images/pic03.jpg" alt="" />
+            </div>
+        </section>
+        <section class="panel">
+            <div class="gallery">
+                <div class="group span-3">
+                    <a href="images/pic04.jpg" class="image filtered span-3" data-position="bottom"><img src="images/gallery/fulls/pic04.jpg" alt="" /></a>
+                    <a href="images/pic05.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/fulls/pic05.jpg" alt="" /></a>
+                    <a href="images/pic06.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/fulls/pic06.jpg" alt="" /></a>
+                </div>
+                <a href="images/pic07.jpg" class="image filtered span-2-5" data-position="top"><img src="images/gallery/fulls/pic07.jpg" alt="" /></a>
+            </div>
+        </section>
+
+        <!-- Panel -->
+        <section class="panel spotlight large left">
+            <div class="content span-5">
+                <a href="#"><h2 class="major">少年啊，青春就是一首写不完的诗，乌村撒欢三日游</h2></a>
+                <p>人啊总从蹒跚挪步，牙牙学语而起，纯真童年，懵懂少年，青春正好，便来乌村过上二三日，看她田野间穿行，由她扭股糖般撒娇，不知不觉追忆起似水年华来。</p>
+            </div>
+            <div class="image filtered tinted" data-position="top right">
+                <img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg" alt="" />
+            </div>
+        </section>
+        <section class="panel">
+            <div class="gallery">
+                <div class="group span-4-5">
+                    <a href="images/pic08.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/fulls/pic08.jpg" alt="" /></a>
+                    <a href="images/pic09.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/fulls/pic09.jpg" alt="" /></a>
+                    <a href="images/pic10.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/fulls/pic10.jpg" alt="" /></a>
+                    <a href="images/pic11.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/fulls/pic11.jpg" alt="" /></a>
+                </div>
+                <a href="images/pic12.jpg" class="image filtered span-2-5" data-position="right"><img src="images/gallery/fulls/pic12.jpg" alt="" /></a>
+            </div>
+        </section>
+
+        <!-- Copyright -->
+        <div class="copyright">&copy; Untitled. Design:</div>
+    </div>
+</div>
+<!-- Scripts -->
+<script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

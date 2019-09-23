@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui1.css}">
+    <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="css/player.css" th:href="@{/css/player.css}" rel="stylesheet" type="text/css" />
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="public/layui.js" th:href="@{/public/layui.js}"></script>
+    <!-- <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.js"></script> -->
+    <script src="js/background.js" th:href="@{/js/background.js}"></script>
+    <title>首页@任我行,旅游攻略</title>
+</head>
+
+<body>
+    <div class="main_box">
+        <!--头部导航-->
+        <div class="head">
+            <ul class="layui-nav" lay-filter="">
+                <img class="head-logo" src="images/logo.png">
+                <li class="layui-nav-item layui-this"><a href="#/home">首页</a></li>
+                <!--layui-this 表示当前停留地方-->
+                <li class="layui-nav-item"><a href="destiny.html" target="_blank">目的地</a></li>
+                <li class="layui-nav-item"><a href="#/advice">旅游攻略</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">去旅行</a>
+                    <dl class="layui-nav-child">
+                        <!-- 二级菜单 -->
+                        <dd><a href="#/freedom">自由行</a></dd>
+                        <dd><a href="#/follow">跟团游</a></dd>
+                        <dd><a href="#/local">当地游</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="#/ticket">机票</a></li>
+                <li class="layui-nav-item"><a href="#/order">订酒店</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">社区</a>
+                    <dl class="layui-nav-child">
+                        <!-- 二级菜单 -->
+                        <dd><a href="#/answer">问答</a></dd>
+                        <dd><a href="#/around">周边</a></dd>
+                        <dd><a href="#/company">结伴</a></dd>
+                    </dl>
+                </li>
+                <!--搜索框-->
+                <li class="layui-nav-item search">
+                    <div class="d1">
+                        <form>
+                            <input type="text" placeholder="诗与远方,从这里开始...">
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                </li>
+                <!--登录状态显示区-->
+                <!-- <li class="layui-nav-item login">
+                    <a href="#" style="font-size:18px;">登录</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="#" style="font-size:18px;">注册</a>
+                </li> -->
+                <!-- <li class="layui-nav-item">
+                    <a href="">个人中心<span class="layui-badge-dot"></span></a>
+                </li> -->
+                <li class="layui-nav-item">
+                    <a href="own.html" target="_blank"><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改信息</a></dd>
+                        <dd><a href="javascript:;">安全管理</a></dd>
+                        <dd><a href="javascript:;">退了</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="video_box" id="video">
+            <video src="images/3.mp4" th:autoplay="true" th:src="@{/images/3.mp4}" autoplay muted loop></video>
+        </div>
+        <!-- <div class="slide" id="slide">
+            <img id="left-slide" src="./images/leftNavOFF.png">
+            <img id="right-slide" src="./images/rightNavOFF.png">
+        </div> -->
+        <div class="introduce_box">
+            <p><span style="font-size: 48px;" id="day"></span>/<span id="time">Aug.2019</span></p>
+            <p>捷克--金色的布拉格</p>
+        </div>
+        <div class="content_box">
+            <p>@任我行,任你驰行...</p>
+        </div>
+        <!--主要内容区域-->
+        <div class="home-content">
+            <!--旅行相册分区-->
+            <div class="tourpic">
+                <h1 class="tour_album">旅行相册&ensp;<i class="layui layui-icon layui-icon-next next"></i> <span
+                        class="find"><a href="findWorld.html" target="_blank">发现世界</a></span>&emsp;<span
+                        class="upload"><a>上传照片,开始你的旅程分享吧</a></span>
+                </h1>
+                <ul class="album_ul">
+                    <li class="album_li">
+                        <div class="albumShare">
+                            <a href="#"><img src="images/u=2142379088,4231822723&fm=26&gp=0.jpg" th:src="@{/images/u=2142379088,4231822723&fm=26&gp=0.jpg}" class="sharePic"></a>
+                            <ul>
+                                <li><a><img src="images/u=44153646,977624522&fm=26&gp=0.jpg"></a></li>
+                                &emsp;<li class="textInfo">
+                                    <a href="#">
+                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
+                                    </a>
+                                    <i class="layui-icon layui-icon-picture-fine"></i>
+                                    <span class="num">207</span>
+                                    &ensp;<i class="layui-icon layui-icon-log"></i>
+                                    <span class="num">1109</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="album_li">
+                        <div class="albumShare">
+                            <a href="#"><img src="images/u=3740020944,2982415550&fm=26&gp=0.jpg" class="sharePic"></a>
+                            <ul>
+                                <li><a><img src="images/u=856835359,1102430869&fm=26&gp=0.jpg"></a></li>
+                                &emsp;<li class="textInfo">
+                                    <a href="#">
+                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
+                                    </a>
+                                    <i class="layui-icon layui-icon-picture-fine"></i>
+                                    <span class="num">105</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="album_li">
+                        <div class="albumShare">
+                            <a href="#"><img src="images/u=1161439077,1932777676&fm=11&gp=0.jpg" class="sharePic"></a>
+                            <ul>
+                                <li><a><img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg"></a></li>
+                                &emsp;<li class="textInfo">
+                                    <a href="#">
+                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
+                                    </a>
+                                    <i class="layui-icon layui-icon-picture-fine"></i>
+                                    <span class="num">301</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="album_li">
+                        <div class="albumShare">
+                            <a href="#"><img src="images/u=856835359,1102430869&fm=26&gp=0.jpg" class="sharePic"></a>
+                            <ul>
+                                <li><a><img src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"></a></li>
+                                &emsp;<li class="textInfo">
+                                    <a href="#">
+                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
+                                    </a>
+                                    <i class="layui-icon layui-icon-picture-fine"></i>
+                                    <span class="num">407</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <hr class="layui-bg-green" style="width: 1020px;margin:0 auto;margin-top:30px;">
+            </div>
+            <!--旅行游记分区-->
+            <h1 class="tour_journey">旅行游记&ensp;<i class="layui layui-icon layui-icon-next next"></i> <span
+                    class="more"><a href="#">更多</a></span>&emsp;<a class="core" href="#">精华游记</a>&ensp;<span
+                    style="font-size: 18px;">|</span>&ensp;<a class="essential" href="#">潜力精华</a></h1>
+            <div class="journey">
+                <ul class="jour_ul">
+                    <li class="jour_li" style="position: relative;top:-65px;">
+                        <ul class="jour_ul">
+                            <li class="jour_li" style="position: relative;top:-67px;">
+                                <a href="#"><img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg"
+                                        class="jour_img"></a>
+                            </li>
+                            <!--图片右边总的区块-->
+                            <li class="jour_li">
+                                <ul>
+                                    <li>
+                                        <!--包含图片的游记标题和作者的上层区域-->
+                                        <ul class="jour_ul">
+                                            <!--游记封面图片-->
+                                            <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
+                                                        src="images/slide_05.jpg"></a></li>
+                                            <!--右边不含图片的游记标题和作者-->
+                                            <li class="jour_li jour_introduce">
+                                                <a href="#">
+                                                    <p style="color: blue;font-size:90%;">你说，这是纷繁之地，我说，这是文明之美...</p>
+                                                </a>
+                                                <span class="author">作者：<a href="#">站在远处看从前</a>
+                                                    &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-reply-fill"
+                                                            style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-star-fill"
+                                                            style="font-size: 10px;">&ensp;1104</i></a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;"><a
+                                            href="#">大连
+                                            旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
+                                            大连
+                                            的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
+                        <ul class="jour_ul">
+                            <li class="jour_li" style="position: relative;top:-67px;">
+                                <a href="#"><img src="images/slide_01.jpg" class="jour_img"></a>
+                            </li>
+                            <!--图片右边总的区块-->
+                            <li class="jour_li">
+                                <ul>
+                                    <li>
+                                        <!--包含图片的游记标题和作者的上层区域-->
+                                        <ul class="jour_ul">
+                                            <!--游记封面图片-->
+                                            <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
+                                                        src="images/slide_03.jpg"></a></li>
+                                            <!--右边不含图片的游记标题和作者-->
+                                            <li class="jour_li jour_introduce">
+                                                <a href="#">
+                                                    <p style="color: blue;font-size:90%;">你说，这是纷繁之地，我说，这是文明之美...</p>
+                                                </a>
+                                                <span class="author">作者：<a href="#">站在远处看从前</a>
+                                                    &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-reply-fill"
+                                                            style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-star-fill"
+                                                            style="font-size: 10px;">&ensp;1104</i></a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;"><a
+                                            href="#">大连
+                                            旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
+                                            大连
+                                            的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
+                        <ul class="jour_ul">
+                            <li class="jour_li" style="position: relative;top:-67px;">
+                                <a href="#"><img src="images/slide_03.jpg" class="jour_img"></a>
+                            </li>
+                            <!--图片右边总的区块-->
+                            <li class="jour_li">
+                                <ul>
+                                    <li>
+                                        <!--包含图片的游记标题和作者的上层区域-->
+                                        <ul class="jour_ul">
+                                            <!--游记封面图片-->
+                                            <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
+                                                        src="images/slide_04.jpg"></a></li>
+                                            <!--右边不含图片的游记标题和作者-->
+                                            <li class="jour_li jour_introduce">
+                                                <a href="#">
+                                                    <p style="color: blue;font-size:90%;">你说，这是纷繁之地，我说，这是文明之美...</p>
+                                                </a>
+                                                <span class="author">作者：<a href="#">站在远处看从前</a>
+                                                    &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-reply-fill"
+                                                            style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-star-fill"
+                                                            style="font-size: 10px;">&ensp;1104</i></a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;"><a
+                                            href="#">大连
+                                            旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
+                                            大连
+                                            的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
+                        <ul class="jour_ul">
+                            <li class="jour_li" style="position: relative;top:-67px;">
+                                <a href="#"><img src="images/slide_04.jpg" class="jour_img"></a>
+                            </li>
+                            <!--图片右边总的区块-->
+                            <li class="jour_li">
+                                <ul>
+                                    <li>
+                                        <!--包含图片的游记标题和作者的上层区域-->
+                                        <ul class="jour_ul">
+                                            <!--游记封面图片-->
+                                            <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
+                                                        src="images/slide_02.jpg"></a></li>
+                                            <!--右边不含图片的游记标题和作者-->
+                                            <li class="jour_li jour_introduce">
+                                                <a href="#">
+                                                    <p style="color: blue;font-size:90%;">你说，这是纷繁之地，我说，这是文明之美...</p>
+                                                </a>
+                                                <span class="author">作者：<a href="#">站在远处看从前</a>
+                                                    &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-reply-fill"
+                                                            style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-star-fill"
+                                                            style="font-size: 10px;">&ensp;1104</i></a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;"><a
+                                            href="#">大连
+                                            旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
+                                            大连
+                                            的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="jour_li" style="margin-left: 56px;position: relative;top:-60px;">
+                        <ul>
+                            <li>
+                                <div class="activity">
+                                    <h1>最新活动</h1>
+                                    <a href="javascrip:void(0)"
+                                        onclick="window.open('images/activity/self.jpg','','height=329, width=400, top=265,left=645, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')"
+                                        target="_self">
+                                        <img src="images/slide_05.jpg" style="margin-bottom: 7px;"></a>
+                                    <a href="#">
+                                        <h3 style="color: rgb(240, 142, 77)">寻找旅行CP,赢取布拉格CP之旅</h3>
+                                    </a>
+                                    <h3>向世界说Hello World！</h3>
+                                    <hr class="layui-bg-cyan" style="margin-bottom:10px;margin-top: 20px;">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity">
+                                    <h1>人气驴友推荐</h1>
+                                    <!-- <img src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"> -->
+                                    <ul>
+                                        <li>
+                                            <ul class="jour_ul">
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"></a>
+                                                        <p>站远处看从前</p>
+                                                    </div>
+                                                </li>
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/slide_05.jpg"></a>
+                                                        <p>alexleel</p>
+                                                    </div>
+                                                </li>
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/slide_02.jpg"></a>
+                                                        <p>JolinGuan</p>
+                                                    </div>
+                                                </li>
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/slide_03.jpg"></a>
+                                                        <p>laurie_hou</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li><br>
+                                        <li>
+                                            <ul class="jour_ul">
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/slide_04.jpg"></a>
+                                                        <p>山今鸟飞呀</p>
+                                                    </div>
+                                                </li>
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/slide_01.jpg"></a>
+                                                        <p>红乌贼</p>
+                                                    </div>
+                                                </li>
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"></a>
+                                                        <p>啦啦啦0910</p>
+                                                    </div>
+                                                </li>
+                                                <li class="jour_li">
+                                                    <div class="advice_author"><a href="#"><img
+                                                                src="images/slide_05.jpg"></a>
+                                                        <p>honeytxin</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <hr class="layui-bg-cyan" style="margin-bottom:10px;margin-top: 20px;">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity">
+                                    <h1>旅游攻略推荐</h1>
+                                    <a href="#"><img src="images/slide_02.jpg" style="margin-bottom: 7px;"></a>
+                                    <a href="#">
+                                        <h3 style="color:rgb(209, 63, 209)">胡日耳镇的美术馆</h3>
+                                    </a>
+                                    <h4 style="width: 280px;">我最终从胡日尔的美术馆里带走了一幅画，画的是冬日的萨满岩，是日落时分。</h4>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -100px;"> -->
+            </div>
+            <!--旅行景点推荐-->
+            <div class="scenic">
+                <hr class="layui-bg-green" style="width: 1020px;margin:0 auto;margin-bottom:25px;">
+                <h1>旅行景点&ensp;<i class="layui layui-icon layui-icon-next next"></i><span class="hope"><a
+                            href="#">&ensp;心驰神往</a></span>&emsp;<a class="core" href="#">热门景点推荐</a></h1>
+                <ul class="jour_ul">
+                    <li class="jour_li">
+                        <div class="shuli">
+                            <p>【<b>成都&emsp;锦里</b>】</p>
+                            <sapn style="font-family: '幼圆';">锦里，又名锦里一条街，或锦里古街，是中国四川省成都市的一条古商业街，位于成都武侯祠大街中段。
+                                锦里北邻锦江，东望彩虹桥，与三国圣地成都武侯祠博物馆文物区东侧一墙之隔。
+                                传说中锦里曾是西蜀历史上最古老、最具有商业气息的街道之一，早在秦汉、三国时期便闻名全国。</sapn>
+                        </div>
+                    </li>
+                    <li class="jour_li"><a href="#"><img src="images/slide_02.jpg" class="scen_img"></a></li>
+                </ul>
+                <ul class="jour_ul scen_other_img">
+                    <li class="jour_li"><a href="#"><img src="images/slide_03.jpg" class="scen_img"></a></li>
+                    <li class="jour_li"><a href="#"><img src="images/slide_04.jpg" class="scen_img"></a></li>
+                    <li class="jour_li"><a href="#"><img src="images/slide_01.jpg" class="scen_img"></a></li>
+                </ul>
+            </div>
+        </div>
+        <!--页脚区域-->
+        <div class="foot">
+            <footer>
+                <div class="footavatar">
+                    <img src="images/iconImg.jpg" class="footphoto">
+                    <ul class="footinfo">
+                        <p class="fname"><a href="/dancesmile">联系我们</a> </p>
+                        <p class="finfo">@任我行</p>
+                        <p>用心出行</p>
+                    </ul>
+                </div>
+                <section class="visitor">
+                    <ul>
+                        <li><a href="#"><img src="images/slide_01.jpg"></a></li>
+                        <li><a href="#"><img src="images/slide_02.jpg"></a></li>
+                        <li><a href="#"><img src="images/slide_03.jpg"></a></li>
+                        <li><a href="#"><img src="images/slide_04.jpg"></a></li>
+                        <li><a href="#"><img src="images/slide_03.jpg"></a></li>
+                        <li><a href="#"><img src="images/slide_02.jpg"></a></li>
+                        <li><a href="#"><img src="images/slide_01.jpg"></a></li>
+                        <li><a href="#"><img src="images/slide_04.jpg"></a></li>
+                    </ul>
+                </section>
+                <div class="Copyright">
+                    <ul style="margin-bottom: 10px;margin-top: -5px;">
+                        <a href="#">© 2019 Renwoxing.cn</a><a href="#">加入任我行</a><a href="#">网站条款</a><a href="#">帮助中心</a>
+                    </ul>
+                    <p>Design by yuanzhi</p><br>
+                </div>
+            </footer>
+        </div>
+        <!-- 左侧播放器 开始-->
+        <div id="jp_container_N" class="jp-video jp-video-270p jp-state-playing" role="application"
+            aria-label="media player" style="left: 0px; height: 175px; bottom: 20px;">
+            <div class="jp-type-playlist">
+                <div id="jquery_jplayer_N" class="jp-jplayer" style="width: 90px; height: 90px;">
+
+                    <audio id="jp_audio_0" preload="metadata"
+                        src="http://music.163.com/song/media/outer/url?id=31473269.mp3" title="那英"></audio>
+                    <video id="jp_video_0" preload="metadata" title="那英" style="width: 0px; height: 0px;"></video>
+                </div>
+                <div class="jp-gui">
+                    <div class="jp-video-play" style="display: none;">
+                        <button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
+                    </div>
+                    <div class="jp-interface">
+                        <div class="jp-progress">
+                            <div class="jp-seek-bar" style="width: 100%;">
+                                <div class="jp-play-bar" style="overflow: hidden; width: 97.5219%;"></div>
+                            </div>
+                        </div>
+                        <div class="jp-current-time" role="timer" aria-label="time">04:11</div>
+                        <div class="jp-duration" role="timer" aria-label="duration">04:17</div>
+                        <div class="jp-controls-holder">
+                            <div class="jp-controls">
+                                <button class="jp-previous" role="button" tabindex="0">上一曲</button>
+                                <button class="jp-play" role="button" tabindex="0">播放</button>
+                                <button class="jp-next" role="button" tabindex="0">下一曲</button>
+                                <button class="jp-stop" role="button" tabindex="0">暂停</button>
+                            </div>
+                            <div class="jp-volume-controls">
+                                <button class="jp-mute" role="button" tabindex="0">静音</button>
+                                <button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
+                                <div class="jp-volume-bar">
+                                    <div class="jp-volume-bar-value" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                            <div class="jp-toggles">
+                                <button class="jp-repeat" role="button" tabindex="0">重复</button>
+                                <button class="jp-shuffle" role="button" tabindex="0">随机</button>
+                                <!--<button class="jp-full-screen" role="button" tabindex="0">全屏</button>-->
+                            </div>
+                        </div>
+                        <div class="jp-details" style="display: none;">
+                            <div class="jp-title" aria-label="title">那英</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="jp-playlist">
+                    <div class="jp-playlist-box" style="height: 80px;">
+                        <ul style="height: 1000px; display: block; top: 0px;">
+                            <li>
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">默 <span
+                                            class="jp-artist" style="transform: rotate(180deg);"> - 那英</span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Ellens Gesang III D839
+                                        <span class="jp-artist" style="transform: rotate(180deg);"> - Geoffrey
+                                            Parsons</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Fire <span
+                                            class="jp-artist" style="transform: rotate(180deg);"> - Said The
+                                            Sky</span></a>
+                                </div>
+                            </li>
+                            <li class="jp-playlist-current" style="display: list-item;">
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">兰若词
+                                        <span class="jp-artist" style="transform: rotate(180deg);"> - 刘亦菲</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="jp-no-solution" style="display: none;">
+                    <span style="transform: rotate(180deg);">升级需要</span> 您浏览器赞不支持播放，请更新版本
+                    <a href="http://get.adobe.com/flashplayer" target="_blank">Flash插件</a>.
+                </div>
+            </div>
+            <!--歌曲列表滚动条-->
+            <div class="scrollBar" style="display: block;">
+                <div class="bar" style="top: 0px;"></div>
+            </div>
+            <!--播放器展开隐藏按钮-->
+            <button type="button" class="folded_bt" title="点击收缩" id="btnfold" style="top: 52px;">
+                <span style="transform: rotate(180deg);"></span>
+            </button>
+            <div id="listRemove" style="display: block;"></div>
+            <!--移除全部歌曲按钮-->
+            <div id="listClose"></div>
+            <!--歌曲列表展开收缩按钮-->
+        </div>
+        <!-- 左侧播放器 结束-->
+    </div>
+</body>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+<!--播放器js-->
+<script src="js/player.js"></script>
+<script src="js/playlist.js"></script>
+<script src="js/player_database.js"></script>
+<!--播放器js-->
+
+</html>

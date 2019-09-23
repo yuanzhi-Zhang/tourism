@@ -1,0 +1,147 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* 头部导航以及中间大图 */
+.pic_img img {
+    position: relative;
+    width: 100%;
+    height: 570px;
+    object-fit: cover;
+}
+
+.nav {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+}
+
+.nav:hover {
+    background: rgba(99, 87, 87,0.6);
+}
+
+.des_nav {
+    width: 1200px;
+    height: 100%;
+}
+
+.des_li {
+    font-size: 18px;
+    font-family: "幼圆";
+    color: white;
+    width: 80px;
+    text-align: center;
+}
+
+.pic_info {
+    width: 100%;
+    position: absolute;
+    top: 220px;
+    text-align: center;
+}
+
+.des_ul {
+    width: 1120px;
+}
+
+.des_search {
+    width: 350px;
+    padding: 10px 10px 10px 10px;
+    background: rgba(131, 130, 130,0.6)
+}
+
+.des_search::before {
+    content: '';
+    background-color: gray;
+    opacity: 0.6;
+    width: 370px;
+    height: 280px;
+}
+
+.des_search p {
+    font-size: 24px;
+    color: white;
+    font-family: "幼圆";
+}
+
+.search input {
+    width: 260px;
+    height: 50px;
+    border: 2px solid rgb(230, 160, 81);
+    border-radius: 5px;
+    padding-left: 15px;
+    outline: none;
+    background: #F9F0DA;
+    color: #9E9C9C;
+    font-size: 16px;
+}
+
+.search button {
+    width: 54px;
+    height: 54px;
+    border: none;
+    background: rgb(230, 160, 81);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 18px;
+    color: #F9F0DA;
+}
+
+.des_pic_content {
+    width: 400px;
+    margin-top: -30px;
+}
+
+.des_pic_content :first-child {
+    font-size: 38px;
+    font-family: "幼圆";
+    color: white;
+    text-align: left;
+    line-height: 45px;
+    text-shadow: 5px 3px 2px rgb(154, 199, 81);
+}
+
+.des_pic_content :first-child:hover {
+    color: coral;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.des_pic_content :last-child {
+    color: white;
+    font-size: 16px;
+    text-align: left;
+    line-height: 28px;
+}
+
+.des_time {
+    width: 120px;
+    position: absolute;
+    top: 500px;
+    right: 40px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 20px;
+}
+
+/* 各个地区 */
+.des_area {
+    width: 100%;
+    background: linear-gradient(45deg, rgba(254, 172, 94, 0.5), rgba(199, 121, 208, 0.5), rgba(75, 192, 200, 0.5));
+}
+
+#container {
+    width: 1020px;
+    height: 600px;
+    display: block;
+    margin: 0 auto;
+}

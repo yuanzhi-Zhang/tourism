@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="./public/css/layui2.css">
+    <link rel="stylesheet" href="./css/destiny.css">
+    <link rel="stylesheet" href="./css/background.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script src="http://api.map.baidu.com/getscript?v=2.0&ak=E4805d16520de693a3fe707cdc962045"></script>
+    <script src="public/js/jquery-3.2.1.min.js"></script>
+    <script src="./public/layui.js"></script>
+    <script src="js/destiny.js"></script>
+
+    <title>目的地@任我行，旅游攻略</title>
+</head>
+
+<body>
+    <!--头部导航以及中间大图-->
+    <div class="des_head">
+        <div class="pic_img">
+            <img src="images/destiny/pic02.jpeg">
+        </div>
+        <div class="nav">
+            <ul class="layui-nav" lay-filter="" id="des_nav">
+                    <img class="head-logo" src="./images/logo.png" alt="">
+                    <li class="layui-nav-item"><a href="background.html">首页</a></li>
+                    <!--layui-this 表示当前停留地方-->
+                    <li class="layui-nav-item layui-this"><a href="destiny.html" target="_blank">目的地</a></li>
+                    <li class="layui-nav-item"><a href="#/advice">旅游攻略</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">去旅行</a>
+                        <dl class="layui-nav-child">
+                            <!-- 二级菜单 -->
+                            <dd><a href="#/freedom">自由行</a></dd>
+                            <dd><a href="#/follow">跟团游</a></dd>
+                            <dd><a href="#/local">当地游</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="#/ticket">机票</a></li>
+                    <li class="layui-nav-item"><a href="#/order">订酒店</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">社区</a>
+                        <dl class="layui-nav-child">
+                            <!-- 二级菜单 -->
+                            <dd><a href="#/answer">问答</a></dd>
+                            <dd><a href="#/around">周边</a></dd>
+                            <dd><a href="#/company">结伴</a></dd>
+                        </dl>
+                    </li>
+                    <!--登录状态显示区-->
+                    <!-- <li class="layui-nav-item login">
+                        <a href="#" style="font-size:18px;">登录</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="#" style="font-size:18px;">注册</a>
+                    </li> -->
+                    <!-- <li class="layui-nav-item">
+                        <a href="">个人中心<span class="layui-badge-dot"></span></a>
+                    </li> -->
+                    <li class="layui-nav-item">
+                        <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">修改信息</a></dd>
+                            <dd><a href="javascript:;">安全管理</a></dd>
+                            <dd><a href="javascript:;">退了</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+        </div>
+        <div class="pic_info">
+            <ul class="jour_ul des_ul">
+                <li class="jour_li" style="float: left;">
+                    <div class="des_search">
+                        <p>心之所向,便是汝之所往...</p><br>
+                        <div class="search">
+                            <form>
+                                <input type="text" placeholder="河山大好,出去走走...">
+                                <button type="submit"></button>
+                            </form>
+                        </div><br>
+                        <p>心中有路，何处不是旅途...</p>
+                    </div>
+                </li>
+                <li class="jour_li" style="float: right;">
+                    <div class="des_pic_content">
+                        <p>跟我去旅行,北海道以东又是一番别样风情...</p><br>
+                        <p>夏天，除了西瓜，空调和Wifi，哪可以少得了海。
+                            又是偶然，看到了一张海岛照片，全岛房屋外墙的马卡龙色，绝对影响深刻，于是乎有了这次的寻色之旅，目标——彩色童话小镇【小箬村】...</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="des_time">
+            <span id="des_day"></span>
+        </div>
+    </div>
+    <!--各个地区-->
+    <div class="des_area">
+        <div id="dri_way">
+            <br>
+            起点：<input type="text" id="start" />
+            终点：<input type="text" id="end" />
+            <select>
+                <option value="0">最少时间</option>
+                <option value="1">最短距离</option>
+                <option value="2">避开高速</option>
+            </select>
+            <input type="button" id="result" value="查询" />
+        </div>
+        <div id="r-result">
+                城市名: <input id="cityName" type="text" style="width:100px; margin-right:10px;" />
+                <input type="button" value="查询" id="chaxun" />
+            </div>
+        <div id="container"></div>
+    </div>
+    <!--页脚-->
+    <div class="foot">
+        <footer>
+            <div class="footavatar">
+                <img src="images/iconImg.jpg" class="footphoto">
+                <ul class="footinfo">
+                    <p class="fname"><a href="/dancesmile">联系我们</a> </p>
+                    <p class="finfo">@任我行</p>
+                    <p>用心出行</p>
+                </ul>
+            </div>
+            <section class="visitor">
+                <ul>
+                    <li><a href="#"><img src="images/slide_01.jpg"></a></li>
+                    <li><a href="#"><img src="images/slide_02.jpg"></a></li>
+                    <li><a href="#"><img src="images/slide_03.jpg"></a></li>
+                    <li><a href="#"><img src="images/slide_04.jpg"></a></li>
+                    <li><a href="#"><img src="images/slide_03.jpg"></a></li>
+                    <li><a href="#"><img src="images/slide_02.jpg"></a></li>
+                    <li><a href="#"><img src="images/slide_01.jpg"></a></li>
+                    <li><a href="#"><img src="images/slide_04.jpg"></a></li>
+                </ul>
+            </section>
+            <div class="Copyright">
+                <ul style="margin-bottom: 10px;margin-top: -5px;">
+                    <a href="#">© 2019 Renwoxing.cn</a><a href="#">加入任我行</a><a href="#">网站条款</a><a href="#">帮助中心</a>
+                </ul>
+                <p>Design by yuanzhi</p><br>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,476 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.head{
+    background-color: #A3D0C3;
+    text-align:center;
+}
+
+.head-logo {
+    width: 120px;
+    height: 60px;
+}
+
+.d1 input {
+    height: 42px;
+    border: 2px solid #7BA7AB;
+    border-radius: 5px 0 0 5px;
+    padding-left: 15px;
+    margin-left: 20px;
+    margin-right: -9px;
+    outline: none;
+    background: #F9F0DA;
+    color: #9E9C9C;
+    font-size: 17px;
+    width: 200px;
+}
+
+.d1 button {
+    /* position: absolute; */
+    top: 8px;
+    /* right: -85%; */
+    width: 46px;
+    height: 45.6px;
+    border: none;
+    background: #7BA7AB;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.d1 button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
+}
+
+.login{
+    float: right;
+}
+
+.main_box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.video_box {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.video_box video {
+    width: 100%;
+    height: 510px;
+    object-fit: cover;
+}
+
+.slide {
+    width: 100%;
+    position: absolute;
+    left: 0%;
+    top: 32%;
+    transform: translate(0%, -32%);
+    margin: 0 auto;
+}
+
+.slide img {
+    width: 50px;
+    height: 150px;
+}
+
+#left-slide {
+    position: absolute;
+    left: 3%;
+    display: none;
+}
+
+#right-slide {
+    position: absolute;
+    right: 3%;
+    display: none;
+}
+
+.introduce_box {
+    position: absolute;
+    left: 15%;
+    top: 4%;
+    transform: translate(-15%, -15%);
+}
+
+.introduce_box p {
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "幼圆";
+    color: rgb(83, 106, 223);
+}
+
+.content_box {
+    width: 100%;
+    position: absolute;
+    top: 15%;
+    text-align: center;
+}
+
+.content_box p {
+    font-weight: 700;
+    font-size: 48px;
+    font-family: "幼圆";
+    color: rgb(89, 211, 154);
+    text-shadow: 5px 3px 2px rgb(154, 199, 81);
+    opacity: 0.8;
+}
+
+.home-content {
+    padding-top: 35px;
+    padding-bottom: 45px;
+    background: linear-gradient(45deg,rgba(254,172,94,0.5),rgba(199,121,208,0.5),rgba(75,192,200,0.5));
+    margin-top: -5px;
+}
+
+.tourpic {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.upload a:hover {
+    cursor: pointer;
+}
+
+.tour_album {
+    width: 500px;
+    padding-left: 15%;
+    margin-bottom: 15px;
+}
+
+.tour_journey {
+    width: 500px;
+    padding-left: 15.5%;
+    margin-bottom: 15px;
+}
+
+.next {
+    color: rgb(255, 208, 0);
+    font-size: 24px;
+}
+
+.find a {
+    color: rgb(57, 150, 150);
+    font-size: 20px;
+}
+
+.more a {
+    color: rgb(57, 150, 150);
+    font-size: 20px;
+}
+
+.find a:hover {
+    color: brown;
+}
+
+.more a:hover {
+    color: brown;
+}
+
+.upload a {
+    font-size: 16px;
+}
+
+.album_ul,
+.album_li {
+    display: inline-block;
+    list-style-type: none;
+}
+
+.albumShare {
+    width: 99%;
+    height: 240px;
+    /*background-color: aliceblue;*/
+    background: linear-gradient(45deg,rgba(75,192,200,0.2),rgba(254,172,94,0.2),rgba(199,121,208,0.2));
+    border: 1px solid lightgray;
+}
+
+.sharePic {
+    width: 220px;
+    height: 160px;
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    border: 3px solid lightgray;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.1) inset;
+}
+
+.albumShare ul {
+    width: 250px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.albumShare li {
+    display: inline-block;
+}
+
+.albumShare li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.textInfo {
+    position: relative;
+    top: 13px;
+}
+
+.album_share_info {
+    color: rgb(108, 108, 247);
+    font-size: 12px;
+}
+
+.num {
+    position: relative;
+    top: -1px;
+    opacity: 0.5;
+}
+
+/* 旅行游记区 */
+.journey {
+    width: 1020px;
+    display: block;
+    margin: 0 auto;
+}
+
+.core {
+    font-size: 16px;
+}
+
+.essential {
+    color: rgb(85, 162, 100);
+    font-size: 16px;
+}
+
+.jour_ul,
+.jour_li {
+    display: inline-block;
+    list-style-type: none;
+}
+
+.jour_img {
+    width: 230px;
+    height: 160px;
+    border: 3px solid rgb(218, 190, 190);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.1) inset;
+}
+
+.author_li {
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.jour_author_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* position: relative;
+    top: 20px; */
+}
+
+.jour_introduce {
+    line-height: 1.5;
+    position: relative;
+    top: 10px;
+}
+
+.author {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+.author a {
+    color: rgb(101, 101, 247);
+}
+
+.activity {
+    float: right;
+}
+
+.activity h1 {
+    font-family: "幼圆";
+    line-height: 60px;
+    font-size: 26px;
+}
+
+.activity img {
+    width: 280px;
+    height: 180px;
+}
+
+.activity h3 {
+    font-family: "幼圆";
+    line-height: 25px;
+}
+
+.activity a :hover {
+    color: teal;
+}
+
+.advice_author {
+    width: 67px;
+    height: 60px;
+}
+
+.advice_author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.advice_author p {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+/* 旅行景点推荐区 */
+.scenic {
+    width: 1020px;
+    display: block;
+    margin: 0 auto;
+    margin-top: -100px;
+    margin-bottom: 25px;
+}
+
+.hope a {
+    color: rgb(57, 150, 150);
+    font-size: 20px;
+}
+
+.hope a:hover {
+    color: brown;
+}
+
+.shuli {
+    height: 220px;
+    writing-mode: vertical-lr;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+.scen_img {
+    width: 440px;
+    height: 220px;
+    float: right;
+    margin-left: 56px;
+    object-fit: cover;
+}
+
+.scen_other_img {
+    margin-left: -45px;
+    margin-top: 25px;
+}
+
+.scen_other_img img {
+    width: 296px;
+    height: 180px;
+}
+
+/* footer */
+footer {
+    border-top: 6px solid #f16e50;
+    background: #242221;
+    width: 100%;
+    padding-top: 60px;
+}
+
+.footavatar {
+    width: 700px;
+    margin: auto;
+    position: relative;
+    color: #666;
+}
+
+.footavatar img {
+    height: 110px
+}
+
+.footphoto {
+    position: absolute;
+    top: -42px;
+    display: block;
+    border: #F16E50 5px solid;
+}
+
+.footinfo {
+    display: block;
+    padding: 0 0 0 160px
+}
+
+.fname {
+    color: #f16e50;
+    /*margin-top: 16px;*/
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.fname a {
+    color: #f16e50;
+}
+
+.finfo {
+    line-height: 22px;
+}
+
+.visitor {
+    width: 800px;
+    margin: 35px auto 0;
+    clear: both;
+    border-top: 2px solid #32302e;
+    padding-top: 15px;
+    overflow: hidden;
+}
+
+.visitor ul {
+    padding: 20px
+}
+
+.visitor ul li img {
+    width: 78px;
+    height: 78px;
+    display: block;
+    border: #FFF 2px solid
+}
+
+.visitor ul li a {
+    float: left;
+    margin-right: 10px
+}
+
+.visitor ul li a:hover {
+    opacity: 0.5
+}
+
+.Copyright {
+    text-align: center;
+    color: #959595;
+    margin: 40px 0 0
+}
+
+.Copyright ul a {
+    color: #f16e50;
+    display: inline;
+    padding: 0 10px;
+}
+
+.Copyright ul a:nth-child(-n+3) {
+    border-right: #999 1px solid
+}
+
+.Copyright ul a:hover {
+    color: #ff8b70;
+}

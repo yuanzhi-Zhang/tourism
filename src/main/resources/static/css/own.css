@@ -1,0 +1,305 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.own_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    background: rgba(131, 130, 130, 0.4);
+}
+
+.own-head-left {
+    float: left;
+}
+
+.own-head-right {
+    float: right;
+}
+
+.own_backPic img {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+}
+
+.own_introduce_box {
+    position: absolute;
+    left: 15%;
+    top: 115px;
+    transform: translate(-15%, -15%);
+}
+
+.own_introduce_box p {
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "幼圆";
+    color: rgb(83, 106, 223);
+}
+
+.doYouKnow {
+    width: 650px;
+    color: white;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: '宋体';
+    margin-top: 90px;
+    margin-left: 150px;
+    animation: leftRight 3s forwards;
+}
+@keyframes leftRight {
+    40% {
+      transform: translate(0px, 0) scale(1);
+      opacity: 1;
+      color: rgb(192, 95, 163);
+    }
+    60% {
+      color: #fff;
+    }
+    80% {
+      transform: translate(0) scale(1.7);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+.own_change_backPic {
+    position: absolute;
+    right: 10%;
+    top: 420px;
+    text-align: center;
+    padding: 15px;
+    background: rgba(131, 130, 130, 0.6);
+}
+
+.own_change_backPic:hover {
+    cursor: pointer;
+}
+
+.own_change_backPic img {
+    width: 25px;
+    height: 22px;
+}
+
+.own_change_backPic span {
+    font-size: 20px;
+    color: white;
+    font-family: "幼圆";
+}
+.own_content{
+    position: relative;
+    width: 100%;
+    padding: 40px 0;
+    background: linear-gradient(45deg,rgba(254,172,94,0.5),rgba(199,121,208,0.5),rgba(75,192,200,0.5));
+}
+.own_ul{
+    width: 1020px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+}
+.own_li{
+    width: 240px;
+    text-align: center;
+}
+.self_img{
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover
+}
+.self_img:hover{
+    cursor: pointer;
+}
+.camera{
+    position: absolute;
+    top: 55px;
+    left: 105px;
+    font-size: 30px;
+    display: none;
+    color: rgb(70, 64, 64);
+}
+.camera:hover{
+    cursor: pointer;
+}
+.own_self{
+    width: 40px;
+    height: 40px;
+}
+.own_info{
+    width: 100%;
+    margin-top: 10px;
+}
+.own_info p:first-child{
+    font-size: 24px;
+    font-family: "幼圆";
+}
+.own_areaAndAge{
+    font-size: 18px;
+    font-family: "幼圆";
+    line-height: 45px;
+}
+.own_setting{
+    opacity: 0.8;
+}
+.own_setting:hover{
+    cursor: pointer;
+    color: chocolate
+}
+.own_show_self{
+    width: 240px;
+    border-radius: 5px;
+    border: 1px coral solid;
+    color: black
+}
+.own_show_self:hover{
+    border: 0px;
+}
+.own_self_edit{
+    margin-top: -35px;
+    border-radius: 5px 5px 0 0;
+    display: none;
+    border: 1px coral solid;
+}
+.own_self_edit_save{
+    width: 241px;
+    border-radius: 0 0 5px 5px;
+    color: black;
+    display: none;
+    border: 1px coral solid;
+}
+.own_self_edit_save:hover{
+    border: 0px;
+}
+.own_tab{
+    width: 240px;
+}
+.own_tab li{
+    width: 89px;
+}
+.own_tab_content{
+    height: 370px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.own_tab_content::-webkit-scrollbar{
+    display: none;
+}
+.own_attention{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: -37px;
+}
+.own_attention_people p:first-child{
+    font-size: 18px;
+    font-family: "幼圆";
+}
+.own_haveAttended,.own_send_message{
+    height: 30px;
+    width: 71px;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 12px;
+    margin-top: 17px;
+}
+.own_haveAttended{
+    background: rgb(172, 166, 166);
+    color: white;
+}
+.own_haveAttended:hover{
+    background: white;
+    border: 1px coral solid;
+    color: coral;
+    cursor: pointer;
+}
+.own_send_message{
+    background: white;
+    border: 1px coral solid;
+    color: coral;
+}
+.own_send_message:hover{
+    cursor: pointer;
+    background: coral;
+    color: white;
+}
+.attend_info{
+    font-size: 16px;
+    font-family: "幼圆";
+    line-height: 25px;
+    margin-top: 5px;
+}
+.own_main_tab{
+    float: right;
+    width: 700px
+}
+.own_main_tab .own_main_ul li{
+    width: 20%;
+    padding: 0px;
+    font-size: 18px;
+    font-family: "幼圆";
+    color: black
+}
+.own_main_tab .own_main_ul li:hover{
+    color: chocolate;
+}
+.own_main_tab .own_main_ul .layui-this{
+    color: chocolate;
+}
+.own_operate{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 700px;
+}
+.own_operate li{
+    width: 24%;
+}
+
+.own_operate img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    object-fit: cover;
+}
+.own_operate img:hover{
+    cursor: pointer;
+}
+.own_operate p span:hover{
+    cursor: pointer;
+    color: coral
+}
+.own_tour_journey{
+    width: 240px;
+    height: 160px;
+}
+.own_remain_message{
+    border-radius: 5px 5px 0 0;
+    border: 1px coral solid;
+}
+.own_remain_message_save{
+    width: 241px;
+    border-radius: 0 0 5px 5px;
+    color: black;
+    border: 1px coral solid;
+}
+.own_remain_message_save:hover{
+    border: 0px;
+}
+.own_content_right_tab{
+    height: 680px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.own_content_right_tab::-webkit-scrollbar{
+    display: none;
+}
