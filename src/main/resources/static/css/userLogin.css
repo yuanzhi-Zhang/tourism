@@ -1,0 +1,107 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+#myCanvas{
+	display:none;
+}
+
+.login_back {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: fixed;
+}
+
+#mydiv {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.head {
+	position: absolute;
+	top: 5%;
+}
+
+.return {
+	font-size: 30px;
+	color: #000;
+}
+
+.login {
+	border: #000 1px solid;
+	width: 40%;
+	display: block;
+	margin: auto;
+	padding: 20px 0; position : relative;
+	top: 16%;
+	/*box-shadow: darkgrey 1px 2px 15px 1px;*/
+	box-shadow: darkgrey 1px 2px 15px 11px;
+	border-radius: 35px;
+	position: relative;
+	background: rgba(131,130,130,0.3)
+}
+
+.login_img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: block;
+	margin: 20px auto;
+	position: relative;
+	top: 10%;
+}
+
+.account {
+	width: 50%;
+	display: block;
+	margin: 10px auto;
+	border-radius: 20px;
+	
+}
+
+.account:hover{
+    border: 1.5px coral solid;
+}
+
+.btn_login {
+	display: block;
+	margin: 50px auto;
+	width: 50%;
+}
+
+.forget {
+	font-size: 12px;
+	opacity: 0.4;
+	position: relative;
+	left: 15.7%;
+	bottom: -23%;
+}
+
+.register_jump {
+	text-align: center;
+}
+
+.hope-word {
+	width:43%;
+	display: block;
+	margin: 0 auto;
+	font-family: "幼圆";
+	font-size: 24px;
+	text-align: center;
+	position: relative;
+	top: 13%;
+	padding: 0 10px;
+}
+.hope-word span p{
+	line-hight:30px;
+}

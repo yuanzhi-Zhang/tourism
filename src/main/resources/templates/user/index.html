@@ -13,9 +13,9 @@
 
     <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://libs.baidu.com/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    <script src="public/layui.js" th:href="@{/public/layui.js}"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <!-- <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.js"></script> -->
-    <script src="js/background.js" th:href="@{/js/background.js}"></script>
+    <script src="js/background.js" th:src="@{/js/background.js}"></script>
     <title>首页@任我行,旅游攻略</title>
 </head>
 
@@ -61,15 +61,19 @@
                 <!--登录状态显示区-->
                 <!-- <li class="layui-nav-item login">
                     <a href="#" style="font-size:18px;">登录</a>
+                </li> -->
+                <li class="layui-nav-item" th:if="${session.loginUser==null}">
+                    <ul class="album_ul">
+                        <li class="album_li">
+                            <a href="#" style="font-size:18px;">登录</a>
+                        </li>
+                        <li class="album_li">
+                            <a href="#" style="font-size:18px;">注册</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="#" style="font-size:18px;">注册</a>
-                </li> -->
-                <!-- <li class="layui-nav-item">
-                    <a href="">个人中心<span class="layui-badge-dot"></span></a>
-                </li> -->
-                <li class="layui-nav-item">
-                    <a href="own.html" target="_blank"><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                <li class="layui-nav-item" th:if="${session.loginUser!=null}">
+                    <a href="own.html" target="_blank"><img src="//t.cn/RCzsdCq" class="layui-nav-img">[[${session.loginUser.getUsername()}]]</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">修改信息</a></dd>
                         <dd><a href="javascript:;">安全管理</a></dd>

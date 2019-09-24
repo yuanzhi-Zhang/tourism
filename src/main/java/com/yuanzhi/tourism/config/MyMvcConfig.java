@@ -25,6 +25,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/").setViewName("user/index");
                 registry.addViewController("/index.html").setViewName("admin/login");
                 registry.addViewController("/adminMain.html").setViewName("admin/adminIndex");
+                registry.addViewController("/destiny.html").setViewName("user/destiny");
+                registry.addViewController("/userLogin.html").setViewName("user/userLogin");
             }
 
             //注册拦截器
@@ -34,7 +36,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 //静态资源；  *.css , *.js
                 //SpringBoot已经做好了静态资源映射
                 registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/admin/login","/static/**");
+                        .excludePathPatterns("/index.html","/","/admin/login","/destiny.html",
+                                "/userLogin.html","/css/**","/js/**","/images/**","/public/**","/asserts/**","/webjars/**");
             }
         };
         return adapter;
