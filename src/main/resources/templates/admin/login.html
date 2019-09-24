@@ -19,9 +19,9 @@
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label class="sr-only" th:text="#{login.adminAccount}">adminAccount</label>
-    <input type="text" name="adminAccount" class="form-control" placeholder="adminAccount" th:placeholder="#{login.adminAccount}" required="" autofocus="">
+    <input type="text" name="adminaccount" class="form-control" placeholder="adminAccount" th:placeholder="#{login.adminAccount}" required="" autofocus="">
     <label class="sr-only" th:text="#{login.adminPassword}">adminPassword</label>
-    <input type="password" name="adminPassword" class="form-control" placeholder="adminPassword" th:placeholder="#{login.adminPassword}" required="">
+    <input type="password" name="adminpassword" class="form-control" placeholder="adminPassword" th:placeholder="#{login.adminPassword}" required="">
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> [[#{login.remember}]]

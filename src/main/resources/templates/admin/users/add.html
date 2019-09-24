@@ -7,8 +7,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
+		<link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
 
-		<title>Dashboard Template for Bootstrap</title>
+		<title>添加用户@任我行,旅游攻略</title>
 		<!-- Bootstrap core CSS -->
 		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
 
@@ -43,57 +44,56 @@
 	</head>
 
 	<body>
-		<!-- 引入抽取的topbar -->
 		<!-- 模板名会使用thymeleaf的前后缀配置解析 -->
-		<!-- 引入topbar -->
-		<div th:replace="commons/bar::topbar"></div>
+		<!-- 引入抽取的topbar -->
+		<div th:replace="admin/common/bar::topbar"></div>
 
 		<div class="container-fluid">
 			<div class="row">
 				<!-- 引入sidebar -->
-				<div th:replace="commons/bar::#sidebar(activeUri='users')"></div>
+				<div th:replace="admin/common/bar::#sidebar(activeUri='users')"></div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-					<!-- 需要区分是员工添加还是员工修改 -->
+					<!-- 需要区分是用户添加还是用户修改 -->
 					<form th:action="@{/user}" method="post">
-						<!-- 发送PUT请求修改员工数据 -->
+						<!-- 发送PUT请求修改用户数据 -->
 						<!--
 						1、SpringMVC中配置HiddenHTTPMethodFilter；（SpringBoot自动配置好的）
 						2、页面创建一个post表单
 						3、创建一个input项，name="_method";值就是我们制定的请求方式
 						 -->
 						<input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
-						<input type="hidden" name="id" th:if="${user!=null}" th:value="${user.id}"/>
+						<input type="hidden" name="id" th:if="${user!=null}" th:value="${user.uid}"/>
 						<div class="form-group">
-							<label>LastName</label>
-							<input name="lastName" type="text" class="form-control" placeholder="zhangsan" th:value="${user!=null}?${user.userName}">
+							<label>昵称</label>
+							<input name="lastName" type="text" class="form-control" placeholder="站在远处看从前..." th:value="${user!=null}?${user.username}">
 						</div>
 						<div class="form-group">
-							<label>Email</label>
-							<input name="email" type="email" class="form-control" placeholder="zhangsan@atguigu.com" th:value="${emp!=null}?${user.email}">
+							<label>电话</label>
+							<input name="email" type="email" class="form-control" placeholder="zhangsan@atguigu.com" th:value="${user!=null}?${user.email}">
 						</div>
 						<div class="form-group">
 							<label>Gender</label><br/>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender"  value="1" th:checked="${emp!=null}?${emp.gender==1}">
+								<input class="form-check-input" type="radio" name="usersex"  value="1" th:checked="${user!=null}?${user.usersex=='男'}">
 								<label class="form-check-label">男</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender"  value="0" th:checked="${emp!=null}?${emp.gender==0}">
+								<input class="form-check-input" type="radio" name="usersex"  value="0" th:checked="${user!=null}?${user.usersex=='女'}">
 								<label class="form-check-label">女</label>
 							</div>
 						</div>
-						<div class="form-group">
-							<label>department</label>
-							<!-- 提交的是部门id -->
-							<select class="form-control" name="department.id">
-								<option th:selected="${emp!=null}?${dept.id == emp.department.id}" th:value="${dept.id}" th:each="dept:${depts}" th:text="${dept.departmentName}"></option>
-							</select>
-						</div>
+						<!--<div class="form-group">-->
+							<!--<label>department</label>-->
+							<!--&lt;!&ndash; 提交的是部门id &ndash;&gt;-->
+							<!--<select class="form-control" name="department.id">-->
+								<!--<option th:selected="${emp!=null}?${dept.id == emp.department.id}" th:value="${dept.id}" th:each="dept:${depts}" th:text="${dept.departmentName}"></option>-->
+							<!--</select>-->
+						<!--</div>-->
 						<div class="form-group">
 							<label>Birth</label>
-							<input name="birth" type="text" class="form-control" placeholder="zhangsan" th:value="${emp!=null}?${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}">
+							<input name="birth" type="text" class="form-control" placeholder="zhangsan" th:value="${user!=null}?${#dates.format(user.birthday, 'yyyy-MM-dd HH:mm')}">
 						</div>
-						<button type="submit" class="btn btn-primary" th:text="${emp!=null}?'修改':'添加'">添加</button>
+						<button type="submit" class="btn btn-primary" th:text="${user!=null}?'修改':'添加'">添加</button>
 					</form>
 				</main>
 			</div>
