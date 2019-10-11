@@ -1,0 +1,212 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* 头部导航以及中间大图 */
+.pic_img img {
+    position: relative;
+    width: 100%;
+    height: 570px;
+    object-fit: cover;
+}
+
+.nav {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+}
+
+.nav:hover {
+    background: rgba(99, 87, 87,0.6);
+}
+
+.des_nav {
+    width: 1200px;
+    height: 100%;
+}
+
+.des_li {
+    font-size: 18px;
+    font-family: "幼圆";
+    color: white;
+    width: 80px;
+    text-align: center;
+}
+.totalTitle{
+    width: 100%;
+    position: absolute;
+    top: 510px;
+}
+.title{
+    width: 1020px;
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.journeyAuthor{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+.title_info_right{
+    margin-left: 35px;
+}
+.journey_title{
+    color: white;
+    font-size: 36px;
+    font-family: "幼圆";
+    text-shadow: 5px 3px 2px rgb(154, 199, 81);
+}
+.journey_title_info{
+    color: rgb(41, 40, 40);
+    font-size: 18px;
+    font-family: "幼圆";
+    position: relative;
+    top: 35px;
+    text-align: left;
+}
+.title_author a{
+    color: tomato;
+}
+.readTimes{
+    width: 20px;
+    height: 12px;
+    margin-top: -3px;
+}
+.journey_detail_content{
+    width: 100%;
+    background: linear-gradient(45deg, rgba(254, 172, 94, 0.3), rgba(199, 121, 208, 0.3), rgba(75, 192, 200, 0.6));
+    padding-top: 80px;
+    text-align: center;
+}
+.journey_text_intro{
+    width: 1020px;
+    padding: 20px 0;
+    display: block;
+    margin: 0 auto;
+    font-size: 24px;
+    font-family: cursive;
+    line-height: 35px;
+}
+.jour_detail_main{
+    width: 1020px;
+    display: block;
+    margin: 0 auto;
+}
+.jour_detail_main_left{
+    width: 650px;
+    float: left;
+    text-align: left;
+    /*overflow-y: auto;*/
+}
+/*.jour_detail_main_left::-webkit-scrollbar{*/
+    /*display: none;*/
+/*}*/
+.jour_detail_main_left_top{
+    width: 610px;
+    text-align: left;
+    padding: 10px 20px;
+    font-family: "幼圆";
+    font-size: 18px;
+    line-height: 25px;
+    border: 1px solid silver;
+    margin-bottom: 15px;
+}
+.jour_detail_main_title{
+    font-family: "幼圆";
+    font-size: 28px;
+    text-align: left;
+}
+.jour_detail_main_left span{
+    line-height: 30px;
+}
+.jour_detail_main_img{
+    width: 650px;
+    height: 430px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+.jour_detail_main_img_contrl{
+    width: 650px;
+    height: 50px;
+    display: none;
+    background-color: rgba(104, 103, 112, 0.8);
+    position: absolute;
+    top: 10px;
+}
+.jour_detail_main_right{
+    width: 280px;
+    float: right;
+}
+.jour_detai_relative{
+    margin-bottom: 35px;
+    position: relative;
+}
+.jour_detail_main_right p:first-child{
+    font-family: "幼圆";
+    font-size: 20px;
+    text-align: left;
+    line-height: 35px;
+    color: #0C0C0C;
+    margin-bottom: 10px;
+}
+.jour_detail_main_right .relative_destiny{
+    width: 280px;
+    height: 200px;
+}
+.jour_detail_main_right p:last-child{
+    color: white;
+    font-size: 36px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    letter-spacing: 10px;
+}
+.jour_detail_main_right .catalogue{
+    width: 280px;
+    text-align: left;
+}
+.jour_detail_main_right .catalogue li{
+    list-style-type: decimal;
+    font-size: 16px;
+    line-height: 25px;
+    margin-left: 15px;
+    color: #117a8b;
+}
+.jour_detail_main_right .catalogue li a{
+    color: #8b5273;
+}
+.jour_detail_main_right .catalogue li a:hover{
+    text-decoration: underline;
+    color: #0f88eb;
+}
+.jour_detail_main_right .localHotel{
+    width: 280px;
+    position: relative;
+}
+.jour_detail_main_right .localHotel .hotel_info img{
+    width: 100px;
+    height: 85px;
+}
+.jour_detail_main_right .localHotel .hotel_info p:first-child{
+    font-size: 18px;
+    color: #0C0C0C;
+    letter-spacing: 0px;
+    line-height: 10px;
+    margin-top: 7px;
+}
+.jour_detail_main_right .localHotel .hotel_info p:last-child{
+    font-size: 12px;
+    color: #5e5e5e;
+    letter-spacing: 1px;
+}
+.jour_detail_main_right .localHotel .hotel_info span{
+    font-size: 24px;
+    color: red;
+    letter-spacing: 1px;
+    line-height: 10px;
+}

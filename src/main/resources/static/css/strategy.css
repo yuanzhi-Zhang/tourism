@@ -1,0 +1,142 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* 头部导航以及中间大图 */
+.strategy_head{
+    position: relative;
+}
+.strategy_img img {
+    position: relative;
+    width: 100%;
+    height: 570px;
+    object-fit: cover;
+}
+
+.strategy_nav {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    background: rgba(99, 87, 87,0.6);
+}
+.strategy_search_main{
+    width: 1000px;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 300px;
+    text-align: center;
+}
+.strategy_search {
+    width: 350px;
+    padding: 10px 10px 10px 10px;
+    background: rgba(131, 130, 130,0.6);
+    float: right;
+}
+
+.strategy_search::before {
+    content: '';
+    background-color: gray;
+    opacity: 0.6;
+    width: 370px;
+    height: 280px;
+}
+
+.strategy_search p {
+    font-size: 24px;
+    color: white;
+    font-family: "幼圆";
+}
+
+.strategy_search .search input {
+    width: 260px;
+    height: 50px;
+    border: 2px solid rgb(230, 160, 81);
+    border-radius: 5px;
+    padding-left: 15px;
+    outline: none;
+    background: #F9F0DA;
+    color: #9E9C9C;
+    font-size: 16px;
+}
+
+.strategy_search .search button {
+    width: 54px;
+    height: 54px;
+    border: none;
+    background: rgb(230, 160, 81);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.strategy_search .search button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 18px;
+    color: #F9F0DA;
+}
+/*主要内容*/
+.strategy_content{
+    width: 100%;
+    padding: 20px 0px 50px 0;
+    background: linear-gradient(45deg, rgba(254, 172, 94, 0.5), rgba(199, 121, 208, 0.5), rgba(75, 192, 200, 0.5));
+}
+.strategy_guide{
+    width: 180px;
+    padding: 20px 10px;
+    float: right;
+}
+.strategy_guide_title{
+    font-size: 18px;
+    font-family: "幼圆";
+    line-height: 25px;
+}
+.strategy_advice img{
+    width: 140px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+.strategy_advice li{
+    list-style-type: decimal;
+    font-size: 16px;
+    line-height: 25px;
+    color: #de4a41;
+    margin: 10px 0px 10px 15px;
+}
+.strategy_advice li a{
+    color: #0C0C0C;
+}
+.strategy_advice li a:hover{
+    color: coral;
+    text-decoration: underline;
+}
+/*右边攻略展示区*/
+.strategy_partmain{
+    width: 780px;
+    float: left;
+}
+.strategy_info{
+    border-top: 1px solid silver;
+    margin-top: 20px;
+}
+.strategy_info:hover{
+    background-color: silver;
+    cursor: pointer;
+}
+.straegy_partInfo{
+    width: 780px;
+    line-height: 25px;
+}
+.strategy_partmain_title{
+    font-size: 20px;
+    line-height: 60px;
+}
+.strategy_info img{
+    width: 210px;
+    height: 130px;
+    margin: 20px 5px;
+}

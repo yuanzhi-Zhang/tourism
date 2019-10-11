@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="foot" th:fragment="foot">
+    <footer>
+        <div class="footavatar">
+            <img src="images/iconImg.jpg" th:src="@{/images/iconImg.jpg}" class="footphoto">
+            <ul class="footinfo">
+                <p class="fname"><a href="/dancesmile">联系我们</a> </p>
+                <p class="finfo">@任我行</p>
+                <p>用心出行</p>
+            </ul>
+        </div>
+        <section class="visitor">
+            <ul>
+                <li><a href="#"><img src="images/slide_01.jpg" th:src="@{/images/slide_01.jpg}"></a></li>
+                <li><a href="#"><img src="images/slide_02.jpg" th:src="@{/images/slide_02.jpg}"></a></li>
+                <li><a href="#"><img src="images/slide_03.jpg" th:src="@{/images/slide_03.jpg}"></a></li>
+                <li><a href="#"><img src="images/slide_04.jpg" th:src="@{/images/slide_04.jpg}"></a></li>
+                <li><a href="#"><img src="images/slide_03.jpg" th:src="@{/images/slide_03.jpg}"></a></li>
+                <li><a href="#"><img src="images/slide_02.jpg" th:src="@{/images/slide_02.jpg}"></a></li>
+                <li><a href="#"><img src="images/slide_01.jpg" th:src="@{/images/slide_01.jpg}"></a></li>
+                <li><a href="#"><img src="images/slide_04.jpg" th:src="@{/images/slide_04.jpg}"></a></li>
+            </ul>
+        </section>
+        <div class="Copyright">
+            <ul style="margin-bottom: 10px;margin-top: -5px;">
+                <a href="#">© 2019 Renwoxing.cn</a><a href="#">加入任我行</a><a href="#">网站条款</a><a href="#">帮助中心</a>
+            </ul>
+            <p>Design by yuanzhi</p><br>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

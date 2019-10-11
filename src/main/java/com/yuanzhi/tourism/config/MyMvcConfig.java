@@ -30,15 +30,14 @@ public class MyMvcConfig implements WebMvcConfigurer {
             }
 
             //注册拦截器
-            @Override
-            public void addInterceptors(InterceptorRegistry registry) {
-                //super.addInterceptors(registry);
-                //静态资源；  *.css , *.js
-                //SpringBoot已经做好了静态资源映射
-                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/admin/login","/destiny.html",
-                                "/userLogin.html","/css/**","/js/**","/images/**","/public/**","/asserts/**","/webjars/**");
-            }
+//            @Override
+//            public void addInterceptors(InterceptorRegistry registry) {
+//                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+//                        .excludePathPatterns("/index.html","/","/admin/login","/destiny.html","/password","/account","/albumworld","/self",
+//                                "/userLogin.html","/css/**","/js/**","/images/**","/public/**","/asserts/**","/webjars/**","/journeyDetail",
+//                                "/flight","/hotel","/setting","/setting/ownImg","/setting/modifyPwd","/setting/blackBan","/setting/ownAttended",
+//                                "/setting/ownFan","/signout","/strategy","/strategyDetail","/register","/regist");
+//            }
         };
         return adapter;
     }

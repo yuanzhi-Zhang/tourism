@@ -15,7 +15,7 @@
     <script src="public/js/jquery-3.2.1.min.js"></script>
     <script src="public/layui.js"></script>
     <script src="js/own.js"></script>
-    <script src="js/background.js"></script>
+    <script src="js/background.js" th:src="@{/js/background.js}"></script>
     <title>个人中心@任我行,旅游攻略t</title>
 </head>
 
@@ -26,50 +26,7 @@
     </div>
     <!--头部导航-->
     <div class="own_head">
-        <ul class="layui-nav" lay-filter="" id="des_nav">
-            <li class="layui-nav-item"><a href="background.html" target="_blank">首页</a></li>
-            <!--layui-this 表示当前停留地方-->
-            <li class="layui-nav-item"><a href="destiny.html" target="_blank">目的地</a></li>
-            <li class="layui-nav-item"><a href="#/advice">旅游攻略</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">去旅行</a>
-                <dl class="layui-nav-child">
-                    <!-- 二级菜单 -->
-                    <dd><a href="#/freedom">自由行</a></dd>
-                    <dd><a href="#/follow">跟团游</a></dd>
-                    <dd><a href="#/local">当地游</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item"><a href="#/ticket">机票</a></li>
-            <li class="layui-nav-item"><a href="#/order">订酒店</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">社区</a>
-                <dl class="layui-nav-child">
-                    <!-- 二级菜单 -->
-                    <dd><a href="#/answer">问答</a></dd>
-                    <dd><a href="#/around">周边</a></dd>
-                    <dd><a href="#/company">结伴</a></dd>
-                </dl>
-            </li>
-            <!--登录状态显示区-->
-            <!-- <li class="layui-nav-item login">
-                <a href="#" style="font-size:18px;">登录</a>
-            </li>
-            <li class="layui-nav-item">
-                <a href="#" style="font-size:18px;">注册</a>
-            </li> -->
-            <!-- <li class="layui-nav-item">
-                <a href="">个人中心<span class="layui-badge-dot"></span></a>
-            </li> -->
-            <li class="layui-nav-item layui-this">
-                <a href=""><img src="images/logo.png" class="layui-nav-img">我</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">修改信息</a></dd>
-                    <dd><a href="javascript:;">安全管理</a></dd>
-                    <dd><a href="javascript:;">退了</a></dd>
-                </dl>
-            </li>
-        </ul>
+        <div th:replace="user/common/header::header"></div>
     </div>
     <!--背景图中的时间及问候语-->
     <div class="own_introduce_box">
@@ -81,7 +38,7 @@
     </div>
     <!--更换背景图选项-->
     <div class="own_change_backPic">
-        <img src="images/icon/changePic.png">&ensp;<span>更换背景图片</span>
+        <img src="images/icon/changePic.png" th:href="@{/images/icon/changePic.png}">&ensp;<span>更换背景图片</span>
     </div>
     <!--个人信息-->
     <div class="own_content">
@@ -95,7 +52,9 @@
                         <i class="layui-icon layui-icon-male"></i>
                     </p>
                     <p class="own_areaAndAge">现居：江西九江&emsp;22&emsp;
-                        <i class="layui-icon layui-icon-set-fill own_setting"></i>
+                        <a href="" th:href="@{/setting}" style="color: #373737;opacity: 0.8;">
+                            <i class="layui-icon layui-icon-set-fill own_setting"></i>
+                        </a>
                     </p>
                     <button class="layui-btn layui-btn-primary own_show_self">介绍下自己吧</button>
                     <textarea name="" required lay-verify="required" placeholder="例如：登山爱好者..."
@@ -116,8 +75,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-male"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="已关注" />
+                                        <p><input type="button" class="own_haveAttended" value="已关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -131,8 +89,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-male"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="已关注" />
+                                        <p><input type="button" class="own_haveAttended" value="已关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -146,8 +103,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-female"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="已关注" />
+                                        <p><input type="button" class="own_haveAttended" value="已关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -161,8 +117,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-female"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="已关注" />
+                                        <p><input type="button" class="own_haveAttended" value="已关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -176,8 +131,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-female"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="已关注" />
+                                        <p><input type="button" class="own_haveAttended" value="已关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -193,8 +147,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-male"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="未关注" />
+                                        <p><input type="button" class="own_notAttend" value="未关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -208,8 +161,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-male"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="未关注" />
+                                        <p><input type="button" class="own_notAttend" value="未关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -223,8 +175,7 @@
                                         <p>会飞的鱼
                                             <i class="layui-icon layui-icon-female"></i>
                                         </p>
-                                        <p><input type="button" class="own_haveAttended" id="own_haveAttended"
-                                                value="未关注" />
+                                        <p><input type="button" class="own_notAttend" value="未关注" />
                                             <input type="button" class="own_send_message" value="发私信"></p>
                                     </li>
                                     <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
@@ -252,19 +203,19 @@
                     </ul>
                     <ul class="jour_ul own_operate">
                         <li class="jour_li">
-                            <img src="images/322549.jpg">
+                            <img src="images/icon/writeJour.png">
                             <p><span>写游记</span></p>
                         </li>
                         <li class="jour_li">
-                            <img src="images/322433.jpg">
+                            <img src="images/icon/writeStragy.png">
                             <p><span>写攻略</span></p>
                         </li>
                         <li class="jour_li">
-                            <img src="images/322414.jpg">
+                            <img src="images/icon/ask.png">
                             <p><span>问达人</span></p>
                         </li>
                         <li class="jour_li">
-                            <img src="images/321926.jpg">
+                            <img src="images/icon/invite.png">
                             <p><span>发布结伴</span></p>
                         </li>
                     </ul>
@@ -611,36 +562,7 @@
         </ul>
     </div>
     <!--页脚区域-->
-    <div class="foot">
-        <footer>
-            <div class="footavatar">
-                <img src="images/iconImg.jpg" class="footphoto">
-                <ul class="footinfo">
-                    <p class="fname"><a href="/dancesmile">联系我们</a> </p>
-                    <p class="finfo">@任我行</p>
-                    <p>用心出行</p>
-                </ul>
-            </div>
-            <section class="visitor">
-                <ul>
-                    <li><a href="#"><img src="images/slide_01.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_02.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_03.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_04.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_03.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_02.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_01.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_04.jpg"></a></li>
-                </ul>
-            </section>
-            <div class="Copyright">
-                <ul style="margin-bottom: 10px;margin-top: -5px;">
-                    <a href="#">© 2019 Renwoxing.cn</a><a href="#">加入任我行</a><a href="#">网站条款</a><a href="#">帮助中心</a>
-                </ul>
-                <p>Design by yuanzhi</p><br>
-            </div>
-        </footer>
-    </div>
+    <div th:replace="user/common/footer::foot"></div>
 </body>
 
 </html>

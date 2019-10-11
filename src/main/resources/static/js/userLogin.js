@@ -87,18 +87,28 @@ $(function() {
 	// console.log(ColorReverse(OldColorValue));
 
 	// 访问后台数据库，登录信息是否正确
-//	$(".btn_login").click(function() {
-//		$.ajax({
-//			type : 'POST',
-//			url : "/tourism/User/login.do",
-//			success : function(data) {
-//				if (data) {
-//					alert("You datas ： " + data);
-//				} else {
-//					alert("失败");
-//				}
-//			}
-//		});
-//	})
+	// var account = $("#account").val();
+	// var password = $("#password").val();
+	// $(".register_jump").click(function () {
+     //    console.log(account);
+     //    console.log(password);
+    // })
+    // $(".btn_login").click(function() {
+	// 	$.ajax({
+	// 		type : 'POST',
+	// 		url : "/rwx/password",
+	// 		data: {account:account,
+	// 			password:password},
+     //        dataType:"json",
+	// 		success : function(data) {
+	// 			console.log(data);
+	// 			if (data) {
+	// 				alert("You datas ： " + data);
+	// 			} else {
+	// 				alert("失败");
+	// 			}
+	// 		}
+	// 	});
+	// })
 
 })

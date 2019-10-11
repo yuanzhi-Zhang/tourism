@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <title>我的信息@任我行</title>
+    <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui1.css}">
+    <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="css/setting.css" th:href="@{/css/setting.css}">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
+    <script src="js/setting.js" th:src="@{/js/setting.js}"></script>
+</head>
+<body>
+<!--头部导航-->
+    <div class="set_head">
+        <div th:replace="user/common/header::#headerLikeIndex"></div>
+    </div>
+<!--中间主要内容区-->
+    <div class="set_content">
+        <!--正文部分-->
+        <div class="set_main">
+            <ul class="jour_ul">
+                <li class="jour_li" style="float: left;">
+                    <div th:replace="user/common/bar::slidebar(activeUri='setting')"></div>
+                </li>
+                <li class="jour_li" style="float: right;">
+                    <div class="set_right_operate">
+                        <p class="set_right_operate_title">我的信息</p>
+                        <form class="layui-form" action="" style="margin-left: 35px;">
+                            <input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
+                            <input type="hidden" name="id" th:if="${user!=null}" th:value="${user.uid}"/>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">昵称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" required  lay-verify="required" th:value="${session.loginUser.getUsername()}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">性别</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="sex" value="男" title="男" th:checked="${session.loginUser!=null}?${session.loginUser.getUsersex()=='男'}">
+                                    <input type="radio" name="sex" value="女" title="女" th:checked="${session.loginUser!=null}?${session.loginUser.getUsersex()=='女'}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">现居地</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" required  lay-verify="required" th:value="${session.loginUser.getAddress()}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">出生日期</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" id="ownBirth" required  lay-verify="required" th:placeholder="${session.loginUser!=null}?${#dates.format(session.loginUser.getBirthday(), 'yyyy-MM-dd')}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">个性自我</label>
+                                <div class="layui-input-block">
+                                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!--页脚区域-->
+    <div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

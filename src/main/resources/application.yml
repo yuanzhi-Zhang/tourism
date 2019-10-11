@@ -28,10 +28,16 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-
   thymeleaf:
     cache: false
-    mode: HTML5
+
+  freemarker:
+  #        关闭缓存，及时刷新，上线生产环境需要修改为true
+    cache: false
+    suffix: .ftl
+    check-template-location: true
+    template-loader-path: classpath:/templates/
+
   messages:
     basename: i18n.login
 
@@ -41,6 +47,16 @@ spring:
 # 修改默认的静态寻址资源目录
   resources:
     static-locations: classpath:/static/
+  mail:
+    default-encoding: UTF-8
+    host: smtp.163.com
+    username: yz73748196@163.com
+    password: zhi330314
+
+#邮件发件人
+mail:
+  fromMail:
+    addr: yz73748196@163.com
 
 mybatis:
   check-config-location: true

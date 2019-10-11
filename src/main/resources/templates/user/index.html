@@ -23,64 +23,7 @@
     <div class="main_box">
         <!--头部导航-->
         <div class="head">
-            <ul class="layui-nav" lay-filter="">
-                <img class="head-logo" src="images/logo.png">
-                <li class="layui-nav-item layui-this"><a href="#/home">首页</a></li>
-                <!--layui-this 表示当前停留地方-->
-                <li class="layui-nav-item"><a href="destiny.html" target="_blank">目的地</a></li>
-                <li class="layui-nav-item"><a href="#/advice">旅游攻略</a></li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">去旅行</a>
-                    <dl class="layui-nav-child">
-                        <!-- 二级菜单 -->
-                        <dd><a href="#/freedom">自由行</a></dd>
-                        <dd><a href="#/follow">跟团游</a></dd>
-                        <dd><a href="#/local">当地游</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a href="#/ticket">机票</a></li>
-                <li class="layui-nav-item"><a href="#/order">订酒店</a></li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">社区</a>
-                    <dl class="layui-nav-child">
-                        <!-- 二级菜单 -->
-                        <dd><a href="#/answer">问答</a></dd>
-                        <dd><a href="#/around">周边</a></dd>
-                        <dd><a href="#/company">结伴</a></dd>
-                    </dl>
-                </li>
-                <!--搜索框-->
-                <li class="layui-nav-item search">
-                    <div class="d1">
-                        <form>
-                            <input type="text" placeholder="诗与远方,从这里开始...">
-                            <button type="submit"></button>
-                        </form>
-                    </div>
-                </li>
-                <!--登录状态显示区-->
-                <!-- <li class="layui-nav-item login">
-                    <a href="#" style="font-size:18px;">登录</a>
-                </li> -->
-                <li class="layui-nav-item" th:if="${session.loginUser==null}">
-                    <ul class="album_ul">
-                        <li class="album_li">
-                            <a href="#" style="font-size:18px;">登录</a>
-                        </li>
-                        <li class="album_li">
-                            <a href="#" style="font-size:18px;">注册</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="layui-nav-item" th:if="${session.loginUser!=null}">
-                    <a href="own.html" target="_blank"><img src="//t.cn/RCzsdCq" class="layui-nav-img">[[${session.loginUser.getUsername()}]]</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">修改信息</a></dd>
-                        <dd><a href="javascript:;">安全管理</a></dd>
-                        <dd><a href="javascript:;">退了</a></dd>
-                    </dl>
-                </li>
-            </ul>
+            <div th:replace="user/common/header::#headerLikeIndex"></div>
         </div>
         <div class="video_box" id="video">
             <video src="images/3.mp4" th:autoplay="true" th:src="@{/images/3.mp4}" autoplay muted loop></video>
@@ -101,7 +44,7 @@
             <!--旅行相册分区-->
             <div class="tourpic">
                 <h1 class="tour_album">旅行相册&ensp;<i class="layui layui-icon layui-icon-next next"></i> <span
-                        class="find"><a href="findWorld.html" target="_blank">发现世界</a></span>&emsp;<span
+                        class="find"><a href="findWorld.html" th:href="@{/albumworld}" target="_blank">发现世界</a></span>&emsp;<span
                         class="upload"><a>上传照片,开始你的旅程分享吧</a></span>
                 </h1>
                 <ul class="album_ul">
@@ -179,7 +122,7 @@
                     <li class="jour_li" style="position: relative;top:-65px;">
                         <ul class="jour_ul">
                             <li class="jour_li" style="position: relative;top:-67px;">
-                                <a href="#"><img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg"
+                                <a href="#" th:href="@{/journeyDetail}"><img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg"
                                         class="jour_img"></a>
                             </li>
                             <!--图片右边总的区块-->
@@ -446,146 +389,18 @@
             </div>
         </div>
         <!--页脚区域-->
-        <div class="foot">
-            <footer>
-                <div class="footavatar">
-                    <img src="images/iconImg.jpg" class="footphoto">
-                    <ul class="footinfo">
-                        <p class="fname"><a href="/dancesmile">联系我们</a> </p>
-                        <p class="finfo">@任我行</p>
-                        <p>用心出行</p>
-                    </ul>
-                </div>
-                <section class="visitor">
-                    <ul>
-                        <li><a href="#"><img src="images/slide_01.jpg"></a></li>
-                        <li><a href="#"><img src="images/slide_02.jpg"></a></li>
-                        <li><a href="#"><img src="images/slide_03.jpg"></a></li>
-                        <li><a href="#"><img src="images/slide_04.jpg"></a></li>
-                        <li><a href="#"><img src="images/slide_03.jpg"></a></li>
-                        <li><a href="#"><img src="images/slide_02.jpg"></a></li>
-                        <li><a href="#"><img src="images/slide_01.jpg"></a></li>
-                        <li><a href="#"><img src="images/slide_04.jpg"></a></li>
-                    </ul>
-                </section>
-                <div class="Copyright">
-                    <ul style="margin-bottom: 10px;margin-top: -5px;">
-                        <a href="#">© 2019 Renwoxing.cn</a><a href="#">加入任我行</a><a href="#">网站条款</a><a href="#">帮助中心</a>
-                    </ul>
-                    <p>Design by yuanzhi</p><br>
-                </div>
-            </footer>
-        </div>
+        <div th:replace="user/common/footer::foot"></div>
         <!-- 左侧播放器 开始-->
-        <div id="jp_container_N" class="jp-video jp-video-270p jp-state-playing" role="application"
-            aria-label="media player" style="left: 0px; height: 175px; bottom: 20px;">
-            <div class="jp-type-playlist">
-                <div id="jquery_jplayer_N" class="jp-jplayer" style="width: 90px; height: 90px;">
-
-                    <audio id="jp_audio_0" preload="metadata"
-                        src="http://music.163.com/song/media/outer/url?id=31473269.mp3" title="那英"></audio>
-                    <video id="jp_video_0" preload="metadata" title="那英" style="width: 0px; height: 0px;"></video>
-                </div>
-                <div class="jp-gui">
-                    <div class="jp-video-play" style="display: none;">
-                        <button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
-                    </div>
-                    <div class="jp-interface">
-                        <div class="jp-progress">
-                            <div class="jp-seek-bar" style="width: 100%;">
-                                <div class="jp-play-bar" style="overflow: hidden; width: 97.5219%;"></div>
-                            </div>
-                        </div>
-                        <div class="jp-current-time" role="timer" aria-label="time">04:11</div>
-                        <div class="jp-duration" role="timer" aria-label="duration">04:17</div>
-                        <div class="jp-controls-holder">
-                            <div class="jp-controls">
-                                <button class="jp-previous" role="button" tabindex="0">上一曲</button>
-                                <button class="jp-play" role="button" tabindex="0">播放</button>
-                                <button class="jp-next" role="button" tabindex="0">下一曲</button>
-                                <button class="jp-stop" role="button" tabindex="0">暂停</button>
-                            </div>
-                            <div class="jp-volume-controls">
-                                <button class="jp-mute" role="button" tabindex="0">静音</button>
-                                <button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
-                                <div class="jp-volume-bar">
-                                    <div class="jp-volume-bar-value" style="width: 10%;"></div>
-                                </div>
-                            </div>
-                            <div class="jp-toggles">
-                                <button class="jp-repeat" role="button" tabindex="0">重复</button>
-                                <button class="jp-shuffle" role="button" tabindex="0">随机</button>
-                                <!--<button class="jp-full-screen" role="button" tabindex="0">全屏</button>-->
-                            </div>
-                        </div>
-                        <div class="jp-details" style="display: none;">
-                            <div class="jp-title" aria-label="title">那英</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="jp-playlist">
-                    <div class="jp-playlist-box" style="height: 80px;">
-                        <ul style="height: 1000px; display: block; top: 0px;">
-                            <li>
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">默 <span
-                                            class="jp-artist" style="transform: rotate(180deg);"> - 那英</span></a>
-                                </div>
-                            </li>
-                            <li class="">
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Ellens Gesang III D839
-                                        <span class="jp-artist" style="transform: rotate(180deg);"> - Geoffrey
-                                            Parsons</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Fire <span
-                                            class="jp-artist" style="transform: rotate(180deg);"> - Said The
-                                            Sky</span></a>
-                                </div>
-                            </li>
-                            <li class="jp-playlist-current" style="display: list-item;">
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">兰若词
-                                        <span class="jp-artist" style="transform: rotate(180deg);"> - 刘亦菲</span></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="jp-no-solution" style="display: none;">
-                    <span style="transform: rotate(180deg);">升级需要</span> 您浏览器赞不支持播放，请更新版本
-                    <a href="http://get.adobe.com/flashplayer" target="_blank">Flash插件</a>.
-                </div>
-            </div>
-            <!--歌曲列表滚动条-->
-            <div class="scrollBar" style="display: block;">
-                <div class="bar" style="top: 0px;"></div>
-            </div>
-            <!--播放器展开隐藏按钮-->
-            <button type="button" class="folded_bt" title="点击收缩" id="btnfold" style="top: 52px;">
-                <span style="transform: rotate(180deg);"></span>
-            </button>
-            <div id="listRemove" style="display: block;"></div>
-            <!--移除全部歌曲按钮-->
-            <div id="listClose"></div>
-            <!--歌曲列表展开收缩按钮-->
-        </div>
+        <div th:replace="user/common/player::player"></div>
         <!-- 左侧播放器 结束-->
     </div>
 </body>
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
 <!--播放器js-->
-<script src="js/player.js"></script>
-<script src="js/playlist.js"></script>
-<script src="js/player_database.js"></script>
+<script src="js/player.js" th:href="@{/js/player.js}"></script>
+<script src="js/playlist.js" th:href="@{/js/playlist.js}"></script>
+<script src="js/player_database.js" th:href="@{/js/player_database.js}"></script>
 <!--播放器js-->
 
 </html>

@@ -117,11 +117,25 @@ $(function () {
     })
 
     //我的关注按钮变化
-    $(".own_haveAttended").mouseover(function () {
-        document.getElementById("own_haveAttended").value = "取消关注"
+    // $(".own_haveAttended").mouseover(function () {
+    //     document.getElementsByClassName("own_haveAttended").value = "取消关注"
+    // })
+    // $(".own_haveAttended").mouseout(function () {
+    //     document.getElementsByClassName("own_haveAttended").value = "已关注"
+    // })
+    $(".own_haveAttended").on('mouseover mouseout', function (e) {
+        if (e.type === "mouseover") {
+            this.value = "取消关注"
+        } else if (e.type === "mouseout") {
+            this.value = "已关注"
+        }
     })
-    $(".own_haveAttended").mouseout(function () {
-        document.getElementById("own_haveAttended").value = "已关注"
+    $(".own_notAttend").on('mouseover mouseout', function (e) {
+        if (e.type === "mouseover") {
+            this.value = "关注"
+        } else if (e.type === "mouseout") {
+            this.value = "未关注"
+        }
     })
 
     //留言按钮变化
@@ -134,7 +148,10 @@ $(function () {
         $(".own_remain_message_save").css("color", "black");
     })
 
-    //设置鼠标拖动
+    //退出登录
+    $(".signout").click(function () {
+        location.reload();
+    })
 
 
 

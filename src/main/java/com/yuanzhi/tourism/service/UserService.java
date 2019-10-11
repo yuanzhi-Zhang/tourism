@@ -20,16 +20,20 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
+    /**
+     * 查询所有用户
+     * @return
+     */
     public Collection<User> getAllUser() {
-
         return userMapper.selectByExample(null);
-
     }
 
+    /**
+     * 添加用户
+     * @param user
+     */
     public void saveUser(User user) {
-
         userMapper.insert(user);
-
     }
 
     /**
@@ -41,8 +45,12 @@ public class UserService {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         UserExample.Criteria account = criteria.andAccountEqualTo(user.getAccount());
-        UserExample.Criteria password = criteria.andAccountEqualTo(user.getPassword());
+        UserExample.Criteria password = criteria.andPasswordEqualTo(user.getPassword());
         List<User> returnUser = userMapper.selectByExample(userExample);
-        return returnUser.get(0);
+        if (returnUser.size() == 0){
+            return null;
+        }else {
+            return returnUser.get(0);
+        }
     }
 }

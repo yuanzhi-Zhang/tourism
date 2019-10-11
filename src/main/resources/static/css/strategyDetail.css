@@ -1,0 +1,60 @@
+.strategyDetai_content{
+    width: 100%;
+    padding: 20px 0;
+    background: linear-gradient(45deg, rgba(254, 172, 94, 0.5), rgba(199, 121, 208, 0.5), rgba(75, 192, 200, 0.5));
+}
+.strategyDetai_content_left{
+    width: 680px;
+    float: left;
+}
+.strategyDetai_content_left_title{
+    font-size: 28px;
+    font-family: "幼圆";
+    text-align: left;
+}
+.strategyDetail_author_img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.strategyDetail_author{
+    font-size: 20px;
+    font-family: "幼圆";
+    line-height: 35px;
+}
+.hisRoom{
+    width: 60px;
+    height: 50px;
+}
+.strategyDetail__main_img{
+    width: 680px;
+    height: 430px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+.strategyDetail_right{
+    float: right;
+    width: 300px;
+}
+.strategyDetail_contro{
+    margin-bottom: 20px;
+}
+.strategyDetail_contro img{
+    width: 40px;
+    height: 40px;
+    margin: 10px 3px;
+}
+.strategyDetail_catalogue li{
+    list-style-type: decimal;
+    font-size: 16px;
+    line-height: 40px;
+    margin-left: 15px;
+    color: #117a8b;
+}
+.strategyDetail_catalogue li a{
+    color: #8b5273;
+}
+.strategyDetail_catalogue li a:hover{
+    text-decoration: underline;
+    color: #0f88eb;
+}

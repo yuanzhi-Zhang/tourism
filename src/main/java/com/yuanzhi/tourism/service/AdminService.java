@@ -29,7 +29,11 @@ public class AdminService {
         AdminExample.Criteria account = criteria.andAdminaccountEqualTo(admin.getAdminaccount());
         AdminExample.Criteria password = criteria.andAdminpasswordEqualTo(admin.getAdminpassword());
         List<Admin> admins = adminMapper.selectByExample(adminExample);
-        return admins.get(0);
+        if (admins.size() == 0){
+            return null;
+        }else {
+            return admins.get(0);
+        }
     }
 
 }

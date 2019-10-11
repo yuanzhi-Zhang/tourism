@@ -67,7 +67,7 @@
     font-family: "幼圆";
 }
 
-.search input {
+.des_search .search input {
     width: 260px;
     height: 50px;
     border: 2px solid rgb(230, 160, 81);
@@ -79,7 +79,7 @@
     font-size: 16px;
 }
 
-.search button {
+.des_search .search button {
     width: 54px;
     height: 54px;
     border: none;
@@ -88,7 +88,7 @@
     cursor: pointer;
 }
 
-.search button:before {
+.des_search .search button:before {
     content: "\f002";
     font-family: FontAwesome;
     font-size: 18px;
@@ -142,6 +142,86 @@
 #container {
     width: 1020px;
     height: 600px;
+    display: none;
+    margin: 0 auto;
+}
+
+.des_themeDes{
+    text-align: center;
+    font-size: 24px;
+}
+
+.des_themeDes_content{
+    width: 1020px;
     display: block;
     margin: 0 auto;
+}
+
+.des_themeDes_title{
+    width: 600px;
+    display: block;
+    margin: 0 auto;
+    font-size: 32px;
+}
+
+.des_themeDes_title li{
+    width: 83px;
+    font-size: 18px;
+    font-family: "幼圆";
+}
+
+.des_themeDes_left_img{
+    width: 252px;
+    height: 400px;
+    object-fit: cover;
+    margin-right: 12px;
+    position: relative;
+}
+.des_themeDes_left{
+    position: relative;
+}
+.des_themeDes_left_img_name{
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    font-size: 24px;
+    color: aliceblue;
+}
+.des_themeDes_left_img_info{
+    display: none;
+    position: absolute;
+    top: 0px;
+    width: 228px;
+    height: 300px;
+    padding: 50px 12px;
+    color: aliceblue;
+    background-color: rgba(120,120,120,0.6);
+}
+.des_themeDes_right img{
+    width: 228px;
+    height: 190px;
+    object-fit: cover;
+    margin-left: 7px;
+    margin-bottom: 20px;
+}
+.des_themeDes_right li{
+    position: relative;
+}
+.des_themeDes_right li .name{
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    font-size: 24px;
+    color: aliceblue;
+}
+.des_themeDes_right li .info{
+    display: none;
+    position: absolute;
+    top: 0px;
+    width: 204px;
+    height: 90px;
+    left: 7px;
+    padding: 50px 12px;
+    color: aliceblue;
+    background-color: rgba(120,120,120,0.6);
 }

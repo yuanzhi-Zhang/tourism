@@ -12,6 +12,8 @@ public class User {
 
     private String password;
 
+    private String repwd;
+
     private String username;
 
     private String usersex;
@@ -94,5 +96,13 @@ public class User {
 
     public void setImgurl(String imgurl) {
         this.imgurl = imgurl == null ? null : imgurl.trim();
+    }
+
+    public String getRepwd() {
+        return repwd;
+    }
+
+    public void setRepwd(String repwd) {
+        this.repwd = repwd;
     }
 }

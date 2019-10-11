@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="css/destiny.css" th:href="@{/css/destiny.css}">
     <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="css/player.css" th:href="@{/css/player.css}" rel="stylesheet" type="text/css" />
 
-    <script src="http://api.map.baidu.com/getscript?v=2.0&ak=E4805d16520de693a3fe707cdc962045"></script>
-    <script src="public/js/jquery-3.2.1.min.js" th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
+    <!--<script src="http://api.map.baidu.com/getscript?v=2.0&ak=E4805d16520de693a3fe707cdc962045"></script>-->
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <script src="js/destiny.js" th:src="@{/js/destiny.js}"></script>
 
@@ -26,51 +27,7 @@
             <img src="images/destiny/pic02.jpeg">
         </div>
         <div class="nav">
-            <ul class="layui-nav" lay-filter="" id="des_nav">
-                    <img class="head-logo" src="images/logo.png" th:href="@{/images/logo.png}" alt="">
-                    <li class="layui-nav-item"><a href="background.html">首页</a></li>
-                    <!--layui-this 表示当前停留地方-->
-                    <li class="layui-nav-item layui-this"><a href="destiny.html" target="_blank">目的地</a></li>
-                    <li class="layui-nav-item"><a href="#/advice">旅游攻略</a></li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">去旅行</a>
-                        <dl class="layui-nav-child">
-                            <!-- 二级菜单 -->
-                            <dd><a href="#/freedom">自由行</a></dd>
-                            <dd><a href="#/follow">跟团游</a></dd>
-                            <dd><a href="#/local">当地游</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item"><a href="#/ticket">机票</a></li>
-                    <li class="layui-nav-item"><a href="#/order">订酒店</a></li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">社区</a>
-                        <dl class="layui-nav-child">
-                            <!-- 二级菜单 -->
-                            <dd><a href="#/answer">问答</a></dd>
-                            <dd><a href="#/around">周边</a></dd>
-                            <dd><a href="#/company">结伴</a></dd>
-                        </dl>
-                    </li>
-                    <!--登录状态显示区-->
-                    <!-- <li class="layui-nav-item login">
-                        <a href="#" style="font-size:18px;">登录</a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="#" style="font-size:18px;">注册</a>
-                    </li> -->
-                    <!-- <li class="layui-nav-item">
-                        <a href="">个人中心<span class="layui-badge-dot"></span></a>
-                    </li> -->
-                    <li class="layui-nav-item" th:if="${loginUser!=null}">
-                        <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">修改信息</a></dd>
-                            <dd><a href="javascript:;">安全管理</a></dd>
-                            <dd><a href="javascript:;">退了</a></dd>
-                        </dl>
-                    </li>
-                </ul>
+            <div th:replace="user/common/header::header"></div>
         </div>
         <div class="pic_info">
             <ul class="jour_ul des_ul">
@@ -100,55 +57,415 @@
         </div>
     </div>
     <!--各个地区-->
-    <div class="des_area">
-        <div id="dri_way">
-            <br>
-            起点：<input type="text" id="start" />
-            终点：<input type="text" id="end" />
-            <select>
-                <option value="0">最少时间</option>
-                <option value="1">最短距离</option>
-                <option value="2">避开高速</option>
-            </select>
-            <input type="button" id="result" value="查询" />
-        </div>
-        <div id="r-result">
-                城市名: <input id="cityName" type="text" style="width:100px; margin-right:10px;" />
-                <input type="button" value="查询" id="chaxun" />
+    <div class="des_area" style="padding-bottom:60px;">
+        <!--<div id="dri_way">-->
+            <!--<br>-->
+            <!--起点：<input type="text" id="start" />-->
+            <!--终点：<input type="text" id="end" />-->
+            <!--<select>-->
+                <!--<option value="0">最少时间</option>-->
+                <!--<option value="1">最短距离</option>-->
+                <!--<option value="2">避开高速</option>-->
+            <!--</select>-->
+            <!--<input type="button" id="result" value="查询" />-->
+        <!--</div>-->
+        <!--<div id="r-result">-->
+                <!--城市名: <input id="cityName" type="text" style="width:100px; margin-right:10px;" />-->
+                <!--<input type="button" value="查询" id="chaxun" />-->
+            <!--</div>-->
+        <!--<div id="container"></div>-->
+        <br><br>
+        <p class="des_themeDes">主题目的地</p><br>
+        <div class=" des_themeDes_content">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title des_themeDes_title">
+                    <li class="layui-this">青砖红瓦</li>
+                    <li>江南烟雨</li>
+                    <li>凛凛寒冬</li>
+                    <li>夜色撩人</li>
+                    <li>森林妙语</li>
+                </ul>
+                <div class="layui-tab-content" style="margin-top: 40px;">
+                    <div class="layui-tab-item layui-show">
+                        <ul class="jour_ul">
+                            <li class="jour_li des_themeDes_left">
+                                <a href="#"><img src="images/321926.jpg" class="des_themeDes_left_img">
+                                    <div class="des_themeDes_left_img_name">幽璜居</div>
+                                    <div class="des_themeDes_left_img_info">
+                                        <p>五渔村</p>
+                                        <hr class="layui-bg-green">
+                                        <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                    </div></a></a>
+                            </li>
+                            <li class="jour_li des_themeDes_right" style="float: right;width: 736px;">
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322188.jpg">
+                                        <div class="name">五渔村</div>
+                                        <div class="info">
+                                            <p>五渔村</p>
+                                            <hr class="layui-bg-green">
+                                            <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                        </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321079.jpg">
+                                        <div class="name">碧波潭</div>
+                                        <div class="info">
+                                            <p>五渔村</p>
+                                            <hr class="layui-bg-green">
+                                            <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                        </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321075.jpg">
+                                        <div class="name">不老山</div>
+                                        <div class="info">
+                                            <p>五渔村</p>
+                                            <hr class="layui-bg-green">
+                                            <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                        </div></a>
+                                    </li>
+                                </ul>
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/323280.jpg">
+                                            <div class="name">碧波潭</div>
+                                        <div class="info">
+                                            <p>五渔村</p>
+                                            <hr class="layui-bg-green">
+                                            <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                        </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/319282.jpg">
+                                            <div class="name">碧波潭</div>
+                                        <div class="info">
+                                            <p>五渔村</p>
+                                            <hr class="layui-bg-green">
+                                            <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                        </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/315203.jpg">
+                                            <div class="name">碧波潭</div>
+                                        <div class="info">
+                                            <p>五渔村</p>
+                                            <hr class="layui-bg-green">
+                                            <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                        </div></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="layui-tab-item">
+                        <ul class="jour_ul">
+                            <li class="jour_li des_themeDes_left">
+                                <a href="#"><img src="images/321926.jpg" class="des_themeDes_left_img">
+                                    <div class="des_themeDes_left_img_name">幽璜居</div>
+                                    <div class="des_themeDes_left_img_info">
+                                        <p>五渔村</p>
+                                        <hr class="layui-bg-green">
+                                        <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                    </div></a></a>
+                            </li>
+                            <li class="jour_li des_themeDes_right" style="float: right;width: 736px;">
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322059.jpg">
+                                            <div class="name">五渔村</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322417.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322746.jpg">
+                                            <div class="name">不老山</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322878.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/311403.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/315203.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="layui-tab-item">
+                        <ul class="jour_ul">
+                            <li class="jour_li des_themeDes_left">
+                                <a href="#"><img src="images/321926.jpg" class="des_themeDes_left_img">
+                                    <div class="des_themeDes_left_img_name">幽璜居</div>
+                                    <div class="des_themeDes_left_img_info">
+                                        <p>五渔村</p>
+                                        <hr class="layui-bg-green">
+                                        <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                    </div></a></a>
+                            </li>
+                            <li class="jour_li des_themeDes_right" style="float: right;width: 736px;">
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322188.jpg">
+                                            <div class="name">五渔村</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321079.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321075.jpg">
+                                            <div class="name">不老山</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/323280.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/319282.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/315203.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="layui-tab-item">
+                        <ul class="jour_ul">
+                            <li class="jour_li des_themeDes_left">
+                                <a href="#"><img src="images/321926.jpg" class="des_themeDes_left_img">
+                                    <div class="des_themeDes_left_img_name">幽璜居</div>
+                                    <div class="des_themeDes_left_img_info">
+                                        <p>五渔村</p>
+                                        <hr class="layui-bg-green">
+                                        <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                    </div></a></a>
+                            </li>
+                            <li class="jour_li des_themeDes_right" style="float: right;width: 736px;">
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322188.jpg">
+                                            <div class="name">五渔村</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321079.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321075.jpg">
+                                            <div class="name">不老山</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/323280.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/319282.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/315203.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="layui-tab-item">
+                        <ul class="jour_ul">
+                            <li class="jour_li des_themeDes_left">
+                                <a href="#"><img src="images/321926.jpg" class="des_themeDes_left_img">
+                                    <div class="des_themeDes_left_img_name">幽璜居</div>
+                                    <div class="des_themeDes_left_img_info">
+                                        <p>五渔村</p>
+                                        <hr class="layui-bg-green">
+                                        <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                    </div></a></a>
+                            </li>
+                            <li class="jour_li des_themeDes_right" style="float: right;width: 736px;">
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/322188.jpg">
+                                            <div class="name">五渔村</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321079.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/321075.jpg">
+                                            <div class="name">不老山</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                                <ul class="jour_ul">
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/323280.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/319282.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                    <li class="jour_li des_themeDes_right_li">
+                                        <a href="#"><img src="images/315203.jpg">
+                                            <div class="name">碧波潭</div>
+                                            <div class="info">
+                                                <p>五渔村</p>
+                                                <hr class="layui-bg-green">
+                                                <p>相传村里的人都是由五位渔者留下的后代，故名五渔村。</p>
+                                            </div></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        <div id="container"></div>
+        </div>
     </div>
     <!--页脚-->
-    <div class="foot">
-        <footer>
-            <div class="footavatar">
-                <img src="images/iconImg.jpg" class="footphoto">
-                <ul class="footinfo">
-                    <p class="fname"><a href="/dancesmile">联系我们</a> </p>
-                    <p class="finfo">@任我行</p>
-                    <p>用心出行</p>
-                </ul>
-            </div>
-            <section class="visitor">
-                <ul>
-                    <li><a href="#"><img src="images/slide_01.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_02.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_03.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_04.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_03.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_02.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_01.jpg"></a></li>
-                    <li><a href="#"><img src="images/slide_04.jpg"></a></li>
-                </ul>
-            </section>
-            <div class="Copyright">
-                <ul style="margin-bottom: 10px;margin-top: -5px;">
-                    <a href="#">© 2019 Renwoxing.cn</a><a href="#">加入任我行</a><a href="#">网站条款</a><a href="#">帮助中心</a>
-                </ul>
-                <p>Design by yuanzhi</p><br>
-            </div>
-        </footer>
-    </div>
+    <div th:replace="user/common/footer::foot"></div>
+    <!-- 左侧播放器 开始-->
+    <div th:replace="user/common/player::player"></div>
 </body>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+<!--播放器js-->
+<script src="js/player.js" th:href="@{/js/player.js}"></script>
+<script src="js/playlist.js" th:href="@{/js/playlist.js}"></script>
+<script src="js/player_database.js" th:href="@{/js/player_database.js}"></script>
+<!--播放器js-->
 
 </html>

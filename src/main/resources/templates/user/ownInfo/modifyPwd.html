@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <title>我的信息@任我行</title>
+    <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui1.css}">
+    <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="css/setting.css" th:href="@{/css/setting.css}">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
+    <script src="js/setting.js" th:src="@{/js/setting.js}"></script>
+</head>
+<body>
+<!--头部导航-->
+<div class="set_head">
+    <div th:replace="user/common/header::#headerLikeIndex"></div>
+</div>
+<!--中间主要内容区-->
+<div class="set_content">
+    <!--正文部分-->
+    <div class="set_main">
+        <ul class="jour_ul">
+            <li class="jour_li" style="float: left;">
+                <div th:replace="user/common/bar::slidebar(activeUri='setting/modifyPwd')"></div>
+            </li>
+            <li class="jour_li" style="float: right;">
+                <div class="set_right_operate">
+                    <p class="set_right_operate_title">修改密码</p>
+                    <form class="layui-form" action="" style="margin-left: 35px;">
+                        <input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
+                        <input type="hidden" name="id" th:if="${user!=null}" th:value="${user.uid}"/>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">原密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="title" required  lay-verify="required" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">新密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="title" required  lay-verify="required" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">确认密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="title" required  lay-verify="required" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="margin-top: 30px;">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

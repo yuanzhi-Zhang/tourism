@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <title>酒店服务@任我行，旅游攻略</title>
+    <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" href="css/orderHotel.css" th:href="@{/css/orderHotel.css}">
+    <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
+    <script src="js/orderHotel.js" th:src="@{/js/orderHotel.js}"></script>
+</head>
+<body>
+<!--头部导航-->
+    <div class="hotel_head">
+        <div th:replace="user/common/header::header"></div>
+    </div>
+<!--导航下的大图-->
+    <div class="hotel_turnImg">
+        <img src="images/hotel/hotel1.jpg" class="hotel_turnImg_main">
+        <div class="hotel_turnImg_float">
+            <img src="images/hotel/hotel1.jpg" class="hotelImg">
+            <img src="images/hotel/hotel2.jpg" class="hotelImg">
+            <img src="images/hotel/hotel3.jpg" class="hotelImg">
+            <img src="images/hotel/hotel4.jpg" class="hotelImg">
+            <img src="images/hotel/hotel5.jpg" class="hotelImg">
+        </div>
+        <div class="hotel_search">
+            <div class="search">
+                <form>
+                    <input type="text" placeholder="想住什么酒店呢...">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--主要内容区-->
+    <div class="hotel_content">
+        <div class="hotel_content_main">
+            <p class="hotel_theme">主题住宿</p><br>
+            <div class="hotel_theme_content">
+                <div class="layui-tab layui-tab-brief" lay-filter="hotelTabBrief">
+                    <ul class="layui-tab-title hotel_theme_title">
+                        <li class="layui-this">潜水胜地</li>
+                        <li>江南烟雨</li>
+                        <li>凛凛寒冬</li>
+                        <li>夜色撩人</li>
+                        <li>森林妙语</li>
+                    </ul>
+                    <div class="layui-tab-content" style="margin-top: 40px;">
+                        <div class="layui-tab-item layui-show">
+                            <ul class="jour_ul hotel_theme_img" style="margin-top: -30px;">
+                                <li class="jour_li">
+                                    <img src="images/hotel/hotel6" th:src="@{/images/hotel/hotel6.jpg}">
+                                </li>
+                                <li class="jour_li">
+                                    <img src="images/hotel/hotel6" th:src="@{/images/hotel/hotel7.jpg}">
+                                </li>
+                                <li class="jour_li">
+                                    <img src="images/hotel/hotel6" th:src="@{/images/hotel/hotel8.jpg}">
+                                </li>
+                            </ul>
+                            <ul class="jour_ul hotel_theme_img">
+                                <li class="jour_li">
+                                    <img src="images/hotel/hotel6" th:src="@{/images/hotel/hotel9.jpg}">
+                                </li>
+                                <li class="jour_li">
+                                    <img src="images/hotel/hotel6" th:src="@{/images/hotel/hotel5.jpg}">
+                                </li>
+                                <li class="jour_li">
+                                    <img src="images/hotel/hotel6" th:src="@{/images/hotel/hotel4.jpg}">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layui-tab-item">
+
+                        </div>
+                        <div class="layui-tab-item">
+
+                        </div>
+                        <div class="layui-tab-item">
+
+                        </div>
+                        <div class="layui-tab-item">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--页脚区域-->
+    <div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

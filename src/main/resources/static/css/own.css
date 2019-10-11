@@ -221,6 +221,22 @@
     color: coral;
     cursor: pointer;
 }
+.own_notAttend{
+    height: 30px;
+    width: 71px;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 12px;
+    margin-top: 17px;
+    background: rgb(172, 166, 166);
+    color: white;
+}
+.own_notAttend:hover{
+    background: white;
+    border: 1px coral solid;
+    color: coral;
+    cursor: pointer;
+}
 .own_send_message{
     background: white;
     border: 1px coral solid;
@@ -267,7 +283,6 @@
 .own_operate img{
     width: 60px;
     height: 60px;
-    border-radius: 50%;
     margin-bottom: 5px;
     object-fit: cover;
 }

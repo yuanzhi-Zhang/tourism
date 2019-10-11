@@ -1,0 +1,63 @@
+.flight_head{
+    background-color: cadetblue;
+    text-align: center;
+}
+.flight_content{
+    padding-top: 30px;
+    padding-bottom: 45px;
+    background: linear-gradient(45deg,rgba(254,172,94,0.5),rgba(199,121,208,0.5),rgba(75,192,200,0.5));
+}
+.flight_ticket{
+    width: 1020px;
+    display: block;
+    margin: 0 auto;
+}
+.flight_ticket_title{
+    text-align: left;
+    font-size: 24px;
+}
+.flight_ticket_search{
+    width: 370px;
+    height: 361px;
+    border: 2px solid coral;
+    padding: 20px 0px;
+    float: left;
+}
+.flight_ticket_search input{
+    border: 1px #ff8db6 solid;
+}
+.flight_ticket_radio{
+    text-align: center;
+    font-size: 22px;
+    font-family: "幼圆";
+    height: 40px;
+    padding-top: 9px;
+}
+.flight_ticket_radio input{
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+}
+.flight_ticket_startCity,.flight_ticket_goalCity{
+    text-align: center;
+    font-size: 22px;
+    font-family: "幼圆";
+    height: 40px;
+    padding-bottom: 18px;
+}
+.flight_ticket_startCity input{
+    height: 38px;
+    padding-left: 10px;
+}
+.flight_ticket_goalCity input{
+    height: 38px;
+    padding-left: 10px;
+}
+.flight_ticket_img{
+    width: 611px;
+    height: 401px;
+    float: right;
+    margin-left: 25px;
+    border: 3px solid lightgray;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.1) inset;
+}
