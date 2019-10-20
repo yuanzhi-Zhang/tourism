@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Comment">
+    <id column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="commentTime" jdbcType="VARCHAR" property="commenttime" />
+    <result column="commentComment" jdbcType="VARCHAR" property="commentcomment" />
+    <result column="lastCommentId" jdbcType="INTEGER" property="lastcommentid" />
+    <result column="albumId" jdbcType="INTEGER" property="albumid" />
+    <result column="sceneId" jdbcType="INTEGER" property="sceneid" />
+    <result column="strategyId" jdbcType="INTEGER" property="strategyid" />
+    <result column="journeyId" jdbcType="INTEGER" property="journeyid" />
+    <result column="commentCount" jdbcType="INTEGER" property="commentcount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cid, userId, commentTime, commentComment, lastCommentId, albumId, sceneId, strategyId, 
+    journeyId, commentCount
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.CommentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.CommentExample">
+    delete from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Comment">
+    insert into comment (cid, userId, commentTime, 
+      commentComment, lastCommentId, albumId, 
+      sceneId, strategyId, journeyId, 
+      commentCount)
+    values (#{cid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{commenttime,jdbcType=VARCHAR}, 
+      #{commentcomment,jdbcType=VARCHAR}, #{lastcommentid,jdbcType=INTEGER}, #{albumid,jdbcType=INTEGER}, 
+      #{sceneid,jdbcType=INTEGER}, #{strategyid,jdbcType=INTEGER}, #{journeyid,jdbcType=INTEGER}, 
+      #{commentcount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="commenttime != null">
+        commentTime,
+      </if>
+      <if test="commentcomment != null">
+        commentComment,
+      </if>
+      <if test="lastcommentid != null">
+        lastCommentId,
+      </if>
+      <if test="albumid != null">
+        albumId,
+      </if>
+      <if test="sceneid != null">
+        sceneId,
+      </if>
+      <if test="strategyid != null">
+        strategyId,
+      </if>
+      <if test="journeyid != null">
+        journeyId,
+      </if>
+      <if test="commentcount != null">
+        commentCount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="commenttime != null">
+        #{commenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="commentcomment != null">
+        #{commentcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcommentid != null">
+        #{lastcommentid,jdbcType=INTEGER},
+      </if>
+      <if test="albumid != null">
+        #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="sceneid != null">
+        #{sceneid,jdbcType=INTEGER},
+      </if>
+      <if test="strategyid != null">
+        #{strategyid,jdbcType=INTEGER},
+      </if>
+      <if test="journeyid != null">
+        #{journeyid,jdbcType=INTEGER},
+      </if>
+      <if test="commentcount != null">
+        #{commentcount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.CommentExample" resultType="java.lang.Long">
+    select count(*) from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update comment
+    <set>
+      <if test="record.cid != null">
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.commenttime != null">
+        commentTime = #{record.commenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentcomment != null">
+        commentComment = #{record.commentcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastcommentid != null">
+        lastCommentId = #{record.lastcommentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.albumid != null">
+        albumId = #{record.albumid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sceneid != null">
+        sceneId = #{record.sceneid,jdbcType=INTEGER},
+      </if>
+      <if test="record.strategyid != null">
+        strategyId = #{record.strategyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.journeyid != null">
+        journeyId = #{record.journeyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentcount != null">
+        commentCount = #{record.commentcount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update comment
+    set cid = #{record.cid,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      commentTime = #{record.commenttime,jdbcType=VARCHAR},
+      commentComment = #{record.commentcomment,jdbcType=VARCHAR},
+      lastCommentId = #{record.lastcommentid,jdbcType=INTEGER},
+      albumId = #{record.albumid,jdbcType=INTEGER},
+      sceneId = #{record.sceneid,jdbcType=INTEGER},
+      strategyId = #{record.strategyid,jdbcType=INTEGER},
+      journeyId = #{record.journeyid,jdbcType=INTEGER},
+      commentCount = #{record.commentcount,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Comment">
+    update comment
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="commenttime != null">
+        commentTime = #{commenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="commentcomment != null">
+        commentComment = #{commentcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcommentid != null">
+        lastCommentId = #{lastcommentid,jdbcType=INTEGER},
+      </if>
+      <if test="albumid != null">
+        albumId = #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="sceneid != null">
+        sceneId = #{sceneid,jdbcType=INTEGER},
+      </if>
+      <if test="strategyid != null">
+        strategyId = #{strategyid,jdbcType=INTEGER},
+      </if>
+      <if test="journeyid != null">
+        journeyId = #{journeyid,jdbcType=INTEGER},
+      </if>
+      <if test="commentcount != null">
+        commentCount = #{commentcount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Comment">
+    update comment
+    set userId = #{userid,jdbcType=INTEGER},
+      commentTime = #{commenttime,jdbcType=VARCHAR},
+      commentComment = #{commentcomment,jdbcType=VARCHAR},
+      lastCommentId = #{lastcommentid,jdbcType=INTEGER},
+      albumId = #{albumid,jdbcType=INTEGER},
+      sceneId = #{sceneid,jdbcType=INTEGER},
+      strategyId = #{strategyid,jdbcType=INTEGER},
+      journeyId = #{journeyid,jdbcType=INTEGER},
+      commentCount = #{commentcount,jdbcType=INTEGER}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="incCommentCount" parameterType="com.yuanzhi.tourism.entity.Comment">
+    update comment set commentCount = commentCount + 1 where cid = #{cid}
+  </update>
+</mapper>

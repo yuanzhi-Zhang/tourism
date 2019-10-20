@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="multipart/form-data;UTF-8">
     <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
     <title>我的信息@任我行</title>
     <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui1.css}">
@@ -29,8 +29,13 @@
                 <div class="set_right_operate">
                     <p class="set_right_operate_title">我的头像</p>
                     <div class="set_ownImg_operate">
-                        <img src="images/322549.jpg" th:src="@{/images/322549.jpg}"><br>
-                        <button type="button" class="layui-btn layui-btn-danger" id="test1">
+                        <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+                        <div class="layui-upload-list">
+                            <img class="layui-upload-img" id="imgShow" th:src="${session.loginUser.getImgurl()}">
+                            <p id="demoText"></p>
+                        </div>
+                        <!--<input type="file" id="file">-->
+                        <button type="button" class="layui-btn layui-btn-danger" id="uploadImg">
                             <i class="layui-icon">&#xe67c;</i>选择图片
                         </button>
                         <span style="position: relative;top: 16px;">支持jpg、png、jpeg、bmp，图片大小5M以内</span>

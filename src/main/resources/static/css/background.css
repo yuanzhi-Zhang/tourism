@@ -97,7 +97,7 @@
 .introduce_box {
     position: absolute;
     left: 15%;
-    top: 4%;
+    top: 118px;
     transform: translate(-15%, -15%);
 }
 
@@ -111,7 +111,7 @@
 .content_box {
     width: 100%;
     position: absolute;
-    top: 15%;
+    top: 430px;
     text-align: center;
 }
 
@@ -148,8 +148,9 @@
 }
 
 .tour_journey {
-    width: 500px;
-    padding-left: 15.5%;
+    /*width: 500px;*/
+    /*padding-left: 15.5%;*/
+    margin-left: -15px;
     margin-bottom: 15px;
 }
 
@@ -293,6 +294,38 @@
     color: rgb(101, 101, 247);
 }
 
+.indexJourneyContent{
+    width: 420px;
+    margin-left: 20px;
+    margin-top:20px;
+    line-height: 25px;
+    height: 99px;
+    overflow: hidden;
+}
+
+.indexJourneyContent a{
+    color: red;
+}
+
+.indexJourneyContent a:hover{
+    color: #f0992c;
+}
+
+.pagination{
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+.pagination li{
+    width: 50px;
+    padding: 8px 1px;
+    text-align: center;
+}
+
+.pagination .active{
+    background-color: #ff5722;
+}
+
 .activity {
     float: right;
 }
@@ -341,7 +374,6 @@
     width: 1020px;
     display: block;
     margin: 0 auto;
-    margin-top: -100px;
     margin-bottom: 25px;
 }
 

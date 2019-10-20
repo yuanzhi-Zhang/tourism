@@ -2,10 +2,12 @@ package com.yuanzhi.tourism.config;
 
 import com.yuanzhi.tourism.component.LoginHandlerInterceptor;
 import com.yuanzhi.tourism.component.MyLocalResolver;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -22,7 +24,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         WebMvcConfigurer adapter = new WebMvcConfigurer() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController("/").setViewName("user/index");
+//                registry.addViewController("/").setViewName("user/index");
                 registry.addViewController("/index.html").setViewName("admin/login");
                 registry.addViewController("/adminMain.html").setViewName("admin/adminIndex");
                 registry.addViewController("/destiny.html").setViewName("user/destiny");
@@ -46,5 +48,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver(){
         return new MyLocalResolver();
     }
+
 
 }

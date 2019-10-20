@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
     <link rel="stylesheet" href="public/css/layui2.css" th:href="@{/public/css/layui2.css}">
     <link rel="stylesheet" href="css/journeyDetail.css" th:href="@{/css/journeyDetail.css}">
     <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
@@ -14,14 +16,14 @@
     <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <script src="js/journeyDetail.js" th:src="@{/js/journeyDetail.js}"></script>
 
-    <title>跟我去旅行，北海道以东...@任我行，旅游攻略</title>
+    <title th:text="${journey.jourtitle}">跟我去旅行，北海道以东...@任我行，旅游攻略</title>
 </head>
 
 <body>
     <div class="journey_detail_head">
         <!--中间大图-->
         <div class="pic_img">
-            <img src="images/destiny/pic01.jpeg">
+            <img src="images/destiny/pic01.jpeg" th:src="${journey.mainimg}">
         </div>
         <!--顶部导航栏-->
 		<div class=" nav">
@@ -33,20 +35,21 @@
                 <ul class="jour_ul title_ul">
                     <li class="jour_li">
                         <!--作者头像-->
-                        <a href="#"><img src="images/u=44153646,977624522&fm=26&gp=0.jpg" class="journeyAuthor"></a>
+                        <a href="#"><img src="images/u=44153646,977624522&fm=26&gp=0.jpg" th:src="${journey.user.imgurl}" class="journeyAuthor"></a>
                     </li>
                     <li class="jour_li title_info_right">
-                        <p class="journey_title">跟我去旅行，北海道以东又是另一番美景</p>
+                        <p class="journey_title" th:text="${journey.jourtitle}">跟我去旅行，北海道以东又是另一番美景</p>
                         <p class="journey_title_info">
-                            <span class="title_author"><a href="#">站远处看从前</a></span>
-                            <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm">
+                            <span class="title_author"><a href="#" th:text="${journey.user.username}">站远处看从前</a></span>
+                            (<span th:text="${journey.user.address}"></span>)
+                            <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm" style="margin-top: -3px;">
                                 <i class="layui-icon">&#xe608;</i>关注
                             </button>&emsp;&emsp;
-                            <!--该相册的发布时间-->
-                            <span class="publish_time">2019.06.21&ensp;16:24</span>&emsp;
-                            <!--该篇相册被浏览次数-->
-                            <img src="images/icon/eyes.png" class="readTimes">
-                            <sapn>115</sapn>
+                            <!--该游记的发布时间-->
+                            <span class="publish_time" th:text="${journey.publishtime}">2019.06.21&ensp;16:24</span>&emsp;
+                            <!--该篇游记被浏览次数-->
+                            <img src="images/icon/eyes.png" th:src="@{/images/icon/eyes.png}" class="readTimes">
+                            <sapn th:text="${journey.readtimes}">115</sapn>
                         </p>
                     </li>
                     <!--<ul class="jour_ul">-->
@@ -67,65 +70,160 @@
         <ul class="jour_ul jour_detail_main">
             <li class="jour_li jour_detail_main_left">
                 <div class="jour_detail_main_left_top">
-                    出发时间：2019-06-21&emsp;&emsp;历时：3天&emsp;&emsp;人物：同事、同学
+                    出发时间：<sapn th:text="${journey.starttime}">2019-06-21</sapn>&emsp;
+                    历时：<span th:text="${journey.daysnum}">3天</span>&emsp;
+                    人物：<span th:text="${journey.people}">同事、同学</span>&emsp;
+                    金额：<span th:text="${journey.money}">3000元</span>
                 </div>
                 <!--游记副标题-->
                 <p class="jour_detail_main_title">
                     🌟D1 →樟宜、河川、夜间动物园
                 </p>
                 <hr class="layui-bg-green" style="height: 5px;">
-                <span>初识 新加坡 ，从樟宜机场开始。<br>
-                搭乘五星航空新航，经过一宿飞机  ，早上到达附有“最美机场”之称的 新加坡 樟宜机场。<br>
-                    听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>
-                <div class="jour_detail_main_div" style="position: relative;">
-                    <a href="#"><img class="jour_detail_main_img" src="images/320231.jpg"></a>
-                    <div class="jour_detail_main_img_contrl">
+                <div class="journeyDetailContent" th:utext="${journey.jourcontent}"></div>
+                <!--<span>初识 新加坡 ，从樟宜机场开始。<br>-->
+                <!--搭乘五星航空新航，经过一宿飞机  ，早上到达附有“最美机场”之称的 新加坡 樟宜机场。<br>-->
+                    <!--听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>-->
+                <!--<div class="jour_detail_main_div" style="position: relative;">-->
+                    <!--<a href="#"><img class="jour_detail_main_img" src="images/320231.jpg"></a>-->
+                    <!--<div class="jour_detail_main_img_contrl">-->
 
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<span>初识 新加坡 ，从樟宜机场开始。<br>-->
+                    <!--听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>-->
+                <!--<div class="jour_detail_main_div" style="position: relative;">-->
+                    <!--<a href="#"><img class="jour_detail_main_img" src="images/323256.jpg"></a>-->
+                    <!--<div class="jour_detail_main_img_contrl">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<span>由于购买的是5号 绵阳 ✈️ 丽江 的机票，在 成都 的我当天很早就起床洗漱，出发前往 成都 南站，乘坐到 绵阳 的动车。1小时候后，我到达 绵阳 后吃了一个简单的早餐，不过不知道是不是在车站的原因，早餐味道并不是很理想。 </span>-->
+                <!--<div class="jour_detail_main_div" style="position: relative;">-->
+                    <!--<a href="#"><img class="jour_detail_main_img" src="images/322188.jpg"></a>-->
+                    <!--<div class="jour_detail_main_img_contrl">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<span>吃完早餐后打了个滴滴前往南郊机场，办理登机。此时没有做过飞机  ️的我简直就是兴奋到像个大傻子  ，不过没多久我就兴奋不起来了，“各位旅客我们很抱歉的通知您，您乘坐的飞往 丽江 的sc46**航班，由于航空管制，航班无法按时起飞，对比我们深表歉意，请在候机室等候通知”。听到以后我也是第一次体会到飞机延误是啥感觉了  。因为延误的原因导致我后面的计划全部打乱了，真是应了那句“计划赶不上变化”。延误了大概1小时的时间终于开始登机了。“您好欢迎登机” 山东 航空的空姐带着微笑  的说着欢迎词。</span>-->
+                <!--<div class="jour_detail_main_div" style="position: relative;">-->
+                    <!--<a href="#"><img class="jour_detail_main_img" src="images/323143.jpg"></a>-->
+                    <!--<div class="jour_detail_main_img_contrl">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="journey_comment">
+                    <!--回复-->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h4>
+                            <!--<span th:text="${question.commentCount}"></span> 个回复-->
+                            <span>7</span> 个回复
+                        </h4>
+                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment : ${comments}">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <!--<img class="media-object img-rounded"-->
+                                             <!--th:src="${comment.user.avatarUrl}">-->img
+                                    </a>
+                                </div>
+                                <div class="media-body" th:id="${'comment-body-'+comment.cid}">
+                                    <h5 class="media-heading">
+                                        <!--<span th:text="${comment.user.name}"></span>-->name
+                                    </h5>
+                                    <div th:text="${comment.commentcontent}"></div>
+                                    <div class="menu">
+                                        <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                        <span th:data-id="${comment.cid}"
+                                              onclick="collapseComments(this)" class="comment-icon">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                    <span th:text="${comment.commentcount}"></span>
+                                </span>
+                                        <span class="pull-right"
+                                              th:text="${#dates.format(comment.commenttime,'yyyy-MM-dd')}"></span>
+                                    </div>
+                                    <!--二级评论-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments"
+                                         th:id="${'comment-'+comment.cid}">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="评论一下……"
+                                                   th:id="${'input-'+comment.cid}">
+                                            <button type="button" class="btn btn-success pull-right" onclick="comment(this)"
+                                                    th:data-id="${comment.cid}">评论
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <span>初识 新加坡 ，从樟宜机场开始。<br>
-                    听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>
-                <div class="jour_detail_main_div" style="position: relative;">
-                    <a href="#"><img class="jour_detail_main_img" src="images/323256.jpg"></a>
-                    <div class="jour_detail_main_img_contrl">
 
-                    </div>
-                </div>
-                <span>由于购买的是5号 绵阳 ✈️ 丽江 的机票，在 成都 的我当天很早就起床洗漱，出发前往 成都 南站，乘坐到 绵阳 的动车。1小时候后，我到达 绵阳 后吃了一个简单的早餐，不过不知道是不是在车站的原因，早餐味道并不是很理想。 </span>
-                <div class="jour_detail_main_div" style="position: relative;">
-                    <a href="#"><img class="jour_detail_main_img" src="images/322188.jpg"></a>
-                    <div class="jour_detail_main_img_contrl">
-
-                    </div>
-                </div>
-                <span>吃完早餐后打了个滴滴前往南郊机场，办理登机。此时没有做过飞机  ️的我简直就是兴奋到像个大傻子  ，不过没多久我就兴奋不起来了，“各位旅客我们很抱歉的通知您，您乘坐的飞往 丽江 的sc46**航班，由于航空管制，航班无法按时起飞，对比我们深表歉意，请在候机室等候通知”。听到以后我也是第一次体会到飞机延误是啥感觉了  。因为延误的原因导致我后面的计划全部打乱了，真是应了那句“计划赶不上变化”。延误了大概1小时的时间终于开始登机了。“您好欢迎登机” 山东 航空的空姐带着微笑  的说着欢迎词。</span>
-                <div class="jour_detail_main_div" style="position: relative;">
-                    <a href="#"><img class="jour_detail_main_img" src="images/323143.jpg"></a>
-                    <div class="jour_detail_main_img_contrl">
-
+                    <!--回复输入框-->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h4>
+                            提交回复
+                        </h4>
+                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object img-rounded"
+                                             th:src="${session.loginUser.getImgurl()}">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <span th:text="${session.loginUser != null ? session.loginUser.getUsername() : '匿名用户'}"></span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <input type="hidden" id="journey_id" th:value="${journey.tid}">
+                            <input type="hidden" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+                            <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
+                            <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
+                        </div>
                     </div>
                 </div>
             </li>
+            <!--<li class="jour_li jour_detail_main_left" th:utext="${journey.jourcontent}">-->
+            </li>
             <!--右侧顶部的相关推荐-->
             <li class="jour_li jour_detail_main_right">
+                <!--操作控件-->
+                <ul class="jour_ul journeyDetail_control">
+                    <li class="jour_li">
+                        <a href="#"><img th:src="@{/images/icon/edit1.png}"></a>
+                    </li>
+                    <li class="jour_li">
+                        <a href="#"><img th:src="@{/images/icon/collect1.png}"></a>
+                    </li>
+                    <li class="jour_li">
+                        <a href="#"><img th:src="@{/images/icon/share1.png}"></a>
+                    </li>
+                    <li class="jour_li">
+                        <a href="#"><img th:src="@{/images/icon/praise1.png}"></a>
+                    </li>
+                </ul>
                 <div class="jour_detai_relative">
                     <a href="#"><p>相关目的地：</p>
-                    <img class="relative_destiny" src="images/319282.jpg"></a>
+                    <img class="relative_destiny" src="images/319282.jpg" th:src="@{/images/319282.jpg}"></a>
                     <p>丽江</p>
                 </div>
                 <div class="jour_detai_relative">
                     <a href="#"><p>相关旅游攻略：</p>
-                    <img class="relative_destiny" src="images/322433.jpg"></a>
+                    <img class="relative_destiny" src="images/322433.jpg" th:src="@{/images/322433.jpg}"></a>
                     <div style="position: absolute;top: 65px;left: 10px;color: white;">
-                        <img src="images/icon/blueeyes.png" class="readTimes" style="height: 28px;"><sapn>&ensp;356</sapn>
+                        <img src="images/icon/blueeyes.png" th:src="@{/images/icon/blueeyes.png}" class="readTimes" style="height: 28px;"><sapn>&ensp;356</sapn>
                     </div>
                     <p style="font-size: 18px;letter-spacing: 2px;left: 3px;bottom: 3px;text-align: left;">丽江自由行攻略时光 | 岁月、丽江自由行攻略全攻略</p>
                 </div>
                 <div class="jour_detai_relative">
                     <a href="#"><p>相关旅行游记：</p>
-                    <img class="relative_destiny" src="images/323591.jpg"></a>
+                    <img class="relative_destiny" src="images/323591.jpg" th:src="@{/images/323591.jpg}"></a>
                     <div style="position: absolute;top: 65px;left: 10px;color: white;">
-                        <img src="images/icon/blueeyes.png" class="readTimes" style="height: 28px;"><sapn>&ensp;1314</sapn>
+                        <img src="images/icon/blueeyes.png" th:src="@{/images/icon/blueeyes.png}" class="readTimes" style="height: 28px;"><sapn>&ensp;1314</sapn>
                     </div>
                     <p style="font-size: 18px;letter-spacing: 2px;left: 3px;bottom: 3px;text-align: left;">【宝藏纪念】“丽江+泸沽湖”自驾之旅，这场艳遇超值</p>
                 </div>
@@ -155,7 +253,7 @@
                                 <div class="layui-tab-item layui-show">
                                     <ul class="jour_ul" style="margin-bottom: 20px;">
                                         <li class="jour_li">
-                                            <a href="#"><img src="images/322414.jpg"></a>
+                                            <a href="#"><img src="images/322414.jpg" th:src="@{/images/322414.jpg}"></a>
                                         </li>
                                         <li class="jour_li" style="float: right;width: 175px;margin-left: 5px;">
                                             <p>斯里兰卡大酒店<span style="font-size: 10px;color: #9F9F9F;">五星高端</span></p>
@@ -165,7 +263,7 @@
                                     </ul>
                                     <ul class="jour_ul" style="margin-bottom: 20px;">
                                         <li class="jour_li">
-                                            <a href="#"><img src="images/323266.jpg"></a>
+                                            <a href="#"><img src="images/323266.jpg" th:src="@{/images/323266.jpg}"></a>
                                         </li>
                                         <li class="jour_li" style="float: right;width: 175px;margin-left: 5px;">
                                             <p>斯里兰卡大酒店<span style="font-size: 10px;color: #9F9F9F;">五星高端</span></p>
@@ -175,7 +273,7 @@
                                     </ul>
                                     <ul class="jour_ul" style="margin-bottom: 20px;">
                                         <li class="jour_li">
-                                            <a href="#"><img src="images/323591.jpg"></a>
+                                            <a href="#"><img src="images/323591.jpg" th:src="@{/images/323591.jpg}"></a>
                                         </li>
                                         <li class="jour_li" style="float: right;width: 175px;margin-left: 5px;">
                                             <p>斯里兰卡大酒店<span style="font-size: 10px;color: #9F9F9F;">五星高端</span></p>
@@ -190,7 +288,7 @@
                                 <div class="layui-tab-item">
                                     <ul class="jour_ul" style="margin-bottom: 20px;">
                                         <li class="jour_li">
-                                            <a href="#"><img src="images/323591.jpg"></a>
+                                            <a href="#"><img src="images/323591.jpg" th:src="@{/images/323591.jpg}"></a>
                                         </li>
                                         <li class="jour_li" style="float: right;width: 175px;margin-left: 5px;">
                                             【寻梦环游记原型城市+艺术之城圣米格尔+千年墨西哥古城+特奥蒂瓦坎日月金字塔】

@@ -6,6 +6,7 @@ import com.yuanzhi.tourism.entity.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class UserService {
     public User loginCheck(User user) {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
-        UserExample.Criteria account = criteria.andAccountEqualTo(user.getAccount());
+        UserExample.Criteria email = criteria.andAccountEqualTo(user.getEmail());
         UserExample.Criteria password = criteria.andPasswordEqualTo(user.getPassword());
         List<User> returnUser = userMapper.selectByExample(userExample);
         if (returnUser.size() == 0){
@@ -52,5 +53,22 @@ public class UserService {
         }else {
             return returnUser.get(0);
         }
+    }
+
+    /**
+     * 根据主键修改用户信息
+     * @param user
+     * @return
+     */
+    public User updateUserInfo(User user) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUidEqualTo(user.getUid());
+        userMapper.updateByExampleSelective(user,userExample);
+        return userMapper.selectByPrimaryKey(user.getUid());
+    }
+
+    public User selectUserByPrimary(int id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 }

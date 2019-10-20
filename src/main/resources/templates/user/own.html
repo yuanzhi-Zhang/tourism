@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/own.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-    <script src="public/js/jquery-3.2.1.min.js"></script>
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="public/layui.js"></script>
     <script src="js/own.js"></script>
     <script src="js/background.js" th:src="@{/js/background.js}"></script>
@@ -22,7 +22,8 @@
 <body>
     <!--中间背景大图-->
     <div class="own_backPic">
-        <img id="own_backPic">
+        <img th:if="${session.loginUser==null}" id="own_backPicNull">
+        <img id="own_backPic" th:if="${session.loginUser!=null}" th:src="${session.loginUser.getBackimg()}!=null?${session.loginUser.getBackimg()}:'http://rwx.yuanz.top/ac019e8f-2d09-4897-9ce9-2f070dd79cd4'">
     </div>
     <!--头部导航-->
     <div class="own_head">
@@ -31,14 +32,16 @@
     <!--背景图中的时间及问候语-->
     <div class="own_introduce_box">
         <p><span style="font-size: 48px;" id="day"></span>/<span id="time">Aug.2019</span></p>
-        <p>你好!站在远处看从前</p>
+        <p>你好!<span th:if="${session.loginUser!=null}" th:text="${session.loginUser.getUsername()}"></span></p>
         <div class="doYouKnow">
             &emsp;&emsp;<span id="doYouKnow"></span>
         </div>
     </div>
     <!--更换背景图选项-->
-    <div class="own_change_backPic">
-        <img src="images/icon/changePic.png" th:href="@{/images/icon/changePic.png}">&ensp;<span>更换背景图片</span>
+    <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+    <div class="own_change_backPic" id="changeBackPic" th:if="${session.loginUser!=null}">
+        <img src="images/icon/changePic.png" th:href="@{/images/icon/changePic.png}" id="backImg">
+        &ensp;<span>更换背景图片</span>
     </div>
     <!--个人信息-->
     <div class="own_content">
@@ -57,8 +60,8 @@
                         </a>
                     </p>
                     <button class="layui-btn layui-btn-primary own_show_self">介绍下自己吧</button>
-                    <textarea name="" required lay-verify="required" placeholder="例如：登山爱好者..."
-                        class="layui-textarea own_self_edit"></textarea>
+                    <textarea name="" required lay-verify="required" class="layui-textarea own_self_edit"
+                              th:placeholder="${session.loginUser}!=null?${session.loginUser.getSelfintro()}:'例如：登山爱好者...'"></textarea>
                     <button class="layui-btn layui-btn-primary own_self_edit_save">保存</button>
                     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                         <ul class="layui-tab-title own_tab">
@@ -203,8 +206,9 @@
                     </ul>
                     <ul class="jour_ul own_operate">
                         <li class="jour_li">
+                            <a th:href="@{/journeyPublish}">
                             <img src="images/icon/writeJour.png">
-                            <p><span>写游记</span></p>
+                            <p><span>写游记</span></p></a>
                         </li>
                         <li class="jour_li">
                             <img src="images/icon/writeStragy.png">
@@ -552,7 +556,23 @@
                             <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
                         </div>
                         <div class="layui-tab-item">
-                                <textarea id="demo" style="display: none;"></textarea>
+                                <!--<textarea id="textPublish" style="display: none;"></textarea>-->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">文章标题</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" id="title" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">文章内容</label>
+                                <div class="layui-input-block">
+                                    <textarea placeholder="请输入内容" class="layui-textarea" id="content"></textarea>
+                                </div>
+                            </div>
+                            <div style="text-align: right;margin-right: 200px"><button class="layui-btn layui-btn-lg"
+                                 id="publishJour">发布文章</button> <span id="errMsg" style="font-size:14px;color:red;font-weight:bolder"></span>
+                            </div>
                         </div>
                         <div class="layui-tab-item">内容4</div>
                         <div class="layui-tab-item">内容5</div>

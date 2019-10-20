@@ -21,6 +21,10 @@ public class PageTo {
         return "user/userLogin";
     }
 
+    /**
+     * 跳转到注册页面
+     * @return
+     */
     @GetMapping("/register")
     public String toRegister(){
         return "user/userRegister";
@@ -141,6 +145,11 @@ public class PageTo {
     @GetMapping("/strategyDetail")
     public String toStrategyDetail(){
         return "user/strategyDetail";
+    }
+
+    @GetMapping("/journeyPublish")
+    public String toJourneyPublish(){
+        return "user/journeyPublish";
     }
 
     @GetMapping("/mail")

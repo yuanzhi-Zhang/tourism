@@ -2,8 +2,6 @@ package com.yuanzhi.tourism.entity;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 public class User {
     private Integer uid;
@@ -22,9 +20,19 @@ public class User {
 
     private String address;
 
-    private Date birthday;
+    private String birthday;
 
     private String imgurl;
+
+    private String statuscode;
+
+    private Integer status;
+
+    private String email;
+
+    private String selfintro;
+
+    private String backimg;
 
     public Integer getUid() {
         return uid;
@@ -48,6 +56,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getRepwd() {
+        return repwd;
+    }
+
+    public void setRepwd(String repwd) {
+        this.repwd = repwd;
     }
 
     public String getUsername() {
@@ -82,12 +98,12 @@ public class User {
         this.address = address == null ? null : address.trim();
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday == null ? null : birthday.trim();
     }
 
     public String getImgurl() {
@@ -98,11 +114,43 @@ public class User {
         this.imgurl = imgurl == null ? null : imgurl.trim();
     }
 
-    public String getRepwd() {
-        return repwd;
+    public String getStatuscode() {
+        return statuscode;
     }
 
-    public void setRepwd(String repwd) {
-        this.repwd = repwd;
+    public void setStatuscode(String statuscode) {
+        this.statuscode = statuscode == null ? null : statuscode.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public String getSelfintro() {
+        return selfintro;
+    }
+
+    public void setSelfintro(String selfintro) {
+        this.selfintro = selfintro == null ? null : selfintro.trim();
+    }
+
+    public String getBackimg() {
+        return backimg;
+    }
+
+    public void setBackimg(String backimg) {
+        this.backimg = backimg == null ? null : backimg.trim();
     }
 }

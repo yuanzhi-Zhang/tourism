@@ -26,7 +26,7 @@
         <h3 style="text-align:center;">
             <p style=" color:red;" th:text="${failmsg}" th:if="${not #strings.isEmpty(failmsg)}"></p>
         </h3>
-        <input type="text" name="account" autocomplete="off" placeholder="请输入手机号"
+        <input type="text" name="email" autocomplete="off" placeholder="请输入手机号"
                id="account" class="layui-input account"> <br>
         <input type="password" name="password" placeholder="请输入密码" id="password"
                class="layui-input account">
@@ -38,5 +38,12 @@
         </div>
     </form>
 </div>
+<!--<script>-->
+    <!--$(function () {-->
+        <!--$(".register_jump").click(function () {-->
+                <!--console.log($("#account").val());-->
+             <!--})-->
+    <!--})-->
+<!--</script>-->
 </body>
 </html>

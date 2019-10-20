@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class MailService {
     //邮件发件人
-    @Value("${mail.fromMail.addr}")
+    @Value("${spring.mail.username}")
     private String from;
     @Autowired
     private JavaMailSender mailSender;

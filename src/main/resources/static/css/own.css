@@ -279,7 +279,9 @@
 .own_operate li{
     width: 24%;
 }
-
+.own_operate li:hover{
+    color: coral
+}
 .own_operate img{
     width: 60px;
     height: 60px;
@@ -289,7 +291,10 @@
 .own_operate img:hover{
     cursor: pointer;
 }
-.own_operate p span:hover{
+.own_operate a{
+    color: #0C0C0C;
+}
+.own_operate a:hover{
     cursor: pointer;
     color: coral
 }

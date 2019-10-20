@@ -9,8 +9,13 @@
     <result column="userSex" jdbcType="VARCHAR" property="usersex" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
     <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="statuscode" jdbcType="VARCHAR" property="statuscode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="selfIntro" jdbcType="VARCHAR" property="selfintro" />
+    <result column="backImg" jdbcType="VARCHAR" property="backimg" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uid, account, password, userName, userSex, phone, address, birthday, imgUrl
+    uid, account, password, userName, userSex, phone, address, birthday, imgUrl, statuscode, 
+    status, email, selfIntro, backImg
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -106,12 +112,14 @@
   <insert id="insert" parameterType="com.yuanzhi.tourism.entity.User">
     insert into user (uid, account, password, 
       userName, userSex, phone, 
-      address, birthday, imgUrl
-      )
+      address, birthday, imgUrl, 
+      statuscode, status, email, 
+      selfIntro, backImg)
     values (#{uid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR}, #{usersex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{imgurl,jdbcType=VARCHAR}
-      )
+      #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}, 
+      #{statuscode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{selfintro,jdbcType=VARCHAR}, #{backimg,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.User">
     insert into user
@@ -143,6 +151,21 @@
       <if test="imgurl != null">
         imgUrl,
       </if>
+      <if test="statuscode != null">
+        statuscode,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="selfintro != null">
+        selfIntro,
+      </if>
+      <if test="backimg != null">
+        backImg,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -167,10 +190,25 @@
         #{address,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
-        #{birthday,jdbcType=DATE},
+        #{birthday,jdbcType=VARCHAR},
       </if>
       <if test="imgurl != null">
         #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="statuscode != null">
+        #{statuscode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="selfintro != null">
+        #{selfintro,jdbcType=VARCHAR},
+      </if>
+      <if test="backimg != null">
+        #{backimg,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -205,10 +243,25 @@
         address = #{record.address,jdbcType=VARCHAR},
       </if>
       <if test="record.birthday != null">
-        birthday = #{record.birthday,jdbcType=DATE},
+        birthday = #{record.birthday,jdbcType=VARCHAR},
       </if>
       <if test="record.imgurl != null">
         imgUrl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statuscode != null">
+        statuscode = #{record.statuscode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selfintro != null">
+        selfIntro = #{record.selfintro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backimg != null">
+        backImg = #{record.backimg,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -224,8 +277,13 @@
       userSex = #{record.usersex,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=DATE},
-      imgUrl = #{record.imgurl,jdbcType=VARCHAR}
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      imgUrl = #{record.imgurl,jdbcType=VARCHAR},
+      statuscode = #{record.statuscode,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR},
+      selfIntro = #{record.selfintro,jdbcType=VARCHAR},
+      backImg = #{record.backimg,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -252,10 +310,25 @@
         address = #{address,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
-        birthday = #{birthday,jdbcType=DATE},
+        birthday = #{birthday,jdbcType=VARCHAR},
       </if>
       <if test="imgurl != null">
         imgUrl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="statuscode != null">
+        statuscode = #{statuscode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="selfintro != null">
+        selfIntro = #{selfintro,jdbcType=VARCHAR},
+      </if>
+      <if test="backimg != null">
+        backImg = #{backimg,jdbcType=VARCHAR},
       </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
@@ -268,8 +341,13 @@
       userSex = #{usersex,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
-      imgUrl = #{imgurl,jdbcType=VARCHAR}
+      birthday = #{birthday,jdbcType=VARCHAR},
+      imgUrl = #{imgurl,jdbcType=VARCHAR},
+      statuscode = #{statuscode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      selfIntro = #{selfintro,jdbcType=VARCHAR},
+      backImg = #{backimg,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,6 +1,6 @@
 $(function () {
 
-    layui.use('element', 'layer', function () {
+    layui.use(['element', 'layer'], function () {
         var element = layui.element;
         layer = layui.layer
 
@@ -14,9 +14,45 @@ $(function () {
             location.hash = 'test1=' + this.getAttribute('lay-id');
         });
     });
+
     layui.use('layedit', function () {
         var layedit = layui.layedit;
-        layedit.build('demo'); //建立编辑器
+//上传图片,必须放在 创建一个编辑器前面
+        layedit.set({
+            uploadImage: {
+                url: '/rwx/upload' //接口url
+                ,type: 'post' //默认post
+            }
+        });
+        //建立编辑器  // 编号，该编辑器的编号。
+        var index = layedit.build('content',{
+            height: 400  //设置编辑器高度
+        });
+        $("#publishJour").click(function () {
+            var content = layedit.getContent(index); //根据编号获取了编辑器的内容
+            if (title == '' || content == '') {
+                layer.alert('亲!请将信息补充完整哦!', { icon: 7 })
+            } else {
+                layer.open({
+                    type: 3,
+                    content: "游记发表中..."
+                })
+                $.ajax({
+                    url:"/rwx/getCheckCode?title="+title+"&content="+content,
+                    type:"post",
+                    processData: false,
+                    success:function (text) {
+                        if (text != null && text != ""){
+                            layer.close(index);
+                            layer.msg("游记发表成功!");
+                            window.location.href = "";
+                        } else{
+                            layer.alert("获取失败，请重新获取")
+                        }
+                    }
+                });
+            }
+        })
     });
 
     //生成从minNum到maxNum的随机数
@@ -65,8 +101,36 @@ $(function () {
         "white", "coral", "white", "white", "coral"
     ];
     var backPic_i = randomNum(0, 8);
-    $("#own_backPic").attr("src", backPic[backPic_i]);
     $(".doYouKnow").css('color', colorList[backPic_i]);
+    $("#own_backPicNull").attr("src", backPic[backPic_i]);
+
+    layui.use('upload',function () {
+        //执行实例
+        layui.upload.render({
+            elem: '#changeBackPic' //绑定元素
+            ,url: '/rwx/changeBackPic' //上传接口
+            ,field:'projectImg'
+            ,method: 'POST'
+            ,data: {uid:$("#uid").val()}
+            ,before: function(obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#own_backPic').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //上传完毕回调
+                layer.msg("上传成功");
+                $('#own_backPic').attr('src', res.imgUrl);
+                // parent.location.reload();
+            }
+            ,error: function(res){
+                //请求异常回调
+                layer.msg("上传失败",{icon: 0});
+                console.log(res);
+            }
+        });
+    })
 
     //个人头像特效
     $(".self_img").mouseover(function () {
@@ -143,17 +207,13 @@ $(function () {
         $(".own_remain_message_save").addClass("layui-btn-warm");
         $(".own_remain_message_save").css("color", "white");
     })
-    $(".own_remain_message_save").mouseout(function () {
+    $(".own_remain_message_save").mouseout(function () {$
         $(".own_remain_message_save").removeClass("layui-btn-warm");
         $(".own_remain_message_save").css("color", "black");
     })
 
-    //退出登录
-    $(".signout").click(function () {
-        location.reload();
-    })
-
-
-
+    // $(".own_operate img").mouseover(function () {
+    //     $(".own_operate ")
+    // })
 
 })

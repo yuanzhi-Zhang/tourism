@@ -101,13 +101,19 @@
     width: 650px;
     float: left;
     text-align: left;
+    overflow: hidden;
     /*overflow-y: auto;*/
 }
+/*.jour_detail_main_left img{*/
+    /*margin: 10px 0px;*/
+    /*width: 640px;*/
+    /*height: 420px;*/
+/*}*/
 /*.jour_detail_main_left::-webkit-scrollbar{*/
     /*display: none;*/
 /*}*/
 .jour_detail_main_left_top{
-    width: 610px;
+    width: 608px;
     text-align: left;
     padding: 10px 20px;
     font-family: "幼圆";
@@ -130,6 +136,83 @@
     margin-bottom: 25px;
     margin-top: 10px;
 }
+.journeyDetailContent img{
+    max-width: 650px;
+    object-fit: cover;
+    margin: 10px 0;
+}
+.journeyDetailContent{
+    font-size: 15px;
+    line-height: 28px;
+    color: #444;
+}
+.journeyDetailContent a{
+    color: #df6659;
+}
+.journeyDetailContent a:hover{
+    color: #c69500;
+}
+.journey_comment{
+    width: 650px;
+    margin: 60px auto;
+}
+.comment {
+    margin: 10px 0;
+}
+
+.btn-comment {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.comments {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.sub-comments {
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.sub-comments .btn {
+    margin: 10px 0;
+}
+
+.comment-sp {
+    margin-top: 0;
+}
+.menu {
+    color: #999;
+    margin-top: 5px;
+}
+
+.menu .icon {
+    margin-right: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon :hover {
+    color: #499ef3;
+}
+
+.menu .active {
+    color: #499ef3;
+}
+
+.menu .icon:hover {
+    color: #499ef3;
+}
 .jour_detail_main_img_contrl{
     width: 650px;
     height: 50px;
@@ -141,6 +224,14 @@
 .jour_detail_main_right{
     width: 280px;
     float: right;
+}
+.journeyDetail_control{
+    margin-bottom: 20px;
+}
+.journeyDetail_control img{
+    width: 40px;
+    height: 40px;
+    margin: 0px 13px;
 }
 .jour_detai_relative{
     margin-bottom: 35px;

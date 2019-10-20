@@ -86,12 +86,12 @@ $(function() {
 	// }
 	// console.log(ColorReverse(OldColorValue));
 
-	// 访问后台数据库，登录信息是否正确
-	// var account = $("#account").val();
-	// var password = $("#password").val();
-	// $(".register_jump").click(function () {
-     //    console.log(account);
-     //    console.log(password);
+    // $(".register_jump").click(function () {
+    //     // 访问后台数据库，登录信息是否正确
+    //     var account = $("#account").val();
+    //     var password = $("#password").val();
+    //     console.log(account);
+    //     console.log(password);
     // })
     // $(".btn_login").click(function() {
 	// 	$.ajax({

@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8090
   servlet:
     context-path: /rwx
 
@@ -32,7 +32,7 @@ spring:
     cache: false
 
   freemarker:
-  #        关闭缓存，及时刷新，上线生产环境需要修改为true
+#   关闭缓存，及时刷新，上线生产环境需要修改为true
     cache: false
     suffix: .ftl
     check-template-location: true
@@ -49,19 +49,27 @@ spring:
     static-locations: classpath:/static/
   mail:
     default-encoding: UTF-8
-    host: smtp.163.com
-    username: yz73748196@163.com
-    password: zhi330314
-
-#邮件发件人
-mail:
-  fromMail:
-    addr: yz73748196@163.com
+    host: smtp.qq.com
+    username: 2625221623@qq.com
+    password: vurfssraemgvdjhi
 
 mybatis:
   check-config-location: true
-  config-location: classpath:mybatis/mybatis-config.xml
+#  config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    #在控制台打印sql语句
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# 七牛云配置
+# bucket是创建的存储空间名
+# path对应存储空间的访问域名
+qiniu:
+  accessKey: PlQetJcR-I2iTlbrQaOpV2wx3ISYsGjoBdCi5UEl
+  secretKey: sK6GGUcKR4-Bfd0bpcn81NLqX_CB532-yUgAmLxC
+  bucket: rwoxing
+  path: http://rwx.yuanz.top
 
 #当前项目下生成Renwoxing.log日志
 #logging:

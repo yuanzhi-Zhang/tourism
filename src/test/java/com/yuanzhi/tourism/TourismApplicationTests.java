@@ -31,26 +31,26 @@ public class TourismApplicationTests {
 	public void contextLoads() {
 
 		//景点查询
-//		SceneApi ad = new SceneApi();
-//		String res = ad.getSceneApi("泰山");
-//		com.alibaba.fastjson.JSONObject object = JSON.parseObject(res);
-//		JSONArray jsarr = object.getJSONObject("showapi_res_body").getJSONObject("pagebean").getJSONArray("contentlist");
-//		System.out.println(jsarr);
-//		List<SceneApi> sceneApiList = new ArrayList<SceneApi>();
-//		for (int i=1; i<=sceneApiList.size(); i++){
-//			SceneApi sceneApi = new SceneApi();
-//			JSONObject ao = jsarr.getJSONObject(i);
-////			Scene scene = new Scene();
-////			scene.setId(i);
-////			scene.setAddress(jsarr.);
-//			System.out.println(ao);
-//		}
+		SceneApi ad = new SceneApi();
+		String res = ad.getSceneApi("泰山");
+		com.alibaba.fastjson.JSONObject object = JSON.parseObject(res);
+		JSONArray jsarr = object.getJSONObject("showapi_res_body").getJSONObject("pagebean").getJSONArray("contentlist");
+		System.out.println(jsarr);
+		List<SceneApi> sceneApiList = new ArrayList<SceneApi>();
+		for (int i=1; i<=sceneApiList.size(); i++){
+			SceneApi sceneApi = new SceneApi();
+			JSONObject ao = jsarr.getJSONObject(i);
+//			Scene scene = new Scene();
+//			scene.setId(i);
+//			scene.setAddress(jsarr.);
+			System.out.println(ao);
+		}
 
 		//IKS分词测试
-		String text = "我们一起去踢足球吧";
-		String text1 = "我喜欢打篮球";
-		CosineSimilarity cosineSimilarity = new CosineSimilarity();
-		System.out.println(cosineSimilarity.cos(text, text1));//0.5773502691896258
+//		String text = "我们一起去踢足球吧";
+//		String text1 = "我喜欢打篮球";
+//		CosineSimilarity cosineSimilarity = new CosineSimilarity();
+//		System.out.println(cosineSimilarity.cos(text, text1));//0.5773502691896258
 
 	}
 

@@ -3,7 +3,6 @@ package com.yuanzhi.tourism.dao;
 import com.yuanzhi.tourism.entity.Admin;
 import com.yuanzhi.tourism.entity.AdminExample;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 public interface AdminMapper {

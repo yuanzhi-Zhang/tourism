@@ -1,6 +1,8 @@
 $(function () {
-    layui.use('element', function () {
+    layui.use(['element','laypage', 'layer'], function () {
         var element = layui.element;
+        var laypage = layui.laypage
+        var layer = layui.layer;
 
         //监听导航点击
         element.on('nav(headerLikeIndex)', function(elem){
@@ -54,6 +56,17 @@ $(function () {
         $(".search").style.color = "black";
     })
 
-
+    //获取游记以及用户信息
+    // $.ajax({
+    //     url:"/rwx/getAllJourney",
+    //     type:"GET",
+    //     contentType:"application/json;charset=UTF-8",
+    //     async:false,
+    //     success:function (text) {
+    //         console.log(text);
+    //         console.log(text[0].mainimg);
+    //         // parent.location.reload();
+    //     }
+    // })
 
 })

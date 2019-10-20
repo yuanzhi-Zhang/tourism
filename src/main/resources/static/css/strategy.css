@@ -127,7 +127,10 @@
     background-color: silver;
     cursor: pointer;
 }
-.straegy_partInfo{
+.strategy_info a{
+    color: #0C0C0C;
+}
+.strategy_partInfo{
     width: 780px;
     line-height: 25px;
 }
