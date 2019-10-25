@@ -6,17 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
-    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
-    <link rel="stylesheet" href="public/css/layui2.css" th:href="@{/public/css/layui2.css}">
-    <link rel="stylesheet" href="css/journeyDetail.css" th:href="@{/css/journeyDetail.css}">
-    <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
+    <link th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">
+    <link rel="stylesheet" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" th:href="@{/css/journeyDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/background.css}">
 
-    <script src="public/js/jquery-3.2.1.min.js" th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
-    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
-    <script src="js/journeyDetail.js" th:src="@{/js/journeyDetail.js}"></script>
+    <script th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/public/layui.js}"></script>
+    <script th:src="@{/js/journeyDetail.js}"></script>
 
-    <title th:text="${journey.jourtitle}">跟我去旅行，北海道以东...@任我行，旅游攻略</title>
+    <title th:text="${journey.jourtitle}"></title>
 </head>
 
 <body>
@@ -35,12 +36,12 @@
                 <ul class="jour_ul title_ul">
                     <li class="jour_li">
                         <!--作者头像-->
-                        <a href="#"><img src="images/u=44153646,977624522&fm=26&gp=0.jpg" th:src="${journey.user.imgurl}" class="journeyAuthor"></a>
+                        <a href="#"><img th:src="${journey.user.imgurl}" class="journeyAuthor"></a>
                     </li>
                     <li class="jour_li title_info_right">
-                        <p class="journey_title" th:text="${journey.jourtitle}">跟我去旅行，北海道以东又是另一番美景</p>
+                        <p class="journey_title" th:text="${journey.jourtitle}"></p>
                         <p class="journey_title_info">
-                            <span class="title_author"><a href="#" th:text="${journey.user.username}">站远处看从前</a></span>
+                            <span class="title_author"><a href="#" th:text="${journey.user.username}"></a></span>
                             (<span th:text="${journey.user.address}"></span>)
                             <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm" style="margin-top: -3px;">
                                 <i class="layui-icon">&#xe608;</i>关注
@@ -52,12 +53,6 @@
                             <sapn th:text="${journey.readtimes}">115</sapn>
                         </p>
                     </li>
-                    <!--<ul class="jour_ul">-->
-                        <!--<li class="jour_li">1</li>-->
-                        <!--<li class="jour_li">2</li>-->
-                        <!--<li class="jour_li">3</li>-->
-                        <!--<li class="jour_li">4</li>-->
-                    <!--</ul>-->
                 </ul>
             </div>
         </div>
@@ -70,10 +65,10 @@
         <ul class="jour_ul jour_detail_main">
             <li class="jour_li jour_detail_main_left">
                 <div class="jour_detail_main_left_top">
-                    出发时间：<sapn th:text="${journey.starttime}">2019-06-21</sapn>&emsp;
-                    历时：<span th:text="${journey.daysnum}">3天</span>&emsp;
-                    人物：<span th:text="${journey.people}">同事、同学</span>&emsp;
-                    金额：<span th:text="${journey.money}">3000元</span>
+                    出发时间：<sapn th:text="${journey.starttime}"></sapn>&emsp;
+                    历时：<span th:text="${journey.daysnum}"></span>&emsp;
+                    人物：<span th:text="${journey.people}"></span>&emsp;
+                    金额：<span th:text="${journey.money}"></span>
                 </div>
                 <!--游记副标题-->
                 <p class="jour_detail_main_title">
@@ -114,76 +109,68 @@
                 <!--</div>-->
                 <div class="journey_comment">
                     <!--回复-->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h4>
-                            <!--<span th:text="${question.commentCount}"></span> 个回复-->
-                            <span>7</span> 个回复
-                        </h4>
-                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment : ${comments}">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <!--<img class="media-object img-rounded"-->
-                                             <!--th:src="${comment.user.avatarUrl}">-->img
-                                    </a>
+                    <h4>
+                        <span th:text="${journey.commentcount}"></span> 条主回复
+                    </h4>
+                    <hr class="comment-sp">
+                    <div class="comments" th:each="comment : ${comments}">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object img-rounded"
+                                         th:src="${comment.user.imgurl}">
+                                </a>
+                            </div>
+                            <div class="media-body" th:id="${'comment-body-'+comment.cid}">
+                                <h4 class="media-heading" style="margin-top: -3px;">
+                                    <span th:text="${comment.user.username}" style="color: red;"></span>&ensp;
+                                    (<span th:text="${comment.user.address}"></span>)&emsp;
+                                    <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm"
+                                            style="height: 20px;margin-top: -3px;">
+                                        <i class="layui-icon">&#xe608;</i>关注
+                                    </button>
+                                    <span class="commentTime" th:text="${comment.commenttime}"></span>
+                                </h4>
+                                <div th:text="${comment.commentcomment}" style="margin-top: 5px;"></div>
+                                <div class="menu">
+                                    <i class="layui-icon layui-icon-praise comment-icon"></i>&emsp;
+                                    <span th:data-id="${comment.cid}" onclick="collapseComments(this)">
+                                        <i class="layui-icon layui-icon-down comment-icon">
+                                        <span th:text="${comment.commentcount}" class="comment-icon"></span></i>
+                                    </span>
                                 </div>
-                                <div class="media-body" th:id="${'comment-body-'+comment.cid}">
-                                    <h5 class="media-heading">
-                                        <!--<span th:text="${comment.user.name}"></span>-->name
-                                    </h5>
-                                    <div th:text="${comment.commentcontent}"></div>
-                                    <div class="menu">
-                                        <span class="glyphicon glyphicon-thumbs-up icon"></span>
-                                        <span th:data-id="${comment.cid}"
-                                              onclick="collapseComments(this)" class="comment-icon">
-                                    <span class="glyphicon glyphicon-comment"></span>
-                                    <span th:text="${comment.commentcount}"></span>
-                                </span>
-                                        <span class="pull-right"
-                                              th:text="${#dates.format(comment.commenttime,'yyyy-MM-dd')}"></span>
-                                    </div>
-                                    <!--二级评论-->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comments"
-                                         th:id="${'comment-'+comment.cid}">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <input type="text" class="form-control" placeholder="评论一下……"
-                                                   th:id="${'input-'+comment.cid}">
-                                            <button type="button" class="btn btn-success pull-right" onclick="comment(this)"
-                                                    th:data-id="${comment.cid}">评论
-                                            </button>
-                                        </div>
-                                    </div>
+                                <!--二级评论-->
+                                <div class="collapse sub-comments" th:id="${'comment-'+comment.cid}">
+                                    <input type="text" class="form-control" placeholder="评论一下……"
+                                           th:id="${'input-'+comment.cid}">
+                                    <button type="button" class="btn btn-success pull-right" onclick="comment(this)"
+                                            th:data-id="${comment.cid}">评论
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!--回复输入框-->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h4>
-                            提交回复
-                        </h4>
-                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object img-rounded"
-                                             th:src="${session.loginUser.getImgurl()}">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="media-heading">
-                                        <span th:text="${session.loginUser != null ? session.loginUser.getUsername() : '匿名用户'}"></span>
-                                    </h5>
-                                </div>
+                    <div id="comment_section">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object img-rounded" th:if="${session.loginUser != null}"
+                                         th:src="${session.loginUser.getImgurl()}">
+                                    <img class="media-object img-rounded" th:if="${session.loginUser == null}"
+                                         th:src="@{/images/scene/scene13.jpeg}">
+                                </a>
                             </div>
-                            <input type="hidden" id="journey_id" th:value="${journey.tid}">
-                            <input type="hidden" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
-                            <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
-                            <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <span th:text="${session.loginUser != null ? session.loginUser.getUsername() : '匿名用户'}"></span>
+                                </h5>
+                            </div>
                         </div>
+                        <input type="hidden" id="journey_id" th:value="${journey.tid}">
+                        <input type="hidden" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+                        <textarea class="layui-textarea form-control comment" rows="6" id="comment_content"></textarea>
+                        <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
                     </div>
                 </div>
             </li>

@@ -1,12 +1,12 @@
 package com.yuanzhi.tourism.controller.user;
 
-import com.yuanzhi.tourism.entity.Journey;
 import com.yuanzhi.tourism.entity.User;
 import com.yuanzhi.tourism.service.JourneyService;
 import com.yuanzhi.tourism.service.UserService;
 import com.yuanzhi.tourism.utils.QiniuUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,11 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @Author: yuanzhi...
@@ -131,6 +127,18 @@ public class UserController {
         return "ok";
     }
 
+    @RequestMapping(value = "/selfInfo")
+    @ResponseBody
+    public String userInfoChange(@RequestParam(value = "id")Integer id,
+                                 @RequestParam(value = "selfInfo")String selfInfo, HttpSession session ) throws IOException {
+        User user = new User();
+        user.setSelfintro(selfInfo);
+        user.setUid(id);
+        User returnUser = userService.updateUserInfo(user);
+        session.setAttribute("loginUser",returnUser);
+        return "ok";
+    }
+
     /**
      * 用户修改密码
      * @param request
@@ -234,6 +242,20 @@ public class UserController {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @GetMapping("/u/{uid}")
+    public String toOtherUser(@PathVariable(name = "uid")Integer uid,Model model){
+        User user = userService.selectUserByPrimary(uid);
+        model.addAttribute("others",user);
+        return "user/otherUser";
+    }
+
+    @GetMapping("/user/{uid}")
+    @ResponseBody
+    public User toOtherUsers(@PathVariable(name = "uid")Integer uid){
+        User user = userService.selectUserByPrimary(uid);
+        return user;
     }
 
     @GetMapping("/signout")

@@ -1,24 +1,24 @@
 package com.yuanzhi.tourism.controller.user;
 
 import com.yuanzhi.tourism.dto.CommentCreateDTO;
+import com.yuanzhi.tourism.dto.CommentDTO;
 import com.yuanzhi.tourism.dto.ResultDTO;
 import com.yuanzhi.tourism.entity.Comment;
 import com.yuanzhi.tourism.entity.User;
-import com.yuanzhi.tourism.exception.CustomizeErrorCode;
+import com.yuanzhi.tourism.enums.CommentTypeEnum;
 import com.yuanzhi.tourism.service.CommentService;
 import com.yuanzhi.tourism.service.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: yuanzhi...
@@ -33,27 +33,45 @@ public class CommentController {
     @Autowired
     UserService userService;
 
+    /**
+     * 发表游记、攻略、相册、景点的一级评论以及二级评论
+     * @param request
+     * @param response
+     * @param commentCreateDTO 辅助类
+     * @return 成功与否的状态码和信息
+     * @throws UnsupportedEncodingException
+     */
     @PostMapping(value = "/comment")
     @ResponseBody
-    public Object post(@RequestBody CommentCreateDTO commentCreateDTO){
-
-        System.out.println(commentCreateDTO);
-        if (commentCreateDTO == null || StringUtils.isBlank(commentCreateDTO.getContent())) {
-            return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
-        }
+    public Object post(HttpServletRequest request, HttpServletResponse response,
+                       @RequestBody CommentCreateDTO commentCreateDTO) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("application/json;charset=utf-8");
         Comment comment = new Comment();
         Date date = new Date();
-        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm"); //HH代表24小时制，hh代表12小时制
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH代表24小时制，hh代表12小时制
         String publishTime = dateFormat.format(date);
-        comment.setLastcommentid(commentCreateDTO.getLastCommentId());
+        comment.setParentid(commentCreateDTO.getParentId());
         comment.setCommentcomment(commentCreateDTO.getContent());
-//        comment.setJourneyid(commentCreateDTO.getTypeId());
+        comment.setType(commentCreateDTO.getType());
         comment.setCommenttime(publishTime);
         comment.setUserid(commentCreateDTO.getUserId());
+        Collection<User> users = userService.getAllUser();
         User user = userService.selectUserByPrimary(commentCreateDTO.getUserId());
-//        comment.setLikeCount(0L);
         commentService.insert(comment, user);
         return ResultDTO.okOf();
+    }
+
+    /**
+     * 查询所有带有用户的评论
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @GetMapping(value = "/comment/{id}")
+    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Integer id) {
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+        return ResultDTO.okOf(commentDTOS);
     }
 
 }

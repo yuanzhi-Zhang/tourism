@@ -10,13 +10,11 @@ import lombok.Data;
 @Data
 public class CommentCreateDTO {
 
-    private Integer lastCommentId;
+    private Integer parentId;
 
     private String content;
 
     private Integer type;
-
-    private Integer typeId;
 
     private Integer userId;
 

@@ -156,6 +156,47 @@
     width: 650px;
     margin: 60px auto;
 }
+
+.btn-publish {
+    float: right;
+    margin-bottom: 15px;
+}
+
+.media-object {
+    width: 38px;
+    height: 38px;
+}
+
+.media-body {
+    padding-top: 10px;
+}
+.media-left img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.text-desc {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+.profile .section {
+    margin-top: 15px;
+}
+
+.community-menu {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.jumbotron {
+    margin: 50px;
+}
+
 .comment {
     margin: 10px 0;
 }
@@ -168,14 +209,14 @@
 .comments {
     padding-bottom: 5px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #5e5e5e;
 }
 
 .sub-comments {
     border-radius: 5px;
     margin-top: 10px;
-    border: 1px solid #eee;
-    padding-top: 15px;
+    border: 1px solid #c2b66a;
+    padding: 15px 15px 5px 15px;
     margin-bottom: 15px;
 }
 
@@ -186,8 +227,9 @@
 .comment-sp {
     margin-top: 0;
 }
+
 .menu {
-    color: #999;
+    /*color: #999;*/
     margin-top: 5px;
 }
 
@@ -204,6 +246,16 @@
 
 .menu .comment-icon :hover {
     color: #499ef3;
+    cursor: pointer;
+}
+
+.up{
+    margin-top: -9px;
+    color: #df6659;
+}
+
+.up:hover{
+    cursor: pointer;
 }
 
 .menu .active {
@@ -212,6 +264,9 @@
 
 .menu .icon:hover {
     color: #499ef3;
+}
+.commentTime{
+    float: right;
 }
 .jour_detail_main_img_contrl{
     width: 650px;

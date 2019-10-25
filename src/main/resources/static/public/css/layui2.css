@@ -2088,7 +2088,7 @@ hr {
 }
 
 .layui-btn-group .layui-btn {
-    margin-left: 0 !important;
+    /*margin-left: 0 !important;*/
     margin-right: 0 !important;
     border-left: 1px solid rgba(255, 255, 255, .5);
     border-radius: 0

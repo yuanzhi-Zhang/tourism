@@ -2,6 +2,7 @@ package com.yuanzhi.tourism.service;
 
 import com.yuanzhi.tourism.dao.JourneyMapper;
 import com.yuanzhi.tourism.entity.Journey;
+import com.yuanzhi.tourism.entity.JourneyExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +50,17 @@ public class JourneyService {
 
     public List<Journey> findAll() {
         return journeyMapper.selectByExample(null);
+    }
+
+    /**
+     * 获取某一用户的游记
+     * @param uid
+     * @return
+     */
+    public List<Journey> getOwnJourney(Integer uid) {
+        JourneyExample journeyExample = new JourneyExample();
+        journeyExample.createCriteria().andUseridEqualTo(uid);
+        journeyExample.setOrderByClause("publishTime desc");
+        return journeyMapper.selectByExample(journeyExample);
     }
 }

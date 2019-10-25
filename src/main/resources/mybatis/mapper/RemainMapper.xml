@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.RemainMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Remain">
+    <id column="remain_id" jdbcType="INTEGER" property="remainId" />
+    <result column="remain_sender_id" jdbcType="INTEGER" property="remainSenderId" />
+    <result column="remain_receiver_id" jdbcType="INTEGER" property="remainReceiverId" />
+    <result column="remain_content" jdbcType="VARCHAR" property="remainContent" />
+    <result column="remain_time" jdbcType="VARCHAR" property="remainTime" />
+  </resultMap>
+  <resultMap id="BaseResultMapWithUser" type="com.yuanzhi.tourism.dto.RemainResultDTO">
+    <id column="remain_id" jdbcType="INTEGER" property="remainId" />
+    <id column="remain_sender_id" jdbcType="INTEGER" property="remainSenderId" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="imgUrl" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="remain_content" jdbcType="VARCHAR" property="remainContent" />
+    <result column="remain_time" jdbcType="VARCHAR" property="remainTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    remain_id, remain_sender_id, remain_receiver_id, remain_content, remain_time
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.RemainExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from remain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from remain
+    where remain_id = #{remainId,jdbcType=INTEGER}
+  </select>
+  <select id="selectWithUser" resultMap="BaseResultMapWithUser">
+    SELECT remain_id, remain_sender_id, remain_content, remain_time, userName, imgUrl FROM remain LEFT JOIN `user` ON
+    remain_sender_id=`user`.uid WHERE remain_receiver_id=#{remainReceiverId} ORDER BY remain_time DESC
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from remain
+    where remain_id = #{remainId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.RemainExample">
+    delete from remain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Remain">
+    insert into remain (remain_id, remain_sender_id, remain_receiver_id, 
+      remain_content, remain_time)
+    values (#{remainId,jdbcType=INTEGER}, #{remainSenderId,jdbcType=INTEGER}, #{remainReceiverId,jdbcType=INTEGER}, 
+      #{remainContent,jdbcType=VARCHAR}, #{remainTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Remain">
+    insert into remain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="remainId != null">
+        remain_id,
+      </if>
+      <if test="remainSenderId != null">
+        remain_sender_id,
+      </if>
+      <if test="remainReceiverId != null">
+        remain_receiver_id,
+      </if>
+      <if test="remainContent != null">
+        remain_content,
+      </if>
+      <if test="remainTime != null">
+        remain_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="remainId != null">
+        #{remainId,jdbcType=INTEGER},
+      </if>
+      <if test="remainSenderId != null">
+        #{remainSenderId,jdbcType=INTEGER},
+      </if>
+      <if test="remainReceiverId != null">
+        #{remainReceiverId,jdbcType=INTEGER},
+      </if>
+      <if test="remainContent != null">
+        #{remainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remainTime != null">
+        #{remainTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.RemainExample" resultType="java.lang.Long">
+    select count(*) from remain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update remain
+    <set>
+      <if test="record.remainId != null">
+        remain_id = #{record.remainId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remainSenderId != null">
+        remain_sender_id = #{record.remainSenderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remainReceiverId != null">
+        remain_receiver_id = #{record.remainReceiverId,jdbcType=INTEGER},
+      </if>
+      <if test="record.remainContent != null">
+        remain_content = #{record.remainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remainTime != null">
+        remain_time = #{record.remainTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update remain
+    set remain_id = #{record.remainId,jdbcType=INTEGER},
+      remain_sender_id = #{record.remainSenderId,jdbcType=INTEGER},
+      remain_receiver_id = #{record.remainReceiverId,jdbcType=INTEGER},
+      remain_content = #{record.remainContent,jdbcType=VARCHAR},
+      remain_time = #{record.remainTime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Remain">
+    update remain
+    <set>
+      <if test="remainSenderId != null">
+        remain_sender_id = #{remainSenderId,jdbcType=INTEGER},
+      </if>
+      <if test="remainReceiverId != null">
+        remain_receiver_id = #{remainReceiverId,jdbcType=INTEGER},
+      </if>
+      <if test="remainContent != null">
+        remain_content = #{remainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remainTime != null">
+        remain_time = #{remainTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where remain_id = #{remainId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Remain">
+    update remain
+    set remain_sender_id = #{remainSenderId,jdbcType=INTEGER},
+      remain_receiver_id = #{remainReceiverId,jdbcType=INTEGER},
+      remain_content = #{remainContent,jdbcType=VARCHAR},
+      remain_time = #{remainTime,jdbcType=VARCHAR}
+    where remain_id = #{remainId,jdbcType=INTEGER}
+  </update>
+</mapper>

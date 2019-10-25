@@ -28,5 +28,7 @@ public class Journey {
 
     private String mainimg;
 
+    private Integer commentcount;
+
     private User user;
 }

@@ -903,6 +903,66 @@ public class JourneyExample {
             addCriterion("mainImg not between", value1, value2, "mainimg");
             return (Criteria) this;
         }
+
+        public Criteria andCommentcountIsNull() {
+            addCriterion("commentCount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountIsNotNull() {
+            addCriterion("commentCount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountEqualTo(Integer value) {
+            addCriterion("commentCount =", value, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountNotEqualTo(Integer value) {
+            addCriterion("commentCount <>", value, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountGreaterThan(Integer value) {
+            addCriterion("commentCount >", value, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("commentCount >=", value, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountLessThan(Integer value) {
+            addCriterion("commentCount <", value, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountLessThanOrEqualTo(Integer value) {
+            addCriterion("commentCount <=", value, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountIn(List<Integer> values) {
+            addCriterion("commentCount in", values, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountNotIn(List<Integer> values) {
+            addCriterion("commentCount not in", values, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountBetween(Integer value1, Integer value2) {
+            addCriterion("commentCount between", value1, value2, "commentcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentcountNotBetween(Integer value1, Integer value2) {
+            addCriterion("commentCount not between", value1, value2, "commentcount");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -28,5 +28,7 @@ public interface CommentMapper {
 
     int updateByPrimaryKey(Comment record);
 
+    List<Comment> selectWithUser();
+
     int incCommentCount(Integer cid);
 }

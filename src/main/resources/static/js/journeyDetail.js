@@ -42,7 +42,7 @@ $(function () {
         //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
         if(scroH>=navH && scrollHeight-scroH>=966){
             $(".catalogue_and_tab").css({"position":"fixed","top":0});
-        }else if(scroH<navH || scrollHeight-scroH<=960){
+        }else if(scroH<navH || scrollHeight-scroH<=900){
             $(".catalogue_and_tab").css({"position":"static"});
         }
     })
@@ -71,38 +71,26 @@ function post() {
     }
 }
 
-function comment2target(targetId, type, userId, content) {
+function comment2target(journeyId, type, userId, content) {
     if (!content) {
-        layer.alert("不能回复空内容哦！！！",{icon:0})
+        layer.alert("不能回复空内容哦！！！",{icon:0});
         return;
     }
 
     $.ajax({
         type: "POST",
-        url: "/comment",
+        url: "/rwx/comment",
         contentType: 'application/json',
+        dataType: "json",
         data: JSON.stringify({
             "userId" : userId,
-            "parentId": targetId,
+            "parentId":journeyId,
             "content": content,
             "type": type
         }),
         success: function (response) {
-            if (response.code == 200) {
-                window.location.reload();
-            } else {
-                if (response.code == 2003) {
-                    var isAccepted = confirm(response.message);
-                    if (isAccepted) {
-                        window.open("https://github.com/login/oauth/authorize?client_id=2859958f9f059979ed3a&redirect_uri=" + document.location.origin + "/callback&scope=user&state=1");
-                        window.localStorage.setItem("closable", true);
-                    }
-                } else {
-                    alert(response.message);
-                }
-            }
-        },
-        dataType: "json"
+            window.location.reload();
+        }
     });
 }
 
@@ -135,59 +123,69 @@ function collapseComments(e) {
 
     // 获取一下二级评论的展开状态
     var collapse = e.getAttribute("data-collapse");
+    // debugger;
     if (collapse) {
         // 折叠二级评论
-        comments.removeClass("in");
+        comments.removeClass("in show");
         e.removeAttribute("data-collapse");
         e.classList.remove("active");
     } else {
         var subCommentContainer = $("#comment-" + id);
-        if (subCommentContainer.children().length != 1) {
-            //展开二级评论
-            comments.addClass("in");
-            // 标记二级评论展开状态
-            e.setAttribute("data-collapse", "in");
-            e.classList.add("active");
-        } else {
-            $.getJSON("/comment/" + id, function (data) {
+        // console.log(subCommentContainer.children().length);
+        // if (subCommentContainer.children().length != 1) {
+        //     //展开二级评论
+        //     comments.addClass("in show");
+        //     // 标记二级评论展开状态
+        //     e.setAttribute("data-collapse", "in show");
+        //     e.classList.add("active");
+        // } else {
+            $.getJSON("/rwx/comment/" + id, function (data) {
                 $.each(data.data.reverse(), function (index, comment) {
                     var mediaLeftElement = $("<div/>", {
                         "class": "media-left"
                     }).append($("<img/>", {
-                        "class": "media-object img-rounded",
-                        "src": comment.user.avatarUrl
+                        "class": "media-object",
+                        "src": comment.user.imgurl
                     }));
 
                     var mediaBodyElement = $("<div/>", {
                         "class": "media-body"
-                    }).append($("<h5/>", {
-                        "class": "media-heading",
-                        "html": comment.user.name
+                    }).append($("<h4/>", {
+                        "class": "media-heading up",
+                        "html": comment.user.username +
+                        '&ensp;(' + comment.user.address +
+                        ')' + '&emsp;<button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm"\n' +
+                        ' style="height: 20px;margin-top: -3px;">\n' +
+                        ' <i class="layui-icon">&#xe608;</i>关注\n' +
+                        ' </button>' + '<br>' +
+                        ' <button type="button" class="layui-btn layui-btn-xs layui-btn-normal commentReply"\n' +
+                        ' style="height: 20px;margin-top: -5px;float: right;">\n' +
+                        ' <i class="layui-icon layui-icon-reply-fill"></i>回复\n' +
+                        ' </button>'
+                    })).append($("<span/>", {
+                        "html": comment.commenttime
                     })).append($("<div/>", {
-                        "html": comment.content
+                        "html": comment.commentcomment
                     })).append($("<div/>", {
                         "class": "menu"
-                    }).append($("<span/>", {
-                        "class": "pull-right",
-                        "html": moment(comment.gmtCreate).format('YYYY-MM-DD')
-                    })));
+                    }));
 
                     var mediaElement = $("<div/>", {
                         "class": "media"
                     }).append(mediaLeftElement).append(mediaBodyElement);
 
                     var commentElement = $("<div/>", {
-                        "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 comments"
+                        "class": "comments"
                     }).append(mediaElement);
 
                     subCommentContainer.prepend(commentElement);
                 });
                 //展开二级评论
-                comments.addClass("in");
+                comments.addClass("in show");
                 // 标记二级评论展开状态
-                e.setAttribute("data-collapse", "in");
+                e.setAttribute("data-collapse", "in show");
                 e.classList.add("active");
             });
         }
-    }
+    // }
 }

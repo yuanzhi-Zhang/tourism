@@ -2,7 +2,10 @@ package com.yuanzhi.tourism.controller.user;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yuanzhi.tourism.dto.CommentDTO;
 import com.yuanzhi.tourism.entity.Journey;
+import com.yuanzhi.tourism.enums.CommentTypeEnum;
+import com.yuanzhi.tourism.service.CommentService;
 import com.yuanzhi.tourism.service.JourneyService;
 import com.yuanzhi.tourism.utils.QiniuUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,8 @@ public class JourneyController {
 
     @Autowired
     JourneyService journeyService;
-
+    @Autowired
+    CommentService commentService;
 
     /**
      * 游记发表的富文本中的图片上传
@@ -80,6 +84,7 @@ public class JourneyController {
                                           @RequestParam(value = "people",required = false) String people,
                                           @RequestParam(value = "startTime",required = false) String startTime){
         Map<String, Object> result = new HashMap<String, Object>();
+        System.out.println(file);
         try {
             byte[] bytes = file.getBytes();
             String imageName = UUID.randomUUID().toString();
@@ -119,8 +124,8 @@ public class JourneyController {
                                 Model model){
         PageHelper.startPage(page,size);
         List<Journey>list = journeyService.getAllJourney();
-        PageInfo<Journey>pageInfo = new PageInfo<>(list);
         Map<String,Object>journey = new HashMap<>();
+        PageInfo<Journey>pageInfo = new PageInfo<>(list);
         List<Integer>pages = new ArrayList<>();
         journey.put("total_size",pageInfo.getTotal());//总条数
         journey.put("total_page",pageInfo.getPages());//总页数
@@ -141,11 +146,58 @@ public class JourneyController {
         return "user/index";
     }
 
+    /**
+     * 查询游记详情
+     * @param tid 游记id
+     * @param model
+     * @return
+     */
     @GetMapping("/journey/{tid}")
     public String getJourney(@PathVariable(name = "tid") Integer tid,Model model){
         Journey journey = journeyService.getJourney(tid);
+        List<CommentDTO> comments = commentService.listByTargetId(tid, CommentTypeEnum.JOURNEY);
         model.addAttribute("journey",journey);
+        model.addAttribute("comments",comments);
         return "user/journeyDetail";
+    }
+//    @GetMapping("/journeys/{tid}")
+//    @ResponseBody
+//    public Journey getJourneys(@PathVariable(name = "tid") Integer tid,Model model){
+//        Journey journey = journeyService.getJourney(tid);
+//        return journey;
+//    }
+
+    /**
+     * 查询个人中心页面的我的游记
+     * @param uid
+     * @return
+     */
+    @PostMapping("/own/journey")
+    @ResponseBody
+    public Map<String,Object> getOwnJourney(@RequestParam(value = "uid")Integer uid,
+                                       @RequestParam(value = "page",defaultValue = "1")int page,
+                                       @RequestParam(value = "size",defaultValue = "5")int size){
+        PageHelper.startPage(page,size);
+        List<Journey>journeys = journeyService.getOwnJourney(uid);
+        Map<String,Object>journey = new HashMap<>();
+        PageInfo<Journey>pageInfo = new PageInfo<>(journeys);
+        List<Integer>pages = new ArrayList<>();
+        journey.put("total_size",pageInfo.getTotal());//总条数
+        journey.put("total_page",pageInfo.getPages());//总页数
+        journey.put("current_page",page);//当前页
+        journey.put("data",pageInfo.getList());//数据
+        pages.add(page);
+        for (int i = 1; i <= 3; i++) {
+            if (page - i > 0) {
+                pages.add(0, page - i);
+            }
+
+            if (page + i <= pageInfo.getPages()) {
+                pages.add(page + i);
+            }
+        }
+        journey.put("pages",pages);//数据
+        return journey;
     }
 
 }

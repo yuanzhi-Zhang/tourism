@@ -5,13 +5,20 @@
     <id column="cid" jdbcType="INTEGER" property="cid" />
     <result column="userId" jdbcType="INTEGER" property="userid" />
     <result column="commentTime" jdbcType="VARCHAR" property="commenttime" />
+    <result column="modifyTime" jdbcType="VARCHAR" property="modifytime" />
     <result column="commentComment" jdbcType="VARCHAR" property="commentcomment" />
-    <result column="lastCommentId" jdbcType="INTEGER" property="lastcommentid" />
-    <result column="albumId" jdbcType="INTEGER" property="albumid" />
-    <result column="sceneId" jdbcType="INTEGER" property="sceneid" />
-    <result column="strategyId" jdbcType="INTEGER" property="strategyid" />
-    <result column="journeyId" jdbcType="INTEGER" property="journeyid" />
+    <result column="parentId" jdbcType="INTEGER" property="parentid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="commentCount" jdbcType="INTEGER" property="commentcount" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithUser" type="com.yuanzhi.tourism.entity.Comment">
+    <!-- 指定联合查询出部门字段的封装 -->
+    <association javaType="com.yuanzhi.tourism.entity.User" property="user">
+      <id column="uid" jdbcType="INTEGER" property="uid" />
+      <result column="userName" jdbcType="VARCHAR" property="username" />
+      <result column="address" jdbcType="VARCHAR" property="address" />
+      <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +79,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cid, userId, commentTime, commentComment, lastCommentId, albumId, sceneId, strategyId, 
-    journeyId, commentCount
+    cid, userId, commentTime, modifyTime, commentComment, parentId, type, commentCount
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.CommentExample" resultMap="BaseResultMap">
     select
@@ -95,6 +101,9 @@
     from comment
     where cid = #{cid,jdbcType=INTEGER}
   </select>
+  <select id="selectWithUser" resultMap="ResultMapWithUser">
+    SELECT * FROM comment LEFT JOIN `user` ON comment.userId = `user`.uid
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from comment
     where cid = #{cid,jdbcType=INTEGER}
@@ -107,13 +116,11 @@
   </delete>
   <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Comment">
     insert into comment (cid, userId, commentTime, 
-      commentComment, lastCommentId, albumId, 
-      sceneId, strategyId, journeyId, 
-      commentCount)
+      modifyTime, commentComment, parentId, 
+      type, commentCount)
     values (#{cid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{commenttime,jdbcType=VARCHAR}, 
-      #{commentcomment,jdbcType=VARCHAR}, #{lastcommentid,jdbcType=INTEGER}, #{albumid,jdbcType=INTEGER}, 
-      #{sceneid,jdbcType=INTEGER}, #{strategyid,jdbcType=INTEGER}, #{journeyid,jdbcType=INTEGER}, 
-      #{commentcount,jdbcType=INTEGER})
+      #{modifytime,jdbcType=VARCHAR}, #{commentcomment,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{commentcount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Comment">
     insert into comment
@@ -127,23 +134,17 @@
       <if test="commenttime != null">
         commentTime,
       </if>
+      <if test="modifytime != null">
+        modifyTime,
+      </if>
       <if test="commentcomment != null">
         commentComment,
       </if>
-      <if test="lastcommentid != null">
-        lastCommentId,
+      <if test="parentid != null">
+        parentId,
       </if>
-      <if test="albumid != null">
-        albumId,
-      </if>
-      <if test="sceneid != null">
-        sceneId,
-      </if>
-      <if test="strategyid != null">
-        strategyId,
-      </if>
-      <if test="journeyid != null">
-        journeyId,
+      <if test="type != null">
+        type,
       </if>
       <if test="commentcount != null">
         commentCount,
@@ -159,23 +160,17 @@
       <if test="commenttime != null">
         #{commenttime,jdbcType=VARCHAR},
       </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=VARCHAR},
+      </if>
       <if test="commentcomment != null">
         #{commentcomment,jdbcType=VARCHAR},
       </if>
-      <if test="lastcommentid != null">
-        #{lastcommentid,jdbcType=INTEGER},
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
       </if>
-      <if test="albumid != null">
-        #{albumid,jdbcType=INTEGER},
-      </if>
-      <if test="sceneid != null">
-        #{sceneid,jdbcType=INTEGER},
-      </if>
-      <if test="strategyid != null">
-        #{strategyid,jdbcType=INTEGER},
-      </if>
-      <if test="journeyid != null">
-        #{journeyid,jdbcType=INTEGER},
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="commentcount != null">
         #{commentcount,jdbcType=INTEGER},
@@ -200,23 +195,17 @@
       <if test="record.commenttime != null">
         commentTime = #{record.commenttime,jdbcType=VARCHAR},
       </if>
+      <if test="record.modifytime != null">
+        modifyTime = #{record.modifytime,jdbcType=VARCHAR},
+      </if>
       <if test="record.commentcomment != null">
         commentComment = #{record.commentcomment,jdbcType=VARCHAR},
       </if>
-      <if test="record.lastcommentid != null">
-        lastCommentId = #{record.lastcommentid,jdbcType=INTEGER},
+      <if test="record.parentid != null">
+        parentId = #{record.parentid,jdbcType=INTEGER},
       </if>
-      <if test="record.albumid != null">
-        albumId = #{record.albumid,jdbcType=INTEGER},
-      </if>
-      <if test="record.sceneid != null">
-        sceneId = #{record.sceneid,jdbcType=INTEGER},
-      </if>
-      <if test="record.strategyid != null">
-        strategyId = #{record.strategyid,jdbcType=INTEGER},
-      </if>
-      <if test="record.journeyid != null">
-        journeyId = #{record.journeyid,jdbcType=INTEGER},
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.commentcount != null">
         commentCount = #{record.commentcount,jdbcType=INTEGER},
@@ -231,12 +220,10 @@
     set cid = #{record.cid,jdbcType=INTEGER},
       userId = #{record.userid,jdbcType=INTEGER},
       commentTime = #{record.commenttime,jdbcType=VARCHAR},
+      modifyTime = #{record.modifytime,jdbcType=VARCHAR},
       commentComment = #{record.commentcomment,jdbcType=VARCHAR},
-      lastCommentId = #{record.lastcommentid,jdbcType=INTEGER},
-      albumId = #{record.albumid,jdbcType=INTEGER},
-      sceneId = #{record.sceneid,jdbcType=INTEGER},
-      strategyId = #{record.strategyid,jdbcType=INTEGER},
-      journeyId = #{record.journeyid,jdbcType=INTEGER},
+      parentId = #{record.parentid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
       commentCount = #{record.commentcount,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -251,23 +238,17 @@
       <if test="commenttime != null">
         commentTime = #{commenttime,jdbcType=VARCHAR},
       </if>
+      <if test="modifytime != null">
+        modifyTime = #{modifytime,jdbcType=VARCHAR},
+      </if>
       <if test="commentcomment != null">
         commentComment = #{commentcomment,jdbcType=VARCHAR},
       </if>
-      <if test="lastcommentid != null">
-        lastCommentId = #{lastcommentid,jdbcType=INTEGER},
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=INTEGER},
       </if>
-      <if test="albumid != null">
-        albumId = #{albumid,jdbcType=INTEGER},
-      </if>
-      <if test="sceneid != null">
-        sceneId = #{sceneid,jdbcType=INTEGER},
-      </if>
-      <if test="strategyid != null">
-        strategyId = #{strategyid,jdbcType=INTEGER},
-      </if>
-      <if test="journeyid != null">
-        journeyId = #{journeyid,jdbcType=INTEGER},
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="commentcount != null">
         commentCount = #{commentcount,jdbcType=INTEGER},
@@ -279,12 +260,10 @@
     update comment
     set userId = #{userid,jdbcType=INTEGER},
       commentTime = #{commenttime,jdbcType=VARCHAR},
+      modifyTime = #{modifytime,jdbcType=VARCHAR},
       commentComment = #{commentcomment,jdbcType=VARCHAR},
-      lastCommentId = #{lastcommentid,jdbcType=INTEGER},
-      albumId = #{albumid,jdbcType=INTEGER},
-      sceneId = #{sceneid,jdbcType=INTEGER},
-      strategyId = #{strategyid,jdbcType=INTEGER},
-      journeyId = #{journeyid,jdbcType=INTEGER},
+      parentId = #{parentid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
       commentCount = #{commentcount,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>

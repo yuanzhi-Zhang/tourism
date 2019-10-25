@@ -18,11 +18,9 @@ public interface JourneyMapper {
 
     int incView(Integer tid);
 
-    List<Journey> selectByExample(JourneyExample example);
-
     List<Journey> selectWithUser();
 
-    Journey selectWithUserByPrimaryKey(Integer tid);
+    List<Journey> selectByExample(JourneyExample example);
 
     Journey selectByPrimaryKey(Integer tid);
 
@@ -33,4 +31,8 @@ public interface JourneyMapper {
     int updateByPrimaryKeySelective(Journey record);
 
     int updateByPrimaryKey(Journey record);
+
+    Journey selectWithUserByPrimaryKey(Integer tid);
+
+    int incCommentCount(Integer tid);
 }

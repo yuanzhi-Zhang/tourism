@@ -14,10 +14,11 @@
     <result column="readTimes" jdbcType="INTEGER" property="readtimes" />
     <result column="praiseTimes" jdbcType="INTEGER" property="praisetimes" />
     <result column="mainImg" jdbcType="VARCHAR" property="mainimg" />
+    <result column="commentCount" jdbcType="INTEGER" property="commentcount" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithUser" type="com.yuanzhi.tourism.entity.Journey">
     <!-- 指定联合查询出部门字段的封装 -->
-    <association property="user" javaType="com.yuanzhi.tourism.entity.User">
+    <association javaType="com.yuanzhi.tourism.entity.User" property="user">
       <id column="uid" jdbcType="INTEGER" property="uid" />
       <result column="userName" jdbcType="VARCHAR" property="username" />
       <result column="userSex" jdbcType="VARCHAR" property="usersex" />
@@ -92,7 +93,7 @@
   </sql>
   <sql id="Base_Column_List">
     tid, userId, publishTime, startTime, people, money, daysNum, jourTitle, jourContent, 
-    readTimes, praiseTimes, mainImg
+    readTimes, praiseTimes, mainImg, commentCount
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.JourneyExample" resultMap="BaseResultMap">
     select
@@ -115,7 +116,7 @@
     where tid = #{tid,jdbcType=INTEGER}
   </select>
   <select id="selectWithUser" resultMap="ResultMapWithUser">
-    SELECT * FROM journey LEFT JOIN `user` ON journey.userId = `user`.uid
+    SELECT * FROM journey LEFT JOIN `user` ON journey.userId = `user`.uid ORDER BY publishTime DESC
   </select>
   <select id="selectWithUserByPrimaryKey" resultMap="ResultMapWithUser">
     SELECT * FROM journey LEFT JOIN `user` ON journey.userId = `user`.uid where tid = #{tid}
@@ -134,13 +135,13 @@
     insert into journey (tid, userId, publishTime, 
       startTime, people, money, 
       daysNum, jourTitle, jourContent, 
-      readTimes, praiseTimes, mainImg
-      )
+      readTimes, praiseTimes, mainImg, 
+      commentCount)
     values (#{tid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{publishtime,jdbcType=VARCHAR}, 
       #{starttime,jdbcType=VARCHAR}, #{people,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, 
       #{daysnum,jdbcType=VARCHAR}, #{jourtitle,jdbcType=VARCHAR}, #{jourcontent,jdbcType=VARCHAR}, 
-      #{readtimes,jdbcType=INTEGER}, #{praisetimes,jdbcType=INTEGER}, #{mainimg,jdbcType=VARCHAR}
-      )
+      #{readtimes,jdbcType=INTEGER}, #{praisetimes,jdbcType=INTEGER}, #{mainimg,jdbcType=VARCHAR}, 
+      #{commentcount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Journey">
     insert into journey
@@ -181,6 +182,9 @@
       <if test="mainimg != null">
         mainImg,
       </if>
+      <if test="commentcount != null">
+        commentCount,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="tid != null">
@@ -218,6 +222,9 @@
       </if>
       <if test="mainimg != null">
         #{mainimg,jdbcType=VARCHAR},
+      </if>
+      <if test="commentcount != null">
+        #{commentcount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -266,6 +273,9 @@
       <if test="record.mainimg != null">
         mainImg = #{record.mainimg,jdbcType=VARCHAR},
       </if>
+      <if test="record.commentcount != null">
+        commentCount = #{record.commentcount,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -284,7 +294,8 @@
       jourContent = #{record.jourcontent,jdbcType=VARCHAR},
       readTimes = #{record.readtimes,jdbcType=INTEGER},
       praiseTimes = #{record.praisetimes,jdbcType=INTEGER},
-      mainImg = #{record.mainimg,jdbcType=VARCHAR}
+      mainImg = #{record.mainimg,jdbcType=VARCHAR},
+      commentCount = #{record.commentcount,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -325,6 +336,9 @@
       <if test="mainimg != null">
         mainImg = #{mainimg,jdbcType=VARCHAR},
       </if>
+      <if test="commentcount != null">
+        commentCount = #{commentcount,jdbcType=INTEGER},
+      </if>
     </set>
     where tid = #{tid,jdbcType=INTEGER}
   </update>
@@ -340,10 +354,14 @@
       jourContent = #{jourcontent,jdbcType=VARCHAR},
       readTimes = #{readtimes,jdbcType=INTEGER},
       praiseTimes = #{praisetimes,jdbcType=INTEGER},
-      mainImg = #{mainimg,jdbcType=VARCHAR}
+      mainImg = #{mainimg,jdbcType=VARCHAR},
+      commentCount = #{commentcount,jdbcType=INTEGER}
     where tid = #{tid,jdbcType=INTEGER}
   </update>
   <update id="incView" parameterType="com.yuanzhi.tourism.entity.Journey">
     update journey set readTimes = readTimes + 1 where tid = #{tid}
+  </update>
+  <update id="incCommentCount" parameterType="com.yuanzhi.tourism.entity.Journey">
+    update journey set commentCount = commentCount + 1 where tid = #{tid}
   </update>
 </mapper>
