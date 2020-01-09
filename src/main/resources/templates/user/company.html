@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui2.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/company.css">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/layui.js"></script>
+    <script src="js/company.js"></script>
+    <title>任我行结伴游@任我行,旅游攻略</title>
+</head>
+<body>
+<!--头部导航-->
+<div class="company_head">
+    <div th:replace="user/common/header::header"></div>
+</div>
+<!--导航下的大图片-->
+<img src="images/scene/scene9.jpg" class="company_main_img">
+<div class="own_introduce_box">
+    <p><span style="font-size: 48px;" id="day"></span>/<span id="time">Aug.2019</span></p>
+    <p>你好!<span th:text="${session.loginUser != null?session.loginUser.getUsername():'客官'}"></span></p>
+</div>
+<div class="company_punlish">
+    <div class="company_num">我们共有<span id="companyNum">521</span>个计划</div>
+    <a id="_id_publish_together_banner" class="btn" th:href="@{/company/publish}">发布我的结伴计划</a>
+</div>
+<!--主要内容区-->
+<div class="company_content">
+    <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+    <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
+    <!--结伴热门目的地-->
+    <div class="wrapper mod-popular">
+        <h3 class="mod-title">结伴热门目的地</h3>
+        <div class="bd">
+            <ul class="clearfix">
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="新西兰" data-mddid="10544">
+                        <div class="image"><img
+                                src="https://b2-q.mafengwo.net/s9/M00/D6/48/wKgBs1fHmDOAFuPuABgy_gdW4GA40.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>新西兰</strong>
+                            <p>发起 46 个结伴<br>548 人关注<br>135 人报名</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="摩尔曼斯克" data-mddid="64656">
+                        <div class="image"><img
+                                src="https://n1-q.mafengwo.net/s6/M00/8F/E0/wKgB4lNnTm6ADLAaAADC83GVUB421.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>摩尔曼斯克</strong>
+                            <p>发起 32 个结伴<br>369 人关注<br>96 人报名</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="俄罗斯" data-mddid="10300">
+                        <div class="image"><img
+                                src="https://b4-q.mafengwo.net/s10/M00/34/30/wKgBZ1jJXc6ASFxpAAhjrYZ3UWg15.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>俄罗斯</strong>
+                            <p>发起 69 个结伴<br>855 人关注<br>158 人报名</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="冰岛" data-mddid="10549">
+                        <div class="image"><img
+                                src="https://p4-q.mafengwo.net/s10/M00/12/DD/wKgBZ1mlQE6AcTkZABP8peVXY8o48.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>冰岛</strong>
+                            <p>发起 23 个结伴<br>232 人关注<br>68 人报名</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="莫斯科" data-mddid="11155">
+                        <div class="image"><img
+                                src="https://p3-q.mafengwo.net/s5/M00/8D/23/wKgB3FGIZ92AYbn9AADrPM512KQ29.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>莫斯科</strong>
+                            <p>发起 25 个结伴<br>339 人关注<br>75 人报名</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="泰国" data-mddid="10083">
+                        <div class="image"><img
+                                src="https://p3-q.mafengwo.net/s6/M00/10/CD/wKgB4lM9BUiALPceAAQyEeHtADc23.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>泰国</strong>
+                            <p>发起 32 个结伴<br>365 人关注<br>65 人报名</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="清迈" data-mddid="15284">
+                        <div class="image"><img
+                                src="https://b3-q.mafengwo.net/s7/M00/5F/B4/wKgB6lTdqXaAD7slAAM89OKgZkw23.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>清迈</strong>
+                            <p>发起 13 个结伴<br>147 人关注<br>26 人报名</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="item">
+                    <a class="_j_hot_mdd" data-mddname="贝加尔湖" data-mddid="14635">
+                        <div class="image"><img
+                                src="https://b1-q.mafengwo.net/s9/M00/E1/79/wKgBs1bBjaeAJ14dAAHblaD0Jo016.jpeg?imageMogr2%2Fthumbnail%2F%21300x300r%2Fgravity%2FCenter%2Fcrop%2F%21300x300%2Fquality%2F90"
+                                style="width: 220px;height: 220px;"></div>
+                        <div class="bg"></div>
+                        <div class="txt">
+                            <strong>贝加尔湖</strong>
+                            <p>发起 18 个结伴<br>215 人关注<br>40 人报名</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--展示所有的结伴计划-->
+    <div class="filter-bar _j_filter" style="top: 46px;">
+        <div class="wrapper clearfix">
+            <div class="flr-place">
+                <div class="ui-input _j_go_mdd_list">
+                    <input type="text" id="_j_together_mdd_search" class="_j_mdd_input" placeholder="目的地">
+                </div>
+                <div class="drop drop-place hide _j_mdd_list">
+                    <ul class="all">
+                        <a class="_j_city_select" data-mddid="0" data-mddname="全部">
+                            <span class="num"><em class="companyNum">730</em>个结伴</span>全部
+                        </a>
+                    </ul>
+                    <ul class="col1">
+                        <li class="on" data-index="0" data-name="境内精选">
+                            <a>境内精选<i class="icon-arrow"></i></a>
+                        </li>
+                    </ul>
+                    <ul class="col2">
+                        <li class="_j_city_select" data-mddid="12711" data-name="云南">
+                            <a><span class="num"><em>4</em>结伴</span>云南</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10186" data-name="丽江">
+                            <a><span class="num"><em>3</em>结伴</span>丽江</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10121" data-name="泸沽湖">
+                            <a><span class="num"><em>2</em>结伴</span>泸沽湖</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10482" data-name="香格里拉">
+                            <a><span class="num"><em>2</em>结伴</span>香格里拉</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10487" data-name="大理">
+                            <a><span class="num"><em>2</em>结伴</span>大理</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12141" data-name="雨崩">
+                            <a><span class="num"><em>0</em>结伴</span>雨崩</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10018" data-name="束河">
+                            <a><span class="num"><em>0</em>结伴</span>束河</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10807" data-name="昆明">
+                            <a><span class="num"><em>0</em>结伴</span>昆明</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10651" data-name="腾冲">
+                            <a><span class="num"><em>1</em>结伴</span>腾冲</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10564" data-name="若尔盖">
+                            <a><span class="num"><em>0</em>结伴</span>若尔盖</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12700" data-name="西藏">
+                            <a><span class="num"><em>20</em>结伴</span>西藏</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10442" data-name="拉萨">
+                            <a><span class="num"><em>11</em>结伴</span>拉萨</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10073" data-name="阿里">
+                            <a><span class="num"><em>4</em>结伴</span>阿里</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10417" data-name="纳木错">
+                            <a><span class="num"><em>0</em>结伴</span>纳木错</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10517" data-name="川藏南线">
+                            <a><span class="num"><em>17</em>结伴</span>川藏南线</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10814" data-name="林芝">
+                            <a><span class="num"><em>4</em>结伴</span>林芝</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10079" data-name="墨脱">
+                            <a><span class="num"><em>1</em>结伴</span>墨脱</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11474" data-name="日喀则">
+                            <a><span class="num"><em>0</em>结伴</span>日喀则</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11606" data-name="山南">
+                            <a><span class="num"><em>1</em>结伴</span>山南</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10811" data-name="珠穆朗玛峰">
+                            <a><span class="num"><em>0</em>结伴</span>珠穆朗玛峰</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12703" data-name="四川">
+                            <a><span class="num"><em>18</em>结伴</span>四川</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10035" data-name="成都">
+                            <a><span class="num"><em>2</em>结伴</span>成都</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10061" data-name="稻城">
+                            <a><span class="num"><em>12</em>结伴</span>稻城</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10011" data-name="色达">
+                            <a><span class="num"><em>6</em>结伴</span>色达</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10136" data-name="九寨沟">
+                            <a><span class="num"><em>0</em>结伴</span>九寨沟</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="17315" data-name="牛背山">
+                            <a><span class="num"><em>0</em>结伴</span>牛背山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10134" data-name="四姑娘山">
+                            <a><span class="num"><em>1</em>结伴</span>四姑娘山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10143" data-name="峨眉山">
+                            <a><span class="num"><em>0</em>结伴</span>峨眉山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10091" data-name="亚丁">
+                            <a><span class="num"><em>8</em>结伴</span>亚丁</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11642" data-name="阿坝">
+                            <a><span class="num"><em>1</em>结伴</span>阿坝</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10065" data-name="北京"><a><span
+                                class="num"><em>1</em>结伴</span>北京</a></li>
+                        <li class="_j_city_select" data-mddid="12871" data-name="福建"><a><span
+                                class="num"><em>1</em>结伴</span>福建</a></li>
+                        <li class="_j_city_select" data-mddid="10132" data-name="厦门"><a><span
+                                class="num"><em>1</em>结伴</span>厦门</a></li>
+                        <li class="_j_city_select" data-mddid="12522" data-name="鼓浪屿"><a><span class="num"><em>0</em>结伴</span>鼓浪屿</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10039" data-name="武夷山"><a><span class="num"><em>0</em>结伴</span>武夷山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11498" data-name="福州"><a><span
+                                class="num"><em>0</em>结伴</span>福州</a></li>
+                        <li class="_j_city_select" data-mddid="13295" data-name="甘肃"><a><span
+                                class="num"><em>3</em>结伴</span>甘肃</a></li>
+                        <li class="_j_city_select" data-mddid="10240" data-name="敦煌"><a><span
+                                class="num"><em>2</em>结伴</span>敦煌</a></li>
+                        <li class="_j_city_select" data-mddid="10076" data-name="甘南"><a><span
+                                class="num"><em>1</em>结伴</span>甘南</a></li>
+                        <li class="_j_city_select" data-mddid="10783" data-name="兰州"><a><span
+                                class="num"><em>0</em>结伴</span>兰州</a></li>
+                        <li class="_j_city_select" data-mddid="11340" data-name="张掖"><a><span
+                                class="num"><em>2</em>结伴</span>张掖</a></li>
+                        <li class="_j_city_select" data-mddid="12788" data-name="青海"><a><span
+                                class="num"><em>2</em>结伴</span>青海</a></li>
+                        <li class="_j_city_select" data-mddid="10799" data-name="青海湖"><a><span class="num"><em>2</em>结伴</span>青海湖</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12788" data-name="青海"><a><span
+                                class="num"><em>2</em>结伴</span>青海</a></li>
+                        <li class="_j_city_select" data-mddid="10800" data-name="西宁"><a><span
+                                class="num"><em>1</em>结伴</span>西宁</a></li>
+                        <li class="_j_city_select" data-mddid="10055" data-name="可可西里"><a><span class="num"><em>0</em>结伴</span>可可西里</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="13732" data-name="湖南"><a><span
+                                class="num"><em>0</em>结伴</span>湖南</a></li>
+                        <li class="_j_city_select" data-mddid="10024" data-name="凤凰古镇"><a><span class="num"><em>0</em>结伴</span>凤凰古镇</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10267" data-name="张家界"><a><span class="num"><em>0</em>结伴</span>张家界</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10466" data-name="长沙"><a><span
+                                class="num"><em>0</em>结伴</span>长沙</a></li>
+                        <li class="_j_city_select" data-mddid="14104" data-name="岳阳"><a><span
+                                class="num"><em>0</em>结伴</span>岳阳</a></li>
+                        <li class="_j_city_select" data-mddid="13083" data-name="陕西"><a><span
+                                class="num"><em>3</em>结伴</span>陕西</a></li>
+                        <li class="_j_city_select" data-mddid="10195" data-name="西安"><a><span
+                                class="num"><em>1</em>结伴</span>西安</a></li>
+                        <li class="_j_city_select" data-mddid="10577" data-name="华山"><a><span
+                                class="num"><em>0</em>结伴</span>华山</a></li>
+                        <li class="_j_city_select" data-mddid="18372" data-name="咸阳"><a><span
+                                class="num"><em>0</em>结伴</span>咸阳</a></li>
+                        <li class="_j_city_select" data-mddid="11349" data-name="延安"><a><span
+                                class="num"><em>2</em>结伴</span>延安</a></li>
+                        <li class="_j_city_select" data-mddid="10099" data-name="上海"><a><span
+                                class="num"><em>0</em>结伴</span>上海</a></li>
+                        <li class="_j_city_select" data-mddid="16712" data-name="黑龙江"><a><span class="num"><em>9</em>结伴</span>黑龙江</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10068" data-name="哈尔滨"><a><span class="num"><em>6</em>结伴</span>哈尔滨</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10427" data-name="漠河"><a><span
+                                class="num"><em>6</em>结伴</span>漠河</a></li>
+                        <li class="_j_city_select" data-mddid="10127" data-name="雪乡"><a><span
+                                class="num"><em>4</em>结伴</span>雪乡</a></li>
+                        <li class="_j_city_select" data-mddid="11473" data-name="伊春"><a><span
+                                class="num"><em>0</em>结伴</span>伊春</a></li>
+                        <li class="_j_city_select" data-mddid="12938" data-name="海南"><a><span
+                                class="num"><em>0</em>结伴</span>海南</a></li>
+                        <li class="_j_city_select" data-mddid="10030" data-name="三亚"><a><span
+                                class="num"><em>0</em>结伴</span>三亚</a></li>
+                        <li class="_j_city_select" data-mddid="14786" data-name="蜈支洲岛"><a><span class="num"><em>0</em>结伴</span>蜈支洲岛</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10513" data-name="海口"><a><span
+                                class="num"><em>0</em>结伴</span>海口</a></li>
+                        <li class="_j_city_select" data-mddid="10194" data-name="西沙群岛"><a><span class="num"><em>0</em>结伴</span>西沙群岛</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="15508" data-name="江西"><a><span
+                                class="num"><em>2</em>结伴</span>江西</a></li>
+                        <li class="_j_city_select" data-mddid="10045" data-name="婺源"><a><span
+                                class="num"><em>1</em>结伴</span>婺源</a></li>
+                        <li class="_j_city_select" data-mddid="12702" data-name="武功山"><a><span class="num"><em>0</em>结伴</span>武功山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10244" data-name="庐山"><a><span
+                                class="num"><em>0</em>结伴</span>庐山</a></li>
+                        <li class="_j_city_select" data-mddid="11754" data-name="南昌"><a><span
+                                class="num"><em>0</em>结伴</span>南昌</a></li>
+                        <li class="_j_city_select" data-mddid="12810" data-name="广西"><a><span
+                                class="num"><em>2</em>结伴</span>广西</a></li>
+                        <li class="_j_city_select" data-mddid="10027" data-name="阳朔"><a><span
+                                class="num"><em>0</em>结伴</span>阳朔</a></li>
+                        <li class="_j_city_select" data-mddid="10095" data-name="桂林"><a><span
+                                class="num"><em>0</em>结伴</span>桂林</a></li>
+                        <li class="_j_city_select" data-mddid="10453" data-name="涠洲岛"><a><span class="num"><em>0</em>结伴</span>涠洲岛</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10308" data-name="南宁"><a><span
+                                class="num"><em>0</em>结伴</span>南宁</a></li>
+                        <li class="_j_city_select" data-mddid="14575" data-name="浙江"><a><span
+                                class="num"><em>0</em>结伴</span>浙江</a></li>
+                        <li class="_j_city_select" data-mddid="10010" data-name="西塘"><a><span
+                                class="num"><em>0</em>结伴</span>西塘</a></li>
+                        <li class="_j_city_select" data-mddid="10156" data-name="杭州"><a><span
+                                class="num"><em>0</em>结伴</span>杭州</a></li>
+                        <li class="_j_city_select" data-mddid="10434" data-name="乌镇"><a><span
+                                class="num"><em>0</em>结伴</span>乌镇</a></li>
+                        <li class="_j_city_select" data-mddid="10445" data-name="千岛湖"><a><span class="num"><em>0</em>结伴</span>千岛湖</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12720" data-name="内蒙古"><a><span class="num"><em>4</em>结伴</span>内蒙古</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10774" data-name="呼伦贝尔"><a><span class="num"><em>1</em>结伴</span>呼伦贝尔</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10390" data-name="阿尔山"><a><span class="num"><em>2</em>结伴</span>阿尔山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10456" data-name="额济纳旗"><a><span class="num"><em>0</em>结伴</span>额济纳旗</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="17920" data-name="乌兰布统"><a><span class="num"><em>0</em>结伴</span>乌兰布统</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12719" data-name="安徽"><a><span
+                                class="num"><em>0</em>结伴</span>安徽</a></li>
+                        <li class="_j_city_select" data-mddid="10440" data-name="黄山"><a><span
+                                class="num"><em>0</em>结伴</span>黄山</a></li>
+                        <li class="_j_city_select" data-mddid="10793" data-name="合肥"><a><span
+                                class="num"><em>0</em>结伴</span>合肥</a></li>
+                        <li class="_j_city_select" data-mddid="14978" data-name="黟县"><a><span
+                                class="num"><em>0</em>结伴</span>黟县</a></li>
+                        <li class="_j_city_select" data-mddid="11264" data-name="九华山"><a><span class="num"><em>0</em>结伴</span>九华山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12976" data-name="山东"><a><span
+                                class="num"><em>1</em>结伴</span>山东</a></li>
+                        <li class="_j_city_select" data-mddid="10444" data-name="青岛"><a><span
+                                class="num"><em>0</em>结伴</span>青岛</a></li>
+                        <li class="_j_city_select" data-mddid="10284" data-name="泰山"><a><span
+                                class="num"><em>0</em>结伴</span>泰山</a></li>
+                        <li class="_j_city_select" data-mddid="10575" data-name="济南"><a><span
+                                class="num"><em>0</em>结伴</span>济南</a></li>
+                        <li class="_j_city_select" data-mddid="10256" data-name="威海"><a><span
+                                class="num"><em>0</em>结伴</span>威海</a></li>
+                        <li class="_j_city_select" data-mddid="14674" data-name="广东"><a><span
+                                class="num"><em>1</em>结伴</span>广东</a></li>
+                        <li class="_j_city_select" data-mddid="10088" data-name="广州"><a><span
+                                class="num"><em>0</em>结伴</span>广州</a></li>
+                        <li class="_j_city_select" data-mddid="10198" data-name="深圳"><a><span
+                                class="num"><em>0</em>结伴</span>深圳</a></li>
+                        <li class="_j_city_select" data-mddid="12334" data-name="东莞"><a><span
+                                class="num"><em>0</em>结伴</span>东莞</a></li>
+                        <li class="_j_city_select" data-mddid="10269" data-name="珠海"><a><span
+                                class="num"><em>0</em>结伴</span>珠海</a></li>
+                        <li class="_j_city_select" data-mddid="13061" data-name="新疆"><a><span
+                                class="num"><em>2</em>结伴</span>新疆</a></li>
+                        <li class="_j_city_select" data-mddid="10732" data-name="喀纳斯"><a><span class="num"><em>1</em>结伴</span>喀纳斯</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10218" data-name="乌鲁木齐"><a><span class="num"><em>0</em>结伴</span>乌鲁木齐</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11471" data-name="伊犁"><a><span
+                                class="num"><em>0</em>结伴</span>伊犁</a></li>
+                        <li class="_j_city_select" data-mddid="10757" data-name="北疆"><a><span
+                                class="num"><em>1</em>结伴</span>北疆</a></li>
+                        <li class="_j_city_select" data-mddid="18400" data-name="阿勒泰"><a><span class="num"><em>2</em>结伴</span>阿勒泰</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10469" data-name="吐鲁番"><a><span class="num"><em>0</em>结伴</span>吐鲁番</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10832" data-name="禾木"><a><span
+                                class="num"><em>1</em>结伴</span>禾木</a></li>
+                        <li class="_j_city_select" data-mddid="10468" data-name="喀什"><a><span
+                                class="num"><em>0</em>结伴</span>喀什</a></li>
+                        <li class="_j_city_select" data-mddid="14731" data-name="湖北"><a><span
+                                class="num"><em>1</em>结伴</span>湖北</a></li>
+                        <li class="_j_city_select" data-mddid="10133" data-name="武汉"><a><span
+                                class="num"><em>0</em>结伴</span>武汉</a></li>
+                        <li class="_j_city_select" data-mddid="10521" data-name="恩施"><a><span
+                                class="num"><em>0</em>结伴</span>恩施</a></li>
+                        <li class="_j_city_select" data-mddid="11257" data-name="武当山"><a><span class="num"><em>0</em>结伴</span>武当山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="10490" data-name="宜昌"><a><span
+                                class="num"><em>0</em>结伴</span>宜昌</a></li>
+                        <li class="_j_city_select" data-mddid="10208" data-name="重庆"><a><span
+                                class="num"><em>0</em>结伴</span>重庆</a></li>
+                        <li class="_j_city_select" data-mddid="14103" data-name="贵州"><a><span
+                                class="num"><em>0</em>结伴</span>贵州</a></li>
+                        <li class="_j_city_select" data-mddid="10381" data-name="黔东南"><a><span class="num"><em>0</em>结伴</span>黔东南</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11799" data-name="黔西南"><a><span class="num"><em>0</em>结伴</span>黔西南</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11239" data-name="贵阳"><a><span
+                                class="num"><em>0</em>结伴</span>贵阳</a></li>
+                        <li class="_j_city_select" data-mddid="14871" data-name="吉林"><a><span
+                                class="num"><em>1</em>结伴</span>吉林</a></li>
+                        <li class="_j_city_select" data-mddid="10072" data-name="长白山"><a><span class="num"><em>0</em>结伴</span>长白山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="21910" data-name="雾凇岛"><a><span class="num"><em>1</em>结伴</span>雾凇岛</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11247" data-name="长春"><a><span
+                                class="num"><em>0</em>结伴</span>长春</a></li>
+                        <li class="_j_city_select" data-mddid="14871" data-name="吉林"><a><span
+                                class="num"><em>1</em>结伴</span>吉林</a></li>
+                        <li class="_j_city_select" data-mddid="14387" data-name="江苏"><a><span
+                                class="num"><em>0</em>结伴</span>江苏</a></li>
+                        <li class="_j_city_select" data-mddid="10684" data-name="南京"><a><span
+                                class="num"><em>0</em>结伴</span>南京</a></li>
+                        <li class="_j_city_select" data-mddid="10207" data-name="苏州"><a><span
+                                class="num"><em>0</em>结伴</span>苏州</a></li>
+                        <li class="_j_city_select" data-mddid="10128" data-name="扬州"><a><span
+                                class="num"><em>0</em>结伴</span>扬州</a></li>
+                        <li class="_j_city_select" data-mddid="10140" data-name="无锡"><a><span
+                                class="num"><em>0</em>结伴</span>无锡</a></li>
+                        <li class="_j_city_select" data-mddid="11729" data-name="周庄"><a><span
+                                class="num"><em>0</em>结伴</span>周庄</a></li>
+                        <li class="_j_city_select" data-mddid="15148" data-name="辽宁"><a><span
+                                class="num"><em>1</em>结伴</span>辽宁</a></li>
+                        <li class="_j_city_select" data-mddid="10301" data-name="大连"><a><span
+                                class="num"><em>0</em>结伴</span>大连</a></li>
+                        <li class="_j_city_select" data-mddid="10075" data-name="沈阳"><a><span
+                                class="num"><em>0</em>结伴</span>沈阳</a></li>
+                        <li class="_j_city_select" data-mddid="10584" data-name="丹东"><a><span
+                                class="num"><em>0</em>结伴</span>丹东</a></li>
+                        <li class="_j_city_select" data-mddid="13055" data-name="葫芦岛"><a><span class="num"><em>0</em>结伴</span>葫芦岛</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12967" data-name="河南"><a><span
+                                class="num"><em>0</em>结伴</span>河南</a></li>
+                        <li class="_j_city_select" data-mddid="10094" data-name="洛阳"><a><span
+                                class="num"><em>0</em>结伴</span>洛阳</a></li>
+                        <li class="_j_city_select" data-mddid="11527" data-name="云台山"><a><span class="num"><em>0</em>结伴</span>云台山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11242" data-name="开封"><a><span
+                                class="num"><em>0</em>结伴</span>开封</a></li>
+                        <li class="_j_city_select" data-mddid="10794" data-name="郑州"><a><span
+                                class="num"><em>0</em>结伴</span>郑州</a></li>
+                        <li class="_j_city_select" data-mddid="13033" data-name="山西"><a><span
+                                class="num"><em>0</em>结伴</span>山西</a></li>
+                        <li class="_j_city_select" data-mddid="10547" data-name="平遥"><a><span
+                                class="num"><em>0</em>结伴</span>平遥</a></li>
+                        <li class="_j_city_select" data-mddid="10057" data-name="五台山"><a><span class="num"><em>0</em>结伴</span>五台山</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="11240" data-name="太原"><a><span
+                                class="num"><em>0</em>结伴</span>太原</a></li>
+                        <li class="_j_city_select" data-mddid="10047" data-name="云冈石窟"><a><span class="num"><em>0</em>结伴</span>云冈石窟</a>
+                        </li>
+                        <li class="_j_city_select" data-mddid="12931" data-name="宁夏"><a><span
+                                class="num"><em>1</em>结伴</span>宁夏</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flr-date _j_time_tpl">
+                <div class="ui-input">
+                    <input type="text" class="_j_time_input" placeholder="出发时间">
+                    <i class="icon-date _j_date"></i>
+                    <input type="text" value="" readonly="readonly" id="together_datepicker"
+                           style="width: 30px; height: 30px; border: none; padding: 0; margin: 0;position: absolute;left: 225px;top: 0;opacity: 0"
+                           class="hasDatepicker">
+                </div>
+                <div class="drop drop-date _j_time_list hide">
+                    <ul>
+                        <li class="_j_time_select" data-timeflag="1" data-timeinfo="全部出发时间" onclick="getAll()"><a><span
+                                class="num _j_show_num"><em class="allTime">730</em>结伴</span>全部出发时间</a></li>
+                        <li class="_j_time_select" data-timeflag="2" data-timeinfo="今天" onclick="getToday()"><a><span
+                                class="num _j_show_num"><em class="todayNum">4</em>结伴</span>今天</a></li>
+                        <li class="_j_time_select" data-timeflag="3" data-timeinfo="1个月内" onclick="getAMonth()"><a><span
+                                class="num _j_show_num"><em class="monthNum">222</em>结伴</span>1个月内</a></li>
+                        <li class="_j_time_select" data-timeflag="4" data-timeinfo="1-3个月内" onclick="getThreeMonth()"><a><span
+                                class="num _j_show_num"><em class="threeMonthNum">354</em>结伴</span>1-3个月内</a></li>
+                        <li class="_j_time_select" data-timeflag="5" data-timeinfo="3个月以上" onclick="getMoreThreeMonth()"><a><span
+                                class="num _j_show_num"><em class="moreThreeMonthNum">168</em>结伴</span>3个月以上</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sort _j_sort_list">
+                <a class="on" data-flag="3" id="flag1" onclick="getAll()">热门结伴<i></i></a>
+                <a data-flag="2" class="" id="flag2" onclick="getCompanyNewUp()">最新发表<i></i></a>
+                <a data-flag="1" class="" id="flag3" onclick="getCompany60New()">即将出发<i></i></a>
+            </div>
+            <a id="_id_publish_together_filter" th:href="@{/company/publish}" class="btn-add"><i></i>发布我的结伴计划</a>
+        </div>
+    </div>
+    <div class="bd together-list wrapper">
+        <ul class="clearfix _j_together_list">
+            <script id="companyDemo" type="text/html">
+                {{#  layui.each(d.list.companyList, function(index, item){ }}
+                    <li class="item" style="margin-bottom: 35px;">
+                        <a class="companyItem" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)" target="_blank">
+                            <div class="image">
+                                <img src="{{item.companyMainImg}}"
+                                     style="width: 200px;height: 130px;">
+                                <div class="after">
+                                    <b>{{item.companyStartTime}}</b>天后
+                                    <!--{{item.companyStartTime}}-->
+                                </div>
+                                <hr>
+                            </div>
+                            <h3 class="title">{{item.companyEndArea}}</h3>
+                            <div class="desc">{{item.companyTitle}}
+                            </div>
+                            <div class="user clearfix">
+                                <span class="avatar">
+                                    <img src="{{item.user.imgurl}}"
+                                         width="48" height="48">
+                                    {{#  if(item.user.usersex === '男'){ }}
+                                        <i class="male" style="background-position: -160px -120px;"></i>
+                                    {{#  } }}
+                                    {{#  if(item.user.usersex === '女'){ }}
+                                        <i class="female"></i>
+                                    {{#  } }}
+                                    <!--<i class="male"></i>-->
+                                </span>
+                                <span class="name">{{item.user.username}}({{item.user.address}})  </span>
+                                <span class="level">{{item.companyTime}}</span>
+                            </div>
+                            <div class="attention"><i class="icon-arrow"></i>已有<b>{{item.companyAttendNum}}</b>人关注</div>
+                        </a>
+                    </li>
+                {{#  }); }}
+            </script>
+            <div id="companyView"></div>
+            <!--<li class="item">
+                <a th:href="@{/company/detail}" target="_blank">
+                    <div class="image">
+                        <img src="https://b2-q.mafengwo.net/s6/M00/38/DD/wKgB4lMNbkWAKYVIAAS7PpYjpiE27.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>5</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">沙巴|菲律宾|普吉岛</h3>
+                    <div class="desc">想去学冲浪，找了一家普吉岛的店
+                        体验➕入门，下面是我暂定的...
+                    </div>
+                    <div class="user clearfix">
+                            <span class="avatar">
+                                <img src="https://p3-q.mafengwo.net/s12/M00/32/B8/wKgED1wx9CSAf_VgAABmwADfmRI45.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                     width="48">
+                                <i class="male"></i>
+                            </span>
+                        <span class="name">Hailey(成都)  </span>
+                        <span class="level">2019-10-27</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>11</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2388889.html" target="_blank">
+                    <div class="image">
+                        <img src="https://n3-q.mafengwo.net/s8/M00/4E/35/wKgBpVXQYiyALbdLAAVaO6591W802.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>34</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">大阪|京都</h3>
+                    <div class="desc">本人85后小姐姐，独立，不矫情，第一次去日本，之前都是自由...</div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://p4-q.mafengwo.net/s10/M00/C2/AD/wKgBZ1kgQ6WAYK8VAABmo-FJxAk22.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">Serena🐳(广州)  </span>
+                        <span class="level">LV.5</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>16</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2362783.html" target="_blank">
+                    <div class="image">
+                        <img src="https://n2-q.mafengwo.net/s9/M00/8E/78/wKgBs1e5mQiAVFwpABu2ZRmC4qQ81.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>85</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">葡萄牙|西班牙</h3>
+                    <div class="desc">目前有3人机票已出，目前1男2女，都是80后，有兴趣的朋友可以...</div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://n3-q.mafengwo.net/s14/M00/79/88/wKgE2l0j8b-ADjs_AABM8f3staM88.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="female"></i></span>
+                        <span class="name">凹凸曼打年糕(上海)  </span>
+                        <span class="level">LV.6</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>23</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2365475.html" target="_blank">
+                    <div class="image">
+                        <img src="https://b2-q.mafengwo.net/s7/M00/41/DD/wKgB6lQexJKAPpgYACP7j4NiVhk75.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>58</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">挪威|苏黎世|瑞士</h3>
+                    <div class="desc">一、不知道有没有看过《遇见王沥川》，本人想打卡苏黎世!
+                        当...
+                    </div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://p2-q.mafengwo.net/s14/M00/A7/F1/wKgE2l0Vq3uAQhuaAADmkIFXnEk22.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">无知•少女(中山)  </span>
+                        <span class="level">LV.8</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>18</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2376263.html" target="_blank">
+                    <div class="image">
+                        <img src="https://b1-q.mafengwo.net/s9/M00/C2/D4/wKgBs1Zm2QiAZ9kLABYyvNNtvuk84.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>1</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">腾冲|丽江|大理</h3>
+                    <div class="desc">云南，一座4年去了3次的城市，可还是没有腻味，暂且是半个云...</div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://p3-q.mafengwo.net/s11/M00/78/67/wKgBEFqNkXWAGFcrAAAPMz5Lzcs41.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">哈韩大妈 🙆 、CHST(海口)  </span>
+                        <span class="level">LV.6</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>30</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2366271.html" target="_blank">
+                    <div class="image">
+                        <img src="https://b1-q.mafengwo.net/s9/M00/E1/79/wKgBs1bBjaeAJ14dAAHblaD0Jo016.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>91</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">贝加尔湖</h3>
+                    <div class="desc">2020年的春节
+                        时间：1.26-1.31
+                        1.25：杭州出发北京
+                        1.26：...
+                    </div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://p4-q.mafengwo.net/s14/M00/08/6F/wKgE2l1Z-KuAVZ0XAABw3jiBAwA27.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">X.xx(杭州)  </span>
+                        <span class="level">LV.23</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>24</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2340043.html" target="_blank">
+                    <div class="image">
+                        <img src="https://n1-q.mafengwo.net/s6/M00/8F/E0/wKgB4lNnTm6ADLAaAADC83GVUB421.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>47</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">摩尔曼斯克</h3>
+                    <div class="desc">去年冬天自己去了一趟，今年冬天想再去追一次极光，我这里2个...</div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://b2-q.mafengwo.net/s14/M00/E5/C0/wKgE2l1c3mSAPVGfAAc4guvA1ss39.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="female"></i></span>
+                        <span class="name">奥莉小蜘蛛(洛阳)  </span>
+                        <span class="level">LV.14</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>23</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2379454.html" target="_blank">
+                    <div class="image">
+                        <img src="https://p4-q.mafengwo.net/s10/M00/12/DD/wKgBZ1mlQE6AcTkZABP8peVXY8o48.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>35</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">冰岛</h3>
+                    <div class="desc">去过了很多地方，但是终极目标是冰岛
+                        以前总想着等多存点钱再...
+                    </div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://b4-q.mafengwo.net/s6/M00/06/84/wKgB4lIrPEaAPyblAABPgAV-2p085.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">se7en(上海)  </span>
+                        <span class="level">LV.23</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>12</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2389105.html" target="_blank">
+                    <div class="image">
+                        <img src="https://p3-q.mafengwo.net/s7/M00/2F/2C/wKgB6lQ2WQGALA4vAAgSiY0MJgg20.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>90</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">印度北部</h3>
+                    <div class="desc">印度这个地方一直以来都对我无比有吸引力，但是身边的朋友对...</div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://n1-q.mafengwo.net/s11/M00/D1/31/wKgBEFshyZqATK0VAACgtoH1jcQ65.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">噗噗儿(沙坪坝)  </span>
+                        <span class="level">LV.12</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>10</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2373859.html" target="_blank">
+                    <div class="image">
+                        <img src="https://p3-q.mafengwo.net/s7/M00/9D/13/wKgB6lSosqaAWed_AAYcHZfMZD0122.png?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>160</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">拉萨|西藏</h3>
+                    <div class="desc">1.包车游玩7天行程！包车价格暂定 5600 SUV车型。
+
+                        2.暂时有...
+                    </div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://p3-q.mafengwo.net/s10/M00/46/0E/wKgBZ1iu76eARfQ_ABFbeqU3R5I07.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">key(澳门)  </span>
+                        <span class="level">LV.30</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>15</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2357735.html" target="_blank">
+                    <div class="image">
+                        <img src="https://b2-q.mafengwo.net/s9/M00/D6/48/wKgBs1fHmDOAFuPuABgy_gdW4GA40.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>87</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">新西兰</h3>
+                    <div class="desc">行程:
+                        1月22日:上海飞奥克兰(23日到奥克兰休整1晚)
+                        1月24日:...
+                    </div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://b3-q.mafengwo.net/s1/M00/43/07/wKgBm027di3mTi3dAAAlUIowhfs36.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">margernini(上海)  </span>
+                        <span class="level">LV.19</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>11</b>人关注</div>
+                </a>
+            </li>
+            <li class="item">
+                <a href="/together/detail/2385919.html" target="_blank">
+                    <div class="image">
+                        <img src="https://b3-q.mafengwo.net/s7/M00/5F/B4/wKgB6lTdqXaAD7slAAM89OKgZkw23.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                             style="width: 200px;height: 130px;">
+                        <div class="after"><b>6</b>天后</div>
+                        <hr>
+                    </div>
+                    <h3 class="title">清迈</h3>
+                    <div class="desc">11月2号北京出发 清迈6号返回北京
+                        因为很早之前就订了机票 ...
+                    </div>
+                    <div class="user clearfix">
+                <span class="avatar"><img
+                        src="https://n3-q.mafengwo.net/s10/M00/A4/6F/wKgBZ1laWjmAc5M7AAC98im8vUo83.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                        width="48">
+                <i class="male"></i></span>
+                        <span class="name">Sunshine 💗(北京)  </span>
+                        <span class="level">LV.20</span>
+                    </div>
+                    <div class="attention"><i class="icon-arrow"></i>已有<b>9</b>人关注</div>
+                </a>
+            </li>-->
+        </ul>
+        <!--热门结伴的分页-->
+        <div class="layui-btn-group" style="float: right;" id="pageHot">
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="total" style="font-size: 18px;"></span>&emsp;条
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                当前为第&emsp;<span class="curr" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="pageNum" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <script id="pageDemo" type="text/html">
+                {{#  layui.each(d.list.pages, function(index, item){ }}
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                        onclick="toPageCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                    {{item}}
+                </button>
+                {{#  }); }}
+            </script>
+            <div id="pageView" style="float: right;"></div>
+        </div>
+        <!--最新发表的分页-->
+        <div class="layui-btn-group" style="float: right;" id="pageNewUp">
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="totalNewUp" style="font-size: 18px;"></span>&emsp;条
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                当前为第&emsp;<span class="currNewUp" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="pageNumNewUp" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <script id="pageNewUpDemo" type="text/html">
+                {{#  layui.each(d.list.pages, function(index, item){ }}
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                        onclick="toPageNewUpCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                    {{item}}
+                </button>
+                {{#  }); }}
+            </script>
+            <div id="pageNewUpView" style="float: right;"></div>
+        </div>
+        <!--即将出发的分页-->
+        <div class="layui-btn-group" style="float: right;" id="pageGoing">
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="totalGoing" style="font-size: 18px;"></span>&emsp;条
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                当前为第&emsp;<span class="currGoing" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="pageNumGoing" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <script id="pageGoingDemo" type="text/html">
+                {{#  layui.each(d.list.pages, function(index, item){ }}
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                        onclick="toPageGoingCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                    {{item}}
+                </button>
+                {{#  }); }}
+            </script>
+            <div id="pageGoingView" style="float: right;"></div>
+        </div>
+        <!--今天出发的分页-->
+        <div class="layui-btn-group" style="float: right;" id="pageToday">
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="totalToday" style="font-size: 18px;"></span>&emsp;条
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                当前为第&emsp;<span class="currToday" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="pageNumToday" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <script id="pageTodayDemo" type="text/html">
+                {{#  layui.each(d.list.pages, function(index, item){ }}
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                        onclick="toPageTodayCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                    {{item}}
+                </button>
+                {{#  }); }}
+            </script>
+            <div id="pageTodayView" style="float: right;"></div>
+        </div>
+        <!--一个月内出发的分页-->
+        <div class="layui-btn-group" style="float: right;" id="pageMonth">
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="totalMonth" style="font-size: 18px;"></span>&emsp;条
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                当前为第&emsp;<span class="currMonth" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="pageNumMonth" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <script id="pageMonthDemo" type="text/html">
+                {{#  layui.each(d.list.pages, function(index, item){ }}
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                        onclick="toPageMonthCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                    {{item}}
+                </button>
+                {{#  }); }}
+            </script>
+            <div id="pageMonthView" style="float: right;"></div>
+        </div>
+        <!--一到三个月内出发的分页-->
+        <div class="layui-btn-group" style="float: right;" id="pageThreeMonth">
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="totalThreeMonth" style="font-size: 18px;"></span>&emsp;条
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                当前为第&emsp;<span class="currThreeMonth" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="pageNumThreeMonth" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <script id="pageThreeMonthDemo" type="text/html">
+                {{#  layui.each(d.list.pages, function(index, item){ }}
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                        onclick="toPageThreeMonthCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                    {{item}}
+                </button>
+                {{#  }); }}
+            </script>
+            <div id="pageThreeMonthView" style="float: right;"></div>
+        </div>
+        <!--三个月以上出发的分页-->
+        <div class="layui-btn-group" style="float: right;" id="pageMoreThreeMonth">
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="totalMoreThreeMonth" style="font-size: 18px;"></span>&emsp;条
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                当前为第&emsp;<span class="currMoreThreeMonth" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm">
+                共&emsp;<span class="pageNumMoreThreeMonth" style="font-size: 18px;"></span>&emsp;页
+            </button>
+            <script id="pageMoreThreeMonthDemo" type="text/html">
+                {{#  layui.each(d.list.pages, function(index, item){ }}
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                        onclick="toPageMoreThreeMonthCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                    {{item}}
+                </button>
+                {{#  }); }}
+            </script>
+            <div id="pageMoreThreeMonthView" style="float: right;"></div>
+        </div>
+    </div>
+</div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

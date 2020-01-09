@@ -613,6 +613,66 @@ public class CommentExample {
             addCriterion("commentCount not between", value1, value2, "commentcount");
             return (Criteria) this;
         }
+
+        public Criteria andPraiseNumIsNull() {
+            addCriterion("praise_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumIsNotNull() {
+            addCriterion("praise_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumEqualTo(Integer value) {
+            addCriterion("praise_num =", value, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumNotEqualTo(Integer value) {
+            addCriterion("praise_num <>", value, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumGreaterThan(Integer value) {
+            addCriterion("praise_num >", value, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("praise_num >=", value, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumLessThan(Integer value) {
+            addCriterion("praise_num <", value, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumLessThanOrEqualTo(Integer value) {
+            addCriterion("praise_num <=", value, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumIn(List<Integer> values) {
+            addCriterion("praise_num in", values, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumNotIn(List<Integer> values) {
+            addCriterion("praise_num not in", values, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumBetween(Integer value1, Integer value2) {
+            addCriterion("praise_num between", value1, value2, "praiseNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPraiseNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("praise_num not between", value1, value2, "praiseNum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

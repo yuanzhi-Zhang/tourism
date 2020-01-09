@@ -1,0 +1,556 @@
+.companyDetail_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background: rgba(131, 130, 130, 0.4);
+}
+.companyDetail_main_img{
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    position: relative;
+}
+.companyDetail_title{
+    position: absolute;
+    top: 190px;
+    left: 35%;
+    color: white;
+}
+.companyDetail_title h1 {
+    margin: 0 20px 15px;
+    font-size: 30px;
+    font-weight: 500;
+    text-shadow: 1px 2px 2px rgba(0,0,0,1);
+}
+.total{
+    text-align: center;
+}
+.total span {
+    padding-right: 10px;
+    font-size: 30px;
+    vertical-align: -3px;
+    *vertical-align: middle;
+}
+.total .dot {
+    margin: 0 10px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,.5);
+}
+.total .dot {
+    display: inline-block;
+    margin-left: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.event-btns {
+    position: absolute;
+    top: 184px;
+    left: 50%;
+    width: 683px;
+    margin-left: -342px;
+    /*box-shadow: 5px 5px 0 0 rgba(229,229,229,.8);*/
+    background-color: #fff;
+}
+.event-btns .cell-join, .event-btns .cell-collect {
+    float: left;
+    width: 340px;
+    height: 70px;
+    border: 1px solid #d6d6d6;
+    text-align: center;
+    line-height: 70px;
+    font-size: 20px;
+}
+.cell-join:hover{
+    background-color: #ff8a00;
+    cursor: pointer;
+}
+.cell-join:hover .toEnter{
+    color: #ffffff;
+}
+.cell-collect:hover{
+    cursor: pointer;
+}
+.event-btns .btn-join {
+    display: block;
+    height: 70px;
+    color: #ff8a00;
+}
+.event-btns .btn-join i {
+    display: inline-block;
+    margin-right: -5px;
+    width: 64px;
+    height: 60px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat 0 -240px;
+    vertical-align: -26px;
+    *vertical-align: middle;
+}
+.event-btns .btn-join {
+    display: block;
+    height: 70px;
+    color: #ff8a00;
+}
+.event-btns .cell-collect {
+    width: 340px;
+    height: 70px;
+    border-left: 0;
+    overflow: hidden;
+}
+.event-btns .btn-collect {
+    display: block;
+    color: #666;
+    _padding-top: 20px;
+}
+.event-btns .btn-collect i {
+    display: inline-block;
+    margin-right: 10px;
+    width: 27px;
+    height: 25px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -160px -160px;
+    overflow: hidden;
+    vertical-align: -6px;
+    *vertical-align: middle;
+}
+.companyDetail_content{
+    /*width: 100%;*/
+    padding: 20px 0;
+    /*text-align: center;*/
+    background: linear-gradient(45deg,rgba(254, 172, 94, 0.24),rgba(199, 121, 208, 0.32),rgba(75, 192, 200, 0.31));
+}
+.summary {
+    width: 980px;
+    margin: 0 auto;
+}
+.summary ul {
+    margin: 30px 0 30px 150px;
+    font-size: 16px;
+    line-height: 26px;
+}
+.summary li {
+    float: left;
+    width: 305px;
+    display: inline;
+    margin: 6px 0;
+    padding-left: 35px;
+}
+.summary li .icon-startTime {
+    background-position: -160px 0;
+}
+.summary li .icon-days {
+    background-position: -200px 0;
+}
+.summary li .icon-destination {
+    background-position: -160px -40px;
+}
+.summary li .icon-departure {
+    background-position: -200px -40px;
+}
+.summary li .icon-people {
+    background-position: -160px -80px;
+}
+.summary li i {
+    float: left;
+    width: 24px;
+    height: 24px;
+    margin: 2px 0 0 -35px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -160px 0;
+}
+.clearfix:after, .wrapper:after, .article:after {
+    content: '\20';
+    clear: both;
+    display: block;
+}
+.summary .contact {
+    margin: 30px 0;
+    padding: 15px 0;
+    border-top: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d6;
+    line-height: 30px;
+    font-size: 18px;
+    text-align: center;
+}
+.summary .contact span {
+    margin-left: 20px;
+}
+.summary .invisible {
+    color: #ea3c1a;
+}
+/*结伴详情正文内容*/
+.wrapper {
+    padding: 0;
+}
+.wrapper {
+    width: 980px;
+    margin: 0 auto;
+}
+.detail-content {
+    float: left;
+    width: 600px;
+}
+.sponsor {
+    margin-bottom: 30px;
+    padding-top: 15px;
+}
+.sponsor .avatar {
+    float: left;
+    width: 90px;
+    height: 90px;
+    margin: -15px 30px 0 0;
+}
+.sponsor .avatar img {
+    border-radius: 50%;
+}
+.sponsor .name {
+    margin-right: 5px;
+    color: #ff7200;
+    font-size: 16px;
+}
+.sponsor .level {
+    font-size: 14px;
+}
+.container .level {
+    font-weight: bold;
+    color: #ea3c1a;
+    font-family: Verdana;
+}
+.sponsor .opt {
+    margin-top: 10px;
+    font-size: 14px;
+}
+.sponsor .btn-follow {
+    display: inline-block;
+    margin-right: 10px;
+    width: 80px;
+    height: 26px;
+    line-height: 26px;
+    color: #fff;
+    text-align: center;
+}
+.sponsor .btn-follow .follow {
+    background-color: #ffa900;
+}
+.sponsor .btn-follow span {
+    display: block;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.sponsor .btn-follow i {
+    display: inline-block;
+    margin-right: 5px;
+    width: 10px;
+    height: 10px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -20px 0;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.sponsor .opt .btn-privateLetter {
+    display: inline-block;
+    width: 68px;
+    border: 1px solid #fbc762;
+    background-color: #fbfbfb;
+    color: #ff8a00;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 2px;
+}
+.detail-content .desc {
+    font-size: 14px;
+    line-height: 2em;
+}
+.detail-content .desc .title {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #444;
+}
+.detail-side {
+    float: right;
+    width: 300px;
+}
+.mod-joinlist {
+    margin-bottom: 40px;
+}
+.mod-joinlist .hd {
+    margin-bottom: 25px;
+    height: 20px;
+    padding: 30px 0;
+    background-color: #fff;
+    box-shadow: 2px 1px 2px rgba(0,0,0,.08), 0 0 3px rgba(0,0,0,0.05);
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    position: relative;
+    *zoom: 1;
+}
+.mod-joinlist .hd span {
+    margin: 0 8px;
+}
+.mod-joinlist .hd em {
+    font-style: normal;
+    font-size: 28px;
+    color: #ff8a00;
+    vertical-align: -3px;
+    *vertical-align: middle;
+}
+.male, .female {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -200px -120px;
+    overflow: hidden;
+    vertical-align: -4px;
+    *vertical-align: middle;
+}
+.female {
+    background-position: -160px -120px;
+}
+.mod-joinlist .hd .icon-arrow {
+    position: absolute;
+    bottom: -11px;
+    left: 50%;
+    margin-left: -11px;
+    border-top: 11px solid #fff;
+    border-left: 11px dashed transparent;
+    border-right: 11px dashed transparent;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+}
+.mod-joinlist .bd {
+    padding: 0 5px;
+    text-align: center;
+}
+.mod-joinlist ul {
+    margin-right: -15px;
+    *zoom: 1;
+}
+.mod-joinlist li {
+    float: left;
+    width: 90px;
+    display: inline;
+    margin: 0 10px 25px 0;
+}
+.mod-joinlist .avatar {
+    display: block;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 10px;
+    position: relative;
+}
+.mod-joinlist .avatar img {
+    border-radius: 50%;
+}
+.mod-joinlist .avatar i {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.mod-joinlist .name {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    color: #ff7200;
+}
+.mod-joinlist .avatar {
+    display: block;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 10px;
+    position: relative;
+}
+.mod-joinlist .avatar i {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.mod-joinlist .name {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    color: #ff7200;
+}
+.mod-attentionUser {
+    margin-bottom: 40px;
+}
+.mod-recenthot .mod-title, .mod-attentionUser .mod-title {
+    margin-bottom: 10px;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: normal;
+}
+.mod-attentionUser .bd {
+    padding-left: 5px;
+}
+.mod-attentionUser li {
+    float: left;
+    width: 32px;
+    height: 32px;
+    display: inline;
+    margin: 0 0 10px 13px;
+}
+.wrapper a {
+    color: #ff9d00;
+    text-decoration: none;
+    cursor: pointer;
+}
+.mod-attentionUser li img {
+    border-radius: 50%;
+}
+.hotCompany_advice{
+    margin-bottom: 10px;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+/*评论*/
+.journey_comment{
+    width: 650px;
+    margin: 60px auto;
+}
+
+.btn-publish {
+    float: right;
+    margin-bottom: 15px;
+}
+
+.media-object {
+    width: 38px;
+    height: 38px;
+}
+
+.media-body {
+    padding-top: 10px;
+}
+.media-left img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.text-desc {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+.profile .section {
+    margin-top: 15px;
+}
+
+.community-menu {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.jumbotron {
+    margin: 50px;
+}
+
+.comment {
+    margin: 10px 0;
+}
+
+.btn-comment {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.comments {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #5e5e5e;
+}
+
+.sub-comments {
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #c2b66a;
+    padding: 15px 15px 5px 15px;
+    margin-bottom: 15px;
+}
+
+.sub-comments .btn {
+    margin: 10px 0;
+}
+
+.comment-sp {
+    margin-top: 0;
+}
+
+.menu {
+    /*color: #999;*/
+    margin-top: 5px;
+}
+
+.menu .icon {
+    margin-right: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon :hover {
+    color: #499ef3;
+    cursor: pointer;
+}
+
+.up{
+    margin-top: -9px;
+    color: #df6659;
+}
+
+.up:hover{
+    cursor: pointer;
+}
+
+.menu .active {
+    color: #499ef3;
+}
+
+.menu .icon:hover {
+    color: #499ef3;
+}
+.commentTime{
+    float: right;
+}
+.openSub:hover{
+    cursor: pointer;
+    color: #499ef3;
+}
+.praise:hover{
+    cursor: pointer;
+    color: #de4a41;
+}
+.praised{
+    color: #de4a41;
+}
+.active{
+    color: #499ef3;
+}
+.strategyDetail__main_img{
+    width: 680px;
+    height: 430px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+.subContentItem{
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    color: #333;
+}
+.mainComment{
+    font-size: 20px;
+    color: #ff5722;
+}
+

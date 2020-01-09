@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Random;
 
@@ -21,9 +22,9 @@ public class MailController {
 
     @RequestMapping("getCheckCode")
     @ResponseBody
-    public boolean getCheckCode(String email, HttpSession session){
+    public boolean getCheckCode(String email, HttpServletRequest request){
         String checkCode = String.valueOf(new Random().nextInt(899999) + 100000);
-        session.setAttribute("checkCode",checkCode);
+        request.getSession().setAttribute("checkCode",checkCode);
         String message = "【任我行】竭诚为您服务"+"\n"+"您的注册验证码为："+checkCode+"，如非本人操作，请忽略此信息";
         try {
             mailService.sendSimpleMail(email, "任我行旅游网注册", message);

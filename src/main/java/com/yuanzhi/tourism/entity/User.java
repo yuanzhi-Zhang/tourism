@@ -10,8 +10,6 @@ public class User {
 
     private String password;
 
-    private String repwd;
-
     private String username;
 
     private String usersex;
@@ -33,6 +31,12 @@ public class User {
     private String selfintro;
 
     private String backimg;
+
+    private Integer journeycount;
+
+    private Integer historycount;
+
+    private Integer fanscount;
 
     public Integer getUid() {
         return uid;
@@ -56,14 +60,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
-    }
-
-    public String getRepwd() {
-        return repwd;
-    }
-
-    public void setRepwd(String repwd) {
-        this.repwd = repwd;
     }
 
     public String getUsername() {
@@ -152,5 +148,29 @@ public class User {
 
     public void setBackimg(String backimg) {
         this.backimg = backimg == null ? null : backimg.trim();
+    }
+
+    public Integer getJourneycount() {
+        return journeycount;
+    }
+
+    public void setJourneycount(Integer journeycount) {
+        this.journeycount = journeycount;
+    }
+
+    public Integer getHistorycount() {
+        return historycount;
+    }
+
+    public void setHistorycount(Integer historycount) {
+        this.historycount = historycount;
+    }
+
+    public Integer getFanscount() {
+        return fanscount;
+    }
+
+    public void setFanscount(Integer fanscount) {
+        this.fanscount = fanscount;
     }
 }

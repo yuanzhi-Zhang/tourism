@@ -424,6 +424,76 @@ public class NotificationExample {
             return (Criteria) this;
         }
 
+        public Criteria andTypeidnameIsNull() {
+            addCriterion("typeIdName is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameIsNotNull() {
+            addCriterion("typeIdName is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameEqualTo(String value) {
+            addCriterion("typeIdName =", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameNotEqualTo(String value) {
+            addCriterion("typeIdName <>", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameGreaterThan(String value) {
+            addCriterion("typeIdName >", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameGreaterThanOrEqualTo(String value) {
+            addCriterion("typeIdName >=", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameLessThan(String value) {
+            addCriterion("typeIdName <", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameLessThanOrEqualTo(String value) {
+            addCriterion("typeIdName <=", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameLike(String value) {
+            addCriterion("typeIdName like", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameNotLike(String value) {
+            addCriterion("typeIdName not like", value, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameIn(List<String> values) {
+            addCriterion("typeIdName in", values, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameNotIn(List<String> values) {
+            addCriterion("typeIdName not in", values, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameBetween(String value1, String value2) {
+            addCriterion("typeIdName between", value1, value2, "typeidname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidnameNotBetween(String value1, String value2) {
+            addCriterion("typeIdName not between", value1, value2, "typeidname");
+            return (Criteria) this;
+        }
+
         public Criteria andReceiverIsNull() {
             addCriterion("receiver is null");
             return (Criteria) this;

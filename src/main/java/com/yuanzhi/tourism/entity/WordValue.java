@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 public class WordValue {
 
     private String word;
-    private Integer frequecy;
+    private Integer frequency;
 
     public WordValue() {
     }
 
-    public WordValue(String word, Integer frequecy) {
+    public WordValue(String word, Integer frequency) {
         this.word = word;
-        this.frequecy = frequecy;
+        this.frequency = frequency;
     }
 
     public String getWord() {
@@ -30,11 +30,11 @@ public class WordValue {
         this.word = word;
     }
 
-    public Integer getFrequecy() {
-        return frequecy;
+    public Integer getFrequency() {
+        return frequency;
     }
 
-    public void setFrequecy(Integer frequecy) {
-        this.frequecy = frequecy;
+    public void setFrequency(Integer frequency) {
+        this.frequency = frequency;
     }
 }

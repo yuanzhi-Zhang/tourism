@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <link href="../../static/admin/images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
     <title>登录@任我行后台管理系统</title>
     <!-- Bootstrap core CSS -->
     <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet" />
@@ -15,7 +15,7 @@
 
 <body class="text-center">
 <form class="form-signin" action="admin/adminIndex.html" th:action="@{/admin/login}" method="post">
-    <img class="mb-4" th:href="@{/images/iconImg.jpg}" src="images/iconImg.jpg" alt="" width="72" height="72">
+    <img class="mb-4" th:src="@{/images/iconImg.jpg}" src="../../static/admin/images/iconImg.jpg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label class="sr-only" th:text="#{login.adminAccount}">adminAccount</label>

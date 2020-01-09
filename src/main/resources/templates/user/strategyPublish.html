@@ -13,7 +13,7 @@
     <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://libs.baidu.com/jqueryui/1.9.2/jquery-ui.min.js"></script>
     <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
-    <script src="js/journeyPublish.js" th:src="@{/js/journeyPublish.js}"></script>
+    <script src="js/journeyPublish.js" th:src="@{/js/strategyPublish.js}"></script>
     <title>添加文字-写攻略@任我行，旅游攻略</title>
 </head>
 <body>
@@ -24,15 +24,26 @@
 <!--导航下的上传图片的大图以及内区-->
 <div class="jourPub_upImg">
     <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
-    <input type="file" hidden="hidden" id="selectJourneyImg" name="file" onchange="getImg(this)">
-    <img  class="uploadJourMainImg" id="uploadJourMainImg">
-    <!--<div class="jourPub_upImg_mainImg" id="uploadJourMainPic">-->
-    <div class="jourPub_upImg_mainImg" onclick="selectImg()">
-        <img src="images/icon/changePic3.png" th:src="@{/images/icon/changePic3.png}" id="jourMainImg">
-        &ensp;<span>上传攻略正图</span>
+    <input type="file" hidden="hidden" id="selectJourneyImg1" name="file" onchange="getImg1(this)">
+    <input type="file" hidden="hidden" id="selectJourneyImg2" name="file" onchange="getImg2(this)">
+    <input type="file" hidden="hidden" id="selectJourneyImg3" name="file" onchange="getImg3(this)">
+    <img  class="uploadStrategyMainImg" id="uploadJourMainImg1" style="width:33.3%" th:src="@{/images/back.jpg}">
+    <img  class="uploadStrategyMainImg" id="uploadJourMainImg2" style="width:33.3%" th:src="@{/images/back.jpg}">
+    <img  class="uploadStrategyMainImg" id="uploadJourMainImg3" style="width:33.3%" th:src="@{/images/back.jpg}">
+    <div class="strategyPub_upImg_mainImg" onclick="selectImg1()" style="left: 10%" id="strategyPub_upImg_mainImg1">
+        <img src="images/icon/changePic3.png" th:src="@{/images/icon/changePic3.png}" id="jourMainImg1">
+        &ensp;<span>上传攻略正图一</span>
+    </div>
+    <div class="strategyPub_upImg_mainImg" onclick="selectImg2()" id="strategyPub_upImg_mainImg2">
+        <img src="images/icon/changePic3.png" th:src="@{/images/icon/changePic3.png}" id="jourMainImg2">
+        &ensp;<span>上传攻略正图二</span>
+    </div>
+    <div class="strategyPub_upImg_mainImg" onclick="selectImg3()" style="left: 75%" id="strategyPub_upImg_mainImg3">
+        <img src="images/icon/changePic3.png" th:src="@{/images/icon/changePic3.png}" id="jourMainImg3">
+        &ensp;<span>上传攻略正图三</span>
     </div>
     <div class="jourPub_title">
-        <input type="text" name="title" id="journeyTitle" lay-verify="title" autocomplete="off" placeholder="请输入游记标题"
+        <input type="text" name="title" id="journeyTitle" lay-verify="title" autocomplete="off" placeholder="请输入攻略标题"
                class="layui-input" style="width: 1020px;">
     </div>
 </div>
@@ -44,41 +55,17 @@
             <li class="jour_li" style="width: 650px;float: left;">
                 <div class="layui-form-item layui-form-text">
                     <div class="layui-input-block" style=" margin-left: 0px;">
-                        <textarea name="content" placeholder="请输入游记内容" class="layui-textarea" id="journeyPub_content"></textarea>
+                        <textarea name="content" placeholder="请输入攻略内容" class="layui-textarea" id="journeyPub_content"></textarea>
                     </div>
                 </div>
             </li>
             <li class="jour_li jourPub_right" style="width: 330px;float: right;">
-                <!--<form class="layui-form" action="">-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">开始时间</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="startTime" id="startTime" placeholder="yyyy-MM-dd" required  lay-verify="required" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">历时天数</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="daysNum" id="daysNum" required  placeholder="例如：3天..."  lay-verify="required"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">大概金额</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="money" id="money" required  placeholder="例如：3000元..."  lay-verify="required"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">人物</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="people" id="people" required  placeholder="例如：同事、亲人..." lay-verify="required"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+                <h2 style="color: #666;margin: 25px 0;">请输入对该攻略的简要概括</h2>
+                <textarea name="" required lay-verify="required" placeholder="例如：夏天吃什么最爽？当然是吃冰啦！刨冰就是夏季风物诗，你一勺我一勺，干掉一大碗..." class="layui-textarea strategy_info" style="height: 150px;"></textarea>
                 <div style="text-align: right;">
                     <button class="layui-btn layui-btn-warm layui-btn-radius layui-btn-lg" id="publishJour"
-                            style="margin-right: 60px;margin-top: 30px;">&emsp;发布游记&emsp;</button>
+                            style="margin-right: 60px;margin-top: 30px;letter-spacing: 3px;">&emsp;&ensp;发布该攻略&ensp;&emsp;</button>
                 </div>
-                <!--</form>-->
             </li>
         </ul>
     </div>

@@ -2873,7 +2873,7 @@ hr {
     height: 28px;
     line-height: 28px;
     margin: 0 -1px 5px 0;
-    background-color: #fff;
+    /*background-color: #fff;*/
     color: #333;
     font-size: 12px
 }
@@ -2969,7 +2969,7 @@ hr {
     line-height: 30px;
     border-radius: 2px;
     vertical-align: top;
-    background-color: #fff;
+    background-color: #5fb87885;
     box-sizing: border-box
 }
 
@@ -4006,15 +4006,16 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-breadcrumb>* {
-    font-size: 14px
+    font-size: 20px
 }
 
 .layui-breadcrumb a {
-    color: #999 !important
+    margin: 0 10px;
+    color: #645f5f;
 }
 
 .layui-breadcrumb a:hover {
-    color: #5FB878 !important
+    color: coral !important
 }
 
 .layui-breadcrumb a cite {
@@ -4288,9 +4289,15 @@ body .layui-table-tips .layui-layer-content {
     border-radius: 2px
 }
 
+/*.layui-badge {*/
+    /*height: 18px;*/
+    /*line-height: 18px*/
+/*}*/
 .layui-badge {
-    height: 18px;
-    line-height: 18px
+    height: 11px;
+    line-height: 11px;
+    border-radius: 50%;
+    padding: 0 4px;
 }
 
 .layui-badge-dot {
@@ -4314,7 +4321,12 @@ body .layui-table-tips .layui-layer-content {
     margin-left: 5px
 }
 
-.layui-nav .layui-badge,
+.layui-nav .layui-badge{
+    position: absolute;
+    top: 17px;
+    left: 15px;
+}
+/*.layui-nav .layui-badge,*/
 .layui-nav .layui-badge-dot {
     position: absolute;
     top: 50%;
@@ -4601,7 +4613,8 @@ body .layui-table-tips .layui-layer-content {
     text-align: center;
     cursor: pointer;
     font-size: 30px;
-    background-color: #9F9F9F;
+    /*background-color: #9F9F9F;*/
+    background-color: #17a2b8c9;
     color: #fff;
     border-radius: 2px;
     opacity: .95
@@ -4617,7 +4630,8 @@ body .layui-table-tips .layui-layer-content {
 
 .layui-fixbar .layui-fixbar-top {
     display: none;
-    font-size: 40px
+    font-size: 40px;
+    background-color: rgb(95, 184, 120);
 }
 
 body .layui-util-face {

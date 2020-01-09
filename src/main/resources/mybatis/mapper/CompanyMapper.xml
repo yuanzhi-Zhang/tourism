@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Company">
+    <id column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_title" jdbcType="VARCHAR" property="companyTitle" />
+    <result column="company_start_area" jdbcType="VARCHAR" property="companyStartArea" />
+    <result column="company_end_area" jdbcType="VARCHAR" property="companyEndArea" />
+    <result column="company_people_num" jdbcType="INTEGER" property="companyPeopleNum" />
+    <result column="company_start_time" jdbcType="TIMESTAMP" property="companyStartTime" />
+    <result column="company_during_time" jdbcType="VARCHAR" property="companyDuringTime" />
+    <result column="company_owner_id" jdbcType="INTEGER" property="companyOwnerId" />
+    <result column="company_content" jdbcType="VARCHAR" property="companyContent" />
+    <result column="company_main_img" jdbcType="VARCHAR" property="companyMainImg" />
+    <result column="company_time" jdbcType="VARCHAR" property="companyTime" />
+    <result column="company_attend_num" jdbcType="INTEGER" property="companyAttendNum" />
+    <result column="company_enter_num" jdbcType="INTEGER" property="companyEnterNum" />
+    <result column="company_view_num" jdbcType="INTEGER" property="companyViewNum" />
+    <result column="company_comment_num" jdbcType="INTEGER" property="companyCommentNum" />
+  </resultMap>
+  <resultMap id="ResultMapWithUserName" type="com.yuanzhi.tourism.dto.CompanyDTOS">
+    <id column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_title" jdbcType="VARCHAR" property="companyTitle" />
+    <result column="company_start_area" jdbcType="VARCHAR" property="companyStartArea" />
+    <result column="company_end_area" jdbcType="VARCHAR" property="companyEndArea" />
+    <result column="company_people_num" jdbcType="INTEGER" property="companyPeopleNum" />
+    <result column="company_start_time" jdbcType="TIMESTAMP" property="companyStartTime" />
+    <result column="company_during_time" jdbcType="VARCHAR" property="companyDuringTime" />
+    <result column="company_owner_id" jdbcType="INTEGER" property="companyOwnerId" />
+    <result column="company_content" jdbcType="VARCHAR" property="companyContent" />
+    <result column="company_main_img" jdbcType="VARCHAR" property="companyMainImg" />
+    <result column="company_time" jdbcType="VARCHAR" property="companyTime" />
+    <result column="company_attend_num" jdbcType="INTEGER" property="companyAttendNum" />
+    <result column="company_enter_num" jdbcType="INTEGER" property="companyEnterNum" />
+    <result column="company_view_num" jdbcType="INTEGER" property="companyViewNum" />
+    <result column="company_comment_num" jdbcType="INTEGER" property="companyCommentNum" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithUser" type="com.yuanzhi.tourism.dto.CompanyDTO">
+    <association javaType="com.yuanzhi.tourism.entity.User" property="user">
+      <id column="uid" jdbcType="INTEGER" property="uid" />
+      <result column="userName" jdbcType="VARCHAR" property="username" />
+      <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+      <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+      <result column="address" jdbcType="VARCHAR" property="address" />
+      <result column="phone" jdbcType="VARCHAR" property="phone" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    company_id, company_title, company_start_area, company_end_area, company_people_num, 
+    company_start_time, company_during_time, company_owner_id, company_content, company_main_img, 
+    company_time, company_attend_num, company_enter_num, company_view_num, company_comment_num
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.CompanyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectWithUser" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid ORDER BY company_time DESC
+  </select>
+  <select id="getByDestiny" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_end_area LIKE "%"#{companyEndArea,jdbcType=VARCHAR}"%" ORDER BY company_time DESC
+  </select>
+  <select id="selectWithUserById" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid WHERE company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <select id="getAllOwn" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid WHERE company_owner_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <select id="getAll" resultMap="ResultMapWithUserName">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,userName
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectWithUserNew" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_start_time BETWEEN #{companyStartTime,jdbcType=TIMESTAMP} and #{companyEndTime,jdbcType=TIMESTAMP}
+    ORDER BY company_start_time ASC
+  </select>
+  <select id="selectWithUserMoreThreeMonth" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_start_time &gt;= DATE_ADD(date(now()),INTERVAL 91 DAY)
+  </select>
+  <select id="selectWithUserMoreThreeMonthNum" resultType="java.lang.Long">
+    SELECT COUNT(company_id)
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_start_time &gt;= DATE_ADD(date(now()),INTERVAL 91 DAY)
+  </select>
+  <select id="selectWithUserThreeMonthNum" resultType="java.lang.Long">
+    SELECT COUNT(company_id) FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_start_time BETWEEN DATE_ADD(date(now()),INTERVAL 30 DAY)
+    AND DATE_ADD(date(now()),INTERVAL 91 DAY)
+  </select>
+  <select id="selectWithUserMonthNum" resultType="java.lang.Long">
+    SELECT COUNT(company_id) FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_start_time BETWEEN date(now())
+    AND DATE_ADD(date(now()),INTERVAL 30 DAY)
+  </select>
+  <select id="selectWithUserToday" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_start_time BETWEEN date(now())
+    AND DATE_ADD(date(now()),INTERVAL 1 DAY)
+  </select>
+  <select id="selectWithUserTodayNum" resultType="java.lang.Long">
+    SELECT COUNT(company_id) FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_start_time BETWEEN date(now())
+    AND DATE_ADD(date(now()),INTERVAL 1 DAY)
+  </select>
+  <select id="selectWithUserNewUp" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+    company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+    company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+    uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE company_time BETWEEN #{companyStartTime,jdbcType=TIMESTAMP} and #{companyEndTime,jdbcType=TIMESTAMP}
+    ORDER BY company_time DESC
+  </select>
+  <select id="selectWithUserThreeNumMost" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+            company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+            company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+            uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid ORDER BY company_view_num DESC LIMIT 0,3
+  </select>
+  <select id="selectWithUserThreeAttendNumMost" resultMap="ResultMapWithUser">
+    SELECT company_id, company_title, company_start_area, company_end_area, company_people_num,
+            company_start_time, company_during_time, company_owner_id, company_comment_num, company_content,
+            company_main_img, company_time, company_attend_num, company_enter_num, company_view_num,
+            uid,userName,userSex,address,imgUrl,phone
+    FROM company LEFT JOIN `user` ON company_owner_id = `user`.uid ORDER BY company_attend_num DESC LIMIT 0,3
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.CompanyExample">
+    delete from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Company">
+    insert into company (company_id, company_title, company_start_area, 
+      company_end_area, company_people_num, company_start_time, 
+      company_during_time, company_owner_id, company_content, 
+      company_main_img, company_time, company_attend_num, 
+      company_enter_num, company_view_num, company_comment_num
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{companyTitle,jdbcType=VARCHAR}, #{companyStartArea,jdbcType=VARCHAR}, 
+      #{companyEndArea,jdbcType=VARCHAR}, #{companyPeopleNum,jdbcType=INTEGER}, #{companyStartTime,jdbcType=TIMESTAMP}, 
+      #{companyDuringTime,jdbcType=VARCHAR}, #{companyOwnerId,jdbcType=INTEGER}, #{companyContent,jdbcType=VARCHAR}, 
+      #{companyMainImg,jdbcType=VARCHAR}, #{companyTime,jdbcType=VARCHAR}, #{companyAttendNum,jdbcType=INTEGER}, 
+      #{companyEnterNum,jdbcType=INTEGER}, #{companyViewNum,jdbcType=INTEGER}, #{companyCommentNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Company">
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyTitle != null">
+        company_title,
+      </if>
+      <if test="companyStartArea != null">
+        company_start_area,
+      </if>
+      <if test="companyEndArea != null">
+        company_end_area,
+      </if>
+      <if test="companyPeopleNum != null">
+        company_people_num,
+      </if>
+      <if test="companyStartTime != null">
+        company_start_time,
+      </if>
+      <if test="companyDuringTime != null">
+        company_during_time,
+      </if>
+      <if test="companyOwnerId != null">
+        company_owner_id,
+      </if>
+      <if test="companyContent != null">
+        company_content,
+      </if>
+      <if test="companyMainImg != null">
+        company_main_img,
+      </if>
+      <if test="companyTime != null">
+        company_time,
+      </if>
+      <if test="companyAttendNum != null">
+        company_attend_num,
+      </if>
+      <if test="companyEnterNum != null">
+        company_enter_num,
+      </if>
+      <if test="companyViewNum != null">
+        company_view_num,
+      </if>
+      <if test="companyCommentNum != null">
+        company_comment_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyTitle != null">
+        #{companyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="companyStartArea != null">
+        #{companyStartArea,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEndArea != null">
+        #{companyEndArea,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPeopleNum != null">
+        #{companyPeopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyStartTime != null">
+        #{companyStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyDuringTime != null">
+        #{companyDuringTime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyOwnerId != null">
+        #{companyOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="companyContent != null">
+        #{companyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="companyMainImg != null">
+        #{companyMainImg,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTime != null">
+        #{companyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAttendNum != null">
+        #{companyAttendNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyEnterNum != null">
+        #{companyEnterNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyViewNum != null">
+        #{companyViewNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyCommentNum != null">
+        #{companyCommentNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.CompanyExample" resultType="java.lang.Long">
+    select count(*) from company
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update company
+    <set>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyTitle != null">
+        company_title = #{record.companyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyStartArea != null">
+        company_start_area = #{record.companyStartArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyEndArea != null">
+        company_end_area = #{record.companyEndArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyPeopleNum != null">
+        company_people_num = #{record.companyPeopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyStartTime != null">
+        company_start_time = #{record.companyStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.companyDuringTime != null">
+        company_during_time = #{record.companyDuringTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyOwnerId != null">
+        company_owner_id = #{record.companyOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyContent != null">
+        company_content = #{record.companyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyMainImg != null">
+        company_main_img = #{record.companyMainImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyTime != null">
+        company_time = #{record.companyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAttendNum != null">
+        company_attend_num = #{record.companyAttendNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyEnterNum != null">
+        company_enter_num = #{record.companyEnterNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyViewNum != null">
+        company_view_num = #{record.companyViewNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyCommentNum != null">
+        company_comment_num = #{record.companyCommentNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update company
+    set company_id = #{record.companyId,jdbcType=INTEGER},
+      company_title = #{record.companyTitle,jdbcType=VARCHAR},
+      company_start_area = #{record.companyStartArea,jdbcType=VARCHAR},
+      company_end_area = #{record.companyEndArea,jdbcType=VARCHAR},
+      company_people_num = #{record.companyPeopleNum,jdbcType=INTEGER},
+      company_start_time = #{record.companyStartTime,jdbcType=TIMESTAMP},
+      company_during_time = #{record.companyDuringTime,jdbcType=VARCHAR},
+      company_owner_id = #{record.companyOwnerId,jdbcType=INTEGER},
+      company_content = #{record.companyContent,jdbcType=VARCHAR},
+      company_main_img = #{record.companyMainImg,jdbcType=VARCHAR},
+      company_time = #{record.companyTime,jdbcType=VARCHAR},
+      company_attend_num = #{record.companyAttendNum,jdbcType=INTEGER},
+      company_enter_num = #{record.companyEnterNum,jdbcType=INTEGER},
+      company_view_num = #{record.companyViewNum,jdbcType=INTEGER},
+      company_comment_num = #{record.companyCommentNum,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Company">
+    update company
+    <set>
+      <if test="companyTitle != null">
+        company_title = #{companyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="companyStartArea != null">
+        company_start_area = #{companyStartArea,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEndArea != null">
+        company_end_area = #{companyEndArea,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPeopleNum != null">
+        company_people_num = #{companyPeopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyStartTime != null">
+        company_start_time = #{companyStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyDuringTime != null">
+        company_during_time = #{companyDuringTime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyOwnerId != null">
+        company_owner_id = #{companyOwnerId,jdbcType=INTEGER},
+      </if>
+      <if test="companyContent != null">
+        company_content = #{companyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="companyMainImg != null">
+        company_main_img = #{companyMainImg,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTime != null">
+        company_time = #{companyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAttendNum != null">
+        company_attend_num = #{companyAttendNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyEnterNum != null">
+        company_enter_num = #{companyEnterNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyViewNum != null">
+        company_view_num = #{companyViewNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyCommentNum != null">
+        company_comment_num = #{companyCommentNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Company">
+    update company
+    set company_title = #{companyTitle,jdbcType=VARCHAR},
+      company_start_area = #{companyStartArea,jdbcType=VARCHAR},
+      company_end_area = #{companyEndArea,jdbcType=VARCHAR},
+      company_people_num = #{companyPeopleNum,jdbcType=INTEGER},
+      company_start_time = #{companyStartTime,jdbcType=TIMESTAMP},
+      company_during_time = #{companyDuringTime,jdbcType=VARCHAR},
+      company_owner_id = #{companyOwnerId,jdbcType=INTEGER},
+      company_content = #{companyContent,jdbcType=VARCHAR},
+      company_main_img = #{companyMainImg,jdbcType=VARCHAR},
+      company_time = #{companyTime,jdbcType=VARCHAR},
+      company_attend_num = #{companyAttendNum,jdbcType=INTEGER},
+      company_enter_num = #{companyEnterNum,jdbcType=INTEGER},
+      company_view_num = #{companyViewNum,jdbcType=INTEGER},
+      company_comment_num = #{companyCommentNum,jdbcType=INTEGER}
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="incView" parameterType="com.yuanzhi.tourism.entity.Company">
+    update company
+    set company_view_num = company_view_num + 1
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="incComment" parameterType="com.yuanzhi.tourism.entity.Company">
+    update company
+    set company_comment_num = company_comment_num + 1
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="incEnterNum" parameterType="com.yuanzhi.tourism.entity.Company">
+    update company
+    set company_enter_num = company_enter_num + 1
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="incAttendNum" parameterType="com.yuanzhi.tourism.entity.Company">
+    update company
+    set company_attend_num = company_attend_num + 1
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </update>
+</mapper>

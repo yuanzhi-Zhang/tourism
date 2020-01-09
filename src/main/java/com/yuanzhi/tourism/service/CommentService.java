@@ -1,9 +1,6 @@
 package com.yuanzhi.tourism.service;
 
-import com.yuanzhi.tourism.dao.CommentMapper;
-import com.yuanzhi.tourism.dao.JourneyMapper;
-import com.yuanzhi.tourism.dao.NotificationMapper;
-import com.yuanzhi.tourism.dao.UserMapper;
+import com.yuanzhi.tourism.dao.*;
 import com.yuanzhi.tourism.dto.CommentDTO;
 import com.yuanzhi.tourism.entity.*;
 import com.yuanzhi.tourism.enums.CommentTypeEnum;
@@ -33,6 +30,10 @@ public class CommentService {
     @Autowired
     JourneyMapper journeyMapper;
     @Autowired
+    StrategyMapper strategyMapper;
+    @Autowired
+    CompanyMapper companyMapper;
+    @Autowired
     UserMapper userMapper;
     @Autowired
     NotificationMapper notificationMapper;
@@ -57,19 +58,15 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
 
-            // 回复游记
-            Journey journey = journeyMapper.selectByPrimaryKey(dbComment.getParentid());
-            if (journey == null) {
-                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
-            }
-
             commentMapper.insert(comment);
 
             // 增加评论数
             commentMapper.incCommentCount(comment.getParentid());
 
             //创建通知
-            createNotify(comment,dbComment.getUserid(),NotificationTypeEnum.REPLY_COMMENT,journey.getTid(), user);
+            if(dbComment.getUserid() != user.getUid()){
+                createNotify(comment,dbComment.getUserid(),dbComment.getCommentcomment(),NotificationTypeEnum.REPLY_COMMENT,comment.getParentid(), user);
+            }
         } else if (comment.getType() == CommentTypeEnum.JOURNEY.getType()){
             // 回复游记
             Journey journey = journeyMapper.selectByPrimaryKey(comment.getParentid());
@@ -81,7 +78,39 @@ public class CommentService {
             journeyMapper.incCommentCount(comment.getParentid());
 
             //创建通知
-            createNotify(comment,journey.getUserid(),NotificationTypeEnum.REPLY_JOURNEY,journey.getTid(),user);
+            if(journey.getUserid() != user.getUid()){
+                createNotify(comment,journey.getUserid(),journey.getJourtitle(),NotificationTypeEnum.REPLY_JOURNEY,journey.getTid(),user);
+            }
+        }else if(comment.getType() == CommentTypeEnum.STRATEGY.getType()){
+            //回复攻略
+            Strategy strategy = strategyMapper.selectByPrimaryKey(comment.getParentid());
+            if (strategy == null){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+            comment.setCommentcount(0);
+            comment.setPraiseNum(0);
+            commentMapper.insertSelective(comment);
+            strategyMapper.incComment(comment.getParentid());
+
+            //创建通知
+            if(strategy.getUserId() != user.getUid()){
+                createNotify(comment,strategy.getUserId(),strategy.getStrategyTitle(),NotificationTypeEnum.REPLY_STRATEGY,strategy.getStrategyId(),user);
+            }
+        }else if(comment.getType() == CommentTypeEnum.COMPANY.getType()){
+            //回复结伴
+            Company company = companyMapper.selectByPrimaryKey(comment.getParentid());
+            if (company == null){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+            comment.setCommentcount(0);
+            comment.setPraiseNum(0);
+            commentMapper.insertSelective(comment);
+            companyMapper.incComment(comment.getParentid());
+
+            //创建通知
+            if(company.getCompanyOwnerId() != user.getUid()){
+                createNotify(comment,company.getCompanyOwnerId(),company.getCompanyTitle(),NotificationTypeEnum.REPLY_COMPANY,company.getCompanyId(),user);
+            }
         }
     }
 
@@ -93,7 +122,10 @@ public class CommentService {
      * @param typeId 具体类型的哪一个
      * @param user 通知者
      */
-    private void createNotify(Comment comment, Integer receiver,NotificationTypeEnum notificationTypeEnum,Integer typeId, User user) {
+    private void createNotify(Comment comment, Integer receiver,String title,NotificationTypeEnum notificationTypeEnum,Integer typeId, User user) {
+        if(user.getUid() == receiver){
+            return;
+        }
         Notification notification = new Notification();
         Date date = new Date();
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd HH:mm"); //HH代表24小时制，hh代表12小时制
@@ -105,6 +137,7 @@ public class CommentService {
         notification.setReceiver(receiver);
         notification.setNotificationername(user.getUsername());
         notification.setTypename(comment.getCommentcomment());
+        notification.setTypeidname(title);
         notificationMapper.insert(notification);
     }
 
@@ -116,8 +149,7 @@ public class CommentService {
      */
     public List<CommentDTO> listByTargetId(Integer id, CommentTypeEnum type) {
         CommentExample commentExample = new CommentExample();
-        commentExample.createCriteria().andParentidEqualTo(id);
-        commentExample.createCriteria().andTypeEqualTo(type.getType());
+        commentExample.createCriteria().andParentidEqualTo(id).andTypeEqualTo(type.getType());
         commentExample.setOrderByClause("commentTime desc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
 
@@ -151,5 +183,25 @@ public class CommentService {
 
     public List<Comment> listComments() {
         return commentMapper.selectWithUser();
+    }
+
+    public void incCommentCount(Integer typeId) {
+        commentMapper.incCommentCount(typeId);
+    }
+
+    public void downCommentCount(Integer typeId) {
+        commentMapper.downCommentCount(typeId);
+    }
+
+    public void incCommentPraiseNum(Integer typeId) {
+        commentMapper.incCommentPraiseNum(typeId);
+    }
+
+    public void downCommentPraiseNum(Integer typeId) {
+        commentMapper.downCommentPraiseNum(typeId);
+    }
+
+    public List<Comment> countNum() {
+        return commentMapper.selectByExample(null);
     }
 }

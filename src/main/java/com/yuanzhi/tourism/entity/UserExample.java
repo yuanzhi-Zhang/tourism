@@ -1063,6 +1063,186 @@ public class UserExample {
             addCriterion("backImg not between", value1, value2, "backimg");
             return (Criteria) this;
         }
+
+        public Criteria andJourneycountIsNull() {
+            addCriterion("journeyCount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountIsNotNull() {
+            addCriterion("journeyCount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountEqualTo(Integer value) {
+            addCriterion("journeyCount =", value, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountNotEqualTo(Integer value) {
+            addCriterion("journeyCount <>", value, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountGreaterThan(Integer value) {
+            addCriterion("journeyCount >", value, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("journeyCount >=", value, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountLessThan(Integer value) {
+            addCriterion("journeyCount <", value, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountLessThanOrEqualTo(Integer value) {
+            addCriterion("journeyCount <=", value, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountIn(List<Integer> values) {
+            addCriterion("journeyCount in", values, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountNotIn(List<Integer> values) {
+            addCriterion("journeyCount not in", values, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountBetween(Integer value1, Integer value2) {
+            addCriterion("journeyCount between", value1, value2, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJourneycountNotBetween(Integer value1, Integer value2) {
+            addCriterion("journeyCount not between", value1, value2, "journeycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountIsNull() {
+            addCriterion("historyCount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountIsNotNull() {
+            addCriterion("historyCount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountEqualTo(Integer value) {
+            addCriterion("historyCount =", value, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountNotEqualTo(Integer value) {
+            addCriterion("historyCount <>", value, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountGreaterThan(Integer value) {
+            addCriterion("historyCount >", value, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("historyCount >=", value, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountLessThan(Integer value) {
+            addCriterion("historyCount <", value, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountLessThanOrEqualTo(Integer value) {
+            addCriterion("historyCount <=", value, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountIn(List<Integer> values) {
+            addCriterion("historyCount in", values, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountNotIn(List<Integer> values) {
+            addCriterion("historyCount not in", values, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountBetween(Integer value1, Integer value2) {
+            addCriterion("historyCount between", value1, value2, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistorycountNotBetween(Integer value1, Integer value2) {
+            addCriterion("historyCount not between", value1, value2, "historycount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountIsNull() {
+            addCriterion("fansCount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountIsNotNull() {
+            addCriterion("fansCount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountEqualTo(Integer value) {
+            addCriterion("fansCount =", value, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountNotEqualTo(Integer value) {
+            addCriterion("fansCount <>", value, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountGreaterThan(Integer value) {
+            addCriterion("fansCount >", value, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("fansCount >=", value, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountLessThan(Integer value) {
+            addCriterion("fansCount <", value, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountLessThanOrEqualTo(Integer value) {
+            addCriterion("fansCount <=", value, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountIn(List<Integer> values) {
+            addCriterion("fansCount in", values, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountNotIn(List<Integer> values) {
+            addCriterion("fansCount not in", values, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountBetween(Integer value1, Integer value2) {
+            addCriterion("fansCount between", value1, value2, "fanscount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFanscountNotBetween(Integer value1, Integer value2) {
+            addCriterion("fansCount not between", value1, value2, "fanscount");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

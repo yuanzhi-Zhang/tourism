@@ -1,0 +1,496 @@
+.company_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background: rgba(131, 130, 130, 0.4);
+}
+.company_main_img{
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    position: relative;
+}
+.own_introduce_box {
+    position: absolute;
+    left: 15%;
+    top: 105px;
+    transform: translate(-15%, -15%);
+}
+.own_introduce_box p {
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "幼圆";
+    color: rgb(83, 106, 223);
+}
+.company_punlish{
+    position: absolute;
+    top: 170px;
+    left: 39%;
+    text-align: center;
+}
+.company_num {
+    font-size: 36px;
+    color: white;
+}
+.company_num span {
+    padding: 0 10px;
+    font-size: 72px;
+    font-weight: bold;
+}
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    height: 70px;
+    padding: 0 42px;
+    border: 2px solid #fff;
+    line-height: 70px;
+    font-size: 24px;
+    color: #fff;
+    border-radius: 40px;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+.btn:hover{
+    color: #f0992c;
+    background-color: rgba(130,130,130,0.5);
+}
+.company_content{
+    width: 100%;
+    padding: 40px 0;
+    text-align: center;
+    background: linear-gradient(45deg,rgba(254, 172, 94, 0.24),rgba(199, 121, 208, 0.32),rgba(75, 192, 200, 0.31));
+}
+.wrapper {
+    width: 980px;
+    margin: 0 auto;
+    text-align: left;
+}
+.mod-popular .mod-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 40px;
+}
+.mod-popular .bd {
+    overflow: hidden;
+}
+.mod-popular ul {
+    width: 1030px;
+}
+.mod-popular .item {
+    float: left;
+    width: 220px;
+    height: 220px;
+    display: inline;
+    margin: 0 33px 33px 0;
+}
+.mod-popular .item a {
+    display: block;
+    height: 220px;
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+.mod-popular .item.hover p, .mod-popular .item:hover p {
+    height: 60px;
+}
+.mod-popular .image {
+    width: 220px;
+    height: 220px;
+    overflow: hidden;
+}
+.mod-popular .bg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 220px;
+    background-color: #000;
+    opacity: 0;
+    filter: alpha(opacity:30);
+    overflow: hidden;
+    display: none\0;
+    -webkit-transition: opacity .5s ease 0s;
+    transition: opacity .5s ease 0s;
+}
+.mod-popular .item.hover .bg, .mod-popular .item:hover .bg {
+    opacity: .3;
+    display: block\0;
+}
+.mod-popular .txt {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0 15px 10px;
+    width: 190px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+}
+.mod-popular strong {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: normal;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    line-height: 30px;
+}
+.mod-popular p {
+    border-left: 4px solid #ffa800;
+    padding-left: 12px;
+    margin-left: -15px;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height .3s ease 0s;
+    transition: height .3s ease 0s;
+}
+.clearfix:after, .wrapper:after, .article:after {
+    content: '\20';
+    clear: both;
+    display: block;
+}
+/*结伴展示上方的搜索以及发布*/
+.filter-bar {
+    padding: 20px 0;
+    background-color: rgba(255,255,255,.95);
+    border-bottom: 1px solid #ccc;
+}
+.wrapper {
+    padding: 0;
+}
+.wrapper {
+    width: 980px;
+    margin: 0 auto;
+}
+.filter-bar .flr-place {
+    float: left;
+    margin-right: 2px;
+    width: 200px;
+}
+.filter-bar .flr-date {
+    float: left;
+    width: 260px;
+    margin-right: 5px;
+}
+.filter-bar .flr-date .ui-input {
+    position: relative;
+}
+.filter-bar .flr-date .ui-input input {
+    width: 224px;
+}
+.filter-bar .flr-date .icon-date {
+    right: 33px;
+    top: 13px;
+}
+.filter-bar .flr-place input {
+    width: 162px;
+}
+.filter-bar .ui-input input {
+    height: 38px;
+    line-height: 38px;
+    padding-left: 10px;
+}
+.filter-bar .drop-place {
+    width: 460px;
+}
+.filter-bar .drop-place .all a {
+    border-bottom-color: #d5d5d5;
+}
+.filter-bar .drop a {
+    display: block;
+    height: 48px;
+    line-height: 48px;
+    border-bottom: 1px solid #efefef;
+    padding: 0 18px;
+    color: #666;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.icon-date {
+    position: absolute;
+    width: 16px;
+    height: 14px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat 0 -120px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.filter-bar .drop {
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.1);
+    position: absolute;
+    z-index: 10;
+}
+.filter-bar .drop-date ul {
+    /*width: 238px;*/
+    width: 215px;
+    padding: 0 10px;
+}
+.filter-bar .drop .num {
+    float: right;
+    color: #999;
+    font-size: 12px;
+}
+.filter-bar .drop .num em {
+    font-style: normal;
+    font-size: 18px;
+}
+.filter-bar .drop-place .col1 {
+    float: left;
+    width: 198px;
+    border-right: 1px solid #d5d5d5;
+}
+.filter-bar .drop-place .on {
+    background-color: #f6f6f6;
+    color: #ff8a00;
+}
+.filter-bar .drop-place .on .icon-arrow {
+    display: block;
+}
+.filter-bar .drop a:hover {
+    text-decoration: none;
+    color: #ff8a00;
+}
+.filter-bar .drop-place .icon-arrow {
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    width: 8px;
+    height: 14px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -120px -120px;
+    overflow: hidden;
+    display: none;
+}
+.filter-bar .drop-place .col2 {
+    float: left;
+    width: 241px;
+    display: inline;
+    padding: 0 10px;
+    height: 440px;
+    overflow: auto;
+}
+.filter-bar .drop-place .col2 a, .filter-bar .drop-date ul a {
+    padding: 0 10px;
+}
+.filter-bar .sort {
+    float: left;
+    padding-top: 6px;
+    font-size: 14px;
+    line-height: 26px;
+}
+.filter-bar .sort a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+.filter-bar .sort .on {
+    border-color: #ffa800;
+}
+.filter-bar .sort a {
+    float: left;
+    height: 26px;
+    margin-right: 9px;
+    padding: 0 10px;
+    border: 2px solid #fff;
+    color: #ff8a00;
+}
+.filter-bar .sort .on i {
+    display: inline-block;
+    margin-left: 9px;
+    width: 14px;
+    height: 10px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -140px -120px;
+    *vertical-align: middle;
+}
+.btn-add {
+    float: right;
+    font-size: 16px;
+    line-height: 40px;
+    color: #fff;
+    background-color: #ffa800;
+    padding: 0 28px;
+    border-radius: 3px;
+}
+.btn-add i {
+    float: left;
+    margin: 13px 5px 0 0;
+    width: 14px;
+    height: 14px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat 0 0;
+    overflow: hidden;
+}
+
+.not-found {
+    margin: 100px 0;
+    padding-top: 280px;
+    text-align: center;
+    font-size: 20px;
+    color: #999;
+    line-height: 40px;
+    background: url(https://css.mafengwo.net/images/together/v2/icon-notfound.png) no-repeat center top;
+}
+.hide {
+    display: none;
+}
+.mod-list .bd {
+    margin-top: -40px;
+}
+.together-list ul {
+    margin: 0 -40px 0 -20px;
+    *zoom: 1;
+    position: relative;
+}
+.together-list .item {
+    float: left;
+    width: 240px;
+    display: inline;
+    margin-right: 20px;
+}
+.together-list .item a {
+    display: block;
+    margin: 0 20px;
+    padding: 30px 0 26px;
+    border-bottom: 1px solid #c6b3b3;
+}
+.together-list .image {
+    position: relative;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    width: 200px;
+}
+.together-list .after {
+    position: absolute;
+    right: -3px;
+    bottom: -3px;
+    width: 72px;
+    height: 41px;
+    padding-top: 20px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -80px 0;
+    overflow: hidden;
+    text-align: center;
+    color: #999;
+}
+.together-list .after b {
+    color: #409f97;
+    font-size: 25px;
+    vertical-align: baseline;
+}
+.together-list hr {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 118px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #bababa;
+    overflow: hidden;
+}
+.together-list .title {
+    width: 200px;
+    height: 26px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #444;
+    font-weight: normal;
+    line-height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.together-list .desc {
+    margin-bottom: 15px;
+    height: 48px;
+    font-size: 14px;
+    color: #666;
+    line-height: 24px;
+    overflow: hidden;
+}
+.together-list .user {
+    margin: 10px 0;
+    padding-left: 63px;
+    line-height: 20px;
+}
+.together-list .avatar {
+    float: left;
+    margin: -3px 0 0 -63px;
+    width: 48px;
+    height: 48px;
+    position: relative;
+}
+.together-list .avatar img {
+    border-radius: 50%;
+}
+.together-list .avatar i {
+    position: absolute;
+    right: -6px;
+    bottom: -3px;
+}
+.male, .female {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat -200px -120px;
+    overflow: hidden;
+    vertical-align: -4px;
+    *vertical-align: middle;
+}
+.together-list .name {
+    display: block;
+    width: 130px;
+    height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #ff7200;
+    overflow: hidden;
+}
+.level {
+    font-weight: bold;
+    color: #ea3c1a;
+    font-family: Verdana;
+}
+.clearfix:after, .wrapper:after, .article:after {
+    content: '\20';
+    clear: both;
+    display: block;
+}
+.together-list .attention {
+    line-height: 38px;
+    font-size: 14px;
+    color: #666;
+}
+.together-list .item a:hover .icon-arrow {
+    background-position: -80px -80px;
+}
+.together-list .icon-arrow {
+    float: right;
+    width: 38px;
+    height: 38px;
+    background: url(https://css.mafengwo.net/images/together/v2/sprites5.png) no-repeat 0 -80px;
+}
+.together-list .item a:hover .attention b {
+    color: #ff8a00;
+}
+.together-list .image img{
+    cursor: pointer;
+    transition: all 0.6s;
+}
+.together-list .image img:hover{
+    transform: scale(1.1);
+}
+.together-list .attention b {
+    padding: 0 5px;
+    font-size: 28px;
+    vertical-align: -4px;
+    *vertical-align: middle;
+}
+.pageHide{
+    display: none;
+}
+.companyItem:hover{
+    cursor: pointer;
+}

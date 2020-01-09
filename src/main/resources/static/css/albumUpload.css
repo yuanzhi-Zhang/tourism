@@ -1,0 +1,32 @@
+.albumUpload_head{
+    background-color: #A3D0C3;
+    text-align:center;
+}
+.albumUpload_content{
+    width: 100%;
+    padding: 40px 0;
+    background: linear-gradient(45deg,rgba(254, 172, 94, 0.24),rgba(199, 121, 208, 0.32),rgba(75, 192, 200, 0.31));
+}
+.albumUpload_content .main{
+    width: 1020px;
+    margin: 0 auto;
+}
+.albumUpload_content .title{
+    text-align: center;
+    font-size: 30px;
+    color: #666;
+}
+.layui-upload-list img{
+    max-width: 80px;
+    max-height: 60px;
+   /* max-width: 240px;
+    max-height: 180px;*/
+    object-fit: cover;
+}
+.layui-upload-list video{
+    max-width: 80px;
+    max-height: 60px;
+   /* max-width: 240px;
+    max-height: 180px;*/
+    object-fit: cover;
+}

@@ -1,0 +1,74 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.search_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background: rgba(131, 130, 130, 0.4);
+}
+.search_content{
+    width: 100%;
+    padding: 40px 0;
+    text-align: center;
+    background: linear-gradient(45deg,rgba(254, 172, 94, 0.24),rgba(199, 121, 208, 0.32),rgba(75, 192, 200, 0.31));
+    min-height: 226px;
+}
+.search_content .main{
+    width: 980px;
+    margin: 0 auto;
+}
+.search_content .main .left{
+    float: left;
+}
+.search_content .main .left_slide{
+    width: 660px;
+    float: left;
+}
+.search_content .main .right_slide{
+    width: 320px;
+}
+.type_left{
+    float: left;
+}
+.type_left img{
+    width: 150px;
+    height: 90px;
+}
+.type_left .search_img:hover{
+    cursor: pointer;
+}
+.type_right{
+    padding-left: 160px;
+}
+.type_title{
+    line-height: 18px;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.type_title a{
+    color: #333;
+    font-size: 18px;
+}
+.type_title a:hover{
+    color: #ff9d00;
+    text-decoration: underline;
+}
+.type_content{
+    max-height: 40px;
+    margin-bottom: 4px;
+    color: #666;
+    overflow: hidden;
+}
+.type_info{
+    margin-right: 8px;
+    height: 20px;
+    color: #788;
+}

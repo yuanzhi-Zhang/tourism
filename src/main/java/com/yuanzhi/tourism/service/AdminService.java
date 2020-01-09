@@ -37,4 +37,10 @@ public class AdminService {
         }
     }
 
+    public Admin adminLogin(String adminaccount, String adminpassword) {
+        AdminExample adminExample = new AdminExample();
+        adminExample.createCriteria().andAdminaccountEqualTo(adminaccount)
+                .andAdminpasswordEqualTo(adminpassword);
+        return adminMapper.selectByExample(adminExample).get(0);
+    }
 }

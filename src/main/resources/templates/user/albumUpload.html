@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui2.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" th:href="@{/css/albumUpload.css}">
+
+    <script th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/public/layui.js}"></script>
+    <script th:src="@{/js/albumUpload.js}"></script>
+    <title>上传相册@任我行</title>
+</head>
+<body>
+<!--头部导航-->
+<div class="albumUpload_head">
+    <div th:replace="user/common/header::header"></div>
+</div>
+<div class="albumUpload_content">
+    <input type="hidden" name="id" class="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+    <input type="hidden" name="id" class="uid" th:if="${session.loginUser==null}" th:value="0" />
+    <div class="main">
+        <p class="title">相册上传</p><br><br>
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入相册标题" autocomplete="off" class="layui-input" id="albumTitle"><br>
+        <textarea name="" required lay-verify="required" placeholder="请输入要上传相册的描述..." class="layui-textarea" id="albumInfo"></textarea><br><br>
+        <!--<div class="layui-upload">-->
+        <!--<button type="button" class="layui-btn" id="test2" style="margin-top: 30px;">选择相册图片</button>-->
+        <!--<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">-->
+        <!--预览图：-->
+        <!--<div class="layui-upload-list" id="demo2"></div>-->
+        <!--</blockquote>-->
+        <!--</div>-->
+
+        <div class="layui-upload">
+            <button type="button" class="layui-btn layui-btn-normal" id="testList">选择要上传到相册的图片</button>
+            <div class="layui-upload-list">
+                <table class="layui-table">
+                    <thead>
+                    <tr><th>图片预览</th>
+                        <th>大小</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr></thead>
+                    <tbody id="demoList"></tbody>
+                </table>
+            </div>
+            <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+            <button type="button" class="layui-btn layui-btn-danger" id="albumUp" style="float: right;">确认发布该相册</button>
+        </div>
+
+    </div>
+</div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

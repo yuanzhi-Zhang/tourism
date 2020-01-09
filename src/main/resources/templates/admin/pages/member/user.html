@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/rwx/admin/css/okadmin.css">
+</head>
+<body>
+<div class="ok-body">
+    <!--面包屑导航区域-->
+    <div class="ok-body-breadcrumb">
+        <span class="layui-breadcrumb">
+            <a><cite>首页</cite></a>
+            <a><cite>会员管理</cite></a>
+            <a><cite>用户列表</cite></a>
+        </span>
+        <a class="layui-btn layui-btn-sm" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon layui-icon-refresh"></i>
+        </a>
+    </div>
+    <!--模糊搜索区域-->
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 ok-search">
+            <!--<input class="layui-input" placeholder="开始日期" autocomplete="off" id="startTime" name="startTime">
+            <input class="layui-input" placeholder="截止日期" autocomplete="off" id="endTime" name="endTime">-->
+            <input class="layui-input" placeholder="请输入用户名" autocomplete="off" name="username">
+            <button class="layui-btn" lay-submit="" lay-filter="search">
+                <i class="layui-icon layui-icon-search"></i>
+            </button>
+        </form>
+    </div>
+    <!--数据表格-->
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="/rwx/public/js/jquery-3.2.1.min.js"></script>
+<script src="/rwx/admin/lib/layui/layui.js"></script>
+<script>
+    layui.use(["element", "table", "form", "laydate", "okLayer", "okUtils"], function () {
+        var table = layui.table;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var util = layui.util;
+        var okLayer = layui.okLayer;
+        var okUtils = layui.okUtils;
+
+        util.fixbar({});
+
+        laydate.render({elem: "#startTime", type: "datetime"});
+        laydate.render({elem: "#endTime", type: "datetime"});
+
+        var userTable = table.render({
+            elem: "#tableId",
+            url: "/rwx/users",
+            method: "get",
+            limit: 7,
+            limits: [7,14,21],
+            page: true,
+			toolbar: true,
+			toolbar: "#toolbarTpl",
+            size: "lg",
+            skin: 'line',
+            cols:
+                [
+                    [
+                        {type: "checkbox"},
+                        {field: "uid", title: "ID", width: 60, align: "center", sort: true},
+                        {field: "username", title: "用户名", align: "center", width: 100},
+                        {field: "imgurl", title: "头像", width: 100, align: "center", templet: "#avaterTpl"},
+                        {field: "usersex", title: "性别", width: 80, align: "center",},
+                        {field: "address", title: "现居地", align: "center", width: 100},
+                        {field: "email", title: "邮箱", align: "center", width: 160},
+                        {field: "phone", title: "手机号码", align: "center", width: 130},
+                        {field: "birthday", title: "生日", align: "center", width: 130},
+                        {field: "selfintro", title: "自我介绍", width: 160, align: "center"},
+                        {field: "fanscount", title: "粉丝数", width: 60, align: "center"},
+                        {title: "操作", width: 100, align: 'center', align: "center", templet: "#operationTpl", fixed: "right"}
+                    ]
+                ],
+            done: function (res, curr, count) {
+                console.log(res, curr, count)
+            }
+        });
+
+        form.on("submit(search)", function (data) {
+            userTable.reload({
+				where: data.field,
+				page: {curr: 1}
+			});
+            return false;
+        });
+
+		table.on("toolbar(tableFilter)", function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            var data = checkStatus.data;
+            var userLists = [];
+            for(var i=0; i<data.length; i++){
+                userLists.push(data[i].uid);
+            }
+			switch (obj.event) {
+				case "batchDel":
+//					batchDel();
+                    batchDelUser(userLists);
+                    userTable.reload({
+                        where: data.field,
+                        page: {curr: 1}
+                    });
+					break;
+				case "add":
+					add();
+					break;
+			}
+        });
+
+        table.on("tool(tableFilter)", function (obj) {
+            var data = obj.data;
+			console.log(data);
+			switch (obj.event) {
+				case "edit":
+//					edit(data);
+                    layer.alert('编辑行：<br>'+ JSON.stringify(data));
+					break;
+				case "del":
+//					del(data.id);
+                    layer.confirm('真的删除行么', function(index){
+                        obj.del();
+                        deleteUser(data.userId)
+                        layer.close(index);
+                    });
+					break;
+			}
+        });
+
+		function add () {
+			okLayer.open("添加用户", "user-add.html", "90%", "90%", null, function () {
+                userTable.reload();
+			})
+		}
+
+        function batchDelUser(userLists){
+            layer.confirm('真的删除这些行么', function(index){
+                $.ajax({
+                    url: "/rwx/admin/batchDelUser",
+                    async: false,
+                    type: "post",
+                    data: JSON.stringify({
+                        userLists: userLists
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function(data){
+
+                    }
+                });
+                layer.close(index);
+            })
+        }
+        function deleteUser(userId){
+            $.ajax({
+                url: "/rwx/admin/deleteUser",
+                async: false,
+                type: "post",
+                data: JSON.stringify({
+                    userId: userId
+                }),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(data){
+
+                }
+            })
+        }
+    })
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+	<div class="layui-btn-container">
+		<!--<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled"><i class="iconfont icon-shangsheng"></i>批量启用</button>-->
+		<!--<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled"><i class="iconfont icon-web-icon-"></i>批量停用</button>-->
+		<button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe61f;</i>添加用户</button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel"><i class="layui-icon layui-icon-delete"></i>批量删除</button>
+    </div>
+</script>
+<!-- 启用|停用模板-->
+<script type="text/html" id="statusTpl">
+    {{#  if(d.status == 0){ }}
+        <span class="layui-btn layui-btn-normal layui-btn-xs">已启用</span>
+    {{#  } else if(d.status == 1) { }}
+        <span class="layui-btn layui-btn-warm layui-btn-xs">已停用</span>
+    {{#  } }}
+</script>
+<!-- 头像模板 -->
+<script type="text/html" id="avaterTpl">
+    <img src="{{d.imgurl}}">
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+    <a href="javascript:;" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+    <a href="javascript:;" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+</body>
+</html>

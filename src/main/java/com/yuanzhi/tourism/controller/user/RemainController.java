@@ -42,7 +42,6 @@ public class RemainController {
         Map<String, Object> remain = getPage(page, size, remains);
         return remain;
     }
-
     private Map<String, Object> getPage(int page, int size, List<RemainResultDTO> remains) {
         PageHelper.startPage(page,size);
         Map<String,Object> remain = new HashMap<>();
@@ -66,6 +65,16 @@ public class RemainController {
         return remain;
     }
 
+    /**
+     * 用户添加留言
+     * @param remainCreateDTO
+     * @param request
+     * @param response
+     * @param page
+     * @param size
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @PostMapping("/addRemain")
     @ResponseBody
     public Map<String,Object> addRemain(@RequestBody RemainCreateDTO remainCreateDTO,
@@ -88,6 +97,14 @@ public class RemainController {
         return remain1;
     }
 
+    /**
+     * 删除留言
+     * @param remainId
+     * @param page
+     * @param size
+     * @param uid
+     * @return
+     */
     @RequestMapping("/deleteRemain")
     @ResponseBody
     public Map<String,Object> deleteRemain(@RequestParam(value = "remainId") Integer remainId,
@@ -99,6 +116,70 @@ public class RemainController {
         List<RemainResultDTO>remains = remainService.getAllRemain(uid);
         Map<String, Object> remain = getPage(page, size, remains);
         return remain;
+    }
+
+    /**
+     * 留言总数
+     * @return
+     */
+    @PostMapping("/remain/remainNum")
+    @ResponseBody
+    public Map<String,Object> noteNum(){
+        Map<String,Object> map = new HashMap<>();
+        Long num = remainService.remainNum();
+        map.put("remainNum",num);
+        return map;
+    }
+
+    /**
+     * 分页获取所有
+     * @param page
+     * @param limit
+     * @return
+     */
+    @GetMapping("/remain/getAll")
+    @ResponseBody
+    public Map<String,Object> userList(@RequestParam(value="page")Integer page,
+                                       @RequestParam(value="limit")Integer limit){
+        Map<String,Object> map = new HashMap<>();
+        page = (page-1) * limit;
+        List<Remain> strategyDTOS = remainService.getAll(page,limit);
+        Long num = remainService.remainNum();
+        map.put("code",0);
+        map.put("msg","查询成功");
+        map.put("count",num);
+        map.put("data",strategyDTOS);
+        return map;
+    }
+
+    /**
+     * 删除单个
+     * @param data
+     * @return
+     */
+    @PostMapping("/remain/deleteRemain")
+    @ResponseBody
+    public Map<String,Object> deleteRemain(@RequestBody Map<String,String> data){
+        Map<String,Object> map = new HashMap<>();
+        Integer companyId = Integer.parseInt(data.get("companyId"));
+        remainService.deleteRemain(companyId);
+        map.put("msg","删除成功");
+        return map;
+    }
+
+    /**
+     * 批量删除
+     * @param data
+     * @return
+     */
+    @PostMapping("/remain/batchDelRemain")
+    @ResponseBody
+    public Map<String,Object> batchDelRemain(@RequestBody Map<String,Object> data){
+        Map<String, Object>map = new HashMap<String, Object>();
+        List<Integer>uidLst = (List<Integer>) data.get("userLists");
+        remainService.batchDelRemain(uidLst);
+        map.put("msg","删除成功");
+        return map;
     }
 
 }

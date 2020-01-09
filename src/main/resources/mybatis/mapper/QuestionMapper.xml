@@ -5,11 +5,31 @@
     <id column="question_id" jdbcType="INTEGER" property="questionId" />
     <result column="question_time" jdbcType="VARCHAR" property="questionTime" />
     <result column="question_creator_id" jdbcType="INTEGER" property="questionCreatorId" />
+    <result column="question_title" jdbcType="VARCHAR" property="questionTitle" />
+    <result column="question_img" jdbcType="VARCHAR" property="questionImg" />
     <result column="question_content" jdbcType="VARCHAR" property="questionContent" />
+    <result column="question_destiny" jdbcType="VARCHAR" property="questionDestiny" />
     <result column="view_count" jdbcType="INTEGER" property="viewCount" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
     <result column="attention_count" jdbcType="INTEGER" property="attentionCount" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithUser" type="com.yuanzhi.tourism.dto.QuestionDTO">
+    <!-- 指定联合查询出部门字段的封装 -->
+    <association javaType="com.yuanzhi.tourism.entity.User" property="user">
+      <id column="uid" jdbcType="INTEGER" property="uid" />
+      <result column="userName" jdbcType="VARCHAR" property="username" />
+      <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+      <result column="phone" jdbcType="VARCHAR" property="phone" />
+      <result column="address" jdbcType="VARCHAR" property="address" />
+      <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+      <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+      <result column="statuscode" jdbcType="VARCHAR" property="statuscode" />
+      <result column="status" jdbcType="INTEGER" property="status" />
+      <result column="email" jdbcType="VARCHAR" property="email" />
+      <result column="selfIntro" jdbcType="VARCHAR" property="selfintro" />
+      <result column="backImg" jdbcType="VARCHAR" property="backimg" />
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,8 +90,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    question_id, question_time, question_creator_id, question_content, view_count, like_count, 
-    comment_count, attention_count
+    question_id, question_time, question_creator_id, question_title, question_img, question_content, 
+    question_destiny, view_count, like_count, comment_count, attention_count
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.QuestionExample" resultMap="BaseResultMap">
     select
@@ -93,6 +113,12 @@
     from question
     where question_id = #{questionId,jdbcType=INTEGER}
   </select>
+  <select id="selectWithUser" resultMap="ResultMapWithUser">
+    SELECT * FROM question LEFT JOIN `user` ON question.question_creator_id = `user`.uid ORDER BY question_time DESC
+  </select>
+  <select id="selectWithUserByPrimarry" parameterType="java.lang.Integer" resultMap="ResultMapWithUser">
+    SELECT * FROM question LEFT JOIN `user` ON question.question_creator_id = `user`.uid where question_id = #{question_id}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from question
     where question_id = #{questionId,jdbcType=INTEGER}
@@ -105,10 +131,12 @@
   </delete>
   <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Question">
     insert into question (question_id, question_time, question_creator_id, 
-      question_content, view_count, like_count, 
+      question_title, question_img, question_content, 
+      question_destiny, view_count, like_count, 
       comment_count, attention_count)
     values (#{questionId,jdbcType=INTEGER}, #{questionTime,jdbcType=VARCHAR}, #{questionCreatorId,jdbcType=INTEGER}, 
-      #{questionContent,jdbcType=VARCHAR}, #{viewCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, 
+      #{questionTitle,jdbcType=VARCHAR}, #{questionImg,jdbcType=VARCHAR}, #{questionContent,jdbcType=VARCHAR}, 
+      #{questionDestiny,jdbcType=VARCHAR}, #{viewCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, 
       #{commentCount,jdbcType=INTEGER}, #{attentionCount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Question">
@@ -123,8 +151,17 @@
       <if test="questionCreatorId != null">
         question_creator_id,
       </if>
+      <if test="questionTitle != null">
+        question_title,
+      </if>
+      <if test="questionImg != null">
+        question_img,
+      </if>
       <if test="questionContent != null">
         question_content,
+      </if>
+      <if test="questionDestiny != null">
+        question_destiny,
       </if>
       <if test="viewCount != null">
         view_count,
@@ -149,8 +186,17 @@
       <if test="questionCreatorId != null">
         #{questionCreatorId,jdbcType=INTEGER},
       </if>
+      <if test="questionTitle != null">
+        #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionImg != null">
+        #{questionImg,jdbcType=VARCHAR},
+      </if>
       <if test="questionContent != null">
         #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="questionDestiny != null">
+        #{questionDestiny,jdbcType=VARCHAR},
       </if>
       <if test="viewCount != null">
         #{viewCount,jdbcType=INTEGER},
@@ -184,8 +230,17 @@
       <if test="record.questionCreatorId != null">
         question_creator_id = #{record.questionCreatorId,jdbcType=INTEGER},
       </if>
+      <if test="record.questionTitle != null">
+        question_title = #{record.questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionImg != null">
+        question_img = #{record.questionImg,jdbcType=VARCHAR},
+      </if>
       <if test="record.questionContent != null">
         question_content = #{record.questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionDestiny != null">
+        question_destiny = #{record.questionDestiny,jdbcType=VARCHAR},
       </if>
       <if test="record.viewCount != null">
         view_count = #{record.viewCount,jdbcType=INTEGER},
@@ -209,7 +264,10 @@
     set question_id = #{record.questionId,jdbcType=INTEGER},
       question_time = #{record.questionTime,jdbcType=VARCHAR},
       question_creator_id = #{record.questionCreatorId,jdbcType=INTEGER},
+      question_title = #{record.questionTitle,jdbcType=VARCHAR},
+      question_img = #{record.questionImg,jdbcType=VARCHAR},
       question_content = #{record.questionContent,jdbcType=VARCHAR},
+      question_destiny = #{record.questionDestiny,jdbcType=VARCHAR},
       view_count = #{record.viewCount,jdbcType=INTEGER},
       like_count = #{record.likeCount,jdbcType=INTEGER},
       comment_count = #{record.commentCount,jdbcType=INTEGER},
@@ -227,8 +285,17 @@
       <if test="questionCreatorId != null">
         question_creator_id = #{questionCreatorId,jdbcType=INTEGER},
       </if>
+      <if test="questionTitle != null">
+        question_title = #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionImg != null">
+        question_img = #{questionImg,jdbcType=VARCHAR},
+      </if>
       <if test="questionContent != null">
         question_content = #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="questionDestiny != null">
+        question_destiny = #{questionDestiny,jdbcType=VARCHAR},
       </if>
       <if test="viewCount != null">
         view_count = #{viewCount,jdbcType=INTEGER},
@@ -249,11 +316,20 @@
     update question
     set question_time = #{questionTime,jdbcType=VARCHAR},
       question_creator_id = #{questionCreatorId,jdbcType=INTEGER},
+      question_title = #{questionTitle,jdbcType=VARCHAR},
+      question_img = #{questionImg,jdbcType=VARCHAR},
       question_content = #{questionContent,jdbcType=VARCHAR},
+      question_destiny = #{questionDestiny,jdbcType=VARCHAR},
       view_count = #{viewCount,jdbcType=INTEGER},
       like_count = #{likeCount,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       attention_count = #{attentionCount,jdbcType=INTEGER}
     where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="incView" parameterType="java.lang.Integer">
+    update question
+    set
+      view_count = view_count + 1
+    where question_id = #{questionId}
   </update>
 </mapper>

@@ -29,7 +29,7 @@
                     <div class="set_right_operate">
                         <p class="set_right_operate_title">我的信息</p>
                         <form class="layui-form" action="" style="margin-left: 35px;">
-                            <input type="hidden" name="id" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+                            <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">昵称</label>
                                 <div class="layui-input-block">
@@ -52,14 +52,20 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">出生日期</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="birth" required  lay-verify="required" th:placeholder="${session.loginUser.getBirthday()}" autocomplete="off" class="layui-input">
+                                    <input type="text" id="ownBirth" name="birth" required  lay-verify="required" th:value="${session.loginUser.getBirthday()}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">手机号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" id="phone" name="phone" required  lay-verify="required|phone" th:value="${session.loginUser.getPhone()}" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item layui-form-text">
                                 <label class="layui-form-label">个性自我</label>
                                 <div class="layui-input-block">
                                     <textarea name="selfInfo" placeholder="请输入内容" class="layui-textarea"
-                                              th:placeholder="${session.loginUser.getSelfintro()!=null}?${session.loginUser.getSelfintro()}:'请输入内容'"></textarea>
+                                              th:text="${session.loginUser.getSelfintro()!=null}?${session.loginUser.getSelfintro()}:'来展示自己的魅力吧...'"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">

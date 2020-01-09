@@ -51,7 +51,7 @@ spring:
     default-encoding: UTF-8
     host: smtp.qq.com
     username: 2625221623@qq.com
-    password: vurfssraemgvdjhi
+    password: zdznlzdmqdmvdjaj
 
 mybatis:
   check-config-location: true

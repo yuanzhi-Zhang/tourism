@@ -2,85 +2,38 @@ package com.yuanzhi.tourism.entity;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class Scene {
-    private Integer id;
+    private Integer sceneId;
 
-    private String scenename;
+    private String sceneName;
 
-    private String cityname;
+    private String sceneCityName;
 
-    private String areaname;
+    private String sceneAreaName;
 
-    private String address;
+    private String sceneAddress;
 
-    private Integer sceneprice;
+    private String scenePrice;
 
-    private String provincename;
+    private String sceneProvinceName;
 
-    private String summary;
+    private String sceneSummary;
 
-    public Integer getId() {
-        return id;
-    }
+    private String sceneAttention;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String sceneOpentime;
 
-    public String getScenename() {
-        return scenename;
-    }
+    private String sceneCoupon;
 
-    public void setScenename(String scenename) {
-        this.scenename = scenename == null ? null : scenename.trim();
-    }
+    private String scenePics;
 
-    public String getCityname() {
-        return cityname;
-    }
+    private String sceneStar;
 
-    public void setCityname(String cityname) {
-        this.cityname = cityname == null ? null : cityname.trim();
-    }
+    /*private List<Price> priceList = new ArrayList();
 
-    public String getAreaname() {
-        return areaname;
-    }
-
-    public void setAreaname(String areaname) {
-        this.areaname = areaname == null ? null : areaname.trim();
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
-    public Integer getSceneprice() {
-        return sceneprice;
-    }
-
-    public void setSceneprice(Integer sceneprice) {
-        this.sceneprice = sceneprice;
-    }
-
-    public String getProvincename() {
-        return provincename;
-    }
-
-    public void setProvincename(String provincename) {
-        this.provincename = provincename == null ? null : provincename.trim();
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary == null ? null : summary.trim();
-    }
+    private List<Pic> picList = new ArrayList();*/
 }

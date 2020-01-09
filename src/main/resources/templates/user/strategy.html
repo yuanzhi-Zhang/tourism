@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui2.css}">
     <link rel="stylesheet" href="css/strategy.css" th:href="@{/css/strategy.css}">
     <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" th:href="@{/asserts/css/font-awesome.min.css}">-->
     <link href="css/player.css" th:href="@{/css/player.css}" rel="stylesheet" type="text/css" />
 
-    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
     <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <script src="js/strategy.js" th:src="@{/js/strategy.js}"></script>
     <title>旅游攻略@任我行,旅游攻略</title>
@@ -21,25 +21,40 @@
     <div class="strategy_head">
     <!--中间大图-->
         <div class="strategy_img">
-            <img src="images/scene/scene10.jpg">
+            <!--<img src="images/scene/scene10.jpg">-->
+            <div class="layui-carousel" id="test1">
+                <div carousel-item>
+                    <script id="hotAdviceDemo" type="text/html">
+                        {{#  layui.each(d.list.turnList, function(index, item){ }}
+                        <div>
+                            <img src="{{item.turnUrl}}" data-id="{{item.turnTypeId}}" onclick="toStrategyDetail(this)">
+                            <div class="simpleIntro">
+                                <p class="simpleTitle">{{item.turnRemarks}}</p>
+                            </div>
+                        </div>
+                        {{#  }); }}
+                    </script>
+                </div>
+            </div>
         </div>
     <!--顶部导航栏-->
         <div class="strategy_nav">
             <div th:replace="user/common/header::header"></div>
         </div>
-        <div class="introduce_box" style="margin-top: 90px;">
+        <div class="introduce_box">
             <p style="color: black"><span style="font-size: 48px;" id="day"></span>/<span id="time"></span></p>
-            <p style="color: black" th:text="捷克--金色的布拉格"></p>
+            <p style="color: black;text-shadow: 5px 3px 2px rgb(154, 199, 81);">你好!<span th:text="${session.loginUser != null?session.loginUser.getUsername():'客官'}"></span></p>
         </div>
     <!--搜索框-->
         <div class="strategy_search_main">
             <div class="strategy_search">
                 <p>Don't fear the unknown...</p><br>
                 <div class="search">
-                    <form>
-                        <input type="text" placeholder="河山大好,出去走走...">
-                        <button type="submit"></button>
-                    </form>
+                    <input type="text" placeholder="河山大好,出去走走..." id="searchVal">
+
+                    <button type="button" class="layui-btn layui-btn-warm" onclick="search()">
+                        <i class="layui-icon">&#xe615;</i>
+                    </button>
                 </div><br>
                 <p>心中有路，何处不是旅途...</p>
             </div>
@@ -47,41 +62,48 @@
     </div>
 <!--主要内容区-->
     <div class="strategy_content">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
         <ul class="jour_ul" style="width: 1020px;display: block;margin: 0 auto;">
         <!--旅游攻略部分展示区-->
             <li class="jour_li" style="margin-right: 40px;">
-                <div class="strategy_partmain">
+                <div class="strategy_partmain" id="strategy_partmain">
                     <p style="font-size: 28px;margin:10px 0 10px 0;">推荐攻略</p>
-                    <ul class="jour_ul strategy_info"><a th:href="@{/strategyDetail}">
-                        <p class="strategy_partmain_title">薄荷岛潜水|薄荷岛我的潜水考证之旅，新人必读攻略</p>
-                        <div class="straegy_partInfo">
-                            “世界这么大，我想去看看”想必很多小伙伴都有这种冲动与梦想，奈何跟团游就是下车拍照上车睡觉，每天安排的满满累成狗；自由行就得准备各种攻略，还需要克服当地语言障碍，尤其是作为中国人这个点了吃货天赋的民族，往往饮食就是一大障碍。
+                    <script id="strategyDemo" type="text/html">
+                        {{#  layui.each(d.list.strategyList, function(index, item){ }}
+                            <ul class="jour_ul strategy_info" data-id="{{item.strategyId}}" onclick="toStrategyDetail(this)">
+                                <p class="strategy_partmain_title">{{item.strategyTitle}}</p>
+                                <div class="straegy_partInfo">
+                                    {{item.strategyIntro}}
+                                </div>
+                                <li class="jour_li"><img src="{{item.firstImg}}"></li>
+                                <li class="jour_li"><img src="{{item.secondImg}}"></li>
+                                <li class="jour_li"><img src="{{item.thirdImg}}"></li>
+                                <li class="jour_li"><p style="text-align: right;width: 80px;">{{item.readTimes}}浏览</p></li>
+                            </ul>
+                        {{#  }); }}
+                        <div class="layui-btn-group" style="float: right;">
+                            <button type="button" class="layui-btn layui-btn-sm">
+                                共&emsp;<span class="total" style="font-size: 18px;"></span>&emsp;条
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                                当前为第&emsp;<span class="curr" style="font-size: 18px;"></span>&emsp;页
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-sm">
+                                共&emsp;<span class="pageNum" style="font-size: 18px;"></span>&emsp;页
+                            </button>
+                            {{#  layui.each(d.list.pages, function(index, item){ }}
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                    onclick="toPageStrategy(this)" style="margin-left: 5px;font-size: 14px;">
+                                {{item}}
+                            </button>
+                            {{#  }); }}
                         </div>
-                        <li class="jour_li"><img src="images/scene/scene10.jpg"></li>
-                        <li class="jour_li"><img src="images/scene/scene11.jpeg"></li>
-                        <li class="jour_li"><img src="images/scene/scene12.jpg"></li>
-                        <li class="jour_li"><p style="text-align: right;width: 80px;">356浏览</p></li></a>
-                    </ul>
-                    <ul class="jour_ul strategy_info">
-                        <p class="strategy_partmain_title">薄荷岛潜水|薄荷岛我的潜水考证之旅，新人必读攻略</p>
-                        <div class="straegy_partInfo">
-                            “世界这么大，我想去看看”想必很多小伙伴都有这种冲动与梦想，奈何跟团游就是下车拍照上车睡觉，每天安排的满满累成狗；自由行就得准备各种攻略，还需要克服当地语言障碍，尤其是作为中国人这个点了吃货天赋的民族，往往饮食就是一大障碍。
-                        </div>
-                        <li class="jour_li"><img src="images/scene/scene10.jpg"></li>
-                        <li class="jour_li"><img src="images/scene/scene11.jpeg"></li>
-                        <li class="jour_li"><img src="images/scene/scene12.jpg"></li>
-                        <li class="jour_li"><p style="text-align: right;width: 80px;">356浏览</p></li>
-                    </ul>
-                    <ul class="jour_ul strategy_info">
-                        <p class="strategy_partmain_title">薄荷岛潜水|薄荷岛我的潜水考证之旅，新人必读攻略</p>
-                        <div class="straegy_partInfo">
-                            “世界这么大，我想去看看”想必很多小伙伴都有这种冲动与梦想，奈何跟团游就是下车拍照上车睡觉，每天安排的满满累成狗；自由行就得准备各种攻略，还需要克服当地语言障碍，尤其是作为中国人这个点了吃货天赋的民族，往往饮食就是一大障碍。
-                        </div>
-                        <li class="jour_li"><img src="images/scene/scene10.jpg"></li>
-                        <li class="jour_li"><img src="images/scene/scene11.jpeg"></li>
-                        <li class="jour_li"><img src="images/scene/scene12.jpg"></li>
-                        <li class="jour_li"><p style="text-align: right;width: 80px;">356浏览</p></li>
-                    </ul>
+                        {{#  if(d.list.length === 0){ }}
+                        当前没有任何攻略~
+                        {{#  } }}
+                    </script>
+                    <div id="strategyView"></div>
                 </div>
             </li>
             <!--旅游攻略导航区-->
@@ -91,19 +113,21 @@
                     <ul>
                         <a href=""><img src="images/scene/scene7.jpg"></a>
                         <p>更新日期：2019-10-06</p>
-                        <li><a href="">丽江</a></li>
-                        <li><a href="">成都</a></li>
-                        <li><a href="">杭州</a></li>
-                        <li><a href="">北京</a></li>
-                        <li><a href="">武汉</a></li>
-                        <li><a href="">南京</a></li>
-                        <li><a href="">攀枝花</a></li>
-                        <li><a href="">九寨沟</a></li>
-                        <li><a href="">张家界</a></li>
+                        <li><a href="#strategy_partmain" data-name="普吉岛" onclick="getStrategyLike(this)">普吉岛</a></li>
+                        <li><a href="#strategy_partmain" data-name="武汉" onclick="getStrategyLike(this)">武汉</a></li>
+                        <li><a href="#strategy_partmain" data-name="深圳" onclick="getStrategyLike(this)">深圳</a></li>
+                        <li><a href="#strategy_partmain" data-name="贵州" onclick="getStrategyLike(this)">贵州</a></li>
+                        <li><a href="#strategy_partmain" data-name="西安" onclick="getStrategyLike(this)">西安</a></li>
+                        <li><a href="#strategy_partmain" data-name="重庆" onclick="getStrategyLike(this)">重庆</a></li>
+                        <li><a href="#strategy_partmain" data-name="哈尔滨" onclick="getStrategyLike(this)">哈尔滨</a></li>
+                        <li><a href="#strategy_partmain" data-name="北京" onclick="getStrategyLike(this)">北京</a></li>
+                        <li><a href="#strategy_partmain" data-name="广州" onclick="getStrategyLike(this)">广州</a></li>
                     </ul>
                 </div>
             </li>
+            <div style="clear: both"></div>
         </ul>
+        <div style="clear: both;"></div>
     </div>
 <!--页脚-->
     <div th:replace="user/common/footer::foot"></div>

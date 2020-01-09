@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+    <script src="http://api.map.baidu.com/getscript?v=2.0&ak=E4805d16520de693a3fe707cdc962045"></script>
     <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <script src="js/orderHotel.js" th:src="@{/js/orderHotel.js}"></script>
@@ -20,13 +21,17 @@
     </div>
 <!--导航下的大图-->
     <div class="hotel_turnImg">
-        <img src="images/hotel/hotel1.jpg" class="hotel_turnImg_main">
+        <a href="#"><img src="" class="hotel_turnImg_main"></a>
         <div class="hotel_turnImg_float">
-            <img src="images/hotel/hotel1.jpg" class="hotelImg">
-            <img src="images/hotel/hotel2.jpg" class="hotelImg">
-            <img src="images/hotel/hotel3.jpg" class="hotelImg">
-            <img src="images/hotel/hotel4.jpg" class="hotelImg">
-            <img src="images/hotel/hotel5.jpg" class="hotelImg">
+            <script id="turnDemo" type="text/html">
+                {{#  layui.each(d.list.turnList, function(index, item){ }}
+                    <a href="#"><img src="{{item.turnUrl}}" class="hotelImg" data-bigpic="{{item.turnUrl}}"></a>
+                {{#  }); }}
+                {{#  if(d.list.length === 0){ }}
+                未查到当地酒店~
+                {{#  } }}
+            </script>
+            <div id="turnView"></div>
         </div>
         <div class="hotel_search">
             <div class="search">
@@ -39,8 +44,10 @@
     </div>
 <!--主要内容区-->
     <div class="hotel_content">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
         <div class="hotel_content_main">
-            <p class="hotel_theme">主题住宿</p><br>
+            <!--<p class="hotel_theme">主题住宿</p><br>
             <div class="hotel_theme_content">
                 <div class="layui-tab layui-tab-brief" lay-filter="hotelTabBrief">
                     <ul class="layui-tab-title hotel_theme_title">
@@ -89,8 +96,49 @@
                         </div>
                     </div>
                 </div>
+            </div>-->
+            <div class="hotel_list">
+                <script id="hotelDemo" type="text/html">
+                    {{#  layui.each(d.list.hotelList, function(index, item){ }}
+                        <div class="item_left">
+                            <img src="{{item.hotelPicture}}" alt="http://rwx.yuanz.top/084c3f6b-e481-4d0b-b647-befcc6d6d892"
+                                 data-id="{{item.hotelMainId}}" onclick="toHotelDetail(this)" target="_blank">
+                        </div>
+                        <div class="item_right">
+                            <h3><a data-id="{{item.hotelMainId}}" onclick="toHotelDetail(this)" target="_blank" style="color: #333;">{{item.hotelNameZn}}&emsp;
+                                <span>{{item.hotelNameEn}}</span></a></h3>
+                            <p>所在城市：&ensp;{{item.hotelCity}}</p>
+                            <p><i class="layui-icon layui-icon-location" style="color: #f53b00;"></i>详细地址:&emsp;{{item.hotelAddress}}</p>
+                            <p>星级：&ensp;{{item.hotelStar}}（{{item.hotelStarName}}）</p>
+                            <p>一般价格：&ensp;<span style="font-size: 24px;">￥<span style="color: #f53c02">{{item.hotelPrice}}</span></span></p>
+                        </div>
+                    <div style="clear: both"></div>
+                    {{#  }); }}
+                    <div class="layui-btn-group" style="float: right;">
+                        <button type="button" class="layui-btn layui-btn-sm">
+                            共&emsp;<span class="total" style="font-size: 18px;"></span>&emsp;条
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                            当前为第&emsp;<span class="curr" style="font-size: 18px;"></span>&emsp;页
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm">
+                            共&emsp;<span class="pageNum" style="font-size: 18px;"></span>&emsp;页
+                        </button>
+                        {{#  layui.each(d.list.pages, function(index, item){ }}
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                onclick="toPageHotel(this)" style="margin-left: 5px;font-size: 14px;">
+                            {{item}}
+                        </button>
+                        {{#  }); }}
+                    </div>
+                    {{#  if(d.list.length === 0){ }}
+                    未查到当地酒店~
+                    {{#  } }}
+                </script>
+                <div id="hotelView"></div>
             </div>
         </div>
+        <div style="clear: both;"></div>
     </div>
 <!--页脚区域-->
     <div th:replace="user/common/footer::foot"></div>

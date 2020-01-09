@@ -5,51 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
-    <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui1.css}">
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui2.css}">
     <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
+    <link rel="stylesheet" th:href="@{/css/company.css}">
     <link rel="stylesheet" href="css/strategyDetail.css" th:href="@{/css/strategyDetail.css}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
     <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <script src="js/strategy.js" th:src="@{/js/strategyDetail.js}"></script>
-    <title>薄荷岛潜水|薄荷岛我的潜水考证之旅，新人必读攻略@任我行</title>
+    <title class="infoTitle">薄荷岛潜水|薄荷岛我的潜水考证之旅，新人必读攻略@任我行</title>
 </head>
 <body>
 <!--头部导航-->
     <div class="head">
-        <div th:replace="user/common/header::#headerLikeIndex"></div>
+        <div th:replace="user/common/header::header"></div>
     </div>
 <!--主要内容区-->
     <div class="strategyDetai_content">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
         <ul class="jour_ul" style="width: 1020px;display: block;margin: 0 auto;">
             <!--左侧攻略内容区-->
             <li class="jour_li">
                 <div class="strategyDetai_content_left">
-                    <p class="strategyDetai_content_left_title">薄荷岛潜水|薄荷岛我的潜水考证之旅，新人必读攻略</p>
-                    <p style="text-align: right;padding-right:40px;line-height: 50px;">2019-10-08</p>
-                    <ul class="jour_ul" style="margin-bottom: 20px;">
-                        <li class="jour_li" style="float: left">
-                            <img src="images/scene/scene14.jpeg" class="strategyDetail_author_img">
-                        </li>
-                        <li class="jour_li" style="padding: 0 10px">
-                            <p class="strategyDetail_author">站远处看从前</p>
-                            <div style="width: 520px;">呼伦贝尔，这是个令人魂牵梦萦的名字，这里一半是草原，一半是森林。轻轻的草原上有着矿业的牧人纵马飞奔，悠长的牧歌在用灵魂吟</div>
-                        </li>
-                        <li class="jour_li" style="float: right;padding-top: 10px;">
-                            <img src="images/icon/selfRoom.png" class="hisRoom">
-                            <p style="line-height: 30px;">TA的空间</p>
-                        </li>
-                    </ul>
-                    <p style="line-height: 25px;">都说玉龙雪山是去丽江不能错过的风景，但是在网上查了很久，很多人还是对玉龙雪山到底应该怎么去怎么玩怎么买票一头雾水。别方，看完这篇攻略，你的所有疑惑都能得到解答。</p>
-                    <p style="line-height: 60px;font-size: 28px">秋季去哪里</p>
-                    <img class="strategyDetail__main_img" src="images/scene/scene15.jpeg">
-                    <p style="line-height: 25px;">都说玉龙雪山是去丽江不能错过的风景，但是在网上查了很久，很多人还是对玉龙雪山到底应该怎么去怎么玩怎么买票一头雾水。别方，看完这篇攻略，你的所有疑惑都能得到解答。</p>
-                    <img class="strategyDetail__main_img" src="images/scene/scene16.jpeg">
-                    <p style="line-height: 25px;">都说玉龙雪山是去丽江不能错过的风景，但是在网上查了很久，很多人还是对玉龙雪山到底应该怎么去怎么玩怎么买票一头雾水。别方，看完这篇攻略，你的所有疑惑都能得到解答。</p>
-                    <img class="strategyDetail__main_img" src="images/scene/scene14.jpeg">
-                    <p style="line-height: 25px;">都说玉龙雪山是去丽江不能错过的风景，但是在网上查了很久，很多人还是对玉龙雪山到底应该怎么去怎么玩怎么买票一头雾水。别方，看完这篇攻略，你的所有疑惑都能得到解答。</p>
-                    <img class="strategyDetail__main_img" src="images/scene/scene11.jpeg">
+                    <script id="strategyDemo" type="text/html">
+                        <p class="strategyDetai_content_left_title">{{d.strategy.strategyTitle}}</p>
+                        <p style="text-align: right;padding-right:40px;line-height: 50px;">{{d.strategy.publishTime}}</p>
+                        <input type="hidden" id="strategyId" value="{{d.strategy.strategyId}}"/>
+                        <ul class="jour_ul" style="margin-bottom: 20px;">
+                            <li class="jour_li" style="float: left">
+                                <img src="{{d.user.imgurl}}" class="strategyDetail_author_img">
+                            </li>
+                            <li class="jour_li" style="padding: 0 10px">
+                                <p class="strategyDetail_author">
+                                    {{d.user.username}}
+                                    {{#  if(d.user.usersex == '男'){ }}
+                                    <i class="layui-icon layui-icon-male" style="color: #0f88eb"></i>
+                                    {{#  } else { }}
+                                    <i class="layui-icon layui-icon-female" style="color: #b92c28"></i>
+                                    {{#  } }}
+                                </p>
+                                <div style="width: 520px;">{{d.strategy.strategyIntro}}</div>
+                            </li>
+                            <li class="jour_li" style="float: right;padding-top: 10px;">
+                                <img th:src="@{/images/icon/selfRoom.png}" class="hisRoom">
+                                <p style="line-height: 30px;">TA的空间</p>
+                            </li>
+                        </ul>
+                        <div class="strategyContent">{{d.strategy.strategyContent}}</div>
+                    </script>
+                    <div id="strategyView"></div>
+
+                    <!--评论-->
+                    <div class="journey_comment">
+                        <h4><span class="mainComment"></span>&ensp;条主回复</h4><br>
+                        <div class="layui-collapse" lay-filter="strategyComment" style="border: none;margin-bottom: -27px;">
+                            <script id="strategyCommentDemo" type="text/html">
+                                {{#  layui.each(d.list.data, function(index, item){ }}
+                                    <div class="layui-colla-item"style="border-top: none;">
+                                        <div class="comments">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <img class="media-object img-rounded" src="{{item.user.imgurl}}">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading" style="margin-top: 3px;">
+                                                        <span style="color: red;">{{item.user.username}}</span>&ensp;
+                                                        (<span>{{item.user.address}}</span>)&emsp;
+                                                        <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm" data-id="{{item.user.uid}}"
+                                                                onclick="addAttention(this)" style="height: 20px;margin-top: -3px;">
+                                                            <i class="layui-icon">&#xe608;</i>关注
+                                                        </button>
+                                                        <span class="commentTime">{{item.commenttime}}</span>
+                                                        <p style="text-align: right;">
+                                                            <i class="layui-icon layui-icon-praise praise" data-id="{{item.cid}}" onclick="praiseComment(this)"
+                                                               style="position: relative;top: 2px;"></i>&emsp;
+                                                            <span class="openSub" data-id="{{item.cid}}" onclick="openSub(this)">
+                                                                <i class="layui-icon layui-icon-down"></i>&ensp;{{item.commentcount}}
+                                                            </span>
+                                                        </p>
+                                                    </h4>
+                                                    <div style="margin-top: -3px;margin-bottom: 3px;">{{item.commentcomment}}</div>
+                                                </div>
+                                            </div>
+                                            <!--<h4 class="openSub" data-id="{{item.cid}}" onclick="openSub(this)">{{item.commentcount}}</h4>-->
+                                            <div class="layui-colla-content" id="comment-{{item.cid}}" style="margin: 15px 20px 20px 50px;border: 1px #c2b66a solid;border-radius: 5px;">
+                                                <div id="subCommentView-{{item.cid}}"></div>
+                                                <div class="subReply" style="margin-top: 20px;">
+                                                    <input type="text" placeholder="评论一下..." autocomplete="off" id="input-{{item.cid}}" class="layui-input"
+                                                           style="float: left;width: 85.5%;margin-right: 15px;border-radius: 5px;">
+                                                    <button type="button" class="layui-btn" data-id="{{item.cid}}" onclick="comment(this)" style="border-radius: 5px;">
+                                                        回复
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!--<hr class="layui-bg-black">-->
+                                {{#  }); }}
+                                {{#  if(d.list.data.length === 0){ }}
+                                <p style="color: #666;">暂时还没有评论,快去抢占沙发吧 ~</p>
+                                {{#  } }}
+                            </script>
+                            <div id="strategyCommentView"></div>
+                        </div><br>
+                        <div id="comment_section" style="margin-top: 30px;">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object img-rounded" th:if="${session.loginUser != null}"
+                                             th:src="${session.loginUser.getImgurl()}">
+                                        <img class="media-object img-rounded" th:if="${session.loginUser == null}"
+                                             th:src="@{/images/scene/scene13.jpeg}">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">
+                                        <span th:text="${session.loginUser != null ? session.loginUser.getUsername() : '匿名用户'}"></span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <textarea class="layui-textarea form-control comment" rows="6" id="comment_content" th:placeholder="快来发表你的言论吧..."></textarea>
+                            <!--<button type="button" class="btn btn-success btn-comment" onclick="post()">评论</button>-->
+                            <button type="button" class="layui-btn" onclick="post()" style="border-radius: 5px;background-color: #28a745;float: right">
+                                评论
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </li>
             <!--右侧该篇攻略目录-->
@@ -59,33 +144,70 @@
                     <!--操作控件-->
                     <ul class="jour_ul strategyDetail_contro">
                         <li class="jour_li">
-                            <a href="#"><img th:src="@{/images/icon/edit1.png}"></a>
+                            <a href="#comment_section"><img th:src="@{/images/icon/edit1.png}"></a>
+                            <p class="commentNum">0</p>
                         </li>
                         <li class="jour_li">
-                            <a href="#"><img th:src="@{/images/icon/collect1.png}"></a>
+                            <a href="javascript:;">
+                                <img class="collect" onclick="collect()">
+                            </a>
+                            <p class="collectNum">0</p>
                         </li>
                         <li class="jour_li">
                             <a href="#"><img th:src="@{/images/icon/share1.png}"></a>
+                            <p class="share">0</p>
                         </li>
                         <li class="jour_li">
-                            <a href="#"><img th:src="@{/images/icon/praise1.png}"></a>
+                            <a href="javascript:;"><img class="praise" onclick="praise()"></a>
+                            <p class="praiseNum">0</p>
                         </li>
                     </ul>
-                    <ul>
-                        <p style="font-size: 22px;">攻略目录</p>
-                        <li><a href="#">默认段落</a></li>
-                        <li><a href="#">拍照圣地，斯里兰卡的春天</a></li>
-                        <li><a href="#">历史名街，法租界武康路的今日</a></li>
-                        <li><a href="#">主题乐园，只有迪士尼守住你的童年</a></li>
-                        <li><a href="#">来一段与她的邂逅</a></li>
-                        <li><a href="#">历史名街，法租界武康路的今日</a></li>
-                        <li><a href="#">岁月从不败美人</a></li>
-                        <li><a href="#">主题乐园，只有迪士尼守住你的童年</a></li>
-                        <li><a href="#">岁月从不败美人</a></li>
-                    </ul>
+                    <h3 class="hotCompany_advice">热门结伴推荐</h3>
+                    <div class="layui-carousel" id="hotAdviceLunBo" style="margin: 20px auto;">
+                        <div carousel-item>
+                            <script id="hotAdviceDemo" type="text/html">
+                                {{#  layui.each(d.list.companyList, function(index, item){ }}
+                                <div>
+                                    <div class="bd together-list wrapper">
+                                        <ul class="clearfix _j_together_list" style="margin: 0px 10px 10px -35px;">
+                                            <li class="item" style="width: 300px;">
+                                                <a href="#" target="_blank" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)"
+                                                   style="padding: 15px 10px 10px 10px;width: 265px;text-decoration: none;">
+                                                    <div class="image">
+                                                        <img src="{{item.companyMainImg}}" style="width: 280px;height: 180px;">
+                                                        <div class="after" style="right: -60px;width: 62px;height: 61px;"><b>{{item.companyStartTime}}</b>天后</div>
+                                                        <hr style="width: 175px;">
+                                                    </div>
+                                                    <h3 class="title">{{item.companyEndArea}}</h3>
+                                                    <div class="desc">{{item.companyTitle}}</div>
+                                                    <div class="user clearfix">
+                                                                <span class="avatar">
+                                                                    <img src="{{item.user.imgurl}}" width="48" height="48">
+                                                                    {{#  if(item.user.usersex === '男'){ }}
+                                                                        <i class="male" style="background-position: -160px -120px;"></i>
+                                                                    {{#  } }}
+                                                                    {{#  if(item.user.usersex === '女'){ }}
+                                                                        <i class="female"></i>
+                                                                    {{#  } }}
+                                                                </span>
+                                                        <span class="name" style="width: 200px;">{{item.user.username}}({{item.user.address}}) </span>
+                                                        <span class="level">{{item.companyTime}}</span>
+                                                    </div>
+                                                    <div class="attention" style="width: 265px;"><i class="icon-arrow"></i>已有<b>{{item.companyAttendNum}}</b>人关注</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {{#  }); }}
+                            </script>
+                            <!--<div id="hotAdviceView"></div>-->
+                        </div>
+                    </div>
                 </div>
             </li>
         </ul>
+        <div style="clear: both;"></div>
     </div>
 <!--页脚区域-->
     <div th:replace="user/common/footer::foot"></div>

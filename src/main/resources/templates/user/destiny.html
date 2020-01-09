@@ -58,6 +58,8 @@
     </div>
     <!--各个地区-->
     <div class="des_area" style="padding-bottom:60px;">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
         <!--<div id="dri_way">-->
             <!--<br>-->
             <!--起点：<input type="text" id="start" />-->

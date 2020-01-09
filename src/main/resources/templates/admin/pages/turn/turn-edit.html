@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑轮播</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/rwx/admin/css/okadmin.css">
+</head>
+<body>
+<div class="ok-body">
+    <!--面包屑导航区域-->
+    <div class="ok-body-breadcrumb">
+        <span class="layui-breadcrumb">
+            <a><cite>首页</cite></a>
+            <a><cite>轮播列表</cite></a>
+            <a><cite>编辑轮播</cite></a>
+        </span>
+        <a class="layui-btn layui-btn-sm" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon layui-icon-refresh"></i>
+        </a>
+    </div>
+    <!--form表单-->
+    <form class="layui-form ok-form" lay-filter="filter">
+        <input type="hidden" th:value="${turn.turnId}" id="turnId">
+        <div class="layui-form-item">
+            <label class="layui-form-label">轮播图片</label>
+            <div class="layui-input-block">
+                <input type="text" id="url" name="turnUrl" autocomplete="off" class="layui-input" lay-verify="required" placeholder="请输入图片地址..."
+                       th:value="${turn!=null}?${turn.turnUrl}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">轮播图类型</label>
+            <div class="layui-input-block">
+                <select name="role" class="type" th:value="${turn!=null}?${turn.turnType}">
+                    <option value="0">主页视频</option>
+                    <option value="1">游记轮播图</option>
+                    <option value="2">攻略轮播图</option>
+                    <option value="3">结伴轮播图</option>
+                    <option value="4">景点轮播图</option>
+                    <!--<option value="5">目的地轮播图</option>-->
+                    <option value="6">酒店轮播图</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">轮播类型对象编号</label>
+            <div class="layui-input-block">
+                <input type="text" id="typeId" name="typeId" autocomplete="off" class="layui-input" lay-verify="required" placeholder="请输入对象编号..."
+                       th:value="${turn!=null}?${turn.turnTypeId}">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea id="remarks" name="turnRemarks" placeholder="请输入内容" class="layui-textarea" th:text="${turn!=null}?${turn.turnRemarks}"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--js逻辑-->
+<script src="/rwx/public/js/jquery-3.2.1.min.js"></script>
+<script src="/rwx/admin/lib/layui/layui.js"></script>
+<script>
+
+	var initData;
+	function initForm(data) {
+		var jsonString = JSON.stringify(data)
+		initData = JSON.parse(jsonString);
+	}
+
+    layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function () {
+        var form = layui.form;
+        var laydate = layui.laydate;
+		var okLayer = layui.okLayer;
+		var okUtils = layui.okUtils;
+
+		form.val("filter", initData);
+
+        form.on("submit(edit)", function (data) {
+//            console.log($("#turnId").val());
+            $.ajax({
+                url: "/rwx/turn/updateTurn",
+                async: false,
+                type: "post",
+                data: JSON.stringify({
+                    turnId: $("#turnId").val(),
+                    turnUrl: $("#url").val(),
+                    type: $(".type").val(),
+                    remarks: $("#remarks").val(),
+                    typeId: $("#typeId").val(),
+                }),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(res){
+                    console.log(res);
+
+                }
+            });
+            return false;
+        });
+    })
+</script>
+</body>
+</html>

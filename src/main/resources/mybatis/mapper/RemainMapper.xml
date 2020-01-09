@@ -97,6 +97,12 @@
     from remain
     where remain_id = #{remainId,jdbcType=INTEGER}
   </select>
+  <select id="getAll" resultMap="BaseResultMapWithUser">
+    select  remain_id, remain_sender_id,(SELECT userName FROM `user` WHERE uid = remain_receiver_id) AS imgUrl,
+    remain_content, remain_time, userName
+    from remain LEFT JOIN `user` ON remain_sender_id=`user`.uid
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
   <select id="selectWithUser" resultMap="BaseResultMapWithUser">
     SELECT remain_id, remain_sender_id, remain_content, remain_time, userName, imgUrl FROM remain LEFT JOIN `user` ON
     remain_sender_id=`user`.uid WHERE remain_receiver_id=#{remainReceiverId} ORDER BY remain_time DESC

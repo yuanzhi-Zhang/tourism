@@ -4,7 +4,9 @@ import com.yuanzhi.tourism.entity.Notification;
 import com.yuanzhi.tourism.entity.NotificationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface NotificationMapper {
     long countByExample(NotificationExample example);
 
@@ -27,4 +29,6 @@ public interface NotificationMapper {
     int updateByPrimaryKeySelective(Notification record);
 
     int updateByPrimaryKey(Notification record);
+
+    List<Notification> getAll(@Param("page")Integer page, @Param("limit")Integer limit);
 }

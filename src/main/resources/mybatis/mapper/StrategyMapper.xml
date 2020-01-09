@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.StrategyMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Strategy">
+    <id column="strategy_id" jdbcType="INTEGER" property="strategyId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="publish_time" jdbcType="DATE" property="publishTime" />
+    <result column="first_img" jdbcType="VARCHAR" property="firstImg" />
+    <result column="second_img" jdbcType="VARCHAR" property="secondImg" />
+    <result column="third_img" jdbcType="VARCHAR" property="thirdImg" />
+    <result column="strategy_title" jdbcType="VARCHAR" property="strategyTitle" />
+    <result column="strategy_intro" jdbcType="VARCHAR" property="strategyIntro" />
+    <result column="strategy_content" jdbcType="VARCHAR" property="strategyContent" />
+    <result column="read_times" jdbcType="INTEGER" property="readTimes" />
+    <result column="praise_times" jdbcType="INTEGER" property="praiseTimes" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="collect_num" jdbcType="INTEGER" property="collectNum" />
+  </resultMap>
+  <resultMap id="BaseResultMapWithUserName" type="com.yuanzhi.tourism.dto.StrategyDTO">
+    <id column="strategy_id" jdbcType="INTEGER" property="strategyId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="publish_time" jdbcType="DATE" property="publishTime" />
+    <result column="first_img" jdbcType="VARCHAR" property="firstImg" />
+    <result column="second_img" jdbcType="VARCHAR" property="secondImg" />
+    <result column="third_img" jdbcType="VARCHAR" property="thirdImg" />
+    <result column="strategy_title" jdbcType="VARCHAR" property="strategyTitle" />
+    <result column="strategy_intro" jdbcType="VARCHAR" property="strategyIntro" />
+    <result column="strategy_content" jdbcType="VARCHAR" property="strategyContent" />
+    <result column="read_times" jdbcType="INTEGER" property="readTimes" />
+    <result column="praise_times" jdbcType="INTEGER" property="praiseTimes" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="collect_num" jdbcType="INTEGER" property="collectNum" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+  <resultMap id="RefreshNumResultMap" type="com.yuanzhi.tourism.dto.RefreshNumDTO">
+    <result column="read_times" jdbcType="INTEGER" property="readTimes" />
+    <result column="praise_times" jdbcType="INTEGER" property="praiseTimes" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="collect_num" jdbcType="INTEGER" property="collectNum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    strategy_id, user_id, publish_time, first_img, second_img, third_img, strategy_title, 
+    strategy_intro, strategy_content, read_times, praise_times, comment_num, collect_num
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.StrategyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from strategy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from strategy
+    where strategy_id = #{strategyId,jdbcType=INTEGER}
+  </select>
+  <select id="getAll" resultMap="BaseResultMapWithUserName">
+    select
+    strategy_id, user_id, publish_time, first_img, second_img, third_img, strategy_title,
+    strategy_intro, strategy_content, read_times, praise_times, comment_num, collect_num, userName
+    from strategy LEFT JOIN `user` ON strategy.user_id = `user`.uid
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectThreePraiseMost" resultMap="BaseResultMap">
+    SELECT first_img,strategy_title,strategy_intro,strategy_id, read_times FROM strategy ORDER BY (strategy.praise_times + strategy.collect_num) DESC LIMIT 0,3
+  </select>
+  <select id="refreshNum" parameterType="java.lang.Integer" resultMap="RefreshNumResultMap">
+    SELECT strategy.read_times,strategy.collect_num,strategy.comment_num,strategy.praise_times FROM strategy WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </select>
+  <select id="getStrategyPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from strategy
+    limit #{page},#{size}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from strategy
+    where strategy_id = #{strategyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.StrategyExample">
+    delete from strategy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Strategy">
+    insert into strategy (strategy_id, user_id, publish_time, 
+      first_img, second_img, third_img, 
+      strategy_title, strategy_intro, strategy_content, 
+      read_times, praise_times, comment_num, 
+      collect_num)
+    values (#{strategyId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{publishTime,jdbcType=DATE}, 
+      #{firstImg,jdbcType=VARCHAR}, #{secondImg,jdbcType=VARCHAR}, #{thirdImg,jdbcType=VARCHAR}, 
+      #{strategyTitle,jdbcType=VARCHAR}, #{strategyIntro,jdbcType=VARCHAR}, #{strategyContent,jdbcType=VARCHAR}, 
+      #{readTimes,jdbcType=INTEGER}, #{praiseTimes,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, 
+      #{collectNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Strategy">
+    insert into strategy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="strategyId != null">
+        strategy_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="firstImg != null">
+        first_img,
+      </if>
+      <if test="secondImg != null">
+        second_img,
+      </if>
+      <if test="thirdImg != null">
+        third_img,
+      </if>
+      <if test="strategyTitle != null">
+        strategy_title,
+      </if>
+      <if test="strategyIntro != null">
+        strategy_intro,
+      </if>
+      <if test="strategyContent != null">
+        strategy_content,
+      </if>
+      <if test="readTimes != null">
+        read_times,
+      </if>
+      <if test="praiseTimes != null">
+        praise_times,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="collectNum != null">
+        collect_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="strategyId != null">
+        #{strategyId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="firstImg != null">
+        #{firstImg,jdbcType=VARCHAR},
+      </if>
+      <if test="secondImg != null">
+        #{secondImg,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdImg != null">
+        #{thirdImg,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyTitle != null">
+        #{strategyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyIntro != null">
+        #{strategyIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyContent != null">
+        #{strategyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="readTimes != null">
+        #{readTimes,jdbcType=INTEGER},
+      </if>
+      <if test="praiseTimes != null">
+        #{praiseTimes,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="collectNum != null">
+        #{collectNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.StrategyExample" resultType="java.lang.Long">
+    select count(*) from strategy
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update strategy
+    <set>
+      <if test="record.strategyId != null">
+        strategy_id = #{record.strategyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishTime != null">
+        publish_time = #{record.publishTime,jdbcType=DATE},
+      </if>
+      <if test="record.firstImg != null">
+        first_img = #{record.firstImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondImg != null">
+        second_img = #{record.secondImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thirdImg != null">
+        third_img = #{record.thirdImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strategyTitle != null">
+        strategy_title = #{record.strategyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strategyIntro != null">
+        strategy_intro = #{record.strategyIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strategyContent != null">
+        strategy_content = #{record.strategyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.readTimes != null">
+        read_times = #{record.readTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.praiseTimes != null">
+        praise_times = #{record.praiseTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentNum != null">
+        comment_num = #{record.commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectNum != null">
+        collect_num = #{record.collectNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update strategy
+    set strategy_id = #{record.strategyId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      publish_time = #{record.publishTime,jdbcType=DATE},
+      first_img = #{record.firstImg,jdbcType=VARCHAR},
+      second_img = #{record.secondImg,jdbcType=VARCHAR},
+      third_img = #{record.thirdImg,jdbcType=VARCHAR},
+      strategy_title = #{record.strategyTitle,jdbcType=VARCHAR},
+      strategy_intro = #{record.strategyIntro,jdbcType=VARCHAR},
+      strategy_content = #{record.strategyContent,jdbcType=VARCHAR},
+      read_times = #{record.readTimes,jdbcType=INTEGER},
+      praise_times = #{record.praiseTimes,jdbcType=INTEGER},
+      comment_num = #{record.commentNum,jdbcType=INTEGER},
+      collect_num = #{record.collectNum,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Strategy">
+    update strategy
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="firstImg != null">
+        first_img = #{firstImg,jdbcType=VARCHAR},
+      </if>
+      <if test="secondImg != null">
+        second_img = #{secondImg,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdImg != null">
+        third_img = #{thirdImg,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyTitle != null">
+        strategy_title = #{strategyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyIntro != null">
+        strategy_intro = #{strategyIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="strategyContent != null">
+        strategy_content = #{strategyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="readTimes != null">
+        read_times = #{readTimes,jdbcType=INTEGER},
+      </if>
+      <if test="praiseTimes != null">
+        praise_times = #{praiseTimes,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="collectNum != null">
+        collect_num = #{collectNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Strategy">
+    update strategy
+    set user_id = #{userId,jdbcType=INTEGER},
+      publish_time = #{publishTime,jdbcType=DATE},
+      first_img = #{firstImg,jdbcType=VARCHAR},
+      second_img = #{secondImg,jdbcType=VARCHAR},
+      third_img = #{thirdImg,jdbcType=VARCHAR},
+      strategy_title = #{strategyTitle,jdbcType=VARCHAR},
+      strategy_intro = #{strategyIntro,jdbcType=VARCHAR},
+      strategy_content = #{strategyContent,jdbcType=VARCHAR},
+      read_times = #{readTimes,jdbcType=INTEGER},
+      praise_times = #{praiseTimes,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      collect_num = #{collectNum,jdbcType=INTEGER}
+    where strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="incView" parameterType="java.lang.Integer">
+    UPDATE strategy SET read_times = read_times + 1 WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="incPraise" parameterType="java.lang.Integer">
+    UPDATE strategy SET praise_times = praise_times + 1 WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="downPraise" parameterType="java.lang.Integer">
+    UPDATE strategy SET praise_times = praise_times - 1 WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="incComment" parameterType="java.lang.Integer">
+    UPDATE strategy SET comment_num = comment_num + 1 WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="downComment" parameterType="java.lang.Integer">
+    UPDATE strategy SET comment_num = comment_num - 1 WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="incCollect" parameterType="java.lang.Integer">
+    UPDATE strategy SET collect_num = collect_num + 1 WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+  <update id="downCollect" parameterType="java.lang.Integer">
+    UPDATE strategy SET collect_num = collect_num - 1 WHERE strategy_id = #{strategyId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>ok-admin v1.0 | 很赞的后台模版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ok-admin v1.0,ok-admin网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+    <meta name="description" content="ok-admin v1.0，顾名思义，很赞的后台模版，它是一款基于Layui框架的轻量级扁平化且完全免费开源的网站后台管理系统模板，适合中小型CMS后台系统。">
+    <link rel="shortcut icon" href="images/iconImg.jpg"/>
+    <link rel="stylesheet" href="/rwx/admin/css/okadmin.css">
+</head>
+<body>
+<div class="ok-body">
+    <blockquote class="layui-elem-quote">
+        欢迎管理员：<span class="x-red" style="font-size: 24px;color: coral;">
+        [[${session.loginAdmin.getAdminname()}]]</span>！当前时间: <span id="nowTime"></span> <span id="weekday"></span>
+    </blockquote>
+    <fieldset class="layui-elem-field">
+        <legend>数据统计</legend>
+        <div class="layui-row layui-col-space10 layui-row-margin">
+            <div class="layui-col-md2">
+                <div class="layui-bg-green md2-sub1">
+                    <i class="iconfont icon-dianliyonghuzongshu"></i>
+                </div>
+                <div class="md2-sub2">
+                    <span class="userNum">100</span>
+                    <cite>用户总数</cite>
+                </div>
+            </div>
+            <div class="layui-col-md2">
+                <div class="layui-bg-blue md2-sub1">
+                    <i class="iconfont icon-wenzhang2"></i>
+                </div>
+                <div class="md2-sub2">
+                    <span class="articleNum">100</span>
+                    <cite>文章总数</cite>
+                </div>
+            </div>
+            <div class="layui-col-md2">
+                <div class="layui-bg-black md2-sub1">
+                    <i class="iconfont icon-pinglun"></i>
+                </div>
+                <div class="md2-sub2">
+                    <span class="commentNum">100</span>
+                    <cite>评论总数</cite>
+                </div>
+            </div>
+            <div class="layui-col-md2">
+                <div class="layui-bg-orange md2-sub1">
+                    <i class="layui-icon layui-icon-notice"></i>
+                </div>
+                <div class="md2-sub2">
+                    <span class="noteNum">100</span>
+                    <cite>通知总数</cite>
+                </div>
+            </div>
+            <div class="layui-col-md2">
+                <div class="layui-bg-red md2-sub1">
+                    <i class="layui-icon layui-icon-dialogue"></i>
+                </div>
+                <div class="md2-sub2">
+                    <span class="remainNum">100</span>
+                    <cite>留言总数</cite>
+                </div>
+            </div>
+            <div class="layui-col-md2">
+                <div class="layui-bg-cyan md2-sub1">
+                    <i class="iconfont">&#xe600;</i>
+                </div>
+                <div class="md2-sub2">
+                    <span class="hotelNum">37</span>
+                    <cite>酒店总数</cite>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div id="main" style="width: 100%;height:400px;margin-top: 50px;"></div>
+
+    <div id="mainArticle" style="width: 100%;height:400px;margin-top: 50px;"></div>
+
+    <div id="mainComment" style="width: 100%;height:400px;margin-top: 50px;margin-bottom: 50px;"></div>
+
+    <blockquote class="layui-elem-quote">
+        更新日志
+    </blockquote>
+    <ul class="layui-timeline">
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+                <h3 class="layui-timeline-title">12月25日</h3>
+                <p>毕业答辩终于来了，至此感觉<em>大学，真的好像在向我挥手告别了。</em>送两句话给自己：</p>
+                <ul>
+                    <li>但行好事 莫问前程</li>
+                    <li>纵有疾风起 人生不言弃</li>
+                </ul>
+            </div>
+        </li>
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe756;</i>
+            <div class="layui-timeline-content layui-text">
+                <h3 class="layui-timeline-title">12月15日</h3>
+                <p>
+                    任我行的后台及前端，大体架构成型。
+                    <br>不枉近数月日日夜夜与之为伴。
+                    <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon">&#xe6af;</i>
+                </p>
+            </div>
+        </li>
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+                <h3 class="layui-timeline-title">11月05日</h3>
+                <p>
+                    老师提的算法终于来了
+                    <br>我们往往都需要某些算法来充实项目
+                    <br>于是，头痛不已
+                </p>
+            </div>
+        </li>
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+                <h3 class="layui-timeline-title">10月1日</h3>
+                <p>
+                    这个不一样的国庆
+                    <br>因为项目遇到了问题，所以只能乖乖改项目
+                    <br>这一天，项目瓶颈算是来临
+                </p>
+            </div>
+        </li>
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+                <h3 class="layui-timeline-title">9月1日</h3>
+                <p>
+                    毕业设计正式开始
+                    <br>常常在想，要是有一个满足我项目所有基础页面的CMS该多好
+                    <br>今天，初始化项目
+                </p>
+            </div>
+        </li>
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis layui-anim layui-anim-rotate layui-anim-loop">&#xe63e;</i>
+            <div class="layui-timeline-content layui-text">
+                <div class="layui-timeline-title">过去</div>
+            </div>
+        </li>
+    </ul>
+</div>
+<!--js引入-->
+<script src="/rwx/public/js/jquery-3.2.1.min.js"></script>
+<script src="/rwx/admin/lib/layui/layui.js"></script>
+<script src="/rwx/admin/lib/echarts/echarts.common.min.js"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById("main"));
+
+    var maleNum ;
+    var femaleNum ;
+    var unKnowNum ;
+    $.ajax({
+        async: false,
+        type: "get",
+        contentType: "application/json",
+        dataType: 'json',
+        url: "/rwx/admin/sexNum",
+        success: function(data) {
+            maleNum = data.maleNum;
+            femaleNum = data.femaleNum;
+            unKnowNum = data.unKnowNum;
+        },
+        error: function(){
+            alert('数据渲染失败！');
+        }
+    });
+
+    // 指定图表的配置项和数据
+    var option = {
+        backgroundColor: "#2c343c",
+
+        title: {
+            text: "男女数量及比例",
+            left: "center",
+            top: 20,
+            textStyle: {
+                color: "#ccc"
+            }
+        },
+
+        tooltip: {
+            trigger: "item",
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        color: [ '#f0992c', '#00CED1','#cd2f36'],
+
+        visualMap: {
+            show: false,
+            min: 80,
+            max: 600,
+            inRange: {
+                colorLightness: [0, 1]
+            }
+        },
+        series: [
+            {
+                name: "男女数量及比例",
+                type: "pie",
+                radius: "55%",
+                center: ["50%", "50%"],
+                data: [
+                    {value: femaleNum, name: "女性"},
+                    {value: maleNum, name: "男性"},
+                    {value: unKnowNum, name: "未知"}
+                ].sort(function (a, b) {
+                    return a.value - b.value;
+                }),
+                roseType: "radius",
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: "rgba(255, 255, 255, 0.3)"
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        lineStyle: {
+                            color: "rgba(255, 255, 255, 0.3)"
+                        },
+                        smooth: 0.2,
+                        length: 10,
+                        length2: 20
+                    }
+                },
+                itemStyle: {
+                    normal: {
+//                        color: "#c23531",
+                        shadowBlur: 200,
+                        shadowColor: "rgba(0, 0, 0, 0.5)"
+                    }
+                },
+
+                animationType: "scale",
+                animationEasing: "elasticOut",
+                animationDelay: function (idx) {
+                    return Math.random() * 200;
+                }
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById("mainArticle"));
+
+    var journeyNum ;
+    var strategyNum ;
+    var companyNum ;
+    $.ajax({
+        async: false,
+        type: "post",
+        contentType: "application/json",
+        dataType: 'json',
+        url: "/rwx/company/countNum",
+        success: function(data) {
+            companyNum = data.companyNum;
+        },
+        error: function(){
+            alert('数据渲染失败！');
+        }
+    });
+    $.ajax({
+        async: false,
+        type: "post",
+        contentType: "application/json",
+        dataType: 'json',
+        url: "/rwx/journey/countNum",
+        success: function(data) {
+            journeyNum = data.journeyNum;
+        },
+        error: function(){
+            alert('数据渲染失败！');
+        }
+    });
+    $.ajax({
+        async: false,
+        type: "post",
+        contentType: "application/json",
+        dataType: 'json',
+        url: "/rwx/strategy/countNum",
+        success: function(data) {
+            strategyNum = data.strategyNum;
+        },
+        error: function(){
+            alert('数据渲染失败！');
+        }
+    });
+
+    $(".articleNum").html(journeyNum+strategyNum+companyNum);
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: "文章数量图"
+        },
+        tooltip: {},
+        legend: {
+            data: ["数量"]
+        },
+        xAxis: {
+            data: ["游记", "攻略", "结伴"],
+            axisLine: {  //这是x轴文字颜色
+                lineStyle: {
+                    color: "#999",
+                }
+            }
+        },
+        yAxis: {},
+        series: [{
+            name: "数量",
+            type: "bar",
+            itemStyle:{
+                normal:{
+                    color: function(params) {
+                        // build a color map as your need.
+                        var colorList = [
+                            '#F4E001','#F0805A','#26C0C0'
+                        ];
+                        return colorList[params.dataIndex]
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: '{b}\n{c}'　　　　//这是关键，在需要的地方加上就行了
+                    }
+                }
+            },
+            data: [journeyNum,strategyNum,companyNum]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+<!--js逻辑-->
+<script type="text/javascript">
+
+    layui.use("util", function () {
+        var util = layui.util;
+        util.fixbar({});
+    });
+
+    /**
+     * 初始化函数
+     */
+    setDate();
+
+    /**
+     * 获取当前时间
+     */
+    var nowDate1 = "";
+    function setDate() {
+        var date = new Date();
+        var year = date.getFullYear();
+        nowDate1 = year + "-" + addZero((date.getMonth() + 1)) + "-" + addZero(date.getDate()) + "  ";
+        nowDate1 += addZero(date.getHours()) + ":" + addZero(date.getMinutes()) + ":" + addZero(date.getSeconds());
+        document.getElementById("nowTime").innerHTML = nowDate1;
+        setTimeout('setDate()', 1000);
+    }
+
+    /**
+     * 年月日是分秒为10以下的数字则添加0字符串
+     * @param time
+     * @returns {number | *}
+     */
+    function addZero(time) {
+        var i = parseInt(time);
+        if (i / 10 < 1) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    /**
+     * 初始化星期几
+     * @type {string}
+     */
+    var weekday = "星期" + "日一二三四五六".charAt(new Date().getDay());
+    document.getElementById("weekday").innerHTML = weekday;
+
+    function getUserNum() {
+        var journeyCommentNum;
+        var strategyCommentNum;
+        var companyCommentNum;
+        var commentCommentNum;
+        $.ajax({
+            url: "/rwx/admin/userNum",
+            async: false,
+            type: "get",
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(res){
+                $(".userNum").html(res.total);
+            }
+        });
+        $.ajax({
+            async: false,
+            type: "post",
+            contentType: "application/json",
+            dataType: 'json',
+            url: "/rwx/comment/countNum",
+            success: function(data) {
+                console.log(data);
+                $(".commentNum").html(data.commentNum);
+                journeyCommentNum = data.jornuyNum;
+                strategyCommentNum = data.strategyNum;
+                companyCommentNum = data.companyNum;
+                commentCommentNum = data.commentsNum;
+            },
+            error: function(){
+                alert('数据渲染失败！');
+            }
+        });
+        $.ajax({
+            async: false,
+            type: "post",
+            contentType: "application/json",
+            dataType: 'json',
+            url: "/rwx/notification/noteTotal",
+            success: function(data) {
+                $(".noteNum").html(data.noteTotal);
+            },
+            error: function(){
+                alert('数据渲染失败！');
+            }
+        });
+        $.ajax({
+            async: false,
+            type: "post",
+            contentType: "application/json",
+            dataType: 'json',
+            url: "/rwx/remain/remainNum",
+            success: function(data) {
+                $(".remainNum").html(data.remainNum);
+            },
+            error: function(){
+                alert('数据渲染失败！');
+            }
+        });
+        $.ajax({
+            async: false,
+            type: "post",
+            contentType: "application/json",
+            dataType: 'json',
+            url: "/rwx/hotel/hotelNum",
+            success: function(data) {
+                $(".hotelNum").html(data.hotelNum);
+            },
+            error: function(){
+                alert('数据渲染失败！');
+            }
+        });
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById("mainComment"));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: "评论数量详情"
+            },
+            tooltip: {
+                trigger: "axis"
+            },
+            legend: {
+//                data: ["游记评论数", "攻略评论数", "结伴评论数", "二级评论数"]
+                data: "评论数量详情"
+            },
+            grid: {
+                left: "3%",
+                right: "4%",
+                bottom: "3%",
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: "category",
+                boundaryGap: false,
+//                data: ["今天", "一天前", "两天前", "三天前", "四天前", "五天前", "六天前"]
+                data: ["游记评论数", "攻略评论数", "结伴评论数", "二级评论数"]
+            },
+            yAxis: {
+                type: "value"
+            },
+            series: [
+                {
+                    type: "line",
+                    stack: "总量",
+                    data: [journeyCommentNum.length, strategyCommentNum.length, companyCommentNum.length, commentCommentNum.length]
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+    getUserNum();
+</script>
+</body>
+</html>

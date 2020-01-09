@@ -1,5 +1,6 @@
 package com.yuanzhi.tourism.dao;
 
+import com.yuanzhi.tourism.dto.QuestionDTO;
 import com.yuanzhi.tourism.entity.Question;
 import com.yuanzhi.tourism.entity.QuestionExample;
 import java.util.List;
@@ -27,4 +28,10 @@ public interface QuestionMapper {
     int updateByPrimaryKeySelective(Question record);
 
     int updateByPrimaryKey(Question record);
+
+    List<QuestionDTO> selectWithUser();
+
+    int incView(Integer questionId);
+
+    QuestionDTO selectWithUserByPrimarry(Integer questionId);
 }

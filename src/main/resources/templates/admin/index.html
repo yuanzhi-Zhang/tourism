@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>任我行旅游</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ok-admin v1.0,ok-admin网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+    <meta name="description" content="ok-admin v1.0，顾名思义，很赞的后台模版，它是一款基于Layui框架的轻量级扁平化且完全免费开源的网站后台管理系统模板，适合中小型CMS后台系统。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/rwx/images/iconImg.jpg"/>
+    <link rel="stylesheet" href="/rwx/admin/css/okadmin.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头部导航-->
+    <div class="layui-header">
+        <div class="layui-logo">任我行旅游</div>
+        <div class="menu-switch">
+            <i class="iconfont icon-caidan"></i>
+        </div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="weather">
+                <div id="tp-weather-widget"></div>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right" lay-filter="navFilter">
+			<li class="textMarquee">
+				<marquee>任我行，取名自武侠小说，本就有任意、随心之意，所以我总觉得，世界这么大，我们得出去看看的！</marquee>
+			</li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="images/iconImg.jpg" class="layui-nav-img">
+                </a>
+                <dl class="layui-nav-child">
+                    <dd lay-unselect><a href="javascript:;" path="pages/member/user-center.html">个人中心<span class="layui-badge-dot"></span></a></dd>
+					<dd lay-unselect><a href="javascript:;" id="alertSkin">皮肤动画</a><hr></dd>
+                    <dd lay-unselect><a href="javascript:;" id="lock">锁定账户</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:void(0)" id="logout">退出</a></li>
+        </ul>
+    </div>
+    <!--左侧导航区域-->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="navFilter">
+            </ul>
+        </div>
+    </div>
+    <!-- 内容主体区域 -->
+    <div class="content-body">
+        <div class="layui-tab layui-tab-brief" lay-filter="ok-tab" lay-allowClose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this"><i class="iconfont icon-home" style="font-size:15px;"></i> 控制台</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <iframe src="/rwx/admin/welcome" frameborder="0" scrolling="yes" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部信息-->
+    <div class="layui-footer">
+        Copyright ©<span id="endYear"></span> rwx-admin v1.0 All Rights Reserved
+    </div>
+</div>
+<div class="yy"></div>
+<!--js逻辑-->
+
+<script src="/rwx/admin/lib/layui/layui.js"></script>
+<script src="/rwx/admin/js/okadmin.js"></script>
+<!--天气预报插件-->
+<script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+        flavor: "bubble",
+        location: "WT62ZWSX5CM0",
+        geolocation: false,
+        language: "zh-Hans",
+        unit: "c",
+        theme: "auto",
+        token: "ca2b0610-5396-4f07-8e28-be5c1cfaafa5",
+        hover: "enabled",
+        container: "tp-weather-widget"
+    })
+</script>
+<!--百度统计-->
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?e4a38d186cb7e65e5ead3eb3f7eb190e";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>酒店列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/rwx/admin/css/okadmin.css">
+</head>
+<body>
+<div class="ok-body">
+    <!--面包屑导航区域-->
+    <div class="ok-body-breadcrumb">
+        <span class="layui-breadcrumb">
+            <a><cite>首页</cite></a>
+            <a><cite>酒店列表</cite></a>
+        </span>
+        <a class="layui-btn layui-btn-sm" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon layui-icon-refresh"></i>
+        </a>
+    </div>
+    <!--数据表格-->
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="/rwx/public/js/jquery-3.2.1.min.js"></script>
+<script src="/rwx/admin/lib/layui/layui.js"></script>
+<script>
+    layui.use(["element", "table", "form", "laydate", "okLayer", "okUtils"], function () {
+        var table = layui.table;
+        var form = layui.form;
+        var util = layui.util;
+        var laydate = layui.laydate;
+        var okLayer = layui.okLayer;
+        var okUtils = layui.okUtils;
+
+        util.fixbar({});
+
+        laydate.render({elem: "#startTime", type: "datetime"});
+        laydate.render({elem: "#endTime", type: "datetime"});
+
+        var articleTable = table.render({
+            elem: "#tableId",
+            url: "/rwx/hotel/getAll",
+            limit: 7,
+            limits: [7,14,21],
+            page: true,
+            even: true,
+            toolbar: "#toolbarTpl",
+            size: "lg",
+            cols:
+                [
+                    [
+                        {type: "checkbox"},
+                        {field: "hotelId", title: "ID", width: 80, align: "center", sort: true},
+                        {field: "hotelNameZn", title: "酒店名称", align: "center", width: 200},
+                        {field: "hotelPicture", title: "酒店图片", align: "center", width: 120, templet: "#avaterTpl"},
+                        {field: "hotelCity", title: "所属城市", align: "center", width: 120},
+                        {field: "hotelAddress", title: "具体位置", align: "center", width: 280},
+                        {field: "hotelPrice", title: "价格", align: "center", width: 100, templet: "#priceTpl"},
+                        {field: "hotelStarName", title: "类型", align: "center", width: 100},
+                        {title: "操作", width: 120, align: "center", templet: "#operationTpl"}
+                    ]
+                ],
+            done: function (res, curr, count) {
+                console.log(res, curr, count)
+            }
+        });
+
+        form.on("submit(search)", function () {
+            articleTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+
+        table.on("toolbar(tableFilter)", function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            var data = checkStatus.data;
+            var userLists = [];
+            for(var i=0; i<data.length; i++){
+                userLists.push(data[i].hotelId);
+            }
+            switch (obj.event) {
+                case "batchRead":
+                    batchEnabled();
+                    break;
+                case "batchDel":
+                    batchDelStrategy(userLists);
+                    articleTable.reload({
+                        where: data.field,
+                        page: {curr: 1}
+                    });
+                    break;
+            }
+        });
+
+        table.on("tool(tableFilter)", function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case "edit":
+                    layer.alert('编辑行：<br>'+ JSON.stringify(data));
+                    break;
+                case "del":
+//                    del(data.id);
+                    layer.confirm('真的删除行么', function(index){
+                        obj.del();
+                        deleteStrategy(data.hotelId);
+                        layer.close(index);
+                    });
+                    break;
+            }
+        });
+
+        function edit (id) {
+            okLayer.open("留言回复", "message-reply.html?id=" + id, "90%", "90%", null, function () {
+                articleTable.reload();
+            })
+        }
+
+        function batchDelStrategy(userLists){
+            layer.confirm('真的删除这些行么', function(index){
+                $.ajax({
+                    url: "/rwx/hotel/batchDelHotel",
+                    async: false,
+                    type: "post",
+                    data: JSON.stringify({
+                        userLists: userLists
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json',
+                    success: function(data){
+
+                    }
+                });
+                layer.close(index);
+            })
+        }
+        function deleteStrategy(userId){
+            $.ajax({
+                url: "/rwx/hotel/deleteHotel",
+                async: false,
+                type: "post",
+                data: JSON.stringify({
+                    companyId: userId
+                }),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(data){
+
+                }
+            })
+        }
+    })
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel"><i class="layui-icon layui-icon-delete"></i>批量删除</button>
+    </div>
+</script>
+<script type="text/html" id="avaterTpl">
+    <img src="{{d.hotelPicture}}">
+</script>
+<script type="text/html" id="priceTpl">
+    <span style="color: #de4a41">￥{{d.hotelPrice}}</span>
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+    <a href="javascript:;" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+    <a href="javascript:;" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+</body>
+</html>

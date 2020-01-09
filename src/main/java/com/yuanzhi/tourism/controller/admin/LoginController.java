@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,12 +33,24 @@ public class LoginController {
         if (newadmin != null){
             //登录成功,防止表单重复提交，可以重定向到主页
             session.setAttribute("loginAdmin",newadmin);
+//            return "admin/index";
             return "redirect:/adminMain.html";
         }else {
             //登录失败
             map.put("msg","账号密码错误");
             return "admin/login";
         }
+    }
+
+    @PostMapping(value = "/adminLogin")
+    @ResponseBody
+    public Map<String,Object> adminLogin(@RequestParam("adminaccount") String adminaccount,
+                        @RequestParam("adminpassword") String adminpassword){
+        Admin admin = new Admin();
+        admin = adminService.adminLogin(adminaccount,adminpassword);
+        Map<String,Object> map = new HashMap<>();
+        map.put("admin",admin);
+        return map;
     }
 
 }

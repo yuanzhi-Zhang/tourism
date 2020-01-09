@@ -13,6 +13,9 @@
     height: 570px;
     object-fit: cover;
 }
+.strategy_img:hover{
+    cursor: pointer;
+}
 
 .strategy_nav {
     width: 100%;
@@ -23,7 +26,8 @@
     background: rgba(99, 87, 87,0.6);
 }
 .strategy_search_main{
-    width: 1000px;
+    /*width: 1000px;*/
+    width: 100%;
     display: block;
     margin: 0 auto;
     position: absolute;
@@ -34,7 +38,8 @@
     width: 350px;
     padding: 10px 10px 10px 10px;
     background: rgba(131, 130, 130,0.6);
-    float: right;
+    /*float: right;*/
+    margin: 0 auto;
 }
 
 .strategy_search::before {
@@ -73,11 +78,35 @@
 }
 
 .strategy_search .search button:before {
-    content: "\f002";
-    font-family: FontAwesome;
+    /*content: "\f002";*/
+    /*font-family: FontAwesome;*/
     font-size: 18px;
     color: #F9F0DA;
 }
+
+.simpleIntro{
+    position: absolute;
+    top: 118px;
+    right: 15%;
+    width: 300px;
+}
+
+.simpleTitle{
+    font-size: 24px;
+    font-family: "幼圆";
+    color: #000000;
+    text-align: left;
+    line-height: 32px;
+    text-shadow: 5px 3px 2px rgb(154, 199, 81);
+}
+
+.simpleContent{
+    color: white;
+    font-size: 16px;
+    text-align: left;
+    line-height: 28px;
+}
+
 /*主要内容*/
 .strategy_content{
     width: 100%;
@@ -114,6 +143,7 @@
     color: coral;
     text-decoration: underline;
 }
+
 /*右边攻略展示区*/
 .strategy_partmain{
     width: 780px;
@@ -126,6 +156,9 @@
 .strategy_info:hover{
     background-color: silver;
     cursor: pointer;
+}
+.strategy_info:hover .strategy_partmain_title{
+    color: coral;
 }
 .strategy_info a{
     color: #0C0C0C;

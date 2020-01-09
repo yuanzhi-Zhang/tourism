@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.PictureMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Picture">
+    <id column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="album_id" jdbcType="INTEGER" property="albumId" />
+    <result column="scene_id" jdbcType="INTEGER" property="sceneId" />
+    <result column="picture_url" jdbcType="VARCHAR" property="pictureUrl" />
+    <result column="upload_time" jdbcType="DATE" property="uploadTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pid, album_id, scene_id, picture_url, upload_time
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.PictureExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from picture
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from picture
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from picture
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.PictureExample">
+    delete from picture
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Picture">
+    insert into picture (pid, album_id, scene_id, 
+      picture_url, upload_time)
+    values (#{pid,jdbcType=INTEGER}, #{albumId,jdbcType=INTEGER}, #{sceneId,jdbcType=INTEGER}, 
+      #{pictureUrl,jdbcType=VARCHAR}, #{uploadTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Picture">
+    insert into picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="albumId != null">
+        album_id,
+      </if>
+      <if test="sceneId != null">
+        scene_id,
+      </if>
+      <if test="pictureUrl != null">
+        picture_url,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="albumId != null">
+        #{albumId,jdbcType=INTEGER},
+      </if>
+      <if test="sceneId != null">
+        #{sceneId,jdbcType=INTEGER},
+      </if>
+      <if test="pictureUrl != null">
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.PictureExample" resultType="java.lang.Long">
+    select count(*) from picture
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update picture
+    <set>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.albumId != null">
+        album_id = #{record.albumId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sceneId != null">
+        scene_id = #{record.sceneId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pictureUrl != null">
+        picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadTime != null">
+        upload_time = #{record.uploadTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update picture
+    set pid = #{record.pid,jdbcType=INTEGER},
+      album_id = #{record.albumId,jdbcType=INTEGER},
+      scene_id = #{record.sceneId,jdbcType=INTEGER},
+      picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
+      upload_time = #{record.uploadTime,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Picture">
+    update picture
+    <set>
+      <if test="albumId != null">
+        album_id = #{albumId,jdbcType=INTEGER},
+      </if>
+      <if test="sceneId != null">
+        scene_id = #{sceneId,jdbcType=INTEGER},
+      </if>
+      <if test="pictureUrl != null">
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=DATE},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Picture">
+    update picture
+    set album_id = #{albumId,jdbcType=INTEGER},
+      scene_id = #{sceneId,jdbcType=INTEGER},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=DATE}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+</mapper>

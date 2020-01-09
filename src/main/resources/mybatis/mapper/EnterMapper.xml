@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.EnterMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Enter">
+    <id column="enter_id" jdbcType="INTEGER" property="enterId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="enter_time" jdbcType="VARCHAR" property="enterTime" />
+    <result column="enter_remarks" jdbcType="VARCHAR" property="enterRemarks" />
+    <result column="company_male_num" jdbcType="INTEGER" property="companyMaleNum" />
+    <result column="company_female_num" jdbcType="INTEGER" property="companyFemaleNum" />
+  </resultMap>
+  <resultMap id="BaseResultMapWithEnterUser" type="com.yuanzhi.tourism.dto.EnterCompanyDTO">
+    <id column="enter_id" jdbcType="INTEGER" property="enterId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="enter_time" jdbcType="VARCHAR" property="enterTime" />
+    <result column="enter_remarks" jdbcType="VARCHAR" property="enterRemarks" />
+    <result column="company_male_num" jdbcType="INTEGER" property="companyMaleNum" />
+    <result column="company_female_num" jdbcType="INTEGER" property="companyFemaleNum" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+    <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="company_title" jdbcType="VARCHAR" property="companyTitle" />
+    <result column="company_end_area" jdbcType="VARCHAR" property="companyEndArea" />
+    <result column="company_start_time" jdbcType="TIMESTAMP" property="companyStartTime" />
+    <result column="company_main_img" jdbcType="VARCHAR" property="companyMainImg" />
+    <result column="company_time" jdbcType="VARCHAR" property="companyTime" />
+    <result column="company_attend_num" jdbcType="INTEGER" property="companyAttendNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="BaseResultMapWithUser" type="com.yuanzhi.tourism.dto.EnterDTO">
+    <association javaType="com.yuanzhi.tourism.entity.User" property="user">
+      <id column="uid" jdbcType="INTEGER" property="uid" />
+      <result column="userName" jdbcType="VARCHAR" property="username" />
+      <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+      <result column="phone" jdbcType="VARCHAR" property="phone" />
+      <result column="address" jdbcType="VARCHAR" property="address" />
+      <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    enter_id, company_id, user_id, user_phone, enter_time, enter_remarks, company_male_num, 
+    company_female_num
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.EnterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from enter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from enter
+    where enter_id = #{enterId,jdbcType=INTEGER}
+  </select>
+  <select id="selectWithUser" parameterType="java.lang.Integer" resultMap="BaseResultMapWithUser">
+    SELECT enter_id, company_id, user_id, user_phone, enter_time, enter_remarks, company_male_num,
+        company_female_num,uid,userName,userSex,imgUrl,phone
+    FROM enter LEFT JOIN `user` ON enter.user_id = `user`.uid
+    WHERE enter.company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <select id="getByUser" parameterType="java.lang.Integer" resultMap="BaseResultMapWithEnterUser">
+    SELECT company.company_id,enter_time,enter_remarks,company_female_num,company_male_num,company_end_area,company_title,
+	        company_time,company_start_time,company_main_img,company_attend_num,userName,userSex,imgUrl,address
+    FROM enter LEFT JOIN company ON company.company_id = enter_id
+    LEFT JOIN `user` ON company_owner_id = `user`.uid
+    WHERE enter.user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from enter
+    where enter_id = #{enterId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.EnterExample">
+    delete from enter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Enter">
+    insert into enter (enter_id, company_id, user_id, 
+      user_phone, enter_time, enter_remarks, 
+      company_male_num, company_female_num)
+    values (#{enterId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{userPhone,jdbcType=VARCHAR}, #{enterTime,jdbcType=VARCHAR}, #{enterRemarks,jdbcType=VARCHAR}, 
+      #{companyMaleNum,jdbcType=INTEGER}, #{companyFemaleNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Enter">
+    insert into enter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="enterId != null">
+        enter_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="enterTime != null">
+        enter_time,
+      </if>
+      <if test="enterRemarks != null">
+        enter_remarks,
+      </if>
+      <if test="companyMaleNum != null">
+        company_male_num,
+      </if>
+      <if test="companyFemaleNum != null">
+        company_female_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="enterId != null">
+        #{enterId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="enterTime != null">
+        #{enterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="enterRemarks != null">
+        #{enterRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="companyMaleNum != null">
+        #{companyMaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyFemaleNum != null">
+        #{companyFemaleNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.EnterExample" resultType="java.lang.Long">
+    select count(*) from enter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update enter
+    <set>
+      <if test="record.enterId != null">
+        enter_id = #{record.enterId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userPhone != null">
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterTime != null">
+        enter_time = #{record.enterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterRemarks != null">
+        enter_remarks = #{record.enterRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyMaleNum != null">
+        company_male_num = #{record.companyMaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyFemaleNum != null">
+        company_female_num = #{record.companyFemaleNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update enter
+    set enter_id = #{record.enterId,jdbcType=INTEGER},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      enter_time = #{record.enterTime,jdbcType=VARCHAR},
+      enter_remarks = #{record.enterRemarks,jdbcType=VARCHAR},
+      company_male_num = #{record.companyMaleNum,jdbcType=INTEGER},
+      company_female_num = #{record.companyFemaleNum,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Enter">
+    update enter
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="enterTime != null">
+        enter_time = #{enterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="enterRemarks != null">
+        enter_remarks = #{enterRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="companyMaleNum != null">
+        company_male_num = #{companyMaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyFemaleNum != null">
+        company_female_num = #{companyFemaleNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where enter_id = #{enterId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Enter">
+    update enter
+    set company_id = #{companyId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      enter_time = #{enterTime,jdbcType=VARCHAR},
+      enter_remarks = #{enterRemarks,jdbcType=VARCHAR},
+      company_male_num = #{companyMaleNum,jdbcType=INTEGER},
+      company_female_num = #{companyFemaleNum,jdbcType=INTEGER}
+    where enter_id = #{enterId,jdbcType=INTEGER}
+  </update>
+</mapper>

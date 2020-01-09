@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="css/notification.css">
+
+    <script src="public/js/jquery-3.2.1.min.js"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
+    <script src="js/notification.js"></script>
+    <title>系统消息@任我行</title>
+</head>
+<body>
+<!--头部导航-->
+<div class="notification_head">
+    <div th:replace="user/common/header::header"></div>
+</div>
+<div class="notification_content">
+    <div class="main">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
+        <div class="left_slide">
+            <script id="companyDemo" type="text/html">
+                {{#  layui.each(d.list.notices, function(index, item){ }}
+                    <div style="margin: 15px;" id="notices-{{item.nid}}">
+                        <div class="left">
+                            <img src="images/icon/note.png">
+                            {{#  if(item.status == 0){ }}
+                            <span class="layui-badge" id="unRead-{{item.nid}}"></span>
+                            {{#  } }}
+                        </div>
+                        <div class="right">
+                            <p style="text-align: left;font-size: 18px;">消息通知&emsp;&emsp;
+                                {{#  if(item.status == 0){ }}
+                                <a href="javascript:" class="changeRead" style="color: rgb(57, 150, 150);" data-id="{{item.nid}}"
+                                   id="changeRead-{{item.nid}}" onclick="changeToRead(this)">标为已读</a>
+                                {{#  } }}
+                                <span style="float: right;color: #666;font-size: 16px;">
+                                    {{item.sendtime}}
+                                    <i class="layui-icon layui-icon-close close" style="margin-left: 5px;" data-id="{{item.nid}}" onclick="deleteNote(this)"></i>
+                                </span>
+                            </p>
+                            <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                                <!--您的
+                                {{#  if(item.type == 1){ }}  游记  {{#  } }}
+                                {{#  if(item.type == 2){ }}  攻略  {{#  } }}
+                                {{#  if(item.type == 3){ }}  结伴  {{#  } }}
+                                {{#  if(item.type == 5){ }}  评论  {{#  } }}
+                                <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                被<span style="color: #0f88eb;font-size: 18px;">{{item.notificationername}}</span>
+                                {{#  if(item.type == 5){ }}
+                                回复
+                                {{#  } else { }}
+                                评论
+                                {{#  } }}
+                                了-->
+
+                                <span style="color: #0f88eb;font-size: 18px;">{{item.notificationername}}</span>
+                                {{#  if(item.type == 1){ }}
+                                评论了您的游记  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                    <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                                        <span style="color: #0f88eb">{{item.notificationername}}</span>
+                                        ： {{item.typename}}
+                                    </p>
+                                    <input type="text" placeholder="回复一下TA..." autocomplete="off" id="input-{{item.typeid}}" class="layui-input"
+                                           style="float: left;width: 85.5%;margin-right: 15px;border-radius: 5px;margin-bottom: 30px;margin-top: 10px;">
+                                    <button type="button" class="layui-btn" data-id="{{item.typeid}}" data-name="{{item.type}}" data-index="{{item.nid}}" onclick="comment(this)"
+                                            style="border-radius: 5px;background-color: #5fb8788f;margin-top: 10px;">
+                                        回复
+                                    </button>
+                                {{#  } }}
+                                {{#  if(item.type == 2){ }}
+                                评论了您的攻略  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                    <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                                        <span style="color: #0f88eb">{{item.notificationername}}</span>
+                                        ： {{item.typename}}
+                                    </p>
+                                    <input type="text" placeholder="回复一下TA..." autocomplete="off" id="inputStrategy-{{item.typeid}}" class="layui-input"
+                                           style="float: left;width: 85.5%;margin-right: 15px;border-radius: 5px;margin-bottom: 30px;margin-top: 10px;">
+                                    <button type="button" class="layui-btn" data-id="{{item.typeid}}" data-name="{{item.type}}" data-index="{{item.nid}}" onclick="commentStrategy(this)"
+                                            style="border-radius: 5px;background-color: #5fb8788f;margin-top: 10px;">
+                                        回复
+                                    </button>
+                                {{#  } }}
+                                {{#  if(item.type == 3){ }}
+                                评论了您的结伴  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                    <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                                        <span style="color: #0f88eb">{{item.notificationername}}</span>
+                                        ： {{item.typename}}
+                                    </p>
+                                    <input type="text" placeholder="回复一下TA..." autocomplete="off" id="inputCompany-{{item.typeid}}" class="layui-input"
+                                           style="float: left;width: 85.5%;margin-right: 15px;border-radius: 5px;margin-bottom: 30px;margin-top: 10px;">
+                                    <button type="button" class="layui-btn" data-id="{{item.typeid}}" data-name="{{item.type}}" data-index="{{item.nid}}" onclick="commentCompany(this)"
+                                            style="border-radius: 5px;background-color: #5fb8788f;margin-top: 10px;">
+                                        回复
+                                    </button>
+                                {{#  } }}
+                                {{#  if(item.type == 4){ }}
+                                报名了您的结伴  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                {{#  } }}
+                                {{#  if(item.type == 5){ }}
+                                回复了您的评论  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                    <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                                        <span style="color: #0f88eb">{{item.notificationername}}</span>
+                                        ： {{item.typename}}
+                                    </p>
+                                    <input type="text" placeholder="回复一下TA..." autocomplete="off" id="inputComment-{{item.typeid}}" class="layui-input"
+                                           style="float: left;width: 85.5%;margin-right: 15px;border-radius: 5px;margin-bottom: 30px;margin-top: 10px;">
+                                    <button type="button" class="layui-btn" data-id="{{item.typeid}}" data-name="{{item.type}}" onclick="commentComment(this)"
+                                            style="border-radius: 5px;background-color: #5fb8788f;margin-top: 10px;">
+                                        回复
+                                    </button>
+                                {{#  } }}
+                                {{#  if(item.type == 6){ }}  关注了您  {{#  } }}
+                                {{#  if(item.type == 7){ }}
+                                点赞了您的游记  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                {{#  } }}
+                                {{#  if(item.type == 8){ }}
+                                点赞了您的攻略  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                {{#  } }}
+                                {{#  if(item.type == 9){ }}
+                                收藏了您的攻略  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                {{#  } }}
+                                {{#  if(item.type == 10){ }}
+                                关注了您的结伴  <span style="color: #f0992c;font-size: 18px;">{{item.typeidname}}</span>
+                                {{#  } }}
+                                {{#  if(item.type == 11){ }}
+                                给您留了言：&ensp;  <span style="color: #f0992c;font-size: 18px;">{{item.typename}}</span>
+                                {{#  } }}
+                            </p>
+                            <!--<p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                                <span style="color: #0f88eb">{{item.notificationername}}</span>
+                                ： {{item.typename}}</p>
+                            <input type="text" placeholder="回复一下TA..." autocomplete="off" id="input-{{item.typeid}}" class="layui-input"
+                                   style="float: left;width: 85.5%;margin-right: 15px;border-radius: 5px;margin-bottom: 30px;margin-top: 10px;">
+                            <button type="button" class="layui-btn" data-id="{{item.typeid}}" data-name="{{item.type}}" onclick="comment(this)"
+                                    style="border-radius: 5px;background-color: #5fb8788f;margin-top: 10px;">
+                                回复
+                            </button>-->
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                {{#  }); }}
+            </script>
+            <div id="companyView"></div>
+            <div class="layui-btn-group" style="float: right;margin-right: -100px;" id="pageNewUp">
+                <button type="button" class="layui-btn layui-btn-sm">
+                    共&emsp;<span class="totalNewUp" style="font-size: 18px;"></span>&emsp;条
+                </button>
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                    当前为第&emsp;<span class="currNewUp" style="font-size: 18px;"></span>&emsp;页
+                </button>
+                <button type="button" class="layui-btn layui-btn-sm">
+                    共&emsp;<span class="pageNumNewUp" style="font-size: 18px;"></span>&emsp;页
+                </button>
+                <script id="pageNewUpDemo" type="text/html">
+                    {{#  layui.each(d.list.pages, function(index, item){ }}
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                            onclick="toPageNewUpCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                        {{item}}
+                    </button>
+                    {{#  }); }}
+                </script>
+                <div id="pageNewUpView" style="float: right;"></div>
+            </div>
+            <!--<div style="margin: 15px;">
+                <div class="left"><img src="images/icon/note.png"></div>
+                <div class="right">
+                    <p style="text-align: left;font-size: 18px;">评论通知<span style="float: right">2019-12-08</span></p>
+                    <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                        您的攻略<span style="color: #f0992c;font-size: 18px;font-weight: 600;">xxxxxxxxx</span>被谁谁谁评论了
+                    </p>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <div style="margin: 15px;">
+                <div class="left"><img src="images/icon/note.png"></div>
+                <div class="right">
+                    <p style="text-align: left;font-size: 18px;">评论通知<span style="float: right">2019-12-08</span></p>
+                    <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                        您的攻略<span style="color: #f0992c;font-size: 18px;font-weight: 600;">xxxxxxxxx</span>被谁谁谁评论了
+                    </p>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <div style="margin: 15px;">
+                <div class="left"><img src="images/icon/note.png"></div>
+                <div class="right">
+                    <p style="text-align: left;font-size: 18px;">评论通知<span style="float: right">2019-12-08</span></p>
+                    <p style="margin-top: 10px;font-size: 16px;color: #666;line-height: 30px;">
+                        您的攻略<span style="color: #f0992c;font-size: 18px;font-weight: 600;">xxxxxxxxx</span>被谁谁谁评论了
+                    </p>
+                </div>
+                <div style="clear: both"></div>
+            </div>-->
+        </div>
+        <div class="right_slide"></div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

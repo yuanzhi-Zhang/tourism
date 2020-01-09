@@ -4,7 +4,9 @@ import com.yuanzhi.tourism.entity.User;
 import com.yuanzhi.tourism.entity.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper {
     long countByExample(UserExample example);
 
@@ -27,4 +29,16 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    void updateToken(@Param("statuscode") String statuscode, @Param("uid") Integer uid);
+
+    void incFansCount(Integer uid);
+
+    void downFansCount(Integer uid);
+
+    void incJourneyCount(Integer uid);
+
+    List<User> selectHotUser();
+
+    List<User> selectUser(@Param("page")Integer page, @Param("limit")Integer limit);
 }

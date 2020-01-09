@@ -1,0 +1,134 @@
+.localTour_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background: rgba(131, 130, 130, 0.4);
+}
+.localTour_content{
+    width: 100%;
+    padding-bottom: 40px;
+    text-align: center;
+    background: linear-gradient(45deg,rgba(254, 172, 94, 0.24),rgba(199, 121, 208, 0.32),rgba(75, 192, 200, 0.31));
+}
+.freeTour_search{
+    width: 100%;
+    display: block;
+    min-height: 60px;
+}
+.freeTour_search_left{
+    float: left;
+    margin-left: 65px;
+}
+.freeTour_search_left img{
+    width: 40px;
+    margin-right: 7px;
+}
+.freeTour_search_left span{
+    font-size: 26px;
+    font-family: "幼圆";
+    vertical-align: middle;
+}
+.freeTour_search_right img{
+    width: 40px;
+}
+#localTourLunBo img{
+    width: 100%;
+    object-fit: cover;
+    height: 580px;
+}
+#localTourLunBo:hover{
+    cursor: pointer;
+}
+.freeTour_rankList{
+    width: 1020px;
+    display: block;
+    margin: 25px auto;
+}
+.freeTour_rankList_title{
+    height: 30px;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    line-height: 30px;
+}
+.freeTour_rankList_hot{
+    width: auto;
+    color: #fb6720;
+    float: left;
+    font-size: 24px;
+    font-weight: normal;
+}
+.freeTour_rankList_hot span{
+    margin-left: 10px;
+    font-size: 14px;
+    color: #999;
+}
+.sales-cards {
+    margin: 0 -15px 0 0;
+    float: left;
+}
+.sales-cards .item {
+    float: left;
+    width: 238px;
+    display: inline;
+    margin: 0 16px 15px 4px;
+}
+.freeTour_rankList .change{
+    float: right;
+    font-size: 12px;
+    color: #999;
+}
+.freeTour_rankList .image{
+    height: 134px;
+    text-align: center;
+    position: relative;
+}
+.freeTour_rankList .image img{
+    height: 134px;
+    width: 238px;
+}
+.sales-cards a {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    height: 234px;
+}
+.sales-cards a:hover {
+    text-decoration: none;
+    background-color: #f8f8f8;
+}
+.sales-cards a:hover .caption{
+    height: 115px;
+    background-color: #f9f9f9;
+}
+.sales-cards a:hover .caption h3{
+    height: 80px;
+}
+.freeTour_rankList .caption{
+    text-align: left;
+    border: 1px solid #f1f1f1;
+    padding: 5px 10px 18px 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 75px;
+    background-color: #fff;
+    -webkit-transition: height .2s ease-in-out .1s;
+    transition: height .2s ease-in-out .1s;
+}
+.freeTour_rankList .caption h3{
+    height: 40px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    color: #000;
+    line-height: 21px;
+    overflow: hidden;
+    -webkit-transition: height .2s ease-in-out .1s;
+    transition: height .2s ease-in-out .1s;
+}
+.freeTour_rankList .caption .price{
+    color: #ff8a00;
+}
+.freeTour_rankList .caption .price b{
+    font-size: 22px;
+}

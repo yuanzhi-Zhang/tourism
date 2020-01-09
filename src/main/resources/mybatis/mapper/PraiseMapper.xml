@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.PraiseMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Praise">
+    <id column="praise_id" jdbcType="INTEGER" property="praiseId" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="praise_type" jdbcType="CHAR" property="praiseType" />
+    <result column="praise_type_id" jdbcType="INTEGER" property="praiseTypeId" />
+    <result column="praise_time" jdbcType="VARCHAR" property="praiseTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    praise_id, userId, praise_type, praise_type_id, praise_time
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.PraiseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from praise
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from praise
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from praise
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.PraiseExample">
+    delete from praise
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Praise">
+    insert into praise (praise_id, userId, praise_type, 
+      praise_type_id, praise_time)
+    values (#{praiseId,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{praiseType,jdbcType=CHAR}, 
+      #{praiseTypeId,jdbcType=INTEGER}, #{praiseTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Praise">
+    insert into praise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="praiseId != null">
+        praise_id,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="praiseType != null">
+        praise_type,
+      </if>
+      <if test="praiseTypeId != null">
+        praise_type_id,
+      </if>
+      <if test="praiseTime != null">
+        praise_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="praiseId != null">
+        #{praiseId,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="praiseType != null">
+        #{praiseType,jdbcType=CHAR},
+      </if>
+      <if test="praiseTypeId != null">
+        #{praiseTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="praiseTime != null">
+        #{praiseTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.PraiseExample" resultType="java.lang.Long">
+    select count(*) from praise
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update praise
+    <set>
+      <if test="record.praiseId != null">
+        praise_id = #{record.praiseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.praiseType != null">
+        praise_type = #{record.praiseType,jdbcType=CHAR},
+      </if>
+      <if test="record.praiseTypeId != null">
+        praise_type_id = #{record.praiseTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.praiseTime != null">
+        praise_time = #{record.praiseTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update praise
+    set praise_id = #{record.praiseId,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      praise_type = #{record.praiseType,jdbcType=CHAR},
+      praise_type_id = #{record.praiseTypeId,jdbcType=INTEGER},
+      praise_time = #{record.praiseTime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Praise">
+    update praise
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="praiseType != null">
+        praise_type = #{praiseType,jdbcType=CHAR},
+      </if>
+      <if test="praiseTypeId != null">
+        praise_type_id = #{praiseTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="praiseTime != null">
+        praise_time = #{praiseTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Praise">
+    update praise
+    set userId = #{userid,jdbcType=INTEGER},
+      praise_type = #{praiseType,jdbcType=CHAR},
+      praise_type_id = #{praiseTypeId,jdbcType=INTEGER},
+      praise_time = #{praiseTime,jdbcType=VARCHAR}
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </update>
+</mapper>

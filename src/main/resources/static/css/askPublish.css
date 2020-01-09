@@ -1,0 +1,187 @@
+.askPublish_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background: cadetblue;
+}
+.askPublish_content{
+    width: 100%;
+    padding: 40px 0;
+    background: linear-gradient(45deg,rgba(254, 172, 94, 0.24),rgba(199, 121, 208, 0.32),rgba(75, 192, 200, 0.31));
+}
+.wrapper {
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+}
+.qt-container {
+    width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+.qt-main {
+    width: 660px;
+    float: left;
+}
+.crumb {
+    height: 24px;
+    padding: 25px 0 27px;
+}
+.crumb a {
+    background-color: transparent;
+    text-decoration: none;
+    color: #ff9d00;
+    cursor: pointer;
+}
+.crumb a:hover{
+    text-decoration: underline;
+}
+.qt-tit {
+    margin-bottom: 24px;
+}
+.qt-main h5 {
+    height: 30px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 30px;
+    color: #333;
+}
+.qt-tit input {
+    display: block;
+    width: 628px;
+    height: 30px;
+    padding: 6px 15px;
+    border: 1px solid #e5e5e5;
+    color: #999;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+.qt-tit .count {
+    padding-right: 12px;
+    color: #999;
+}
+.qt-tit .count {
+    padding-right: 12px;
+    color: #999;
+}
+.hide {
+    display: none;
+}
+#questionImg{
+    margin-left: 60px;
+    margin-bottom: -67px;
+}
+.qt-tit .error {
+    font-size: 12px;
+    color: #ef523d;
+}
+.qt-interest {
+    margin-bottom: 32px;
+}
+.qt-main h5 {
+    height: 30px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 30px;
+    color: #333;
+}
+.flight_ticket_startCity input{
+    display: block;
+    width: 628px;
+    height: 30px;
+    padding: 6px 15px;
+    border: 1px solid #e5e5e5;
+    color: #999;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+.interest-description {
+    margin-top: 14px;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.interest-description dt {
+    color: #333;
+}
+.interest-description dd {
+    line-height: 18px;
+    color: #554f4f;
+    margin-top: 8px;
+}
+.interest-tags {
+    margin-top: 20px;
+}
+.interest-tags a:hover, .interest-tags .on {
+    background-color: #ff9d00;
+    border-color: #ff9d00;
+    color: #fff;
+    text-decoration: none;
+}
+
+.interest-tags a {
+    margin-bottom: 12px;
+    margin-right: 12px;
+    display: inline-block;
+    padding: 0 13px 0 13px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+    color: #474747;
+    border: 1px solid #bdbfc2;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+}
+.qt-post-btn:hover {
+    background-color: #ff8a00;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover {
+    outline: 0;
+    color: #ff8a00;
+}
+.qt-post-btn {
+    display: inline-block;
+    width: 152px;
+    height: 40px;
+    background-color: #ff9d00;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 16px;
+}
+.qt-sider {
+    width: 252px;
+    padding-top: 82px;
+    padding-right: 28px;
+    float: right;
+}
+.qt-sider .qts-tit {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.qt-sider p {
+    margin-bottom: 24px;
+    color: #554f4f;
+}
+.clearfix:after {
+    content: '';
+    clear: both;
+    height: 0;
+    display: block;
+    overflow: hidden;
+}

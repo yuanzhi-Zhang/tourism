@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui2.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/askAnswerDetail.css">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script th:src="@{/public/layui.js}"></script>
+    <script th:src="@{/js/askAnswerDetail.js}"></script>
+    <title>问答详情@任我行</title>
+</head>
+<body>
+<!--头部导航-->
+<div class="qtDetail_head">
+    <div th:replace="user/common/header::header"></div>
+</div>
+<!--主要内容区-->
+<div class="qtDetail_content">
+    <div class="detail-wrap clearfix">
+        <div class="col-main">
+            <!--面包屑导航-->
+            <div class="crumb">
+                <a th:href="@{/askAnswer}" target="_blank">任我行问答</a> &gt; <span>大家觉得哈尔滨冷吗？你愿意来吗？</span>
+            </div>
+            <!--搜索区域-->
+            <div class="search-box">
+                <div class="search-box">
+                    <div class="search-panel" data-cs-t="wenda">
+                        <div class="clearfix _j_suggest_hd">
+                            <div class="sp-input">
+                                <input type="text" id="_j_wenda_seach_input" placeholder="提问前请先搜索，看看你的问题其他人是否已经问过">
+                            </div>
+                            <input type="button" id="_j_wenda_seach_button" class="sp-button" data-mddid="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--问题区域-->
+            <div class="q-detail" id="_js_askDetail">
+                <!-- 问题详情 -->
+                <div class="q-content">
+                    <div class="q-title">
+                        <a href="/wenda/area-10068.html" target="_blank" class="location">
+                            <i class="layui-icon layui-icon-location"></i>哈尔滨</a>
+                        <h1>
+                            大家觉得哈尔滨冷吗？你愿意来吗？
+                        </h1>
+                    </div>
+                    <div class="q-desc"></div>
+                    <div class="q-info1 clearfix">
+                        <div class="q-tags fl">
+                            <a class="a-tag" href="/wenda/area-10068.html" target="_blank">哈尔滨</a>
+                            <a class="a-tag" href="/wenda/tag-1657.html" target="_blank">天气</a>
+                            <a class="a-tag" href="/wenda/tag-19229.html" target="_blank">行前准备</a>
+                        </div>
+                        <div class="pub-bar fr">
+                            <a href="/wenda/u/72329896/answer.html" class="photo" target="_blank"> <img src="http://p2-q.mafengwo.net/s11/M00/B1/41/wKgBEFsX9HWAPqnTAAB_xxUsfVA45.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" width="16" height="16"></a>
+                            <a class="name" href="/wenda/u/72329896/answer.html" target="_blank">Aixue</a>
+                            <span class="time"><i class="ico_phone"></i><span>2018-12-09 17:50:26</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="q-operate clearfix">
+                    <div class="fl">
+                        <!-- 邀请回答 -->
+                        <div class="seek-help _j_tip_box">
+                            <a class="_j_seek_help_new">邀请蜂蜂回答</a>
+                        </div>
+                        <!-- 举报 -->
+                        <div class="admin_hide tip-off">
+                            <a data-japp="report" data-refer="http://www.mafengwo.cn/wenda/detail-14652174.html" data-refer-uid="72329896"
+                               data-app="qa.question" data-busi-id="qid:14652174">举报</a>
+                        </div>
+                    </div>
+                    <div class="fr">
+                        <span class="atten-num">13755浏览</span>
+                        <span class="atten-num"><span class="_j_same_num">4</span>人关注</span>
+
+                        <a class="btn-atten _j_same_question " rel="nofollow" data-status="1"><span>关注</span></a>
+
+                        <a class="btn-answer _j_btn_goanswer" rel="nofollow">回答</a>
+                    </div>
+                </div>
+
+                <!-- 修改问题内容 -->
+
+                <!-- 邀请回答 -->
+                <div class="q-invite  hide _js_q_related_block" data-qid="14652174" data-mddid="10068" id="_js_invite_wrap">
+                    <b class="arrow"><i></i></b>
+                    <div class="invite-search clearfix">
+                        <div class="i-tit">邀请达人解答，更加快速精准地获得答案！</div>
+                        <div class="i-search-box">
+                            <div class="i-search">
+                                <input type="text" placeholder="邀请好友回答问题" class="i-ipt" id="_js_search_friend_input">
+                                <input type="button" value="" class="i-btn" id="_js_search_friend_btn">
+                            </div>
+                            <div class="i-search-sel hide" id="_j_seek_help_new_suggestul" style="display: none;"></div>
+                            <span class="ajax_loading hide" id="_js_invite_loading">
+                                <i class="i1"></i>
+                                <i class="i2"></i>
+                                <i class="i3"></i>
+                            </span>
+                        </div>
+                        <div class="i-rest">
+                            <div class="i-rest-awatar _js_ava_list">
+                            </div>
+                            <p><strong class="_js_invited_num">0</strong>人被邀请，还可邀请<span class="_js_can_invite_num">10</span>人</p>
+                        </div>
+                    </div>
+                    <div class="invite-list ">
+                        <ul id="_js_invite_list">
+                            <li class=" hide _js_inviter_item _js_user10101857" style="display: list-item;">
+                                <div class="i-awatar">
+                                    <a href="/wenda/u/10101857/answer.html" title="四分醒" target="_blank">
+                                        <img src="http://n2-q.mafengwo.net/s9/M00/B6/6C/wKgBs1aVkL2AcxhdAAV5YeCnf_Q01.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" alt="四分醒" class="_js_user_ava">
+                                    </a>
+                                </div>
+                                <div class="i-info">
+                                    <a href="/wenda/u/10101857/answer.html" class="name" target="_blank">四分醒</a>
+                                    <a href="/rank/lv.php?uid=10101857" class="level" target="_blank">LV.23</a>
+                                    <span>我知道的越多，就明白得越少。走过...</span>
+                                </div>
+                                <div class="i-intro">
+                                    回答过&nbsp;89&nbsp;个<strong>哈尔滨</strong>问题&nbsp;&nbsp;采纳率30%                </div>
+                                <a class="i-btn _js_inviting" data-uid="10101857">邀请回答</a>
+                            </li>
+                            <li class=" hide _js_inviter_item _js_user31408879" style="display: list-item;">
+                                <div class="i-awatar">
+                                    <a href="/wenda/u/31408879/answer.html" title="Elijah" target="_blank">
+                                        <img src="http://n1-q.mafengwo.net/s9/M00/38/75/wKgBs1ZzVF-AYH6_AAeNtLUiQv413.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" alt="Elijah" class="_js_user_ava">
+                                    </a>
+                                </div>
+                                <div class="i-info">
+                                    <a href="/wenda/u/31408879/answer.html" class="name" target="_blank">Elijah</a>
+                                    <a href="/rank/lv.php?uid=31408879" class="level" target="_blank">LV.24</a>
+                                    <span>像河水流过沙石…</span>
+                                </div>
+                                <div class="i-intro">
+                                    回答过&nbsp;98&nbsp;个<strong>哈尔滨</strong>问题&nbsp;&nbsp;采纳率22%                </div>
+                                <a class="i-btn _js_inviting" data-uid="31408879">邀请回答</a>
+                            </li>
+                            <li class=" hide _js_inviter_item _js_user19083148" style="display: list-item;">
+                                <div class="i-awatar">
+                                    <a href="/wenda/u/19083148/answer.html" title="西洲小侯" target="_blank">
+                                        <img src="http://n4-q.mafengwo.net/s11/M00/FE/FE/wKgBEFpWO1SAWBT8AATAfC_uYkA06.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" alt="西洲小侯" class="_js_user_ava">
+                                    </a>
+                                </div>
+                                <div class="i-info">
+                                    <a href="/wenda/u/19083148/answer.html" class="name" target="_blank">西洲小侯</a>
+                                    <a href="/rank/lv.php?uid=19083148" class="level" target="_blank">LV.33</a>
+                                    <span>笑对人生，永不言败</span>
+                                </div>
+                                <div class="i-intro">
+                                    回答过&nbsp;179&nbsp;个<strong>哈尔滨</strong>问题&nbsp;&nbsp;采纳率13%                </div>
+                                <a class="i-btn _js_inviting" data-uid="19083148">邀请回答</a>
+                            </li>
+                            <li class=" hide _js_inviter_item _js_user42012085" style="display: list-item;">
+                                <div class="i-awatar">
+                                    <a href="/wenda/u/42012085/answer.html" title="Deserve" target="_blank">
+                                        <img src="http://n4-q.mafengwo.net/s10/M00/3C/73/wKgBZ1n-0RyAUTr0AAB2fO-Bx4M11.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" alt="Deserve" class="_js_user_ava">
+                                    </a>
+                                </div>
+                                <div class="i-info">
+                                    <a href="/qa/expert_apply.php?type=1" class="identity i-guide" target="_blank"><i>指路人</i></a>
+                                    <a href="/qa/expert_apply.php?type=1&amp;flag=1" class="identity i-place" target="_blank">
+                                        <i>目的地指路人</i></a>
+                                    <a href="/wenda/u/42012085/answer.html" class="name" target="_blank">Deserve</a>
+                                    <a href="/rank/lv.php?uid=42012085" class="level" target="_blank">LV.30</a>
+                                    <span>用脚丫子去探索世界的未知</span>
+                                </div>
+                                <div class="i-intro">
+                                    回答过&nbsp;76&nbsp;个<strong>哈尔滨</strong>问题&nbsp;&nbsp;采纳率34%
+                                </div>
+                                <a class="i-btn _js_inviting" data-uid="42012085">邀请回答</a>
+                            </li>
+                            <li class=" hide _js_inviter_item _js_user60281383" style="display: list-item;">
+                                <div class="i-awatar">
+                                    <a href="/wenda/u/60281383/answer.html" title="爽在天涯" target="_blank">
+                                        <img src="http://n4-q.mafengwo.net/s9/M00/C3/BC/wKgBs1eQHjGAZLFXAANrSTHnBm455.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" alt="爽在天涯" class="_js_user_ava">
+                                    </a>
+                                </div>
+                                <div class="i-info">
+                                    <a href="/wenda/u/60281383/answer.html" class="name" target="_blank">爽在天涯</a>
+                                    <a href="/rank/lv.php?uid=60281383" class="level" target="_blank">LV.38</a>
+                                    <span>随遇而安的心，宁静淡泊的人生。</span>
+                                </div>
+                                <div class="i-intro">
+                                    回答过&nbsp;76&nbsp;个<strong>哈尔滨</strong>问题&nbsp;&nbsp;采纳率22%
+                                </div>
+                                <a class="i-btn _js_inviting" data-uid="60281383">邀请回答</a>
+                            </li>
+                            <li class=" hide _js_inviter_item _js_user63796237">
+                                <div class="i-awatar">
+                                    <a href="/wenda/u/63796237/answer.html" title="马蜂窝用户" target="_blank">
+                                        <img src="http://b4-q.mafengwo.net/s14/M00/D2/8A/wKgE2l1BKKaAJPJpAAA1OrNtmLo83.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" alt="马蜂窝用户" class="_js_user_ava">
+                                    </a>
+                                </div>
+                                <div class="i-info">
+                                    <a href="/wenda/u/63796237/answer.html" class="name" target="_blank">马蜂窝用户</a>
+                                    <a href="/rank/lv.php?uid=63796237" class="level" target="_blank">LV.14</a>
+                                    <span>Let it be</span>
+                                </div>
+                                <div class="i-intro">
+                                    回答过&nbsp;192&nbsp;个<strong>哈尔滨</strong>问题&nbsp;&nbsp;采纳率1%
+                                </div>
+                                <a class="i-btn _js_inviting" data-uid="63796237">邀请回答</a>
+                            </li>
+                        </ul>
+                        <a class="invite-more" id="_js_show_more_inviter">点击加载更多达人...</a>
+                    </div>
+                </div>
+                <div class="qa-bar-wrap _j_qaBar hide" style="">
+                    <div class="qa-bar-content">
+                        <div class="q-operate">
+                            <span class="atten-num">13755浏览</span>
+                            <span class="atten-num"><span class="_j_same_num">4</span>人关注</span>
+
+                            <a class="btn-atten _j_same_question " rel="nofollow" data-status="1"><span>关注</span></a>
+
+                            <a class="btn-answer _j_btn_goanswer" rel="nofollow">回答</a>
+                        </div>
+                        <div class="q-title">
+                            <a href="/wenda/area-10068.html" target="_blank" class="location"><i></i>哈尔滨</a>
+                            <h1>大家觉得哈尔滨冷吗？你愿意来吗？</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="answer-wrap">
+                <div class="hd">
+                    <span id="_j_anum">121</span>个回答
+                </div>
+                <div class="bd _j_pager_box">
+                    <ul class="answer-list ">
+                        <!-- 回答列表 -->
+
+                    </ul>
+                    <!-- 回答详情页 更多回答 -->
+                    <a class="a-collapse _j_foldup" role="button" tabindex="0" style="display: none;">收起<i></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-side" id="_js_right_side">
+            <!-- 我要提问 -->
+            <div class="btn-question">
+                <a th:href="@{/askPublish}" class="btn-ask btn-ask2" target="_blank">我要提问</a>
+            </div>
+
+            <!-- 广告图片 -->
+            <div class="layui-carousel" id="askAnswerLunBo" style="margin-top: 25px;">
+                <div carousel-item>
+                    <div><img src="images/scene/scene9.jpg"></div>
+                    <div><img src="images/scene/scene6.jpeg"></div>
+                    <div><img src="images/destiny/pic02.jpeg"></div>
+                </div>
+            </div>
+
+            <!-- 相关问题 -->
+            <div class="related-qt">
+                <div class="tit">相关问题</div>
+                <ul class="bd">
+                    <li>
+                        <a href="/wenda/detail-12049278.html">你觉得哈尔滨是被低估了的美食圣地吗？听说哈尔滨有好多好吃的...</a>
+                        <span>6 回答</span>
+                    </li>
+                    <li>
+                        <a href="/wenda/detail-2824583.html">夏天来哈尔滨有什么好玩的吗？</a>
+                        <span>9 回答</span>
+                    </li>
+                    <li>
+                        <a href="/wenda/detail-8485840.html">哈尔滨极地海洋馆冷吗？</a>
+                        <span>5 回答</span>
+                    </li>
+                    <li>
+                        <a href="/wenda/detail-8509087.html">去哈尔滨穿大衣会冷吗</a>
+                        <span>11 回答</span>
+                    </li>
+                    <li>
+                        <a href="/wenda/detail-5290950.html">现在去哈尔滨冷吗？？？？？？？</a>
+                        <span>9 回答</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

@@ -1,10 +1,14 @@
 package com.yuanzhi.tourism.dao;
 
+import com.yuanzhi.tourism.dto.JourneyDTO;
+import com.yuanzhi.tourism.dto.RefreshNumDTO;
 import com.yuanzhi.tourism.entity.Journey;
 import com.yuanzhi.tourism.entity.JourneyExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface JourneyMapper {
     long countByExample(JourneyExample example);
 
@@ -35,4 +39,14 @@ public interface JourneyMapper {
     Journey selectWithUserByPrimaryKey(Integer tid);
 
     int incCommentCount(Integer tid);
+
+    RefreshNumDTO refreshNum(Integer tid);
+
+    void incPrise(Integer tid);
+
+    void downPrise(Integer tid);
+
+    List<JourneyDTO> getAll(@Param("page") Integer page, @Param("limit") Integer limit);
+
+    List<Journey> selectThreePraiseMost();
 }

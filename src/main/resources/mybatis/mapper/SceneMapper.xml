@@ -2,14 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuanzhi.tourism.dao.SceneMapper">
   <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Scene">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="sceneName" jdbcType="VARCHAR" property="scenename" />
-    <result column="cityName" jdbcType="VARCHAR" property="cityname" />
-    <result column="areaName" jdbcType="VARCHAR" property="areaname" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="scenePrice" jdbcType="INTEGER" property="sceneprice" />
-    <result column="provinceName" jdbcType="VARCHAR" property="provincename" />
-    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <id column="scene_id" jdbcType="INTEGER" property="sceneId" />
+    <result column="scene_name" jdbcType="VARCHAR" property="sceneName" />
+    <result column="scene_city_name" jdbcType="VARCHAR" property="sceneCityName" />
+    <result column="scene_area_name" jdbcType="VARCHAR" property="sceneAreaName" />
+    <result column="scene_address" jdbcType="VARCHAR" property="sceneAddress" />
+    <result column="scene_price" jdbcType="VARCHAR" property="scenePrice" />
+    <result column="scene_province_name" jdbcType="VARCHAR" property="sceneProvinceName" />
+    <result column="scene_summary" jdbcType="VARCHAR" property="sceneSummary" />
+    <result column="scene_attention" jdbcType="VARCHAR" property="sceneAttention" />
+    <result column="scene_opentime" jdbcType="VARCHAR" property="sceneOpentime" />
+    <result column="scene_coupon" jdbcType="VARCHAR" property="sceneCoupon" />
+    <result column="scene_pics" jdbcType="VARCHAR" property="scenePics" />
+    <result column="scene_star" jdbcType="VARCHAR" property="sceneStar" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +75,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, sceneName, cityName, areaName, address, scenePrice, provinceName, summary
+    scene_id, scene_name, scene_city_name, scene_area_name, scene_address, scene_price, 
+    scene_province_name, scene_summary, scene_attention, scene_opentime, scene_coupon, 
+    scene_pics, scene_star
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.SceneExample" resultMap="BaseResultMap">
     select
@@ -90,11 +97,17 @@
     select 
     <include refid="Base_Column_List" />
     from scene
-    where id = #{id,jdbcType=INTEGER}
+    where scene_id = #{sceneId,jdbcType=INTEGER}
+  </select>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from scene
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from scene
-    where id = #{id,jdbcType=INTEGER}
+    where scene_id = #{sceneId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.SceneExample">
     delete from scene
@@ -103,65 +116,99 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Scene">
-    insert into scene (id, sceneName, cityName, 
-      areaName, address, scenePrice, 
-      provinceName, summary)
-    values (#{id,jdbcType=INTEGER}, #{scenename,jdbcType=VARCHAR}, #{cityname,jdbcType=VARCHAR}, 
-      #{areaname,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sceneprice,jdbcType=INTEGER}, 
-      #{provincename,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR})
+    insert into scene (scene_id, scene_name, scene_city_name, 
+      scene_area_name, scene_address, scene_price, 
+      scene_province_name, scene_summary, scene_attention, 
+      scene_opentime, scene_coupon, scene_pics, 
+      scene_star)
+    values (#{sceneId,jdbcType=INTEGER}, #{sceneName,jdbcType=VARCHAR}, #{sceneCityName,jdbcType=VARCHAR}, 
+      #{sceneAreaName,jdbcType=VARCHAR}, #{sceneAddress,jdbcType=VARCHAR}, #{scenePrice,jdbcType=VARCHAR}, 
+      #{sceneProvinceName,jdbcType=VARCHAR}, #{sceneSummary,jdbcType=VARCHAR}, #{sceneAttention,jdbcType=VARCHAR}, 
+      #{sceneOpentime,jdbcType=VARCHAR}, #{sceneCoupon,jdbcType=VARCHAR}, #{scenePics,jdbcType=VARCHAR}, 
+      #{sceneStar,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Scene">
     insert into scene
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="sceneId != null">
+        scene_id,
       </if>
-      <if test="scenename != null">
-        sceneName,
+      <if test="sceneName != null">
+        scene_name,
       </if>
-      <if test="cityname != null">
-        cityName,
+      <if test="sceneCityName != null">
+        scene_city_name,
       </if>
-      <if test="areaname != null">
-        areaName,
+      <if test="sceneAreaName != null">
+        scene_area_name,
       </if>
-      <if test="address != null">
-        address,
+      <if test="sceneAddress != null">
+        scene_address,
       </if>
-      <if test="sceneprice != null">
-        scenePrice,
+      <if test="scenePrice != null">
+        scene_price,
       </if>
-      <if test="provincename != null">
-        provinceName,
+      <if test="sceneProvinceName != null">
+        scene_province_name,
       </if>
-      <if test="summary != null">
-        summary,
+      <if test="sceneSummary != null">
+        scene_summary,
+      </if>
+      <if test="sceneAttention != null">
+        scene_attention,
+      </if>
+      <if test="sceneOpentime != null">
+        scene_opentime,
+      </if>
+      <if test="sceneCoupon != null">
+        scene_coupon,
+      </if>
+      <if test="scenePics != null">
+        scene_pics,
+      </if>
+      <if test="sceneStar != null">
+        scene_star,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      <if test="sceneId != null">
+        #{sceneId,jdbcType=INTEGER},
       </if>
-      <if test="scenename != null">
-        #{scenename,jdbcType=VARCHAR},
+      <if test="sceneName != null">
+        #{sceneName,jdbcType=VARCHAR},
       </if>
-      <if test="cityname != null">
-        #{cityname,jdbcType=VARCHAR},
+      <if test="sceneCityName != null">
+        #{sceneCityName,jdbcType=VARCHAR},
       </if>
-      <if test="areaname != null">
-        #{areaname,jdbcType=VARCHAR},
+      <if test="sceneAreaName != null">
+        #{sceneAreaName,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
+      <if test="sceneAddress != null">
+        #{sceneAddress,jdbcType=VARCHAR},
       </if>
-      <if test="sceneprice != null">
-        #{sceneprice,jdbcType=INTEGER},
+      <if test="scenePrice != null">
+        #{scenePrice,jdbcType=VARCHAR},
       </if>
-      <if test="provincename != null">
-        #{provincename,jdbcType=VARCHAR},
+      <if test="sceneProvinceName != null">
+        #{sceneProvinceName,jdbcType=VARCHAR},
       </if>
-      <if test="summary != null">
-        #{summary,jdbcType=VARCHAR},
+      <if test="sceneSummary != null">
+        #{sceneSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneAttention != null">
+        #{sceneAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneOpentime != null">
+        #{sceneOpentime,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCoupon != null">
+        #{sceneCoupon,jdbcType=VARCHAR},
+      </if>
+      <if test="scenePics != null">
+        #{scenePics,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneStar != null">
+        #{sceneStar,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -174,29 +221,44 @@
   <update id="updateByExampleSelective" parameterType="map">
     update scene
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.sceneId != null">
+        scene_id = #{record.sceneId,jdbcType=INTEGER},
       </if>
-      <if test="record.scenename != null">
-        sceneName = #{record.scenename,jdbcType=VARCHAR},
+      <if test="record.sceneName != null">
+        scene_name = #{record.sceneName,jdbcType=VARCHAR},
       </if>
-      <if test="record.cityname != null">
-        cityName = #{record.cityname,jdbcType=VARCHAR},
+      <if test="record.sceneCityName != null">
+        scene_city_name = #{record.sceneCityName,jdbcType=VARCHAR},
       </if>
-      <if test="record.areaname != null">
-        areaName = #{record.areaname,jdbcType=VARCHAR},
+      <if test="record.sceneAreaName != null">
+        scene_area_name = #{record.sceneAreaName,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.sceneAddress != null">
+        scene_address = #{record.sceneAddress,jdbcType=VARCHAR},
       </if>
-      <if test="record.sceneprice != null">
-        scenePrice = #{record.sceneprice,jdbcType=INTEGER},
+      <if test="record.scenePrice != null">
+        scene_price = #{record.scenePrice,jdbcType=VARCHAR},
       </if>
-      <if test="record.provincename != null">
-        provinceName = #{record.provincename,jdbcType=VARCHAR},
+      <if test="record.sceneProvinceName != null">
+        scene_province_name = #{record.sceneProvinceName,jdbcType=VARCHAR},
       </if>
-      <if test="record.summary != null">
-        summary = #{record.summary,jdbcType=VARCHAR},
+      <if test="record.sceneSummary != null">
+        scene_summary = #{record.sceneSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sceneAttention != null">
+        scene_attention = #{record.sceneAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sceneOpentime != null">
+        scene_opentime = #{record.sceneOpentime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sceneCoupon != null">
+        scene_coupon = #{record.sceneCoupon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scenePics != null">
+        scene_pics = #{record.scenePics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sceneStar != null">
+        scene_star = #{record.sceneStar,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -205,14 +267,19 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update scene
-    set id = #{record.id,jdbcType=INTEGER},
-      sceneName = #{record.scenename,jdbcType=VARCHAR},
-      cityName = #{record.cityname,jdbcType=VARCHAR},
-      areaName = #{record.areaname,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
-      scenePrice = #{record.sceneprice,jdbcType=INTEGER},
-      provinceName = #{record.provincename,jdbcType=VARCHAR},
-      summary = #{record.summary,jdbcType=VARCHAR}
+    set scene_id = #{record.sceneId,jdbcType=INTEGER},
+      scene_name = #{record.sceneName,jdbcType=VARCHAR},
+      scene_city_name = #{record.sceneCityName,jdbcType=VARCHAR},
+      scene_area_name = #{record.sceneAreaName,jdbcType=VARCHAR},
+      scene_address = #{record.sceneAddress,jdbcType=VARCHAR},
+      scene_price = #{record.scenePrice,jdbcType=VARCHAR},
+      scene_province_name = #{record.sceneProvinceName,jdbcType=VARCHAR},
+      scene_summary = #{record.sceneSummary,jdbcType=VARCHAR},
+      scene_attention = #{record.sceneAttention,jdbcType=VARCHAR},
+      scene_opentime = #{record.sceneOpentime,jdbcType=VARCHAR},
+      scene_coupon = #{record.sceneCoupon,jdbcType=VARCHAR},
+      scene_pics = #{record.scenePics,jdbcType=VARCHAR},
+      scene_star = #{record.sceneStar,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -220,39 +287,59 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Scene">
     update scene
     <set>
-      <if test="scenename != null">
-        sceneName = #{scenename,jdbcType=VARCHAR},
+      <if test="sceneName != null">
+        scene_name = #{sceneName,jdbcType=VARCHAR},
       </if>
-      <if test="cityname != null">
-        cityName = #{cityname,jdbcType=VARCHAR},
+      <if test="sceneCityName != null">
+        scene_city_name = #{sceneCityName,jdbcType=VARCHAR},
       </if>
-      <if test="areaname != null">
-        areaName = #{areaname,jdbcType=VARCHAR},
+      <if test="sceneAreaName != null">
+        scene_area_name = #{sceneAreaName,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
+      <if test="sceneAddress != null">
+        scene_address = #{sceneAddress,jdbcType=VARCHAR},
       </if>
-      <if test="sceneprice != null">
-        scenePrice = #{sceneprice,jdbcType=INTEGER},
+      <if test="scenePrice != null">
+        scene_price = #{scenePrice,jdbcType=VARCHAR},
       </if>
-      <if test="provincename != null">
-        provinceName = #{provincename,jdbcType=VARCHAR},
+      <if test="sceneProvinceName != null">
+        scene_province_name = #{sceneProvinceName,jdbcType=VARCHAR},
       </if>
-      <if test="summary != null">
-        summary = #{summary,jdbcType=VARCHAR},
+      <if test="sceneSummary != null">
+        scene_summary = #{sceneSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneAttention != null">
+        scene_attention = #{sceneAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneOpentime != null">
+        scene_opentime = #{sceneOpentime,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneCoupon != null">
+        scene_coupon = #{sceneCoupon,jdbcType=VARCHAR},
+      </if>
+      <if test="scenePics != null">
+        scene_pics = #{scenePics,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneStar != null">
+        scene_star = #{sceneStar,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where scene_id = #{sceneId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Scene">
     update scene
-    set sceneName = #{scenename,jdbcType=VARCHAR},
-      cityName = #{cityname,jdbcType=VARCHAR},
-      areaName = #{areaname,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      scenePrice = #{sceneprice,jdbcType=INTEGER},
-      provinceName = #{provincename,jdbcType=VARCHAR},
-      summary = #{summary,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    set scene_name = #{sceneName,jdbcType=VARCHAR},
+      scene_city_name = #{sceneCityName,jdbcType=VARCHAR},
+      scene_area_name = #{sceneAreaName,jdbcType=VARCHAR},
+      scene_address = #{sceneAddress,jdbcType=VARCHAR},
+      scene_price = #{scenePrice,jdbcType=VARCHAR},
+      scene_province_name = #{sceneProvinceName,jdbcType=VARCHAR},
+      scene_summary = #{sceneSummary,jdbcType=VARCHAR},
+      scene_attention = #{sceneAttention,jdbcType=VARCHAR},
+      scene_opentime = #{sceneOpentime,jdbcType=VARCHAR},
+      scene_coupon = #{sceneCoupon,jdbcType=VARCHAR},
+      scene_pics = #{scenePics,jdbcType=VARCHAR},
+      scene_star = #{sceneStar,jdbcType=VARCHAR}
+    where scene_id = #{sceneId,jdbcType=INTEGER}
   </update>
 </mapper>

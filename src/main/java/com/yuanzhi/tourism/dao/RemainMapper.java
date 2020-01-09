@@ -5,7 +5,9 @@ import com.yuanzhi.tourism.entity.Remain;
 import com.yuanzhi.tourism.entity.RemainExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RemainMapper {
     long countByExample(RemainExample example);
 
@@ -30,4 +32,6 @@ public interface RemainMapper {
     int updateByPrimaryKeySelective(Remain record);
 
     int updateByPrimaryKey(Remain record);
+
+    List<Remain> getAll(@Param("page")Integer page, @Param("limit")Integer limit);
 }

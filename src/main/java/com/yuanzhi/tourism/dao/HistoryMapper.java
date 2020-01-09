@@ -1,10 +1,13 @@
 package com.yuanzhi.tourism.dao;
 
+import com.yuanzhi.tourism.dto.HistoryDTO;
 import com.yuanzhi.tourism.entity.History;
 import com.yuanzhi.tourism.entity.HistoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface HistoryMapper {
     long countByExample(HistoryExample example);
 
@@ -27,4 +30,8 @@ public interface HistoryMapper {
     int updateByPrimaryKeySelective(History record);
 
     int updateByPrimaryKey(History record);
+
+    void incTimes(Integer historyId);
+
+    List<HistoryDTO> getAll(@Param("page")Integer page, @Param("limit")Integer limit);
 }

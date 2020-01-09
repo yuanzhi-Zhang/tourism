@@ -1,0 +1,10 @@
+body{
+    position: relative;
+    min-width: 1020px;
+}
+.message_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background: cadetblue;
+}

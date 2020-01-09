@@ -2,6 +2,9 @@ package com.yuanzhi.tourism.common;
 
 import com.yuanzhi.tourism.entity.WordValue;
 import org.apache.commons.lang3.StringUtils;
+import org.apdplat.word.WordSegmenter;
+import org.apdplat.word.segmentation.SegmentationAlgorithm;
+import org.apdplat.word.segmentation.Word;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -32,11 +35,16 @@ public class CosineSimilarity {
         if (StringUtils.isBlank(text2 + text1)) {
             return 0.0;
         }
+        //分词
         List<String> words = parse(text1);
         List<String> words1 = parse(text2);
+        //获取去重后的所有词组成的集合
         Set<String> set = mergeList(words, words1);
+        //文本1的带有每个词频数的集合
         List<WordValue> wordValueList = computeWordCount(words);
+        //文本2的带有每个词频数的集合
         List<WordValue> wordValueList1 = computeWordCount(words1);
+        //转成向量形式
         int[] vector = wordToVector(set, wordValueList);
         int[] vector1 = wordToVector(set, wordValueList1);
         int moduleA = 0;
@@ -52,8 +60,8 @@ public class CosineSimilarity {
 
     /**
      * 转换为向量
-     * @param set 所有词表
-     * @param list 词信息
+     * @param set 去重后的所有词
+     * @param list 去重后的所有词以及每个词的频数的集合
      * @return 向量
      */
     private int[] wordToVector(Set<String> set, List<WordValue> list) {
@@ -66,7 +74,7 @@ public class CosineSimilarity {
         for (int i = 0; i < mergeList.size(); i++) {
             for (WordValue wordValue : list) {
                 if (wordValue.getWord().equals(mergeList.get(i))) {
-                    vector[i] = wordValue.getFrequecy();
+                    vector[i] = wordValue.getFrequency();
                     break;
                 } else {
                     vector[i] = 0;
@@ -108,30 +116,34 @@ public class CosineSimilarity {
             return null;
         }
 
-        List<String> stringList = null;
+        List<String> stringList = new ArrayList<>();
         try {
             stringList = getStringList(text);
+            /*List<Word> words = WordSegmenter.seg(text, SegmentationAlgorithm.FullSegmentation);
+            for (int i = 0; i < words.toArray().length; i++) {
+                stringList.add(words.get(i).toString());
+            }*/
             if (stringList == null || stringList.size() == 0) {
                 return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(stringList);
+//        System.out.println(stringList);
         return stringList;
     }
 
     /**
-     * 计算词频
+     * 获取去重后的词及其频数组成的集合
      * @param list 分词结果
      * @return 词频
      */
     private List<WordValue> computeWordCount(List<String> list) {
         List<WordValue> wordValueList = new ArrayList<WordValue>();
         for (String element : list) {
-            if (isInWordValueList(element, wordValueList)) {
+            if (isInWordValueList(element, wordValueList)) {  //检查wordValueList是否有这个词
                 WordValue wordValue = wordValueList.get(getElementIndex(element, wordValueList));
-                wordValue.setFrequecy(wordValue.getFrequecy() + 1);
+                wordValue.setFrequency(wordValue.getFrequency() + 1);
             } else {
                 WordValue wordValue = new WordValue(element, 1);
                 wordValueList.add(wordValue);
@@ -140,6 +152,12 @@ public class CosineSimilarity {
         return wordValueList;
     }
 
+    /**
+     * 返回wordValueList中word的下标值
+     * @param word
+     * @param wordValueList
+     * @return
+     */
     private int getElementIndex(String word, List<WordValue> wordValueList) {
         if (StringUtils.isBlank(word) || wordValueList == null || wordValueList.size() == 0) {
             return -1;
@@ -152,6 +170,12 @@ public class CosineSimilarity {
         return -1;
     }
 
+    /**
+     * 判断str是否在wordValueList中
+     * @param str
+     * @param wordValueList
+     * @return
+     */
     private boolean isInWordValueList(String str, List<WordValue> wordValueList) {
         if (StringUtils.isBlank(str) || wordValueList == null || wordValueList.size() == 0) {
             return false;

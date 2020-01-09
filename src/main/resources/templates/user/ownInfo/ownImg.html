@@ -31,7 +31,7 @@
                     <div class="set_ownImg_operate">
                         <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img" id="imgShow" th:src="${session.loginUser.getImgurl()}">
+                            <img class="layui-upload-img" id="imgShow" th:src="${session.loginUser.getImgurl()} == null? 'http://rwx.yuanz.top/ac019e8f-2d09-4897-9ce9-2f070dd79cd4':${session.loginUser.getImgurl()}">
                             <p id="demoText"></p>
                         </div>
                         <!--<input type="file" id="file">-->

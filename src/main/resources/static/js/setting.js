@@ -68,7 +68,7 @@ $(function () {
                         layer.alert("修改失败");
                     }
                 }
-            })
+            });
             return false;
         });
 
@@ -77,6 +77,7 @@ $(function () {
             $.ajax({
                 url:"/rwx/modifyPwd",
                 type:"POST",
+                contentType:"application/json",
                 data:JSON.stringify(data.field),
                 async:false,
                 success:function (text) {
@@ -93,7 +94,7 @@ $(function () {
                         layer.alert("修改密码失败");
                     }
                 }
-            })
+            });
             return false;
         });
     });
@@ -106,6 +107,31 @@ $(function () {
             elem: '#ownBirth'
             ,theme: 'molv'
         });
-    })
-})
+    });
+
+    unReadNum();
+});
+
+function unReadNum() {
+    var notice = new FormData();
+    notice.append("userId",$("#uid").val());
+    $.ajax({
+        url: "/rwx/notification/noteNum",
+        async: false,
+        type: "post",
+        data: notice,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function (res) {
+            console.log(res);
+
+            if(res.unReadNum == 0){
+                $("#unReadNum").css("display","none");
+            }
+            $("#unReadNum").html(res.unReadNum);
+            // getAll();
+        }
+    });
+}
 

@@ -16,9 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: yuanzhi...
@@ -56,7 +54,7 @@ public class CommentController {
         comment.setType(commentCreateDTO.getType());
         comment.setCommenttime(publishTime);
         comment.setUserid(commentCreateDTO.getUserId());
-        Collection<User> users = userService.getAllUser();
+//        Collection<User> users = userService.getAllUser(page, limit);
         User user = userService.selectUserByPrimary(commentCreateDTO.getUserId());
         commentService.insert(comment, user);
         return ResultDTO.okOf();
@@ -72,6 +70,58 @@ public class CommentController {
     public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Integer id) {
         List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
         return ResultDTO.okOf(commentDTOS);
+    }
+
+    @PostMapping(value = "/comment/getByType")
+    @ResponseBody
+    public ResultDTO<List<CommentDTO>> commentsType(@RequestBody Map<String,String> data) {
+        Integer id = Integer.parseInt(data.get("id"));
+        Integer type = Integer.parseInt(data.get("type"));
+        List<CommentDTO> commentDTOS = new ArrayList<CommentDTO>();
+        if(CommentTypeEnum.STRATEGY.getType() == type){
+            commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.STRATEGY);
+        }else if(CommentTypeEnum.JOURNEY.getType() == type){
+            commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.JOURNEY);
+        }else if(CommentTypeEnum.COMPANY.getType() == type){
+            commentDTOS = commentService.listByTargetId(id,CommentTypeEnum.COMPANY);
+        }
+        return ResultDTO.okOf(commentDTOS);
+    }
+
+    /**
+     * 查询评论总数
+     * @return
+     */
+    @PostMapping("/comment/countNum")
+    @ResponseBody
+    public Map<String ,Object> countNum(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        List<Comment> commentList = commentService.countNum();
+        List<Comment> jornuyNum = new ArrayList<>();
+        List<Comment> strategyNum = new ArrayList<>();
+        List<Comment> companyNum = new ArrayList<>();
+        List<Comment> commentsNum = new ArrayList<>();
+        for (int i = 0; i < commentList.size(); i++) {
+            if (commentList.get(i).getType() == CommentTypeEnum.JOURNEY.getType()){
+                jornuyNum.add(commentList.get(i));
+            }
+            if (commentList.get(i).getType() == CommentTypeEnum.STRATEGY.getType()){
+                strategyNum.add(commentList.get(i));
+            }
+            if (commentList.get(i).getType() == CommentTypeEnum.COMPANY.getType()){
+                companyNum.add(commentList.get(i));
+            }
+            if (commentList.get(i).getType() == CommentTypeEnum.COMMENT.getType()){
+                commentsNum.add(commentList.get(i));
+            }
+        }
+        Integer commentNum = commentService.countNum().size();
+        map.put("commentNum",commentNum);
+        map.put("jornuyNum",jornuyNum);
+        map.put("strategyNum",strategyNum);
+        map.put("companyNum",companyNum);
+        map.put("commentsNum",commentsNum);
+        return map;
     }
 
 }

@@ -34,32 +34,44 @@ $(function() {
         var form = layui.form;
         var $ = layui.$;
 
-        form.on("submit(register)",function (data) {
+        $(".btn_login").click(function () {
+            var data = new FormData();
             var inputCheckCode = $("#checkCode").val();
-            if (inputCheckCode == checkCode){
+            if(inputCheckCode == ''){
+                layer.msg("请输入验证码哦~");
+                return;
+            }
+            var username = $("#username").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var repwd = $("#repwd").val();
+            data.append("username",username);
+            data.append("checkCode",inputCheckCode);
+            data.append("email",email);
+            data.append("password",password);
+            if(password != repwd){
+                layer.msg("前后密码不一致！！！")
+            }else{
                 $.ajax({
                     url:"/rwx/regist",
                     type:"POST",
-                    data:data.field,
-                    async:false,
-                    success:function (text) {
-                        if ("ok" == text){
-                            layer.alert("注册成功",function () {
-//                                window.location.href = "/";
-                            });
-                        }else{
-                            layer.alert("注册失败");
+                    data:data,
+                    processData: false,
+                    contentType: false,
+                    async:true,
+                    success:function (res) {
+                        if(res.code == 2000){
+                            layer.msg("注册成功！");
+                            window.location.href = "/rwx/"
+                        }else if (res.code == 2001){
+                            layer.msg("验证码错误！");
+                        }else if (res.code == 2002){
+                            layer.msg("该邮箱已注册，请换过邮箱");
                         }
                     }
                 });
-            } else{
-                layer.msg("验证码输入错误");
             }
-            return false;
         });
-
-        //验证码
-        var checkCode = "";
 
         $("#sendCheckCode").click(function () {
             var email = $("#email").val();

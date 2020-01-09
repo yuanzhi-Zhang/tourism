@@ -1,6 +1,8 @@
 package com.yuanzhi.tourism.service;
 
 import com.yuanzhi.tourism.dao.JourneyMapper;
+import com.yuanzhi.tourism.dto.JourneyDTO;
+import com.yuanzhi.tourism.dto.RefreshNumDTO;
 import com.yuanzhi.tourism.entity.Journey;
 import com.yuanzhi.tourism.entity.JourneyExample;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +64,59 @@ public class JourneyService {
         journeyExample.createCriteria().andUseridEqualTo(uid);
         journeyExample.setOrderByClause("publishTime desc");
         return journeyMapper.selectByExample(journeyExample);
+    }
+
+    /**
+     * 更新数量
+     * @param journeyId
+     * @return
+     */
+    public RefreshNumDTO refreshNum(Integer journeyId) {
+        return journeyMapper.refreshNum(journeyId);
+    }
+
+    /**
+     * 点赞数加一
+     * @param typeId
+     */
+    public void incPrise(Integer typeId) {
+        journeyMapper.incPrise(typeId);
+    }
+
+    /**
+     * 点赞数减一
+     * @param typeId
+     */
+    public void downPrise(Integer typeId) {
+        journeyMapper.downPrise(typeId);
+    }
+
+    public List<Journey> selectLike(String content) {
+        JourneyExample journeyExample = new JourneyExample();
+        journeyExample.createCriteria().andJourtitleLike("%" + content + "%");
+        journeyExample.setOrderByClause("publishTime desc");
+        return journeyMapper.selectByExample(journeyExample);
+    }
+
+    public Long countNum() {
+        return journeyMapper.countByExample(null);
+    }
+
+    public List<JourneyDTO> getAll(Integer page, Integer limit) {
+        return journeyMapper.getAll(page,limit);
+    }
+
+    public void deleteJour(Integer journeyId) {
+        journeyMapper.deleteByPrimaryKey(journeyId);
+    }
+
+    public void batchDelJour(List<Integer> uidLst) {
+        for (int i = 0; i < uidLst.size(); i++) {
+            journeyMapper.deleteByPrimaryKey(uidLst.get(i));
+        }
+    }
+
+    public List<Journey> selectThreePraiseMost() {
+        return journeyMapper.selectThreePraiseMost();
     }
 }

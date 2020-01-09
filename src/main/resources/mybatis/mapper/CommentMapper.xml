@@ -10,6 +10,7 @@
     <result column="parentId" jdbcType="INTEGER" property="parentid" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="commentCount" jdbcType="INTEGER" property="commentcount" />
+    <result column="praise_num" jdbcType="INTEGER" property="praiseNum" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithUser" type="com.yuanzhi.tourism.entity.Comment">
     <!-- 指定联合查询出部门字段的封装 -->
@@ -79,7 +80,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cid, userId, commentTime, modifyTime, commentComment, parentId, type, commentCount
+    cid, userId, commentTime, modifyTime, commentComment, parentId, type, commentCount, 
+    praise_num
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.CommentExample" resultMap="BaseResultMap">
     select
@@ -117,10 +119,12 @@
   <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Comment">
     insert into comment (cid, userId, commentTime, 
       modifyTime, commentComment, parentId, 
-      type, commentCount)
+      type, commentCount, praise_num
+      )
     values (#{cid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{commenttime,jdbcType=VARCHAR}, 
       #{modifytime,jdbcType=VARCHAR}, #{commentcomment,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{commentcount,jdbcType=INTEGER})
+      #{type,jdbcType=INTEGER}, #{commentcount,jdbcType=INTEGER}, #{praiseNum,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Comment">
     insert into comment
@@ -149,6 +153,9 @@
       <if test="commentcount != null">
         commentCount,
       </if>
+      <if test="praiseNum != null">
+        praise_num,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cid != null">
@@ -174,6 +181,9 @@
       </if>
       <if test="commentcount != null">
         #{commentcount,jdbcType=INTEGER},
+      </if>
+      <if test="praiseNum != null">
+        #{praiseNum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -210,6 +220,9 @@
       <if test="record.commentcount != null">
         commentCount = #{record.commentcount,jdbcType=INTEGER},
       </if>
+      <if test="record.praiseNum != null">
+        praise_num = #{record.praiseNum,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -224,7 +237,8 @@
       commentComment = #{record.commentcomment,jdbcType=VARCHAR},
       parentId = #{record.parentid,jdbcType=INTEGER},
       type = #{record.type,jdbcType=INTEGER},
-      commentCount = #{record.commentcount,jdbcType=INTEGER}
+      commentCount = #{record.commentcount,jdbcType=INTEGER},
+      praise_num = #{record.praiseNum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -253,6 +267,9 @@
       <if test="commentcount != null">
         commentCount = #{commentcount,jdbcType=INTEGER},
       </if>
+      <if test="praiseNum != null">
+        praise_num = #{praiseNum,jdbcType=INTEGER},
+      </if>
     </set>
     where cid = #{cid,jdbcType=INTEGER}
   </update>
@@ -264,10 +281,20 @@
       commentComment = #{commentcomment,jdbcType=VARCHAR},
       parentId = #{parentid,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},
-      commentCount = #{commentcount,jdbcType=INTEGER}
+      commentCount = #{commentcount,jdbcType=INTEGER},
+      praise_num = #{praiseNum,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
-  <update id="incCommentCount" parameterType="com.yuanzhi.tourism.entity.Comment">
+  <update id="incCommentCount" parameterType="java.lang.Integer">
     update comment set commentCount = commentCount + 1 where cid = #{cid}
+  </update>
+  <update id="incCommentPraiseNum" parameterType="java.lang.Integer">
+    update comment set praise_num = praise_num + 1 where cid = #{cid}
+  </update>
+  <update id="downCommentCount" parameterType="java.lang.Integer">
+    update comment set commentCount = commentCount - 1 where cid = #{cid}
+  </update>
+  <update id="downCommentPraiseNum" parameterType="java.lang.Integer">
+    update comment set praise_num = praise_num - 1 where cid = #{cid}
   </update>
 </mapper>

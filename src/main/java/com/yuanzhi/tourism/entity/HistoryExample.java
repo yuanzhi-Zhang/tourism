@@ -224,63 +224,63 @@ public class HistoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andHistoryTypeIsNull() {
+            addCriterion("history_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andHistoryTypeIsNotNull() {
+            addCriterion("history_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Integer value) {
-            addCriterion("type =", value, "type");
+        public Criteria andHistoryTypeEqualTo(Integer value) {
+            addCriterion("history_type =", value, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Integer value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andHistoryTypeNotEqualTo(Integer value) {
+            addCriterion("history_type <>", value, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Integer value) {
-            addCriterion("type >", value, "type");
+        public Criteria andHistoryTypeGreaterThan(Integer value) {
+            addCriterion("history_type >", value, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andHistoryTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("history_type >=", value, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Integer value) {
-            addCriterion("type <", value, "type");
+        public Criteria andHistoryTypeLessThan(Integer value) {
+            addCriterion("history_type <", value, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andHistoryTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("history_type <=", value, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Integer> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andHistoryTypeIn(List<Integer> values) {
+            addCriterion("history_type in", values, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Integer> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andHistoryTypeNotIn(List<Integer> values) {
+            addCriterion("history_type not in", values, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Integer value1, Integer value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andHistoryTypeBetween(Integer value1, Integer value2) {
+            addCriterion("history_type between", value1, value2, "historyType");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andHistoryTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("history_type not between", value1, value2, "historyType");
             return (Criteria) this;
         }
 
@@ -341,6 +341,146 @@ public class HistoryExample {
 
         public Criteria andTypeIdNotBetween(Integer value1, Integer value2) {
             addCriterion("type_id not between", value1, value2, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameIsNull() {
+            addCriterion("history_type_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameIsNotNull() {
+            addCriterion("history_type_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameEqualTo(String value) {
+            addCriterion("history_type_name =", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameNotEqualTo(String value) {
+            addCriterion("history_type_name <>", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameGreaterThan(String value) {
+            addCriterion("history_type_name >", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameGreaterThanOrEqualTo(String value) {
+            addCriterion("history_type_name >=", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameLessThan(String value) {
+            addCriterion("history_type_name <", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameLessThanOrEqualTo(String value) {
+            addCriterion("history_type_name <=", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameLike(String value) {
+            addCriterion("history_type_name like", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameNotLike(String value) {
+            addCriterion("history_type_name not like", value, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameIn(List<String> values) {
+            addCriterion("history_type_name in", values, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameNotIn(List<String> values) {
+            addCriterion("history_type_name not in", values, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameBetween(String value1, String value2) {
+            addCriterion("history_type_name between", value1, value2, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeNameNotBetween(String value1, String value2) {
+            addCriterion("history_type_name not between", value1, value2, "historyTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlIsNull() {
+            addCriterion("history_type_imgurl is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlIsNotNull() {
+            addCriterion("history_type_imgurl is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlEqualTo(String value) {
+            addCriterion("history_type_imgurl =", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlNotEqualTo(String value) {
+            addCriterion("history_type_imgurl <>", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlGreaterThan(String value) {
+            addCriterion("history_type_imgurl >", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlGreaterThanOrEqualTo(String value) {
+            addCriterion("history_type_imgurl >=", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlLessThan(String value) {
+            addCriterion("history_type_imgurl <", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlLessThanOrEqualTo(String value) {
+            addCriterion("history_type_imgurl <=", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlLike(String value) {
+            addCriterion("history_type_imgurl like", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlNotLike(String value) {
+            addCriterion("history_type_imgurl not like", value, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlIn(List<String> values) {
+            addCriterion("history_type_imgurl in", values, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlNotIn(List<String> values) {
+            addCriterion("history_type_imgurl not in", values, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlBetween(String value1, String value2) {
+            addCriterion("history_type_imgurl between", value1, value2, "historyTypeImgurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTypeImgurlNotBetween(String value1, String value2) {
+            addCriterion("history_type_imgurl not between", value1, value2, "historyTypeImgurl");
             return (Criteria) this;
         }
 
@@ -411,6 +551,66 @@ public class HistoryExample {
 
         public Criteria andHistoryTimeNotBetween(String value1, String value2) {
             addCriterion("history_time not between", value1, value2, "historyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesIsNull() {
+            addCriterion("history_times is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesIsNotNull() {
+            addCriterion("history_times is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesEqualTo(Integer value) {
+            addCriterion("history_times =", value, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesNotEqualTo(Integer value) {
+            addCriterion("history_times <>", value, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesGreaterThan(Integer value) {
+            addCriterion("history_times >", value, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesGreaterThanOrEqualTo(Integer value) {
+            addCriterion("history_times >=", value, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesLessThan(Integer value) {
+            addCriterion("history_times <", value, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesLessThanOrEqualTo(Integer value) {
+            addCriterion("history_times <=", value, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesIn(List<Integer> values) {
+            addCriterion("history_times in", values, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesNotIn(List<Integer> values) {
+            addCriterion("history_times not in", values, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesBetween(Integer value1, Integer value2) {
+            addCriterion("history_times between", value1, value2, "historyTimes");
+            return (Criteria) this;
+        }
+
+        public Criteria andHistoryTimesNotBetween(Integer value1, Integer value2) {
+            addCriterion("history_times not between", value1, value2, "historyTimes");
             return (Criteria) this;
         }
     }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui2.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/message.css">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script th:src="@{/public/layui.js}"></script>
+    <script th:src="@{/js/message.js}"></script>
+    <title>消息通知@任我行</title>
+</head>
+<body>
+<!--头部导航-->
+<div class="message_head">
+    <div th:replace="user/common/header::header"></div>
+</div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

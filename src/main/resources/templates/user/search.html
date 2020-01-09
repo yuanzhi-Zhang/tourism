@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="css/search.css">
+
+    <script src="public/js/jquery-3.2.1.min.js"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
+    <script th:src="@{/js/search.js}"></script>
+    <title>全局搜索@任我行</title>
+</head>
+<body>
+<!--头部导航-->
+<div class="search_head">
+    <div th:replace="user/common/header::header"></div>
+</div>
+<div class="search_content">
+    <div class="main">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
+        <div class="subReply" style="margin-top: 20px;">
+            <input type="text" placeholder="诗与远方，从这里开始..." class="layui-input" id="search_content"
+                   style="width: 85%;border-radius: 5px;display: inline-block;">
+            <button type="button" class="layui-btn layui-btn-warm" onclick="search()" style="border-radius: 5px;">
+                <i class="layui-icon">&#xe615;</i>
+            </button>
+        </div>
+        <div class="left_slide">
+            <div class="layui-tab" lay-filter="type">
+                <ul class="layui-tab-title own_main_ul" style="margin-bottom: 20px;">
+                    <li class="layui-this" lay-id="游记">游记</li>
+                    <li lay-id="攻略">攻略</li>
+                    <li lay-id="结伴">结伴</li>
+                </ul>
+                <div class="layui-tab-content own_content_right_tab">
+                    <div class="layui-tab-item layui-show">
+                        <script id="journeyDemo" type="text/html">
+                            {{#  layui.each(d.list.journeyList, function(index, item){ }}
+                            <div style="margin-bottom: 35px;">
+                                <div class="type_left" data-id="{{item.tid}}" onclick="toJourneyDetail(this)">
+                                    <img class="search_img" src="{{item.mainimg}}">
+                                </div>
+                                <div class="type_right">
+                                    <p class="type_title">
+                                        <a href="javascript:" data-id="{{item.tid}}" onclick="toJourneyDetail(this)">{{item.jourtitle}}</a>
+                                    </p>
+                                    <div class="type_content">{{item.jourcontent}}</div>
+                                    <p class="type_info">{{item.readtimes}}浏览</p>
+                                </div>
+                            </div>
+                            {{#  }); }}
+                        </script>
+                        <div id="journeyView"></div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <script id="strategyDemo" type="text/html">
+                            {{#  layui.each(d.list.strategyList, function(index, item){ }}
+                            <div style="margin-bottom: 35px;">
+                                <div class="type_left" data-id="{{item.strategyId}}" onclick="toStrategyDetail(this)">
+                                    <img class="search_img" src="{{item.firstImg}}">
+                                </div>
+                                <div class="type_right">
+                                    <p class="type_title">
+                                        <a href="javascript:" data-id="{{item.strategyId}}" onclick="toStrategyDetail(this)">{{item.strategyTitle}}</a>
+                                    </p>
+                                    <p class="type_content">{{item.strategyIntro}}</p>
+                                    <p class="type_info">{{item.publishTime}}&emsp;{{item.readTimes}}浏览</p>
+                                </div>
+                            </div>
+                            {{#  }); }}
+                        </script>
+                        <div id="strategyView"></div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <script id="companyDemo" type="text/html">
+                            {{#  layui.each(d.list.companyList, function(index, item){ }}
+                            <div style="margin-bottom: 35px;">
+                                <div class="type_left" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)">
+                                    <img class="search_img" src="{{item.companyMainImg}}">
+                                </div>
+                                <div class="type_right">
+                                    <p class="type_title">
+                                        <a href="javascript:" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)">{{item.companyTitle}}</a>
+                                    </p>
+                                    <div class="type_content">{{item.companyContent}}</div>
+                                    <p class="type_info">{{item.companyStartTime}}从{{item.companyStartArea}}出发&emsp;{{item.companyViewNum}}浏览</p>
+                                </div>
+                            </div>
+                            {{#  }); }}
+                        </script>
+                        <div id="companyView"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right_slide"></div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui2.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/askAnswer.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script th:src="@{/public/layui.js}"></script>
+    <script th:src="@{/js/askAnswer.js}"></script>
+    <!--<script type="text/javascript" charset="utf-8" async="" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.0.min.js"></script>-->
+    <!--<script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js?_=1557308476616"></script>-->
+    <!--<script type="text/javascript">-->
+        <!--L2Dwidget.init();</script>-->
+    <!--<script type="text/javascript">getFollowStatus('df91d846-448f-4c9a-c764-08d6b94b3063')</script>-->
+    <title>任我行问答@任我行,旅游攻略</title>
+</head>
+<body>
+<!--头部导航-->
+    <div class="own_head">
+        <div th:replace="user/common/header::header"></div>
+    </div>
+<!--问答内容-->
+    <div class="askAnswer_content">
+        <!--问答搜索-->
+        <div class="askAnswer_search">
+            <div class="askAnswer_search_left">
+                <span>任我行</span><img src="images/icon/ask2.png">
+                <p>真实体验给你有用回答</p>
+            </div>
+            <div class="askAnswer_search_middle">
+                <div class="d1">
+                    <form>
+                        <input type="text" placeholder="提问前请先搜索，看看你的问题其他人是否已经问过...">
+                        <button type="submit"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="askAnswer_search_right">
+                <a th:href="@{/askPublish}">
+                <button type="button" class="layui-btn layui-btn-warm">
+                    &emsp;<i class="layui-icon">&#xe608;</i> 我要提问&emsp;
+                </button></a>
+            </div>
+        </div>
+        <!--问答轮播图-->
+        <div class="layui-carousel" id="askAnswerLunBo">
+            <div carousel-item>
+                <div><img src="images/scene/scene9.jpg"></div>
+                <div><img src="images/scene/scene6.jpeg"></div>
+                <div><img src="images/destiny/pic02.jpeg"></div>
+            </div>
+        </div>
+        <!--问答内容正文-->
+        <div class="askAnswer_sort">
+            <ul class="jour_ul">
+                <!--左边问答信息的展示-->
+                <li class="jour_li" style="width: 700px;">
+                    <div class="layui-tab layui-tab-brief" lay-filter="askAnswerTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this" style="font-size: 18px;">问答精选</li>
+                            <li style="font-size: 18px;">最新问题</li>
+                            <li style="font-size: 18px;">待回答问题</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <script id="askAnswer" type="text/html">
+                                    <ul>
+                                        {{#  layui.each(d.list.data, function(index, item){ }}
+                                        <div class="postnormal review ">
+                                            <div class="post-container review-item">
+                                                <div class="row review-item-wrapper">
+                                                    <!--用户头像-->
+                                                    <img src="{{item.user.imgurl}}" class="wendaImg">
+                                                    <div class="col-sm-9 flex-xs-middle">
+                                                        <div class="askAnswer_user_info">
+                                                            {{item.user.username}}&ensp;<i class="layui-icon layui-icon-female"></i>
+                                                        </div>
+                                                        <div class="review-item-title">
+                                                            <a th:href="@{/askAnswerDetail}" rel="bookmark" data-id="{{item.questionId}}" onclick="toDetail(this)">{{item.questionTitle}}</a>
+                                                        </div>
+                                                        <div class="review-item-creator"><b>发布日期：</b>{{item.questionTime}}</div>
+                                                        <span class="review-item-info"><b>总浏览量：</b>{{item.viewCount}} reads</span>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bg-wrapper">
+                                                    <img class="bg-blur" src="{{item.questionImg}}">
+                                                </div>
+                                            </div>
+                                            <div class="post-container">
+                                                <div class="entry-content">
+                                                    {{item.questionContent}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{#  }); }}
+                                        <div class="layui-btn-group" style="float: right;margin-top: 20px;">
+                                            {{#  layui.each(d.list.pages, function(index, item){ }}
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                                    onclick="toPage(this)" style="margin-left: 5px;">
+                                                {{item}}
+                                            </button>
+                                            {{#  }); }}
+                                        </div>
+                                        {{#  if(d.list.length === 0){ }}
+                                        无数据
+                                        {{#  } }}
+                                    </ul>
+                                </script>
+                                <div id="view"></div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <script id="new" type="text/html">
+                                    <ul>
+                                        {{#  layui.each(d.list.data, function(index, item){ }}
+                                        <div class="postnormal review ">
+                                            <div class="post-container review-item">
+                                                <div class="row review-item-wrapper">
+                                                    <!--用户头像-->
+                                                    <img src="{{item.user.imgurl}}" class="wendaImg">
+                                                    <div class="col-sm-9 flex-xs-middle">
+                                                        <div class="askAnswer_user_info">
+                                                            {{item.user.username}}&ensp;<i class="layui-icon layui-icon-female"></i>
+                                                        </div>
+                                                        <div class="review-item-title">
+                                                            <a href="#" rel="bookmark">{{item.questionTitle}}</a>
+                                                        </div>
+                                                        <div class="review-item-creator"><b>发布日期：</b>{{item.questionTime}}</div>
+                                                        <span class="review-item-info"><b>总浏览量：</b>{{item.viewCount}} reads</span>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bg-wrapper">
+                                                    <img class="bg-blur" src="{{item.questionImg}}">
+                                                </div>
+                                            </div>
+                                            <div class="post-container">
+                                                <div class="entry-content">
+                                                    {{item.questionContent}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{#  }); }}
+                                        <div class="layui-btn-group" style="float: right;margin-top: 20px;">
+                                            {{#  layui.each(d.list.pages, function(index, item){ }}
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                                    onclick="toPage(this)" style="margin-left: 5px;">
+                                                {{item}}
+                                            </button>
+                                            {{#  }); }}
+                                        </div>
+                                        {{#  if(d.list.length === 0){ }}
+                                        无数据
+                                        {{#  } }}
+                                    </ul>
+                                </script>
+                                <div id="newView"></div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <script id="needAnswer" type="text/html">
+                                    <ul>
+                                        {{#  layui.each(d.list.data, function(index, item){ }}
+                                        <div class="postnormal review ">
+                                            <div class="post-container review-item">
+                                                <div class="row review-item-wrapper">
+                                                    <!--用户头像-->
+                                                    <img src="{{item.user.imgurl}}" class="wendaImg">
+                                                    <div class="col-sm-9 flex-xs-middle">
+                                                        <div class="askAnswer_user_info">
+                                                            {{item.user.username}}&ensp;<i class="layui-icon layui-icon-female"></i>
+                                                        </div>
+                                                        <div class="review-item-title">
+                                                            <a href="#" rel="bookmark">{{item.questionTitle}}</a>
+                                                        </div>
+                                                        <div class="review-item-creator"><b>发布日期：</b>{{item.questionTime}}</div>
+                                                        <span class="review-item-info"><b>总浏览量：</b>{{item.viewCount}} reads</span>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bg-wrapper">
+                                                    <img class="bg-blur" src="{{item.questionImg}}">
+                                                </div>
+                                            </div>
+                                            <div class="post-container">
+                                                <div class="entry-content">
+                                                    {{item.questionContent}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{#  }); }}
+                                        <div class="layui-btn-group" style="float: right;margin-top: 20px;">
+                                            {{#  layui.each(d.list.pages, function(index, item){ }}
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                                    onclick="toPage(this)" style="margin-left: 5px;">
+                                                {{item}}
+                                            </button>
+                                            {{#  }); }}
+                                        </div>
+                                        {{#  if(d.list.length === 0){ }}
+                                        无数据
+                                        {{#  } }}
+                                    </ul>
+                                </script>
+                                <div id="needAnswerView"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--右边作者信息以及问答信息的排行榜-->
+                <li class="jour_li" style="float:right;margin: 0 0 20px 50px;">
+                    <!--作者信息-->
+                    <ul class="jour_ul">
+                        <div th:if="${session.loginUser != null}">
+                            <li class="jour_li" style="margin-bottom: 10px;">
+                                <img class="own_attention" src="images/scene/scene13.jpeg"
+                                     th:src="${session.loginUser.getImgurl()}">
+                            </li>
+                            <li class="jour_li own_attention_people" style="margin-left: 10px;">
+                                <p>[[${session.loginUser.getUsername()}]]
+                                    <i th:class="${session.loginUser.getUsersex()=='男'?'layui-icon layui-icon-male male':'layui-icon layui-icon-female female'}"></i>
+                                </p>
+                                <p>现居：[[${session.loginUser.getAddress()}]]&ensp;[[${session.loginUser.getBirthday()}]]</p>
+                            </li>
+                            <p class="askAnswer_user_down">
+                                <img src="images/icon/ask2.png">我的提问&emsp;0
+                            </p>
+                            <p class="askAnswer_user_down">
+                                <img src="images/icon/ask2.png">我的回答&emsp;0
+                            </p>
+                            <p class="askAnswer_user_down">
+                                <img src="images/icon/ask2.png">我关注的问题&emsp;0
+                            </p>
+                        </div>
+                        <div th:if="${session.loginUser == null}">
+                            <div class="usercard-unlogined mb15">
+                                <a class="login" th:href="@{/account}">登录</a>
+                                <a class="register" th:href="@{/regist}">注册</a>
+                            </div>
+                        </div>
+                    </ul>
+                    <!--问答信息的排行榜单-->
+                    <div class="layui-tab layui-tab-brief" lay-filter="rankListTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this" style="width: 37%">回答数</li>
+                            <li style="width: 37%">被赞数</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                                <div style="margin-bottom: 20px;"><ul class="jour_ul">
+                                    <li class="jour_li rankList_left">
+                                        <img src="images/scene/scene11.jpeg">
+                                    </li>
+                                    <li class="jour_li" style="float: left;">
+                                        <p style="margin-bottom: 10px;color: #0058ffc7">站远处看从前
+                                            <i class="layui-icon layui-icon-male"></i>
+                                        </p>
+                                        <p style="color: #ec634f;font-size: 12px;">丽江&ensp;1997-07-10</p>
+                                    </li>
+                                    <li class="jour_li rankList_right"><p>356</p></li>
+                                </ul></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!--页脚区域-->
+    <div th:replace="user/common/footer::foot"></div>
+    <!--<div id="live2d-widget">-->
+        <!--<canvas id="live2dcanvas" width="300" height="600" style="position: fixed;opacity: 0.7;right: 0px;bottom: -20px;z-index: 99999;pointer-events: none;border: 1px dashed rgb(204, 204, 204);">-->
+        <!--</canvas>-->
+    <!--</div>-->
+</body>
+</html>

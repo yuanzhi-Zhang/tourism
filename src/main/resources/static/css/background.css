@@ -1,3 +1,6 @@
+/*html{*/
+    /*width: fit-content;*/
+/*}*/
 * {
     padding: 0;
     margin: 0;
@@ -127,8 +130,10 @@
 .home-content {
     padding-top: 35px;
     padding-bottom: 45px;
-    background: linear-gradient(45deg,rgba(254,172,94,0.5),rgba(199,121,208,0.5),rgba(75,192,200,0.5));
+   /* background: linear-gradient(45deg,rgba(254,172,94,0.5),rgba(199,121,208,0.5),rgba(75,192,200,0.5));*/
+    background: linear-gradient(45deg,rgba(254, 172, 94, 0.35),rgba(199, 121, 208, 0.37),rgba(75, 192, 200, 0.32));
     margin-top: -5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.1) inset;
 }
 
 .tourpic {
@@ -193,6 +198,7 @@
     /*background-color: aliceblue;*/
     background: linear-gradient(45deg,rgba(75,192,200,0.2),rgba(254,172,94,0.2),rgba(199,121,208,0.2));
     border: 1px solid lightgray;
+    text-align: left;
 }
 
 .sharePic {
@@ -229,6 +235,7 @@
 .album_share_info {
     color: rgb(108, 108, 247);
     font-size: 12px;
+    text-align: left;
 }
 
 .num {
@@ -367,6 +374,11 @@
     text-align: center;
     margin-top: 5px;
     font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.indexToStrategy:hover{
+    cursor: pointer;
 }
 
 /* 旅行景点推荐区 */
@@ -398,7 +410,7 @@
 .scen_img {
     width: 440px;
     height: 220px;
-    float: right;
+    /*float: right;*/
     margin-left: 56px;
     object-fit: cover;
 }

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui2.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/groupTour.css">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/layui.js"></script>
+    <script src="js/groupTour.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.0.min.js"></script>
+    <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js?_=1557308476616"></script>
+    <script type="text/javascript">
+        L2Dwidget.init();</script>
+    <script type="text/javascript">getFollowStatus('df91d846-448f-4c9a-c764-08d6b94b3063')</script>
+
+    <title>任我行跟团游@任我行,旅游攻略</title>
+</head>
+<body>
+<!--头部导航-->
+<div class="groupTour_head">
+    <div th:replace="user/common/header::header"></div>
+</div>
+<!--跟团游主要内容-->
+    <div class="groupTour_content">
+        <!--自由行、当地游等方式的导航-->
+        <span class="layui-breadcrumb" lay-separator="|">
+            <a href="" th:href="@{/freeTour}">自由行</a>
+            <a style="color:#ff9d00" th:href="@{/groupTour}">跟团游</a>
+            <a href="" th:href="@{/localTour}">当地游</a>
+        </span>
+        <!--搜索-->
+        <div class="freeTour_search">
+            <div class="freeTour_search_left">
+                <img src="images/icon/groupTour.png"><span>跟团游</span>
+            </div>
+            <div class="freeTour_search_right">
+                <button type="button" class="layui-btn layui-btn-primary">
+                    <strong>成都</strong>&ensp;出发
+                </button>
+                <img src="images/icon/arrowhead2.png">
+                <input type="text" required  lay-verify="required" placeholder="请输入目的地..." autocomplete="off"
+                       class="layui-input" style="display: inline-block;width: 50%;">
+                <button type="button" class="layui-btn layui-btn-warm" style="margin-left: -3px;margin-top: -2px;">
+                    <i class="layui-icon">&#xe615;</i>
+                </button>
+            </div>
+        </div>
+        <!--榜单-->
+        <div class="groupTour_content_rankList">
+            <ul class="jour_ul" style="width: 1020px;">
+                <li class="jour_li" style="width: 700px;float: left">
+                    <div class="layui-tab" lay-filter="test1">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this" lay-id="111" >综合排序</li>
+                            <li lay-id="222">近期销量优先</li>
+                            <li lay-id="333">价格从高到低</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                    <div class="post-album">
+                                        <div class="row content">
+                                            <img class="bg" src="images/IMG_0150.jpg"></img>
+                                            <div class="contentext flex-xs-middle">
+                                                <div class="album-title">
+                                                    <a href="detail.html">景点历史浏览记录</a>
+                                                </div>
+                                                <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                            </div>
+                                            <div class="album-thumb-width flex-xs-middle">
+                                                <div class="row album-thumb no-gutter">
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0150-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0149-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0146-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0147-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0148-250x250.jpg" /></div>
+                                                    <div class="col-xs-4">
+                                                        <a href="">5 pics</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                    <div class="post-album">
+                                        <div class="row content">
+                                            <img class="bg" src="images/IMG_0150.jpg"></img>
+                                            <div class="contentext flex-xs-middle">
+                                                <div class="album-title">
+                                                    <a href="detail.html">景点历史浏览记录</a>
+                                                </div>
+                                                <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                            </div>
+                                            <div class="album-thumb-width flex-xs-middle">
+                                                <div class="row album-thumb no-gutter">
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0150-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0149-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0146-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0147-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0148-250x250.jpg" /></div>
+                                                    <div class="col-xs-4">
+                                                        <a href="">5 pics</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                    <div class="post-album">
+                                        <div class="row content">
+                                            <img class="bg" src="images/IMG_0150.jpg"></img>
+                                            <div class="contentext flex-xs-middle">
+                                                <div class="album-title">
+                                                    <a href="detail.html">景点历史浏览记录</a>
+                                                </div>
+                                                <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                            </div>
+                                            <div class="album-thumb-width flex-xs-middle">
+                                                <div class="row album-thumb no-gutter">
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0150-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0149-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0146-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0147-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0148-250x250.jpg" /></div>
+                                                    <div class="col-xs-4">
+                                                        <a href="">5 pics</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                    <div class="post-album">
+                                        <div class="row content">
+                                            <img class="bg" src="images/IMG_0150.jpg"></img>
+                                            <div class="contentext flex-xs-middle">
+                                                <div class="album-title">
+                                                    <a href="detail.html">景点历史浏览记录</a>
+                                                </div>
+                                                <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                            </div>
+                                            <div class="album-thumb-width flex-xs-middle">
+                                                <div class="row album-thumb no-gutter">
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0150-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0149-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0146-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0147-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0148-250x250.jpg" /></div>
+                                                    <div class="col-xs-4">
+                                                        <a href="">5 pics</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                    <div class="post-album">
+                                        <div class="row content">
+                                            <img class="bg" src="images/IMG_0150.jpg"></img>
+                                            <div class="contentext flex-xs-middle">
+                                                <div class="album-title">
+                                                    <a href="detail.html">景点历史浏览记录</a>
+                                                </div>
+                                                <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                            </div>
+                                            <div class="album-thumb-width flex-xs-middle">
+                                                <div class="row album-thumb no-gutter">
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0150-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0149-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0146-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0147-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0148-250x250.jpg" /></div>
+                                                    <div class="col-xs-4">
+                                                        <a href="">5 pics</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-tab-item">
+                                <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                    <div class="post-album">
+                                        <div class="row content">
+                                            <img class="bg" src="images/IMG_0150.jpg"></img>
+                                            <div class="contentext flex-xs-middle">
+                                                <div class="album-title">
+                                                    <a href="detail.html">景点历史浏览记录</a>
+                                                </div>
+                                                <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                            </div>
+                                            <div class="album-thumb-width flex-xs-middle">
+                                                <div class="row album-thumb no-gutter">
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0150-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0149-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0146-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0147-250x250.jpg" /></div>
+                                                    <div class="col-xs-4"><img class="thumb" src="images/IMG_0148-250x250.jpg" /></div>
+                                                    <div class="col-xs-4">
+                                                        <a href="">5 pics</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="jour_li" style="float: right;width: 260px;text-align: left;">
+                    <h3 class="hd">本周热卖</h3>
+                    <ul>
+                        <li style="margin-bottom: 20px;">
+                            <a href="#" class="right_advice">
+                            <sapn class="image">
+                                <img src="images/scene/scene15.jpeg">
+                            </sapn>
+                            <div class="title">上海往返马尔代夫瑞喜敦D迪古拉7天5晚自...</div>
+                            <span class="price">¥13600起</span></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li style="margin-bottom: 20px;">
+                            <a href="#" class="right_advice">
+                            <sapn class="image">
+                                <img src="images/scene/scene15.jpeg">
+                            </sapn>
+                            <div class="title">上海往返马尔代夫瑞喜敦D迪古拉7天5晚自...</div>
+                            <span class="price">¥13600起</span></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li style="margin-bottom: 20px;">
+                            <a href="#" class="right_advice">
+                            <sapn class="image">
+                                <img src="images/scene/scene15.jpeg">
+                            </sapn>
+                            <div class="title">上海往返马尔代夫瑞喜敦D迪古拉7天5晚自...</div>
+                            <span class="price">¥13600起</span></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li style="margin-bottom: 20px;">
+                            <a href="#" class="right_advice">
+                            <sapn class="image">
+                                <img src="images/scene/scene15.jpeg">
+                            </sapn>
+                            <div class="title">上海往返马尔代夫瑞喜敦D迪古拉7天5晚自...</div>
+                            <span class="price">¥13600起</span></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li style="margin-bottom: 20px;">
+                            <a href="#" class="right_advice">
+                            <sapn class="image">
+                                <img src="images/scene/scene15.jpeg">
+                            </sapn>
+                            <div class="title">上海往返马尔代夫瑞喜敦D迪古拉7天5晚自...</div>
+                            <span class="price">¥13600起</span></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li style="margin-bottom: 20px;">
+                            <a href="#" class="right_advice">
+                            <sapn class="image">
+                                <img src="images/scene/scene15.jpeg">
+                            </sapn>
+                            <div class="title">上海往返马尔代夫瑞喜敦D迪古拉7天5晚自...</div>
+                            <span class="price">¥13600起</span></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li style="margin-bottom: 20px;">
+                            <a href="#" class="right_advice">
+                            <sapn class="image">
+                                <img src="images/scene/scene15.jpeg">
+                            </sapn>
+                            <div class="title">上海往返马尔代夫瑞喜敦D迪古拉7天5晚自...</div>
+                            <span class="price">¥13600起</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--清除浮动-->
+        <div style="clear: both;"></div>
+    </div>
+<!--页脚区域-->
+<div th:replace="user/common/footer::foot"></div>
+<div id="live2d-widget">
+    <canvas id="live2dcanvas" width="300" height="600" style="position: fixed;opacity: 0.7;right: 0px;bottom: -20px;z-index: 99999;pointer-events: none;border: 1px dashed rgb(204, 204, 204);">
+    </canvas>
+</div>
+</body>
+</html>

@@ -1,11 +1,14 @@
+/*
 package com.yuanzhi.tourism.common;
 
 import com.show.api.ShowApiRequest;
 
+*/
 /**
  * @Author: yuanzhi...
  * @Date: created in  2019/9/26 13:43
- */
+ *//*
+
 public class PhoneApi {
 
     public String getPhoneApi(String phone){
@@ -16,3 +19,4 @@ public class PhoneApi {
     }
 
 }
+*/

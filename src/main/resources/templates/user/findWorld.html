@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>发现世界@任我行,旅游攻略</title>
-    <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
-    <link rel="stylesheet" href="public/css/layui2.css" th:href="@{/public/css/layui2.css}">
-    <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
-    <link rel="stylesheet" href="css/destiny.css" th:href="@{/css/destiny.css}">
-    <link rel="stylesheet" href="css/own.css" th:href="@{/css/own.css}">
-    <link rel="stylesheet" href="asserts/css/main.css" th:href="@{/asserts/css/main.css}">
+    <link th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
+    <link rel="stylesheet" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" th:href="@{/css/background.css}">
+    <link rel="stylesheet" th:href="@{/css/destiny.css}">
+    <link rel="stylesheet" th:href="@{/asserts/css/main.css}">
 
-    <script src="public/js/jquery-3.2.1.min.js" th:href="@{/public/js/jquery-3.2.1.min.js}"></script>
-    <script src="public/layui.js" th:href="@{/public/layui.js}"></script>
 </head>
 <body>
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
 	<!--头部导航-->
-    <div class="own_head" style="position:fixed;left:0px;">
+    <div class="own_head" style="position:fixed;left:0px;top: 0;z-index: 999999;width: 100%;background-color: #A3D0C3;">
         <div th:replace="user/common/header::header"></div>
     </div>
     <!-- Wrapper -->
@@ -36,7 +33,7 @@
                 </ul>
             </div>
             <div class="image filtered span-1-75" data-position="25% 25%">
-                <img src="images/pic01.jpg" alt=""/>
+                <img th:src="@{/images/pic01.jpg}" alt=""/>
             </div>
         </section>
 
@@ -62,7 +59,7 @@
         </section>
 
         <!-- Panel (Spotlight) -->
-        <section class="panel spotlight large left">
+        <!--<section class="panel spotlight large left">
             <div class="content span-5">
                 <a href="#"><h2 class="major">于清迈 观自在</h2></a>
                 <p>如果选择一座小城，需要马上就走，它闲适，静谧，但仍旧拥有惊喜与雀跃， 清迈 这座古城应该立即出现在你的旅行名单里。</p>
@@ -82,7 +79,7 @@
             </div>
         </section>
 
-        <!-- Panel -->
+        &lt;!&ndash; Panel &ndash;&gt;
         <section class="panel spotlight large left">
             <div class="content span-5">
                 <a href="#"><h2 class="major">少年啊，青春就是一首写不完的诗，乌村撒欢三日游</h2></a>
@@ -102,7 +99,7 @@
                 </div>
                 <a href="images/pic12.jpg" class="image filtered span-2-5" data-position="right"><img src="images/gallery/fulls/pic12.jpg" alt="" /></a>
             </div>
-        </section>
+        </section>-->
 
         <!-- Copyright -->
         <div class="copyright">&copy; Untitled. Design:</div>
@@ -110,6 +107,8 @@
 </div>
 <!-- Scripts -->
 <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="public/layui.js" th:href="@{/public/layui.js}"></script>
+<script th:src="@{/js/findWorld.js}"></script>
 <script src="asserts/js/skel.min.js" th:href="@{/asserts/js/skel.min.js}"></script>
 <script src="asserts/js/main.js" th:href="@{/asserts/js/main.js}"></script>
 </body>

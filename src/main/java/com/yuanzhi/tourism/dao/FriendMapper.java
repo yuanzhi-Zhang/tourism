@@ -4,7 +4,9 @@ import com.yuanzhi.tourism.entity.Friend;
 import com.yuanzhi.tourism.entity.FriendExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface FriendMapper {
     long countByExample(FriendExample example);
 

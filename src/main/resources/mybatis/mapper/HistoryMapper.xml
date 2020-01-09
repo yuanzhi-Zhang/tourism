@@ -4,9 +4,23 @@
   <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.History">
     <id column="history_id" jdbcType="INTEGER" property="historyId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="history_type" jdbcType="INTEGER" property="historyType" />
     <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="history_type_name" jdbcType="VARCHAR" property="historyTypeName" />
+    <result column="history_type_imgurl" jdbcType="VARCHAR" property="historyTypeImgurl" />
     <result column="history_time" jdbcType="VARCHAR" property="historyTime" />
+    <result column="history_times" jdbcType="INTEGER" property="historyTimes" />
+  </resultMap>
+  <resultMap id="BaseResultMapWithUser" type="com.yuanzhi.tourism.dto.HistoryDTO">
+    <id column="history_id" jdbcType="INTEGER" property="historyId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="history_type" jdbcType="INTEGER" property="historyType" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="history_type_name" jdbcType="VARCHAR" property="historyTypeName" />
+    <result column="history_type_imgurl" jdbcType="VARCHAR" property="historyTypeImgurl" />
+    <result column="history_time" jdbcType="VARCHAR" property="historyTime" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="history_times" jdbcType="INTEGER" property="historyTimes" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +81,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    history_id, user_id, type, type_id, history_time
+    history_id, user_id, history_type, type_id, history_type_name, history_type_imgurl, 
+    history_time, history_times
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.HistoryExample" resultMap="BaseResultMap">
     select
@@ -89,6 +104,11 @@
     from history
     where history_id = #{historyId,jdbcType=INTEGER}
   </select>
+  <select id="getAll" resultMap="BaseResultMapWithUser">
+    SELECT history_id, user_id, history_type, type_id, history_type_name, history_type_imgurl,
+    history_time, history_times, userName from history LEFT JOIN `user` ON history.user_id = `user`.uid
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from history
     where history_id = #{historyId,jdbcType=INTEGER}
@@ -100,10 +120,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yuanzhi.tourism.entity.History">
-    insert into history (history_id, user_id, type, 
-      type_id, history_time)
-    values (#{historyId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
-      #{typeId,jdbcType=INTEGER}, #{historyTime,jdbcType=VARCHAR})
+    insert into history (history_id, user_id, history_type, 
+      type_id, history_type_name, history_type_imgurl, 
+      history_time, history_times)
+    values (#{historyId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{historyType,jdbcType=INTEGER}, 
+      #{typeId,jdbcType=INTEGER}, #{historyTypeName,jdbcType=VARCHAR}, #{historyTypeImgurl,jdbcType=VARCHAR}, 
+      #{historyTime,jdbcType=VARCHAR}, #{historyTimes,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.History">
     insert into history
@@ -114,14 +136,23 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="type != null">
-        type,
+      <if test="historyType != null">
+        history_type,
       </if>
       <if test="typeId != null">
         type_id,
       </if>
+      <if test="historyTypeName != null">
+        history_type_name,
+      </if>
+      <if test="historyTypeImgurl != null">
+        history_type_imgurl,
+      </if>
       <if test="historyTime != null">
         history_time,
+      </if>
+      <if test="historyTimes != null">
+        history_times,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -131,14 +162,23 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
+      <if test="historyType != null">
+        #{historyType,jdbcType=INTEGER},
       </if>
       <if test="typeId != null">
         #{typeId,jdbcType=INTEGER},
       </if>
+      <if test="historyTypeName != null">
+        #{historyTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="historyTypeImgurl != null">
+        #{historyTypeImgurl,jdbcType=VARCHAR},
+      </if>
       <if test="historyTime != null">
         #{historyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="historyTimes != null">
+        #{historyTimes,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -157,14 +197,23 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=INTEGER},
+      <if test="record.historyType != null">
+        history_type = #{record.historyType,jdbcType=INTEGER},
       </if>
       <if test="record.typeId != null">
         type_id = #{record.typeId,jdbcType=INTEGER},
       </if>
+      <if test="record.historyTypeName != null">
+        history_type_name = #{record.historyTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.historyTypeImgurl != null">
+        history_type_imgurl = #{record.historyTypeImgurl,jdbcType=VARCHAR},
+      </if>
       <if test="record.historyTime != null">
         history_time = #{record.historyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.historyTimes != null">
+        history_times = #{record.historyTimes,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -175,9 +224,12 @@
     update history
     set history_id = #{record.historyId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=INTEGER},
+      history_type = #{record.historyType,jdbcType=INTEGER},
       type_id = #{record.typeId,jdbcType=INTEGER},
-      history_time = #{record.historyTime,jdbcType=VARCHAR}
+      history_type_name = #{record.historyTypeName,jdbcType=VARCHAR},
+      history_type_imgurl = #{record.historyTypeImgurl,jdbcType=VARCHAR},
+      history_time = #{record.historyTime,jdbcType=VARCHAR},
+      history_times = #{record.historyTimes,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -188,14 +240,23 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
+      <if test="historyType != null">
+        history_type = #{historyType,jdbcType=INTEGER},
       </if>
       <if test="typeId != null">
         type_id = #{typeId,jdbcType=INTEGER},
       </if>
+      <if test="historyTypeName != null">
+        history_type_name = #{historyTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="historyTypeImgurl != null">
+        history_type_imgurl = #{historyTypeImgurl,jdbcType=VARCHAR},
+      </if>
       <if test="historyTime != null">
         history_time = #{historyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="historyTimes != null">
+        history_times = #{historyTimes,jdbcType=INTEGER},
       </if>
     </set>
     where history_id = #{historyId,jdbcType=INTEGER}
@@ -203,9 +264,17 @@
   <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.History">
     update history
     set user_id = #{userId,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
+      history_type = #{historyType,jdbcType=INTEGER},
       type_id = #{typeId,jdbcType=INTEGER},
-      history_time = #{historyTime,jdbcType=VARCHAR}
+      history_type_name = #{historyTypeName,jdbcType=VARCHAR},
+      history_type_imgurl = #{historyTypeImgurl,jdbcType=VARCHAR},
+      history_time = #{historyTime,jdbcType=VARCHAR},
+      history_times = #{historyTimes,jdbcType=INTEGER}
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </update>
+  <update id="incTimes" parameterType="java.lang.Integer">
+    update history
+    set history_times = history_times + 1
     where history_id = #{historyId,jdbcType=INTEGER}
   </update>
 </mapper>

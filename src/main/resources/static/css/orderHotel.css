@@ -10,9 +10,13 @@
     position: relative;
     text-align: center;
 }
+.hotel_turnImg .cur_img img {
+    opacity: 1.0;
+}
 .hotel_turnImg_main{
     width: 100%;
     height: 500px;
+    object-fit: cover;
 }
 .hotel_turnImg_float{
     width: 200px;
@@ -109,3 +113,46 @@
     border: 3px solid lightgray;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.1) inset;
 }
+
+.hotel_list{
+    width: 1020px;
+    display: block;
+    margin: 0 auto;
+}
+
+.hotel_list .item_left{
+    float: left;
+    margin: 20px 0;
+}
+
+.hotel_list .item_left img{
+    width: 330px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.hotel_list .item_right{
+    float: right;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 640px;
+}
+
+.hotel_list .item_right h3{
+    margin-right: 5px;
+    margin-bottom: 20px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: normal;
+    display: inline;
+}
+
+.hotel_list .item_right p{
+    font-size: 16px;
+    color: #333;
+    line-height: 35px;
+}
+

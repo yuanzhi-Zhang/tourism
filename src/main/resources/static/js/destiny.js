@@ -1,14 +1,23 @@
 $(function () {
     layui.use(['element','layer'], function () {
         var element = layui.element;
-        layer = layui.layer
+        layer = layui.layer;
 
         //…
+        $("#header_destiny").addClass("layui-this");
+        $("#header_index").removeClass("layui-this");
+        $("#header_strategy").removeClass("layui-this");
+        $("#header_goHiking").removeClass("layui-this");
+        $("#header_flight").removeClass("layui-this");
+        $("#header_hotel").removeClass("layui-this");
+        $("#header_notification").removeClass("layui-this");
+        $("#header_self").removeClass("layui-this");
+        $("#header_company").removeClass("layui-this");
     });
     layui.use('layer', function () {
         var $ = layui.jquery
         layer = layui.layer
-    })
+    });
 
     // $("#des_nav").mouseover(function () {
     //     for (var i = 0; i < document.getElementsByClassName("layui-nav-item").length; i++) {
@@ -144,56 +153,31 @@ $(function () {
             this.getElementsByClassName('name')[0].style.display = 'block';
             this.getElementsByClassName('info')[0].style.display = 'none';
         }
-    })
+    });
 
-    // $(".des_themeDes_right_li")[0].onmouseover=function () {
-    //     $(".des_themeDes_right_li .name")[0].style.display='none';
-    //     $(".des_themeDes_right_li .info")[0].style.display='block';
-    // }
-    // $(".des_themeDes_right_li")[0].onmouseout=function () {
-    //     $(".des_themeDes_right_li .name")[0].style.display='block';
-    //     $(".des_themeDes_right_li .info")[0].style.display='none';
-    // }
-    // $(".des_themeDes_right_li")[1].onmouseover=function () {
-    //     $(".des_themeDes_right_li .name")[1].style.display='none';
-    //     $(".des_themeDes_right_li .info")[1].style.display='block';
-    // }
-    // $(".des_themeDes_right_li")[1].onmouseout=function () {
-    //     $(".des_themeDes_right_li .name")[1].style.display='block';
-    //     $(".des_themeDes_right_li .info")[1].style.display='none';
-    // }
-    // $(".des_themeDes_right_li")[2].onmouseover=function () {
-    //     $(".des_themeDes_right_li .name")[2].style.display='none';
-    //     $(".des_themeDes_right_li .info")[2].style.display='block';
-    // }
-    // $(".des_themeDes_right_li")[2].onmouseout=function () {
-    //     $(".des_themeDes_right_li .name")[2].style.display='block';
-    //     $(".des_themeDes_right_li .info")[2].style.display='none';
-    // }
-    // $(".des_themeDes_right_li")[3].onmouseover=function () {
-    //     $(".des_themeDes_right_li .name")[3].style.display='none';
-    //     $(".des_themeDes_right_li .info")[3].style.display='block';
-    // }
-    // $(".des_themeDes_right_li")[3].onmouseout=function () {
-    //     $(".des_themeDes_right_li .name")[3].style.display='block';
-    //     $(".des_themeDes_right_li .info")[3].style.display='none';
-    // }
-    // $(".des_themeDes_right_li")[4].onmouseover=function () {
-    //     $(".des_themeDes_right_li .name")[4].style.display='none';
-    //     $(".des_themeDes_right_li .info")[4].style.display='block';
-    // }
-    // $(".des_themeDes_right_li")[4].onmouseout=function () {
-    //     $(".des_themeDes_right_li .name")[4].style.display='block';
-    //     $(".des_themeDes_right_li .info")[4].style.display='none';
-    // }
-    // $(".des_themeDes_right_li")[5].onmouseover=function () {
-    //     $(".des_themeDes_right_li .name")[5].style.display='none';
-    //     $(".des_themeDes_right_li .info")[5].style.display='block';
-    // }
-    // $(".des_themeDes_right_li")[5].onmouseout=function () {
-    //     $(".des_themeDes_right_li .name")[5].style.display='block';
-    //     $(".des_themeDes_right_li .info")[5].style.display='none';
-    // }
+    unReadNum();
 
+});
 
-})
+function unReadNum() {
+    var notice = new FormData();
+    notice.append("userId",$(".userId").val());
+    $.ajax({
+        url: "/rwx/notification/noteNum",
+        async: false,
+        type: "post",
+        data: notice,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function (res) {
+            console.log(res);
+
+            if(res.unReadNum == 0){
+                $("#unReadNum").css("display","none");
+            }
+            $("#unReadNum").html(res.unReadNum);
+            // getAll();
+        }
+    });
+}

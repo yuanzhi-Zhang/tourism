@@ -25,7 +25,7 @@
     <div class="jourPub_upImg">
         <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
         <input type="file" hidden="hidden" id="selectJourneyImg" name="file" onchange="getImg(this)">
-        <img  class="uploadJourMainImg" id="uploadJourMainImg">
+        <img  class="uploadJourMainImg" th:src="@{/images/back.jpg}" id="uploadJourMainImg">
         <!--<div class="jourPub_upImg_mainImg" id="uploadJourMainPic">-->
         <div class="jourPub_upImg_mainImg" onclick="selectImg()">
             <img src="images/icon/changePic3.png" th:src="@{/images/icon/changePic3.png}" id="jourMainImg">

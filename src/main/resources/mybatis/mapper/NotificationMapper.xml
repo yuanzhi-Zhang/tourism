@@ -7,10 +7,24 @@
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="typeId" jdbcType="INTEGER" property="typeid" />
     <result column="typeName" jdbcType="VARCHAR" property="typename" />
+    <result column="typeIdName" jdbcType="VARCHAR" property="typeidname" />
     <result column="receiver" jdbcType="INTEGER" property="receiver" />
     <result column="notificationer" jdbcType="INTEGER" property="notificationer" />
     <result column="notificationerName" jdbcType="VARCHAR" property="notificationername" />
     <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap id="BaseResultMapWithUserName" type="com.yuanzhi.tourism.dto.NotificationDTO">
+    <id column="nid" jdbcType="INTEGER" property="nid" />
+    <result column="sendTime" jdbcType="VARCHAR" property="sendtime" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="typeId" jdbcType="INTEGER" property="typeid" />
+    <result column="typeName" jdbcType="VARCHAR" property="typename" />
+    <result column="typeIdName" jdbcType="VARCHAR" property="typeidname" />
+    <result column="receiver" jdbcType="INTEGER" property="receiver" />
+    <result column="notificationer" jdbcType="INTEGER" property="notificationer" />
+    <result column="notificationerName" jdbcType="VARCHAR" property="notificationername" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +85,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    nid, sendTime, type, typeId, typeName, receiver, notificationer, notificationerName, 
+    nid, sendTime, type, typeId, typeName, typeIdName, receiver, notificationer, notificationerName, 
     status
   </sql>
   <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.NotificationExample" resultMap="BaseResultMap">
@@ -94,6 +108,11 @@
     from notification
     where nid = #{nid,jdbcType=INTEGER}
   </select>
+  <select id="getAll" resultMap="BaseResultMapWithUserName">
+    SELECT nid, sendTime, type, typeId, typeName, typeIdName, receiver, notificationer, notificationerName,
+    notification.`status`,userName from notification LEFT JOIN `user` ON notification.receiver = `user`.uid
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from notification
     where nid = #{nid,jdbcType=INTEGER}
@@ -106,13 +125,13 @@
   </delete>
   <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Notification">
     insert into notification (nid, sendTime, type, 
-      typeId, typeName, receiver, 
-      notificationer, notificationerName, status
-      )
+      typeId, typeName, typeIdName, 
+      receiver, notificationer, notificationerName, 
+      status)
     values (#{nid,jdbcType=INTEGER}, #{sendtime,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{typeid,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR}, #{receiver,jdbcType=INTEGER}, 
-      #{notificationer,jdbcType=INTEGER}, #{notificationername,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
-      )
+      #{typeid,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR}, #{typeidname,jdbcType=VARCHAR}, 
+      #{receiver,jdbcType=INTEGER}, #{notificationer,jdbcType=INTEGER}, #{notificationername,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Notification">
     insert into notification
@@ -131,6 +150,9 @@
       </if>
       <if test="typename != null">
         typeName,
+      </if>
+      <if test="typeidname != null">
+        typeIdName,
       </if>
       <if test="receiver != null">
         receiver,
@@ -160,6 +182,9 @@
       </if>
       <if test="typename != null">
         #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="typeidname != null">
+        #{typeidname,jdbcType=VARCHAR},
       </if>
       <if test="receiver != null">
         #{receiver,jdbcType=INTEGER},
@@ -199,6 +224,9 @@
       <if test="record.typename != null">
         typeName = #{record.typename,jdbcType=VARCHAR},
       </if>
+      <if test="record.typeidname != null">
+        typeIdName = #{record.typeidname,jdbcType=VARCHAR},
+      </if>
       <if test="record.receiver != null">
         receiver = #{record.receiver,jdbcType=INTEGER},
       </if>
@@ -223,6 +251,7 @@
       type = #{record.type,jdbcType=INTEGER},
       typeId = #{record.typeid,jdbcType=INTEGER},
       typeName = #{record.typename,jdbcType=VARCHAR},
+      typeIdName = #{record.typeidname,jdbcType=VARCHAR},
       receiver = #{record.receiver,jdbcType=INTEGER},
       notificationer = #{record.notificationer,jdbcType=INTEGER},
       notificationerName = #{record.notificationername,jdbcType=VARCHAR},
@@ -246,6 +275,9 @@
       <if test="typename != null">
         typeName = #{typename,jdbcType=VARCHAR},
       </if>
+      <if test="typeidname != null">
+        typeIdName = #{typeidname,jdbcType=VARCHAR},
+      </if>
       <if test="receiver != null">
         receiver = #{receiver,jdbcType=INTEGER},
       </if>
@@ -267,6 +299,7 @@
       type = #{type,jdbcType=INTEGER},
       typeId = #{typeid,jdbcType=INTEGER},
       typeName = #{typename,jdbcType=VARCHAR},
+      typeIdName = #{typeidname,jdbcType=VARCHAR},
       receiver = #{receiver,jdbcType=INTEGER},
       notificationer = #{notificationer,jdbcType=INTEGER},
       notificationerName = #{notificationername,jdbcType=VARCHAR},

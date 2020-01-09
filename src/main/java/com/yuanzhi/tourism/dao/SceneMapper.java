@@ -4,13 +4,15 @@ import com.yuanzhi.tourism.entity.Scene;
 import com.yuanzhi.tourism.entity.SceneExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface SceneMapper {
     long countByExample(SceneExample example);
 
     int deleteByExample(SceneExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer sceneId);
 
     int insert(Scene record);
 
@@ -18,7 +20,7 @@ public interface SceneMapper {
 
     List<Scene> selectByExample(SceneExample example);
 
-    Scene selectByPrimaryKey(Integer id);
+    Scene selectByPrimaryKey(Integer sceneId);
 
     int updateByExampleSelective(@Param("record") Scene record, @Param("example") SceneExample example);
 
@@ -27,4 +29,6 @@ public interface SceneMapper {
     int updateByPrimaryKeySelective(Scene record);
 
     int updateByPrimaryKey(Scene record);
+
+    List<Scene> getAll(@Param("page")Integer page, @Param("limit")Integer limit);
 }

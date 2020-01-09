@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" th:href="@{/images/iconImg.jpg}">
+    <link rel="stylesheet" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" th:href="@{/css/background.css}">
+    <link rel="stylesheet" th:href="@{/css/company.css}">
+    <link rel="stylesheet" th:href="@{/css/companyDetails.css}">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
+    <script src="js/companyDetail.js" th:src="@{/js/companyDetail.js}"></script>
+    <title class="infoTitle">瑞士寻找王沥川，挪威寻找极光！</title>
+</head>
+<body>
+<!--头部导航-->
+    <div class="companyDetail_head">
+        <div th:replace="user/common/header::header"></div>
+    </div>
+<!--导航下的大图片-->
+    <img class="companyDetail_main_img">
+    <div class="companyDetail_title">
+        <!--<h1 th:text="${company.companyTitle}"></h1>-->
+        <h1 class="companyTitle"></h1>
+        <div class="total">
+            <span class="companyViewNum"></span>人浏览
+            <em class="dot"></em>
+            <span class="companyEnterNum">9</span>人报名
+            <em class="dot"></em>
+            <span class="companyAttendNum">9</span>人关注
+        </div>
+        <div class="event-btns">
+            <div class="cell-join">
+                <a class="btn-join _j_together_add" href="#enterForm">
+                    <img th:src="@{/images/icon/send2.png}" width="48" class="send">
+                    <span class="toEnter">我要报名</span></a>
+            </div>
+            <div class="cell-collect" onclick="attendIt()">
+                <a class="btn-collect _j_together_care"><i class="attendIt"></i><span class="_j_together_text">关注此结伴</span></a>
+            </div>
+        </div>
+    </div>
+<!--主要内容区-->
+    <div class="companyDetail_content">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
+        <div class="summary">
+            <ul class="clearfix">
+                <li><i class="icon-startTime"></i>出发时间：<span class="startTime">2019-12-24</span></li>
+                <li><i class="icon-days"></i>大约：<span class="days">15天</span></li>
+                <li><i class="icon-destination"></i>目的地：<span class="destination">挪威|苏黎世|瑞士</span></li>
+                <li><i class="icon-departure"></i>出发地：<span class="departure">香港</span></li>
+                <li><i class="icon-people"></i>希望人数：<span class="people">4人</span></li>
+            </ul>
+            <div class="contact _j_contact">
+                联系方式
+                <span class="invisible isEntered">
+
+                </span>
+                <span class="invisible companyAuthorPhone">
+                    ------报名后可见-------
+                </span>
+            </div>
+        </div>
+        <div class="wrapper clearfix">
+            <div class="detail-content">
+                <script id="strategyDemo" type="text/html">
+                    <input type="hidden" id="strategyId" value="{{d.companyId}}"/>
+                    <div class="sponsor clearfix">
+                        <a class="avatar" href="/u/71456555.html" target="_blank">
+                            <img src="{{d.user.imgurl}}" height="90" width="90">
+                        </a>
+                        <a class="name" href="#" target="_blank">{{d.user.username}}</a>
+                       <!-- <a class="level"><i class="layui-icon layui-icon-female"></i></a>-->
+                        <a class="level">
+                            {{#  if(d.user.usersex == '男'){ }}
+                            <i class="layui-icon layui-icon-male" style="color: #0f88eb"></i>
+                            {{#  } else { }}
+                            <i class="layui-icon layui-icon-female" style="color: #b92c28"></i>
+                            {{#  } }}
+                        </a>
+                        <div class="opt">
+                            <a class="btn-follow" data-japp="following" data-style="together">
+                                <span class="follow" onclick="addAttention(this)" data-id="{{d.user.uid}}"><i></i>加关注</span>
+                            </a>
+                            <a class="btn-privateLetter">发私信</a>
+                        </div>
+                    </div>
+                    <div class="desc _j_description">
+                        <!--<div class="title" th:text="${company.companyTitle}">瑞士寻找王沥川，挪威寻找极光！</div>-->
+                        <!--一、不知道有没有看过《遇见王沥川》，本人想打卡苏黎世! <br>
+                        当然，还有可以去的地方可供商量啊！！！<br>
+                        <br>
+                        二、心心念念地想去看极光，所以就选择了挪威，当然如果你有更好的建议！<br>
+                        <br>
+                        三、本人方案不太会写，我心想就是：如果你也对这两个国家有兴趣，时间也是可以商量的，然后组队！<br>
+                        男女都不限喔，我也自由行去过尼泊尔，斯里兰卡，泰国！<br>
+                        有兴趣的快点给我微信或QQ吧！！
+                        <br><br><img border="0" src="https://b2-q.mafengwo.net/s14/M00/8A/EA/wKgE2l0Vn7qAXPrXAB3CiDikk50991.JPG?imageView2%2F2%2Fw%2F600%2Fq%2F100">-->
+                        {{d.companyContent}}
+                    </div>
+                </script>
+                <div id="strategyView"></div>
+
+                <!--报名-->
+                <form class="layui-form" action="" id="enterForm" style="margin: 20px 0;">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="text-align: left;width: 50px;">输入框</label>
+                        <div class="layui-input-block" style="margin-left: 80px;">
+                            <input type="text" id="userPhone" required  lay-verify="required|phone|number" placeholder="请输入您的联系方式" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="text-align: left;width: 50px;">单选框</label>
+                        <div class="layui-input-block" style="margin-left: 80px;">
+                            <input type="radio" name="sex" value="男" title="男">
+                            <input type="radio" name="sex" value="女" title="女" checked>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="text-align: left;width: 60px;">同行人数</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="companyMaleNum" required  lay-verify="required|number" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">男(/)</div>
+                        <div class="layui-input-inline">
+                            <input type="text" id="companyFemaleNum" required  lay-verify="required|number" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">女(/)</div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label" style="text-align: left;width: 50px;">备注</label>
+                        <div class="layui-input-block" style="margin-left: 80px;">
+                            <textarea id="enterRemarks" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 80px;">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="enterAdd()">报名</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!--评论-->
+                <div class="journey_comment">
+                    <h4><span class="mainComment"></span>&ensp;条主回复</h4><br>
+                    <div class="layui-collapse" lay-filter="strategyComment" style="border: none;margin-bottom: -27px;">
+                        <script id="strategyCommentDemo" type="text/html">
+                            {{#  layui.each(d.list.data, function(index, item){ }}
+                            <div class="layui-colla-item"style="border-top: none;">
+                                <div class="comments">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img class="media-object img-rounded" src="{{item.user.imgurl}}">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading" style="margin-top: 3px;">
+                                                <span style="color: red;">{{item.user.username}}</span>&ensp;
+                                                (<span>{{item.user.address}}</span>)&emsp;
+                                                <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm" data-id="{{item.user.uid}}"
+                                                        onclick="addAttention(this)" style="height: 20px;margin-top: -3px;">
+                                                    <i class="layui-icon">&#xe608;</i>关注
+                                                </button>
+                                                <span class="commentTime">{{item.commenttime}}</span>
+                                                <p style="text-align: right;">
+                                                    <i class="layui-icon layui-icon-praise praise" data-id="{{item.cid}}" onclick="praiseComment(this)"
+                                                       style="position: relative;top: 2px;"></i>&emsp;
+                                                    <span class="openSub" data-id="{{item.cid}}" onclick="openSub(this)">
+                                                                <i class="layui-icon layui-icon-down"></i>&ensp;{{item.commentcount}}
+                                                            </span>
+                                                </p>
+                                            </h4>
+                                            <div style="margin-top: -3px;margin-bottom: 3px;">{{item.commentcomment}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-colla-content" id="comment-{{item.cid}}" style="margin: 15px 20px 20px 50px;border: 1px #c2b66a solid;border-radius: 5px;">
+                                        <div id="subCommentView-{{item.cid}}"></div>
+                                        <div class="subReply" style="margin-top: 20px;">
+                                            <input type="text" placeholder="评论一下..." autocomplete="off" id="input-{{item.cid}}" class="layui-input"
+                                                   style="float: left;width: 85.5%;margin-right: 15px;border-radius: 5px;">
+                                            <button type="button" class="layui-btn" data-id="{{item.cid}}" onclick="comment(this)" style="border-radius: 5px;">
+                                                回复
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{#  }); }}
+                            {{#  if(d.list.data.length === 0){ }}
+                            <p style="color: #666;">暂时还没有评论,快去抢占沙发吧 ~</p>
+                            {{#  } }}
+                        </script>
+                        <div id="strategyCommentView"></div>
+                    </div><br>
+                    <div id="comment_section" style="margin-top: 30px;">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object img-rounded" th:if="${session.loginUser != null}"
+                                         th:src="${session.loginUser.getImgurl()}">
+                                    <img class="media-object img-rounded" th:if="${session.loginUser == null}"
+                                         th:src="@{/images/scene/scene13.jpeg}">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h5 class="media-heading">
+                                    <span th:text="${session.loginUser != null ? session.loginUser.getUsername() : '匿名用户'}"></span>
+                                </h5>
+                            </div>
+                        </div>
+                        <textarea class="layui-textarea form-control comment" rows="6" id="comment_content" placeholder="快来发表你的言论吧..."></textarea>
+                        <button type="button" class="layui-btn" onclick="post()" style="border-radius: 5px;background-color: #28a745;float: right">
+                            评论
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-side">
+                <div class="aside_right">
+                    <div class="mod-joinlist">
+                        <div class="hd">
+                            <span><em class="companyEnterNum">9</em> 人报名</span>
+                            <span>MM <span class="enterFemaleNum">9</span> <i class="male"></i></span>
+                            <span>GG <span class="enterMaleNum">8</span> <i class="female"></i></span>
+                            <i class="icon-arrow"></i>
+                        </div>
+                        <div class="bd">
+                            <ul class="clearfix">
+                                <script id="companyEnterDemo" type="text/html">
+                                    {{#  layui.each(d.list.enterDTOS, function(index, item){ }}
+                                        <li>
+                                            <a class="avatar" href="#" target="_blank" data-id="{{item.user.uid}}" onclick="toOthers(this)">
+                                                <img src="{{item.user.imgurl}}" style="width: 68px;height: 68px;">
+                                                <!--<i class="male"></i>-->
+                                                {{#  if(item.user.usersex === '男'){ }}
+                                                <i class="male"></i>
+                                                {{#  } }}
+                                                {{#  if(item.user.usersex === '女'){ }}
+                                                <i class="female"></i>
+                                                {{#  } }}
+                                            </a>
+                                            <a class="name" href="#" target="_blank" data-id="{{item.user.uid}}" onclick="toOthers(this)">{{item.user.username}}</a>
+                                        </li>
+                                    {{#  }); }}
+                                    {{#  if(d.list.enterDTOS.length === 0){ }}
+                                    <!--<p style="color: #666;">暂时还没有人报名,快去报名吧 ~</p>-->
+                                    <img th:src="@{/images/icon/isEmpty.jpg}" style="width: 300px;object-fit: cover;max-height: 150px;">
+                                    {{#  } }}
+                                </script>
+                                <div id="companyEnterView"></div>
+                                <!--<li>
+                                    <a class="avatar" href="/u/17742245/together.html" target="_blank"><img src="https://p3-q.mafengwo.net/s12/M00/B3/7F/wKgED1wwhg2AZwnnAAB8r-F9SQs31.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="male"></i></a>
+                                    <a class="name" href="/u/17742245/together.html" target="_blank">wswcdong</a>
+                                </li>
+                                <li>
+                                    <a class="avatar" href="/u/80623850/together.html" target="_blank"><img src="https://b4-q.mafengwo.net/s14/M00/4B/C5/wKgE2l1TyueAW1c4AACVhTamR4893.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="male"></i></a>
+                                    <a class="name" href="/u/80623850/together.html" target="_blank">Ruki</a>
+                                </li>
+                                <li>
+                                    <a class="avatar" href="/u/70010065/together.html" target="_blank"><img src="https://b3-q.mafengwo.net/s12/M00/5C/CD/wKgED1w5xRCAOx_bAAASYshoLUg83.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="female"></i></a>
+                                    <a class="name" href="/u/70010065/together.html" target="_blank">叮当猫的旅行日记</a>
+                                </li>
+                                <li>
+                                    <a class="avatar" href="/u/45378624/together.html" target="_blank"><img src="https://p4-q.mafengwo.net/s14/M00/5B/8F/wKgE2l1pxqKAQHF0ABiZs_EC5eg09.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="male"></i></a>
+                                    <a class="name" href="/u/45378624/together.html" target="_blank">蚂蜂窝用户</a>
+                                </li>
+                                <li>
+                                    <a class="avatar" href="/u/47900569/together.html" target="_blank"><img src="https://p1-q.mafengwo.net/s15/M00/A1/7D/CoUBGV2wFJGAP54NAAE0Y1ja8ys43.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="female"></i></a>
+                                    <a class="name" href="/u/47900569/together.html" target="_blank">万家灯火中</a>
+                                </li>
+                                <li class="_j_hide_add_user" style="display: block;">
+                                    <a class="avatar" href="/u/94155867/together.html" target="_blank"><img src="https://n3-q.mafengwo.net/s10/M00/1D/99/wKgBZ1mx_ReASxAlAABmNeqDopc54.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="male"></i></a>
+                                    <a class="name" href="/u/94155867/together.html" target="_blank">刘丹</a>
+                                </li>
+                                <li class="_j_hide_add_user" style="display: block;">
+                                    <a class="avatar" href="/u/58146111/together.html" target="_blank"><img src="https://p2-q.mafengwo.net/s15/M00/F3/CF/CoUBGV2e1MKAVQRSAAClL5TI5r022.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="male"></i></a>
+                                    <a class="name" href="/u/58146111/together.html" target="_blank">小蚂蚁的游记</a>
+                                </li>
+                                <li class="_j_hide_add_user" style="display: block;">
+                                    <a class="avatar" href="/u/76682839/together.html" target="_blank"><img src="https://b3-q.mafengwo.net/s10/M00/FF/57/wKgBZ1j5eneAWnxiAABv2fAKWYE39.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" style="width: 68px;height: 68px;"><i class="male"></i></a>
+                                    <a class="name" href="/u/76682839/together.html" target="_blank">梵生九梦</a>
+                                </li>-->
+                            </ul>
+                        </div>
+                        <div class="ft _j_show_more_add_btn">
+                            <a><i class="icon-arrow"></i></a>
+                        </div>
+                    </div>
+                    <div class="mod-attentionUser">
+                        <div class="mod-title">关注此结伴的行者</div>
+                        <div class="bd">
+                            <ul class="clearfix">
+                                <script id="userAttendDemo" type="text/html">
+                                    {{#  layui.each(d.list.userList, function(index, item){ }}
+                                        <li><a href="#" target="_blank" data-id="{{item.uid}}" onclick="toOthers(this)">
+                                            <img src="{{item.imgurl}}" height="32" width="32">
+                                        </a></li>
+                                    {{#  }); }}
+                                    {{#  if(d.list.userList.length === 0){ }}
+                                    <p style="color: #666;">暂时还没有人关注TA,快去抢占沙发吧 ~</p>
+
+                                    {{#  } }}
+                                </script>
+                                <div id="userAttendView"></div>
+                                <!--<li><a href="/u/84208343/together.html"><img src="https://n2-q.mafengwo.net/s12/M00/35/2C/wKgED1uqImOAAxCCAAAeJTVWYJU680.png?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>
+                                <li><a href="/u/92303906/together.html"><img src="https://n4-q.mafengwo.net/s10/M00/45/32/wKgBZ1uDfpSAIcXRABXevY7xaGw60.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>
+                                <li><a href="/u/70010065/together.html"><img src="https://b3-q.mafengwo.net/s12/M00/5C/CD/wKgED1w5xRCAOx_bAAASYshoLUg83.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>
+                                <li><a href="/u/85633129/together.html"><img src="https://b4-q.mafengwo.net/s5/M00/23/2F/wKgB3FGUPwaARMDEAADxHKjIfO481.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>
+                                <li><a href="/u/77922300/together.html"><img src="https://n1-q.mafengwo.net/s10/M00/EC/FC/wKgBZ1nerxaACvOhAACUSDkZgRI95.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>
+                                <li><a href="/u/59601174/together.html"><img src="https://p4-q.mafengwo.net/s13/M00/97/C1/wKgEaVy77aaAfHDpAC1xlJXRVZc70.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>
+                                <li><a href="/u/70290190/together.html"><img src="https://n4-q.mafengwo.net/s10/M00/27/29/wKgBZ1lEdXSAbMg7AACQAKJSblY54.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>
+                                <li><a href="/u/69638843/together.html"><img src="https://n1-q.mafengwo.net/s12/M00/35/98/wKgED1uqIreAU9QZAAAXHQMBZ74008.png?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90" height="32" width="32"></a></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!--热门推荐的轮播图-->
+                    <div class="hotAdviceThree">
+                        <h3 class="hotCompany_advice">热门结伴推荐</h3>
+                        <div class="layui-carousel" id="hotAdviceLunBo" style="margin: 20px auto;">
+                            <div carousel-item>
+                                <script id="hotAdviceDemo" type="text/html">
+                                    {{#  layui.each(d.list.companyList, function(index, item){ }}
+                                        <div>
+                                            <div class="bd together-list wrapper">
+                                                <ul class="clearfix _j_together_list">
+                                                    <li class="item" style="width: 300px;">
+                                                        <a href="#" target="_blank" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)"
+                                                           style="padding: 15px 10px 10px 10px;width: 265px;">
+                                                            <div class="image">
+                                                                <img src="{{item.companyMainImg}}" style="width: 280px;height: 180px;">
+                                                                <div class="after" style="right: -60px;width: 62px;"><b>{{item.companyStartTime}}</b>天后</div>
+                                                                <hr style="width: 175px;">
+                                                            </div>
+                                                            <h3 class="title">{{item.companyEndArea}}</h3>
+                                                            <div class="desc">{{item.companyTitle}}</div>
+                                                            <div class="user clearfix">
+                                                                <span class="avatar">
+                                                                    <img src="{{item.user.imgurl}}" width="48" height="48">
+                                                                    {{#  if(item.user.usersex === '男'){ }}
+                                                                        <i class="male" style="background-position: -160px -120px;"></i>
+                                                                    {{#  } }}
+                                                                    {{#  if(item.user.usersex === '女'){ }}
+                                                                        <i class="female"></i>
+                                                                    {{#  } }}
+                                                                </span>
+                                                                <span class="name" style="width: 200px;">{{item.user.username}}({{item.user.address}}) </span>
+                                                                <span class="level">{{item.companyTime}}</span>
+                                                            </div>
+                                                            <div class="attention" style="width: 265px;"><i class="icon-arrow"></i>已有<b>{{item.companyAttendNum}}</b>人关注</div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {{#  }); }}
+                                </script>
+                                <!--<div id="hotAdviceView"></div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+<!--页脚区域-->
+    <div th:replace="user/common/footer::foot"></div>
+</body>
+</body>
+</html>

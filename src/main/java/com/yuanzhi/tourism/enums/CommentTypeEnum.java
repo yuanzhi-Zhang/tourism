@@ -7,7 +7,7 @@ package com.yuanzhi.tourism.enums;
 public enum  CommentTypeEnum {
     JOURNEY(1),
     STRATEGY(2),
-    ALBUM(3),
+    COMPANY(3),
     SCENE(4),
     COMMENT(5);
     private Integer type;

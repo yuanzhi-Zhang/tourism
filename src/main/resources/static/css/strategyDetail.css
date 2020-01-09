@@ -7,15 +7,22 @@
     width: 680px;
     float: left;
 }
+.strategyContent img{
+    max-width: 680px;
+    object-fit: cover;
+    margin: 10px 0;
+}
 .strategyDetai_content_left_title{
     font-size: 28px;
     font-family: "幼圆";
     text-align: left;
+    text-shadow: 5px 3px 2px rgb(199, 228, 152);
 }
 .strategyDetail_author_img{
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.1) inset;
 }
 .strategyDetail_author{
     font-size: 20px;
@@ -26,11 +33,151 @@
     width: 60px;
     height: 50px;
 }
+/*评论*/
+.journey_comment{
+    width: 650px;
+    margin: 60px auto;
+}
+
+.btn-publish {
+    float: right;
+    margin-bottom: 15px;
+}
+
+.media-object {
+    width: 38px;
+    height: 38px;
+}
+
+.media-body {
+    padding-top: 10px;
+}
+.media-left img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.text-desc {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+.profile .section {
+    margin-top: 15px;
+}
+
+.community-menu {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.jumbotron {
+    margin: 50px;
+}
+
+.comment {
+    margin: 10px 0;
+}
+
+.btn-comment {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.comments {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #5e5e5e;
+}
+
+.sub-comments {
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #c2b66a;
+    padding: 15px 15px 5px 15px;
+    margin-bottom: 15px;
+}
+
+.sub-comments .btn {
+    margin: 10px 0;
+}
+
+.comment-sp {
+    margin-top: 0;
+}
+
+.menu {
+    /*color: #999;*/
+    margin-top: 5px;
+}
+
+.menu .icon {
+    margin-right: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon :hover {
+    color: #499ef3;
+    cursor: pointer;
+}
+
+.up{
+    margin-top: -9px;
+    color: #df6659;
+}
+
+.up:hover{
+    cursor: pointer;
+}
+
+.menu .active {
+    color: #499ef3;
+}
+
+.menu .icon:hover {
+    color: #499ef3;
+}
+.commentTime{
+    float: right;
+}
+.openSub:hover{
+    cursor: pointer;
+    color: #499ef3;
+}
+.praise:hover{
+    cursor: pointer;
+    color: #de4a41;
+}
+.praised{
+    color: #de4a41;
+}
+.active{
+    color: #499ef3;
+}
 .strategyDetail__main_img{
     width: 680px;
     height: 430px;
     margin-bottom: 25px;
     margin-top: 10px;
+}
+.subContentItem{
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    color: #333;
+}
+.mainComment{
+    font-size: 20px;
+    color: #ff5722;
 }
 .strategyDetail_right{
     float: right;
@@ -38,6 +185,12 @@
 }
 .strategyDetail_contro{
     margin-bottom: 20px;
+}
+.strategyDetail_contro p{
+    text-align: center;
+    font-size: 18px;
+    position: relative;
+    top: -12px;
 }
 .strategyDetail_contro img{
     width: 40px;

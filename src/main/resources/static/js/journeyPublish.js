@@ -8,6 +8,7 @@ function getImg(obj) {
     reader.readAsDataURL(obj.files[0]);
     reader.addEventListener("load", function () {
         $('#uploadJourMainImg').attr('src', reader.result);
+        $("#jourMainImg").attr('src','images/icon/editImage.png');
         $(".jourPub_upImg_mainImg span").html("更改游记头图");
     }, false);
 }
@@ -17,6 +18,16 @@ layui.use(['element','layer','layedit','laydate','upload'], function () {
         var layedit = layui.layedit;
         var laydate = layui.laydate;
         var upload = layui.upload;
+
+    $("#header_destiny").removeClass("layui-this");
+    $("#header_index").removeClass("layui-this");
+    $("#header_strategy").removeClass("layui-this");
+    $("#header_goHiking").removeClass("layui-this");
+    $("#header_flight").removeClass("layui-this");
+    $("#header_hotel").removeClass("layui-this");
+    $("#header_notification").removeClass("layui-this");
+    $("#header_self").removeClass("layui-this");
+    $("#header_company").removeClass("layui-this");
 
         //上传图片,必须放在 创建一个编辑器前面
         layedit.set({

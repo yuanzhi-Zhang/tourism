@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="public/css/layui2.css">
     <link rel="stylesheet" href="css/background.css">
     <link rel="stylesheet" href="css/destiny.css">
+    <link rel="stylesheet" href="css/company.css">
     <link rel="stylesheet" href="css/own.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="asserts/css/font-awesome.min.css">
 
-    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/js/jquery-3.2.1.min.js"></script>
     <script src="public/layui.js"></script>
     <script src="js/own.js"></script>
-    <script src="js/background.js" th:src="@{/js/background.js}"></script>
+
     <title>个人中心@任我行,旅游攻略t</title>
 </head>
 
@@ -49,148 +50,98 @@
             <li class="jour_li own_li">
                 <!--<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1192408325&site=qq&menu=yes">-->
                 <div id="changeAvator">
-                    <img class="self_img" th:src="${session.loginUser != null ? session.loginUser.getImgurl() : 'images/322549.jpg'}">
+                    <img class="self_img" th:if="${session.loginUser != null && session.loginUser.getImgurl()!=null}"
+                         th:src="${session.loginUser.getImgurl()}">
+                    <img class="self_img" th:if="${session.loginUser == null || session.loginUser.getImgurl()==null}"
+                         src="http://rwx.yuanz.top/ac019e8f-2d09-4897-9ce9-2f070dd79cd4">
                     <i class="layui-icon layui-icon-camera-fill camera"></i>
                 </div>
                 <div class="own_info">
-                    <p th:text="${session.loginUser != null ? session.loginUser.getUsername() : '任我行'}">站在远处看从前
-                        <i class="layui-icon layui-icon-male"></i>
+                    <p>
+                        <span th:text="${session.loginUser != null ? session.loginUser.getUsername() : '任我行'}"></span>
+                        <i th:class="${session.loginUser.getUsersex()=='男'?'layui-icon layui-icon-male userMale':'layui-icon layui-icon-female userFemale'}"></i>
                     </p>
                     <p class="own_areaAndAge">
-                        现居：<span th:text="${session.loginUser != null ? session.loginUser.getAddress() : '琳琅上天'}">江西九江</span>&emsp;
+                        现居：<span th:text="${session.loginUser.getAddress() != null ? session.loginUser.getAddress() : '琳琅上天'}">江西九江</span>&emsp;
                         <!--&emsp;<span th:text="${session.loginUser != null ? session.loginUser.getBirthday() : '521'}">22</span>&emsp;-->
                         <a href="" th:href="@{/setting}" style="color: #373737;opacity: 0.8;">
                             <i class="layui-icon layui-icon-set-fill own_setting"></i>
                         </a>
                     </p>
                     <input type="hidden" id="selfHide" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getSelfintro()}"/>
-                    <button class="layui-btn layui-btn-primary own_show_self" th:if="${session.loginUser == null}">介绍下自己吧</button>
-                    <textarea class="own_show_self" th:if="${session.loginUser != null}"
-                              th:placeholder="${session.loginUser.getSelfintro()}" style="padding: 5px 5px 0px 5px;"></textarea>
+                    <button class="layui-btn layui-btn-primary own_show_self" th:if="${session.loginUser.getSelfintro() == null}">介绍下自己吧</button>
+                    <textarea class="own_show_self" th:if="${session.loginUser.getSelfintro() != null}"
+                              th:text="${session.loginUser.getSelfintro()}" style="padding: 5px 5px 0px 5px;"></textarea>
                     <textarea name="selfInfo" required lay-verify="required" class="layui-textarea own_self_edit"
-                              th:placeholder="${session.loginUser}!=null?${session.loginUser.getSelfintro()}:'例如：登山爱好者...'"></textarea>
+                              th:text="${session.loginUser}!=null?${session.loginUser.getSelfintro()}:'例如：登山爱好者...'"></textarea>
                     <button class="layui-btn layui-btn-primary own_self_edit_save">保存</button>
                     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                         <ul class="layui-tab-title own_tab">
-                            <li class="layui-this">关注(num)</li>
-                            <li>粉丝(num)</li>
+                            <li class="layui-this attentionTab" lay-id="attention">关注(<span class="attentionNum"></span>)</li>
+                            <li lay-id="fan" class="fansTab">粉丝(<span class="fansNum"></span>)</li>
                         </ul>
                         <div class="layui-tab-content own_tab_content">
                             <div class="layui-tab-item layui-show">
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/322746.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-male"></i>
-                                        </p>
-                                        <p><input type="button" class="own_haveAttended" value="已关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/322878.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-male"></i>
-                                        </p>
-                                        <p><input type="button" class="own_haveAttended" value="已关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/323282.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-female"></i>
-                                        </p>
-                                        <p><input type="button" class="own_haveAttended" value="已关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/323282.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-female"></i>
-                                        </p>
-                                        <p><input type="button" class="own_haveAttended" value="已关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/323282.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-female"></i>
-                                        </p>
-                                        <p><input type="button" class="own_haveAttended" value="已关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
+                                <script id="attentionDemo" type="text/html">
+                                    {{#  layui.each(d.list, function(index, item){ }}
+                                    <ul class="jour_ul">
+                                        <li class="jour_li">
+                                            <img class="own_attention" src="{{item.user.imgurl}}" data-id="{{item.user.uid}}" onclick="toOthers(this)">
+                                        </li>
+                                        <li class="jour_li own_attention_people">
+                                            <p>{{item.user.username}}
+                                                {{#  if(item.user.usersex == '男'){ }}
+                                                <i class="layui-icon layui-icon-male" style="color: #0f88eb"></i>
+                                                {{#  } else { }}
+                                                <i class="layui-icon layui-icon-female" style="color: #b92c28"></i>
+                                                {{#  } }}
+                                            </p>
+                                            <p><input type="button" class="own_haveAttended" value="已关注" data-id="{{item.fid}}" id="{{item.friendId}}"
+                                                      onclick="cancelAttention(this)" />
+                                                <input type="button" class="own_send_message" value="发私信" data-id="{{item.user.uid}}"
+                                                       onclick="sendMessage(this)" /></p>
+                                        </li>
+                                        <p class="attend_info">游记：{{item.user.journeycount}}&ensp;粉丝：{{item.user.fanscount}}&ensp;
+                                            足迹：{{item.user.historycount}}</p>
+                                        <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
+                                    </ul>
+                                    {{#  }); }}
+                                    {{#  if(d.list.length === 0){ }}
+                                    快去添加关注吧 ~
+                                    {{#  } }}
+                                </script>
+                                <div id="attentionView"></div>
                             </div>
                             <div class="layui-tab-item">
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/322746.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-male"></i>
-                                        </p>
-                                        <p><input type="button" class="own_notAttend" value="未关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/322878.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-male"></i>
-                                        </p>
-                                        <p><input type="button" class="own_notAttend" value="未关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
-                                <ul class="jour_ul">
-                                    <li class="jour_li">
-                                        <img class="own_attention" src="images/323282.jpg">
-                                    </li>
-                                    <li class="jour_li own_attention_people">
-                                        <p>会飞的鱼
-                                            <i class="layui-icon layui-icon-female"></i>
-                                        </p>
-                                        <p><input type="button" class="own_notAttend" value="未关注" />
-                                            <input type="button" class="own_send_message" value="发私信"></p>
-                                    </li>
-                                    <p class="attend_info">游记：13&ensp;粉丝：7&ensp;足迹：26</p>
-                                    <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
-                                </ul>
+                                <script id="fansDemo" type="text/html">
+                                    {{#  layui.each(d.list, function(index, item){ }}
+                                    <ul class="jour_ul">
+                                        <li class="jour_li">
+                                            <img class="own_attention" src="{{item.user.imgurl}}" data-id="{{item.user.uid}}" onclick="toOthers(this)">
+                                        </li>
+                                        <li class="jour_li own_attention_people">
+                                            <p>{{item.user.username}}
+                                                {{#  if(item.user.usersex == '男'){ }}
+                                                <i class="layui-icon layui-icon-male userMale"></i>
+                                                {{#  } else { }}
+                                                <i class="layui-icon layui-icon-female userFemale"></i>
+                                                {{#  } }}
+                                            </p>
+                                            <p><input type="button" class="own_notAttend" value="未关注" data-id="{{item.friendId}}"
+                                                      onclick="addAttention(this)" />
+                                                <input type="button" class="own_send_message" value="发私信" data-id="{{item.user.uid}}"
+                                                       onclick="sendMessage(this)"></p>
+                                        </li>
+                                        <p class="attend_info">游记：{{item.user.journeycount}}&ensp;粉丝：{{item.user.fanscount}}&ensp;
+                                            足迹：{{item.user.historycount}}</p>
+                                        <hr class="layui-bg-red" style="width: 110%;margin-left: -11px;">
+                                    </ul>
+                                    {{#  }); }}
+                                    {{#  if(d.list.length === 0){ }}
+                                    暂时还没有粉丝哦 ~
+                                    {{#  } }}
+                                </script>
+                                <div id="fansView"></div>
                             </div>
                         </div>
                     </div>
@@ -217,7 +168,7 @@
                             </div>
                         </ul>
                         {{#  }); }}
-                        <div class="layui-btn-group">
+                        <div class="layui-btn-group" id="messageRemainPage">
                             {{#  layui.each(d.list.pages, function(index, item){ }}
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
                                     onclick="toPageRemain(this)" style="margin-left: 5px;">
@@ -238,27 +189,30 @@
                     <ul class="layui-tab-title own_main_ul">
                         <li class="layui-this" lay-id="111">我的游记</li>
                         <li lay-id="222">我的攻略</li>
-                        <li lay-id="333">我的足迹</li>
-                        <li lay-id="444">我的好友</li>
-                        <li lay-id="555">我的问答</li>
+                        <li lay-id="333">我的报名</li>
+                        <li lay-id="444">我的足迹</li>
+                        <li lay-id="555">我的结伴</li>
                     </ul>
                     <ul class="jour_ul own_operate">
                         <li class="jour_li">
                             <a th:href="@{/journeyPublish}">
-                            <img src="images/icon/writeJour.png">
-                            <p><span>写游记</span></p></a>
+                                <img src="images/icon/writeJour.png">
+                                <p><span>写游记</span></p></a>
                         </li>
                         <li class="jour_li">
+                            <a th:href="@{/strategyPublish}">
                             <img src="images/icon/writeStragy.png">
-                            <p><span>写攻略</span></p>
+                                <p><span>写攻略</span></p></a>
                         </li>
                         <li class="jour_li">
-                            <img src="images/icon/ask.png">
-                            <p><span>问达人</span></p>
+                            <a th:href="@{/albumUpload}">
+                                <img src="images/icon/ask.png">
+                                <p><span>传相册</span></p></a>
                         </li>
                         <li class="jour_li">
-                            <img src="images/icon/invite.png">
-                            <p><span>发布结伴</span></p>
+                            <a th:href="@{/company/publish}">
+                                <img src="images/icon/invite.png">
+                                <p><span>发布结伴</span></p></a>
                         </li>
                     </ul>
                     <div class="layui-tab-content own_content_right_tab">
@@ -301,7 +255,7 @@
                                     <hr class="layui-bg-green">
                                 </ul>
                                 {{#  }); }}
-                                <div class="layui-btn-group" style="float: right;">
+                                <div class="layui-btn-group journeyPage" style="float: right;">
                                     {{#  layui.each(d.list.pages, function(index, item){ }}
                                     <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
                                             onclick="toPage(this)" style="margin-left: 5px;">
@@ -309,268 +263,731 @@
                                     </button>
                                     {{#  }); }}
                                 </div>
-                                {{#  if(d.list.length === 0){ }}
-                                <div class="common_block_personal_info">
-                                    <div class="personal_tips">
-                                        <p><strong>站在远处看从前</strong>&ensp;这里是你的【琳琅上天】</p>
-                                        <p>是记录的旅行回忆，结交各路英雄豪杰的地方哦！现在马上开启你的任我行旅程吧！</p>
-                                    </div>
-                                    <div class="personal_list">
-                                        <ul style="width: 630px;">
-                                            <li>
-                                                <div class="personal_icon">
-                                                    <i class="icon_info">
-                                                        <img src="images/icon/edit2.png">
-                                                    </i>
-                                                </div>
-                                                <div class="personal_word">
-                                                    <p>做一个有"脸面"的人<br>上传"头像"，完善"资料"<br></p>
-                                                </div>
-                                                <div class="person_btn">
-                                                    <button class="layui-btn layui-btn-primary layui-btn-radius" style="width: 124px;background-color: #f1744f;">
-                                                        <span style="font-size: 14px;color: #fff;">完善个人资料</span>
-                                                    </button>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="personal_icon">
-                                                    <i class="icon_info">
-                                                        <img src="images/icon/edit2.png">
-                                                    </i>
-                                                </div>
-                                                <div class="personal_word">
-                                                    <p>做一个有"脸面"的人<br>上传"头像"，完善"资料"<br></p>
-                                                </div>
-                                                <div class="person_btn">
-                                                    <button class="layui-btn layui-btn-primary layui-btn-radius" style="width: 124px;background-color: #f1744f;">
-                                                        <span style="font-size: 14px;color: #fff;">完善个人资料</span>
-                                                    </button>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="personal_icon">
-                                                    <i class="icon_info">
-                                                        <img src="images/icon/edit2.png">
-                                                    </i>
-                                                </div>
-                                                <div class="personal_word">
-                                                    <p>做一个有"脸面"的人<br>上传"头像"，完善"资料"<br></p>
-                                                </div>
-                                                <div class="person_btn">
-                                                    <button class="layui-btn layui-btn-primary layui-btn-radius" style="width: 124px;background-color: #f1744f;">
-                                                        <span style="font-size: 14px;color: #fff;">完善个人资料</span>
-                                                    </button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="common_block my_notes">
-                                    <div class="common_title clearfix">
-                                        <h2>我的游记</h2>
-                                    </div>
-                                    <div class="notes_default_v2">
-                                        <div class="notes_dcon">
-                                            <img src="images/scene/scene7.jpg">
-                                        </div>
-                                        <button class="layui-btn btn_write">写游记</button>
-                                    </div>
-                                    <div class="more_notes">
-                                        <a class="btn_deleted" href="#" style="color: #0C0C0C;">
-                                            <i class="layui-icon layui-icon-delete"></i>
-                                            已删除游记
-                                        </a>
-                                    </div>
-                                </div>
+                                {{#  if(d.list.data.length === 0){ }}
+
                                 {{#  } }}
                             </script>
                             <div id="view"></div>
                         </div>
                         <div class="layui-tab-item">
-                            <ul class="jour_ul">
-                                <li class="jour_li" style="position: relative;top:-67px;">
-                                    <a href="#"><img src="images/322058.jpg"
-                                            class="jour_img"></a>
-                                </li>
-                                <!--图片右边总的区块-->
-                                <li class="jour_li">
-                                    <ul>
-                                        <li>
-                                            <!--包含图片的游记标题和作者的上层区域-->
-                                            <ul class="jour_ul">
-                                                <!--游记封面图片-->
-                                                <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
-                                                            src="images/319282.jpg"></a></li>
-                                                <!--右边不含图片的游记标题和作者-->
-                                                <li class="jour_li jour_introduce">
-                                                    <a href="#">
-                                                        <p style="color: blue;font-size:90%;">
-                                                            你说，这是纷繁之地，我说，这是文明之美...</p>
-                                                    </a>
-                                                    <span class="author">作者：<a href="#">站在远处看从前</a>
-                                                        &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-reply-fill"
-                                                                style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-star-fill"
-                                                                style="font-size: 10px;">&ensp;1104</i></a>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <a href="#">
-                                            <li
-                                                style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;color:black;">
-                                                大连旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，
-                                                以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
-                                                大连的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</li>
-                                        </a>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
-                            <ul class="jour_ul">
-                                <li class="jour_li" style="position: relative;top:-67px;">
-                                    <a href="#"><img src="images/322188.jpg" class="jour_img"></a>
-                                </li>
-                                <!--图片右边总的区块-->
-                                <li class="jour_li">
-                                    <ul>
-                                        <li>
-                                            <!--包含图片的游记标题和作者的上层区域-->
-                                            <ul class="jour_ul">
-                                                <!--游记封面图片-->
-                                                <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
-                                                            src="images/321924.jpg"></a></li>
-                                                <!--右边不含图片的游记标题和作者-->
-                                                <li class="jour_li jour_introduce">
-                                                    <a href="#">
-                                                        <p style="color: blue;font-size:90%;">
-                                                            你说，这是纷繁之地，我说，这是文明之美...</p>
-                                                    </a>
-                                                    <span class="author">作者：<a href="#">站在远处看从前</a>
-                                                        &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-reply-fill"
-                                                                style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-star-fill"
-                                                                style="font-size: 10px;">&ensp;1104</i></a>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <a href="#">
-                                            <li
-                                                style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;color:black;">
-                                                大连旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，
-                                                以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
-                                                大连的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</li>
-                                        </a>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
-                            <ul class="jour_ul">
-                                <li class="jour_li" style="position: relative;top:-67px;">
-                                    <a href="#"><img src="images/321999.jpg" class="jour_img"></a>
-                                </li>
-                                <!--图片右边总的区块-->
-                                <li class="jour_li">
-                                    <ul>
-                                        <li>
-                                            <!--包含图片的游记标题和作者的上层区域-->
-                                            <ul class="jour_ul">
-                                                <!--游记封面图片-->
-                                                <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
-                                                            src="images/slide_05.jpg"></a></li>
-                                                <!--右边不含图片的游记标题和作者-->
-                                                <li class="jour_li jour_introduce">
-                                                    <a href="#">
-                                                        <p style="color: blue;font-size:90%;">
-                                                            你说，这是纷繁之地，我说，这是文明之美...</p>
-                                                    </a>
-                                                    <span class="author">作者：<a href="#">站在远处看从前</a>
-                                                        &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-reply-fill"
-                                                                style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-star-fill"
-                                                                style="font-size: 10px;">&ensp;1104</i></a>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <a href="#">
-                                            <li
-                                                style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;color:black;">
-                                                大连旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，
-                                                以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
-                                                大连的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</li>
-                                        </a>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
-                            <ul class="jour_ul">
-                                <li class="jour_li" style="position: relative;top:-67px;">
-                                    <a href="#"><img src="images/319268.jpg" class="jour_img"></a>
-                                </li>
-                                <!--图片右边总的区块-->
-                                <li class="jour_li">
-                                    <ul>
-                                        <li>
-                                            <!--包含图片的游记标题和作者的上层区域-->
-                                            <ul class="jour_ul">
-                                                <!--游记封面图片-->
-                                                <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
-                                                            src="images/slide_05.jpg"></a></li>
-                                                <!--右边不含图片的游记标题和作者-->
-                                                <li class="jour_li jour_introduce">
-                                                    <a href="#">
-                                                        <p style="color: blue;font-size:90%;">
-                                                            你说，这是纷繁之地，我说，这是文明之美...</p>
-                                                    </a>
-                                                    <span class="author">作者：<a href="#">站在远处看从前</a>
-                                                        &emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-reply-fill"
-                                                                style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
-                                                        <a href="#"><i class="layui-icon layui-icon-star-fill"
-                                                                style="font-size: 10px;">&ensp;1104</i></a>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <a href="#">
-                                            <li
-                                                style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;color:black;">
-                                                大连旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，
-                                                以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
-                                                大连的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</li>
-                                        </a>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">
+                            <script id="strategyDemo" type="text/html">
+                                {{#  layui.each(d.list.strategyList, function(index, item){ }}
+                                <ul class="jour_ul strategy_info" data-id="{{item.strategyId}}" onclick="toStrategyDetail(this)">
+                                    <p class="strategy_partmain_title">{{item.strategyTitle}}</p>
+                                    <div class="straegy_partInfo">
+                                        {{item.strategyIntro}}
+                                    </div>
+                                    <li class="jour_li"><img src="{{item.firstImg}}"></li>
+                                    <li class="jour_li"><img src="{{item.secondImg}}"></li>
+                                    <li class="jour_li"><img src="{{item.thirdImg}}"></li>
+                                    <div class="strategy_description">
+                                        <span>{{item.readTimes}}浏览</span>&emsp;&ensp;
+                                        <span><i class="layui-icon layui-icon-rate-solid">{{item.collectNum}}</i></span>&emsp;&ensp;
+                                        <sapn>{{item.publishTime}}</sapn>
+                                    </div>
+                                </ul>
+                                {{#  }); }}
+                                <div class="layui-btn-group" style="float: right;" id="strategyPage">
+                                    <button type="button" class="layui-btn layui-btn-sm">
+                                        共&emsp;<span class="totalStrategy" style="font-size: 18px;"></span>&emsp;条
+                                    </button>
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                                        当前为第&emsp;<span class="currStrategy" style="font-size: 18px;"></span>&emsp;页
+                                    </button>
+                                    <button type="button" class="layui-btn layui-btn-sm">
+                                        共&emsp;<span class="pageNumStrategy" style="font-size: 18px;"></span>&emsp;页
+                                    </button>
+                                    {{#  layui.each(d.list.pages, function(index, item){ }}
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                            onclick="toPageStrategy(this)" style="margin-left: 5px;font-size: 14px;">
+                                        {{item}}
+                                    </button>
+                                    {{#  }); }}
+                                </div>
+                                {{#  if(d.list.strategyList.length === 0){ }}
+
+                                {{#  } }}
+                            </script>
+                            <div id="strategyView"></div>
                         </div>
                         <div class="layui-tab-item">
-                                <!--<textarea id="textPublish" style="display: none;"></textarea>-->
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">文章标题</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="title" id="title" lay-verify="title" autocomplete="off" placeholder="请输入标题"
-                                           class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item layui-form-text">
-                                <label class="layui-form-label">文章内容</label>
-                                <div class="layui-input-block">
-                                    <textarea placeholder="请输入内容" class="layui-textarea" id="content"></textarea>
-                                </div>
-                            </div>
-                            <div style="text-align: right;margin-right: 200px"><button class="layui-btn layui-btn-lg"
-                                 id="publishJour">发布文章</button> <span id="errMsg" style="font-size:14px;color:red;font-weight:bolder"></span>
+                            <div class="bd together-list wrapper" style="width: 740px;">
+                                <ul class="clearfix _j_together_list">
+                                    <script id="enterDemo" type="text/html">
+                                        {{#  layui.each(d.list.enterDTOS, function(index, item){ }}
+                                        <li class="item" style="margin-bottom: 35px;">
+                                            <a class="companyItem" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)" target="_blank">
+                                                <div class="image">
+                                                    <img src="{{item.companyMainImg}}"
+                                                         style="width: 200px;height: 130px;">
+                                                    <div class="after">
+                                                        <b>{{item.companyStartTime}}</b>天后
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                <h3 class="title">{{item.companyEndArea}}</h3>
+                                                <div class="desc">{{item.companyTitle}}
+                                                </div>
+                                                <div class="user clearfix">
+                                                    <span class="avatar">
+                                                        <img src="{{item.imgurl}}"
+                                                             width="48" height="48">
+                                                        {{#  if(item.usersex === '男'){ }}
+                                                            <i class="male" style="background-position: -160px -120px;"></i>
+                                                        {{#  } }}
+                                                        {{#  if(item.usersex === '女'){ }}
+                                                            <i class="female"></i>
+                                                        {{#  } }}
+                                                    </span>
+                                                    <span class="name">{{item.username}}({{item.address}})  </span>
+                                                    <span class="level">{{item.companyTime}}</span>
+                                                </div>
+                                                <div class="attention"><i class="icon-arrow"></i>已有<b>{{item.companyAttendNum}}</b>人关注</div>
+                                                <p style="color: #222;line-height: 30px;">报名时间：{{item.enterTime}}</p>
+                                            </a>
+                                        </li>
+                                        {{#  }); }}
+                                    </script>
+                                    <div id="enterView"></div>
+                                </ul>
                             </div>
                         </div>
-                        <div class="layui-tab-item">内容4</div>
-                        <div class="layui-tab-item">内容5</div>
+                        <div class="layui-tab-item">
+                             <div class="own_history">
+                                 <!--游记
+                                 <ul class="jour_ul" style="padding: 20px;background-color: #d5bddf63;">
+                                     <li class="jour_li" style="float: left;">
+                                         <img src="images/322188.jpg" style="width: 210px;" class="jour_img">
+                                     </li>
+                                     &lt;!&ndash;图片右边总的区块&ndash;&gt;
+                                     <li class="jour_li" style="float: right;">
+                                         <ul>
+                                             <li style="margin-top: -6px;">
+                                                 &lt;!&ndash;包含图片的游记标题和作者的上层区域&ndash;&gt;
+                                                 <ul class="jour_ul">
+                                                     &lt;!&ndash;游记作者图片&ndash;&gt;
+                                                     <li class="jour_li author_li"><a href="#">
+                                                         <img class="jour_author_img" src="images/slide_05.jpg"></a></li>
+                                                     &lt;!&ndash;右边不含图片的游记标题和作者&ndash;&gt;
+                                                     <li class="jour_li jour_introduce">
+                                                         <a href="#">
+                                                             <p style="color: blue;font-size:90%;">
+                                                                 你说，这是纷繁之地，我说，这是文明之美...
+                                                             </p>
+                                                         </a>
+                                                         <span class="author">作者：
+                                                            <a href="#">站在远处看从前</a>
+                                                &emsp;&emsp;&emsp;<span>2019-09-10 12:22</span>&emsp;&emsp;
+                                                <a href="#"><i class="layui-icon layui-icon-reply-fill"
+                                                               style="font-size: 10px;">&ensp;7</i></a>&emsp;&emsp;
+                                                <a href="#"><i class="layui-icon layui-icon-star-fill"
+                                                               style="font-size: 10px;">&ensp;1104</i></a>
+                                            </span>
+                                                     </li>
+                                                 </ul>
+                                             </li>
+                                             <li class="indexJourneyContent" style="width: 400px">
+                                                 大连旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，
+                                                 以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。
+                                                 大连的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...
+                                             </li>
+                                         </ul>
+                                     </li>
+                                 </ul>
+                                 &lt;!&ndash;攻略&ndash;&gt;
+                                 <ul class="jour_ul strategy_info">
+                                     <p class="strategy_partmain_title">薄荷岛潜水|薄荷岛我的潜水考证之旅，新人必读攻略</p>
+                                     <div class="straegy_partInfo">
+                                         “世界这么大，我想去看看”想必很多小伙伴都有这种冲动与梦想，奈何跟团游就是下车拍照上车睡觉，每天安排的满满累成狗；自由行就得准备各种攻略，还需要克服当地语言障碍，尤其是作为中国人这个点了吃货天赋的民族，往往饮食就是一大障碍。
+                                     </div>
+                                     <li class="jour_li"><img src="images/scene/scene10.jpg"></li>
+                                     <li class="jour_li"><img src="images/scene/scene11.jpeg"></li>
+                                     <li class="jour_li"><img src="images/scene/scene12.jpg"></li>
+                                     <div class="strategy_description">
+                                         <span>365浏览</span>&emsp;&ensp;
+                                         <span><i class="layui-icon layui-icon-rate-solid">196</i></span>&emsp;&ensp;
+                                         <sapn>2019-10-25 20:02</sapn>
+                                     </div>
+                                 </ul>
+                                 &lt;!&ndash;问答&ndash;&gt;
+                                 <div class="postnormal review ">
+                                     <div class="post-container review-item">
+                                         <div class="row review-item-wrapper">
+                                             <img src="images/diego-ph-249471-2-800x1000.jpg" class="wendaImg">
+                                             <div class="col-sm-9 flex-xs-middle">
+                                                 <div class="review-item-title">
+                                                     <a href="#" rel="bookmark">你选择一个城市旅游的原因是什么？是美食、美景，还是其他？</a>
+                                                 </div>
+                                                 <div class="review-item-creator"><b>发布日期：</b>2017-12-30</div>
+                                                 <span class="review-item-info"><b>总浏览量：</b>1203 reads</span>
+                                             </div>
+                                         </div>
+                                         <div class="review-bg-wrapper">
+                                             <img class="bg-blur" src="images/diego-ph-249471-2-800x1000.jpg">
+                                         </div>
+                                     </div>
+                                     <div class="post-container">
+                                         <div class="entry-content">
+                                             确实讨厌去写所谓的年终总结，在公司已经被动的想领导上交一个总结，
+                                             自己就懒得去总结，不然，我觉得脑子里应该会编写出八九不离十的内容，所以正经八儿的事情略了，
+                                             瞎说一下。 年初的人事调动是个人最不能接受的事情，但不接受也得接受，老板一句“这是命令...
+                                         </div>
+                                     </div>
+                                 </div>
+                                 &lt;!&ndash;景点&ndash;&gt;
+                                 <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                     <div class="post-album">
+                                         <div class="row content">
+                                             <img class="bg" src="images/IMG_0150.jpg"></img>
+                                             <div class="contentext flex-xs-middle">
+                                                 <div class="album-title">
+                                                     <a href="detail.html">景点历史浏览记录</a>
+                                                 </div>
+                                                 <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                 <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                             </div>
+                                             <div class="album-thumb-width flex-xs-middle">
+                                                 <div class="row album-thumb no-gutter">
+                                                     <div class="col-xs-4"><img class="thumb" src="images/IMG_0150-250x250.jpg" /></div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/IMG_0149-250x250.jpg" /></div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/IMG_0146-250x250.jpg" /></div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/IMG_0147-250x250.jpg" /></div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/IMG_0148-250x250.jpg" /></div>
+                                                     <div class="col-xs-4">
+                                                         <a href="">5 pics</a>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 &lt;!&ndash;酒店&ndash;&gt;
+                                 <div class="post post-layout-list js-gallery" data-aos="fade-up">
+                                     <div class="post-album">
+                                         <div class="row content">
+                                             <img class="bg" src="images/hotel/hotel1.jpg"></img>
+                                             <div class="album-thumb-width flex-xs-middle">
+                                                 <div class="row album-thumb no-gutter" style="margin-left: 0px;">
+                                                     <div class="col-xs-4"><img class="thumb" src="images/hotel/hotel5.jpg" /></div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/hotel/hotel3.jpg" /></div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/hotel/hotel4.jpg" /></div>
+                                                     <div class="col-xs-4">
+                                                         <a href="">5 pics</a>
+                                                     </div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/hotel/hotel7.jpg" /></div>
+                                                     <div class="col-xs-4"><img class="thumb" src="images/hotel/hotel6.jpg" /></div>
+                                                 </div>
+                                             </div>
+                                             <div class="contentext flex-xs-middle" style="margin-left: 62px;width: 52%;">
+                                                 <div class="album-title">
+                                                     <a href="detail.html">酒店历史浏览记录</a>
+                                                 </div>
+                                                 <h5 class="review-item-creator"><b>发布日期：</b>2017-11-13</h5>
+                                                 <div class="album-content">如眼所见是一个图像样式，必须写五十左右的文字作为这个文本框的空白填充，不写也是可以的，强迫症不能容忍空白。</div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>-->
+                                 <div class="wrapper mod-popular" style="width: 750px">
+                                 <div class="bd">
+                                     <ul class="clearfix" style="width: 750px">
+                                         <script id="historyDemo" type="text/html">
+                                             {{#  layui.each(d.list.notices, function(index, item){ }}
+                                                 <li class="item" style="width: 210px;height: 210px;">
+                                                     <a class="_j_hot_mdd" data-id="{{item.typeId}}" data-name="{{item.historyType}}"
+                                                        onclick="toSomeDetail(this)" style="width: 210px;height: 210px;">
+                                                         <div class="image" style="width: 210px;height: 210px;">
+                                                             <img src="{{item.historyTypeImgurl}}" style="width: 200px;height: 200px;">
+                                                         </div>
+                                                         <div class="bg" style="width: 165px;height: 165px;left: 20px;top:20px;z-index: 9999;"></div>
+                                                         <div class="txt">
+                                                             <strong style="max-width: 168px; max-height: 30px;overflow: hidden;">{{item.historyTypeName}}</strong>
+                                                             <p style="height: 70px">{{item.historyTime}}<br>
+                                                                 浏览了&ensp;<span style="font-size: 24px">{{item.historyTimes}}</span>&ensp;次<br>
+                                                                 类别：
+                                                                 {{#  if(item.historyType === 1){ }}
+                                                                    <span style="color: #ffa800">游记</span>
+                                                                 {{#  } }}
+                                                                 {{#  if(item.historyType === 2){ }}
+                                                                    <span style="color: #ffa800">攻略</span>
+                                                                 {{#  } }}
+                                                                 {{#  if(item.historyType === 3){ }}
+                                                                    <span style="color: #ffa800">结伴</span>
+                                                                 {{#  } }}
+                                                                 {{#  if(item.historyType === 4){ }}
+                                                                    <span style="color: #ffa800">相册</span>
+                                                                 {{#  } }}
+                                                                 {{#  if(item.historyType === 5){ }}
+                                                                    <span style="color: #ffa800">景点</span>
+                                                                 {{#  } }}
+                                                             </p>
+                                                         </div>
+                                                     </a>
+                                                 </li>
+                                             {{#  }); }}
+                                         </script>
+                                         <div id="historyView"></div>
+                                         <div style="clear: both"></div>
+                                         <div class="layui-btn-group" style="float: right;margin-right: 62px;" id="pageHistory">
+                                             <button type="button" class="layui-btn layui-btn-sm">
+                                                 共&emsp;<span class="totalHistory" style="font-size: 18px;"></span>&emsp;条
+                                             </button>
+                                             <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                                                 当前为第&emsp;<span class="currHistory" style="font-size: 18px;"></span>&emsp;页
+                                             </button>
+                                             <button type="button" class="layui-btn layui-btn-sm">
+                                                 共&emsp;<span class="pageNumHistory" style="font-size: 18px;"></span>&emsp;页
+                                             </button>
+                                             <script id="pageHistoryDemo" type="text/html">
+                                                 {{#  layui.each(d.list.pages, function(index, item){ }}
+                                                 <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                                         onclick="toPageHistory(this)" style="margin-left: 5px;font-size: 14px;">
+                                                     {{item}}
+                                                 </button>
+                                                 {{#  }); }}
+                                             </script>
+                                             <div id="pageHistoryView" style="float: right;"></div>
+                                         </div>
+                                     </ul>
+                                 </div>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="bd together-list wrapper" style="width: 740px;">
+                                <ul class="clearfix _j_together_list">
+                                    <script id="companyDemo" type="text/html">
+                                        {{#  layui.each(d.list.companyList, function(index, item){ }}
+                                        <li class="item" style="margin-bottom: 35px;">
+                                            <a class="companyItem" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)" target="_blank">
+                                                <div class="image">
+                                                    <img src="{{item.companyMainImg}}"
+                                                         style="width: 200px;height: 130px;">
+                                                    <div class="after">
+                                                        <b>{{item.companyStartTime}}</b>天后
+                                                        <!--{{item.companyStartTime}}-->
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                                <h3 class="title">{{item.companyEndArea}}</h3>
+                                                <div class="desc">{{item.companyTitle}}
+                                                </div>
+                                                <div class="user clearfix">
+                                <span class="avatar">
+                                    <img src="{{item.user.imgurl}}"
+                                         width="48" height="48">
+                                    {{#  if(item.user.usersex === '男'){ }}
+                                        <i class="male" style="background-position: -160px -120px;"></i>
+                                    {{#  } }}
+                                    {{#  if(item.user.usersex === '女'){ }}
+                                        <i class="female"></i>
+                                    {{#  } }}
+                                    <!--<i class="male"></i>-->
+                                </span>
+                                                    <span class="name">{{item.user.username}}({{item.user.address}})  </span>
+                                                    <span class="level">{{item.companyTime}}</span>
+                                                </div>
+                                                <div class="attention"><i class="icon-arrow"></i>已有<b>{{item.companyAttendNum}}</b>人关注</div>
+                                            </a>
+                                        </li>
+                                        {{#  }); }}
+                                    </script>
+                                    <div id="companyView"></div>
+                                    <!--<li class="item">
+                                        <a th:href="@{/company/detail}" target="_blank">
+                                            <div class="image">
+                                                <img src="https://b2-q.mafengwo.net/s6/M00/38/DD/wKgB4lMNbkWAKYVIAAS7PpYjpiE27.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>5</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">沙巴|菲律宾|普吉岛</h3>
+                                            <div class="desc">想去学冲浪，找了一家普吉岛的店
+                                                体验➕入门，下面是我暂定的...
+                                            </div>
+                                            <div class="user clearfix">
+                                                    <span class="avatar">
+                                                        <img src="https://p3-q.mafengwo.net/s12/M00/32/B8/wKgED1wx9CSAf_VgAABmwADfmRI45.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                             width="48">
+                                                        <i class="male"></i>
+                                                    </span>
+                                                <span class="name">Hailey(成都)  </span>
+                                                <span class="level">2019-10-27</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>11</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2388889.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://n3-q.mafengwo.net/s8/M00/4E/35/wKgBpVXQYiyALbdLAAVaO6591W802.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>34</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">大阪|京都</h3>
+                                            <div class="desc">本人85后小姐姐，独立，不矫情，第一次去日本，之前都是自由...</div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://p4-q.mafengwo.net/s10/M00/C2/AD/wKgBZ1kgQ6WAYK8VAABmo-FJxAk22.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">Serena🐳(广州)  </span>
+                                                <span class="level">LV.5</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>16</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2362783.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://n2-q.mafengwo.net/s9/M00/8E/78/wKgBs1e5mQiAVFwpABu2ZRmC4qQ81.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>85</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">葡萄牙|西班牙</h3>
+                                            <div class="desc">目前有3人机票已出，目前1男2女，都是80后，有兴趣的朋友可以...</div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://n3-q.mafengwo.net/s14/M00/79/88/wKgE2l0j8b-ADjs_AABM8f3staM88.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="female"></i></span>
+                                                <span class="name">凹凸曼打年糕(上海)  </span>
+                                                <span class="level">LV.6</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>23</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2365475.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://b2-q.mafengwo.net/s7/M00/41/DD/wKgB6lQexJKAPpgYACP7j4NiVhk75.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>58</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">挪威|苏黎世|瑞士</h3>
+                                            <div class="desc">一、不知道有没有看过《遇见王沥川》，本人想打卡苏黎世!
+                                                当...
+                                            </div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://p2-q.mafengwo.net/s14/M00/A7/F1/wKgE2l0Vq3uAQhuaAADmkIFXnEk22.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">无知•少女(中山)  </span>
+                                                <span class="level">LV.8</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>18</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2376263.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://b1-q.mafengwo.net/s9/M00/C2/D4/wKgBs1Zm2QiAZ9kLABYyvNNtvuk84.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>1</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">腾冲|丽江|大理</h3>
+                                            <div class="desc">云南，一座4年去了3次的城市，可还是没有腻味，暂且是半个云...</div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://p3-q.mafengwo.net/s11/M00/78/67/wKgBEFqNkXWAGFcrAAAPMz5Lzcs41.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">哈韩大妈 🙆 、CHST(海口)  </span>
+                                                <span class="level">LV.6</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>30</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2366271.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://b1-q.mafengwo.net/s9/M00/E1/79/wKgBs1bBjaeAJ14dAAHblaD0Jo016.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>91</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">贝加尔湖</h3>
+                                            <div class="desc">2020年的春节
+                                                时间：1.26-1.31
+                                                1.25：杭州出发北京
+                                                1.26：...
+                                            </div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://p4-q.mafengwo.net/s14/M00/08/6F/wKgE2l1Z-KuAVZ0XAABw3jiBAwA27.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">X.xx(杭州)  </span>
+                                                <span class="level">LV.23</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>24</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2340043.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://n1-q.mafengwo.net/s6/M00/8F/E0/wKgB4lNnTm6ADLAaAADC83GVUB421.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>47</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">摩尔曼斯克</h3>
+                                            <div class="desc">去年冬天自己去了一趟，今年冬天想再去追一次极光，我这里2个...</div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://b2-q.mafengwo.net/s14/M00/E5/C0/wKgE2l1c3mSAPVGfAAc4guvA1ss39.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="female"></i></span>
+                                                <span class="name">奥莉小蜘蛛(洛阳)  </span>
+                                                <span class="level">LV.14</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>23</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2379454.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://p4-q.mafengwo.net/s10/M00/12/DD/wKgBZ1mlQE6AcTkZABP8peVXY8o48.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>35</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">冰岛</h3>
+                                            <div class="desc">去过了很多地方，但是终极目标是冰岛
+                                                以前总想着等多存点钱再...
+                                            </div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://b4-q.mafengwo.net/s6/M00/06/84/wKgB4lIrPEaAPyblAABPgAV-2p085.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">se7en(上海)  </span>
+                                                <span class="level">LV.23</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>12</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2389105.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://p3-q.mafengwo.net/s7/M00/2F/2C/wKgB6lQ2WQGALA4vAAgSiY0MJgg20.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>90</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">印度北部</h3>
+                                            <div class="desc">印度这个地方一直以来都对我无比有吸引力，但是身边的朋友对...</div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://n1-q.mafengwo.net/s11/M00/D1/31/wKgBEFshyZqATK0VAACgtoH1jcQ65.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">噗噗儿(沙坪坝)  </span>
+                                                <span class="level">LV.12</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>10</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2373859.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://p3-q.mafengwo.net/s7/M00/9D/13/wKgB6lSosqaAWed_AAYcHZfMZD0122.png?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>160</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">拉萨|西藏</h3>
+                                            <div class="desc">1.包车游玩7天行程！包车价格暂定 5600 SUV车型。
+
+                                                2.暂时有...
+                                            </div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://p3-q.mafengwo.net/s10/M00/46/0E/wKgBZ1iu76eARfQ_ABFbeqU3R5I07.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">key(澳门)  </span>
+                                                <span class="level">LV.30</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>15</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2357735.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://b2-q.mafengwo.net/s9/M00/D6/48/wKgBs1fHmDOAFuPuABgy_gdW4GA40.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>87</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">新西兰</h3>
+                                            <div class="desc">行程:
+                                                1月22日:上海飞奥克兰(23日到奥克兰休整1晚)
+                                                1月24日:...
+                                            </div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://b3-q.mafengwo.net/s1/M00/43/07/wKgBm027di3mTi3dAAAlUIowhfs36.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">margernini(上海)  </span>
+                                                <span class="level">LV.19</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>11</b>人关注</div>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/together/detail/2385919.html" target="_blank">
+                                            <div class="image">
+                                                <img src="https://b3-q.mafengwo.net/s7/M00/5F/B4/wKgB6lTdqXaAD7slAAM89OKgZkw23.jpeg?imageMogr2%2Fthumbnail%2F%21200x130r%2Fgravity%2FCenter%2Fcrop%2F%21200x130%2Fquality%2F100"
+                                                     style="width: 200px;height: 130px;">
+                                                <div class="after"><b>6</b>天后</div>
+                                                <hr>
+                                            </div>
+                                            <h3 class="title">清迈</h3>
+                                            <div class="desc">11月2号北京出发 清迈6号返回北京
+                                                因为很早之前就订了机票 ...
+                                            </div>
+                                            <div class="user clearfix">
+                                        <span class="avatar"><img
+                                                src="https://n3-q.mafengwo.net/s10/M00/A4/6F/wKgBZ1laWjmAc5M7AAC98im8vUo83.jpeg?imageMogr2%2Fthumbnail%2F%21120x120r%2Fgravity%2FCenter%2Fcrop%2F%21120x120%2Fquality%2F90"
+                                                width="48">
+                                        <i class="male"></i></span>
+                                                <span class="name">Sunshine 💗(北京)  </span>
+                                                <span class="level">LV.20</span>
+                                            </div>
+                                            <div class="attention"><i class="icon-arrow"></i>已有<b>9</b>人关注</div>
+                                        </a>
+                                    </li>-->
+                                </ul>
+                                <!--热门结伴的分页-->
+                                <div class="layui-btn-group" style="float: right;" id="pageHot">
+                                    <button type="button" class="layui-btn layui-btn-sm">
+                                        共&emsp;<span class="total" style="font-size: 18px;"></span>&emsp;条
+                                    </button>
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                                        当前为第&emsp;<span class="curr" style="font-size: 18px;"></span>&emsp;页
+                                    </button>
+                                    <button type="button" class="layui-btn layui-btn-sm">
+                                        共&emsp;<span class="pageNum" style="font-size: 18px;"></span>&emsp;页
+                                    </button>
+                                    <script id="pageDemo" type="text/html">
+                                        {{#  layui.each(d.list.pages, function(index, item){ }}
+                                        <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" data-id="{{item}}"
+                                                onclick="toPageCompany(this)" style="margin-left: 5px;font-size: 14px;">
+                                            {{item}}
+                                        </button>
+                                        {{#  }); }}
+                                    </script>
+                                    <div id="pageView" style="float: right;"></div>
+                                </div>
+                            </div>
+                            <!--<div class="postnormal review ">
+                                <div class="post-container review-item">
+                                    <div class="row review-item-wrapper">
+                                        <img src="images/diego-ph-249471-2-800x1000.jpg" class="wendaImg">
+                                        <div class="col-sm-9 flex-xs-middle">
+                                            <div class="review-item-title">
+                                                <a href="#" rel="bookmark">你选择一个城市旅游的原因是什么？是美食、美景，还是其他？</a>
+                                            </div>
+                                            <div class="review-item-creator"><b>发布日期：</b>2017-12-30</div>
+                                            <span class="review-item-info"><b>总浏览量：</b>1203 reads</span>
+                                        </div>
+                                    </div>
+                                    <div class="review-bg-wrapper">
+                                        <img class="bg-blur" src="images/diego-ph-249471-2-800x1000.jpg">
+                                    </div>
+                                </div>
+                                <div class="post-container">
+                                    <div class="entry-content">
+                                        确实讨厌去写所谓的年终总结，在公司已经被动的想领导上交一个总结，
+                                        自己就懒得去总结，不然，我觉得脑子里应该会编写出八九不离十的内容，所以正经八儿的事情略了，
+                                        瞎说一下。 年初的人事调动是个人最不能接受的事情，但不接受也得接受，老板一句“这是命令...
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
                     </div>
+                </div>
+                <div class="common_block_personal_info">
+                    <div class="personal_tips">
+                        <p><strong th:text="${session.loginUser.getUsername()}">站在远处看从前</strong>&ensp;这里是你的【琳琅上天】</p>
+                        <p>是记录的旅行回忆，结交各路英雄豪杰的地方哦！现在马上开启你的任我行旅程吧！</p>
+                    </div>
+                    <div class="personal_list">
+                        <ul style="width: 630px;">
+                            <li>
+                                <div class="personal_icon">
+                                    <i class="icon_info">
+                                        <img src="images/icon/edit2.png">
+                                    </i>
+                                </div>
+                                <div class="personal_word">
+                                    <p>做一个有"脸面"的人<br>上传"头像"，完善"资料"<br></p>
+                                </div>
+                                <div class="person_btn">
+                                    <button class="layui-btn layui-btn-primary layui-btn-radius" onclick="setInfo()"
+                                            style="width: 124px;background-color: #f1744f;">
+                                        <span style="font-size: 14px;color: #fff;">完善个人资料</span>
+                                    </button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="personal_icon">
+                                    <i class="icon_info">
+                                        <img src="images/icon/invite.png">
+                                    </i>
+                                </div>
+                                <div class="personal_word">
+                                    <p>寻找“志趣相投”的TA<br>发布“结伴”，找寻“朋友”<br></p>
+                                </div>
+                                <div class="person_btn">
+                                    <button class="layui-btn layui-btn-primary layui-btn-radius" onclick="sendCompany()"
+                                            style="width: 124px;background-color: #f1744f;">
+                                        <span style="font-size: 14px;color: #fff;">发布我的结伴</span>
+                                    </button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="personal_icon">
+                                    <i class="icon_info">
+                                        <img src="images/icon/writeStragy.png">
+                                    </i>
+                                </div>
+                                <div class="personal_word">
+                                    <p>分享WO的新点子<br>上传"攻略"，分享"心得"<br></p>
+                                </div>
+                                <div class="person_btn">
+                                    <button class="layui-btn layui-btn-primary layui-btn-radius" onclick="sendStrategy()"
+                                            style="width: 124px;background-color: #f1744f;">
+                                        <span style="font-size: 14px;color: #fff;">上传个人攻略</span>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="common_block my_notes">
+                    <div class="common_title clearfix">
+                        <h2>我的游记</h2>
+                    </div>
+                    <div class="notes_default_v2">
+                        <div class="notes_dcon">
+                            <img src="images/icon/isEmpty.jpg">
+                        </div>
+                        <button class="layui-btn btn_write"><a th:href="@{/journeyPublish}">写游记</a></button>
+                    </div>
+                    <!--<div class="more_notes">
+                        <a class="btn_deleted" href="#" style="color: #0C0C0C;">
+                            <i class="layui-icon layui-icon-delete"></i>
+                            已删除游记
+                        </a>
+                    </div>-->
                 </div>
             </li>
         </ul>

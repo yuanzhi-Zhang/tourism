@@ -1,0 +1,186 @@
+.groupTour_head{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background: rgba(131, 130, 130, 0.4);
+}
+.groupTour_content{
+    width: 100%;
+    padding: 40px 0;
+    text-align: center;
+    background: linear-gradient(45deg,rgba(254,172,94,0.5),rgba(199,121,208,0.5),rgba(75,192,200,0.5));
+}
+.freeTour_search{
+    width: 1020px;
+    display: block;
+    margin: 25px auto;
+    min-height: 60px;
+}
+.freeTour_search_left{
+    float: left;
+    margin-left: 65px;
+}
+.freeTour_search_left img{
+    width: 40px;
+    margin-right: 7px;
+}
+.freeTour_search_left span{
+    font-size: 26px;
+    font-family: "幼圆";
+    vertical-align: middle;
+}
+.freeTour_search_right img{
+    width: 40px;
+}
+.post-album {
+    margin-top: 30px;
+    padding: 0 0.5rem 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(249, 249, 249, 0.08), 0 0 0 1px rgba(26, 53, 71, .04), 0 1px 1px rgba(26, 53, 71, .06);
+}
+
+[data-aos=fade-up] {
+    transform: translateY(1px)
+}
+.bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -o-object-fit: cover;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -99;
+}
+
+.bg:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0) 0%, rgba(105, 105, 105, 0.1) 100%);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(105, 105, 105, 0.1) 100%)
+}
+
+.flex-xs-middle {
+    -ms-flex-item-align: center;
+    margin-left: 15px;
+    align-self: center;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.col-xs-4{
+    width: 33.33333333333333%;
+}
+
+.col-xs-4 a {
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 43%;
+    margin-left: 22%;
+}
+
+.col-xs-4 img {
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+    transition: opacity .2s;
+}
+
+.album-thumb [class*='col-'] {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05)
+}
+
+.no-gutter>[class*='col-'] {
+    padding-right: 0;
+    padding-left: 0
+}
+
+.row.content {
+    width: 100%;
+    position: relative;
+    margin: 0 auto
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    padding: 10px 0;
+}
+
+.contentext {
+    width: 58%;
+    color: #fff;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.album-thumb-width {
+    width: 33%
+}
+
+.album-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.album-content {
+    width: 90%;
+    line-height: 1.75;
+    margin-top: -5px;
+}
+.groupTour_content_rankList .right_advice{
+    display: block;
+    padding-left: 110px;
+    height: 70px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+}
+.groupTour_content_rankList .hd {
+    margin-bottom: 18px;
+    font-size: 18px;
+    color: #333;
+    font-weight: normal;
+}
+.groupTour_content_rankList .image {
+    float: left;
+    margin-left: -110px;
+    width: 100px;
+    height: 70px;
+    overflow: hidden;
+}
+.groupTour_content_rankList .image img{
+    height: 70px;
+    width: 100px;
+}
+.groupTour_content_rankList .title {
+    height: 40px;
+    margin-bottom: 12px;
+}
+.groupTour_content_rankList .price {
+    color: #ff9d00;
+}

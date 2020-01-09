@@ -36,7 +36,16 @@ public class PageTo {
      */
     @GetMapping("/albumworld")
     public String toFindWorld(){
-        return "user/findWorld";
+        return "user/albumworld";
+    }
+
+    /**
+     * 跳转到景点页面
+     * @return
+     */
+    @GetMapping("/scene")
+    public String toScene(){
+        return "user/scene";
     }
 
     /**
@@ -147,14 +156,151 @@ public class PageTo {
         return "user/strategyDetail";
     }
 
+    /**
+     * 跳转到旅游攻略发布页面
+     * @return
+     */
+    @GetMapping("/strategyPublish")
+    public String toStrategyPublish(){
+        return "user/strategyPublish";
+    }
+
+    /**
+     * 跳转到游记发布页面
+     * @return
+     */
     @GetMapping("/journeyPublish")
     public String toJourneyPublish(){
         return "user/journeyPublish";
     }
 
+    /**
+     * 跳转到问答页面
+     * @return
+     */
+    @GetMapping("/askAnswer")
+    public String toAskAnswer(){
+        return "user/askAnswer";
+    }
+
+    /**
+     * 跳转到自由行页面
+     * @return
+     */
+    @GetMapping("/freeTour")
+    public String toFreeTour(){
+        return "user/freeTour";
+    }
+
+    /**
+     * 跳转到当地游页面
+     * @return
+     */
+    @GetMapping("/localTour")
+    public String toLocalTour(){
+        return "user/localTour";
+    }
+
+    /**
+     * 跳转到组团游页面
+     * @return
+     */
+    @GetMapping("/groupTour")
+    public String toGroupTour(){
+        return "user/groupTour";
+    }
+
+    /**
+     * 跳转到结伴页面
+     * @return
+     */
+    @GetMapping("/company")
+    public String toCompany(){
+        return "user/company";
+    }
+
+    /**
+     * 跳转到结伴详情页面
+     * @return
+     */
+    @GetMapping("/company/detail")
+    public String toCompanyDetail(){
+        return "user/companyDetail";
+    }
+
+    /**
+     * 跳转到结伴发布页面
+     * @return
+     */
+    @GetMapping("/company/publish")
+    public String toCompanyPublish(){
+        return "user/companyPublish";
+    }
+
+    /**
+     * 跳转到线路/景点详情页面
+     * @return
+     */
+    @GetMapping("/routeDetail")
+    public String toRouteDetail(){
+        return "user/routeDetail";
+    }
+
+    /**
+     * 跳转到发布问题页面
+     * @return
+     */
+    @GetMapping("/askPublish")
+    public String toAskPublish(){
+        return "user/askPublish";
+    }
+
+    /**
+     * 跳转到问题详情页面
+     * @return
+     */
+    @GetMapping("/askAnswerDetail")
+    public String toAskDetail(){
+        return "user/askAnswerDetail";
+    }
+
+    /**
+     * 跳转到通知页面
+     * @return
+     */
+    @GetMapping("/note")
+    public String toNotification(){
+        return "user/notification";
+    }
+
+    @GetMapping("/search")
+    public String toSearch(){
+        return "user/search";
+    }
+
+    @GetMapping("/album")
+    public String toAlbum(){
+        return "user/album";
+    }
+
+    @GetMapping("/albumUpload")
+    public String toAlbumUpload(){
+        return "user/albumUpload";
+    }
+
+    @GetMapping("/message")
+    public String toMessage(){
+        return "user/message";
+    }
+
     @GetMapping("/mail")
     public String toMail(){
         return "user/mailtest";
+    }
+
+    @GetMapping("/webSocket")
+    public String toWebSocket(){
+        return "user/webSocket";
     }
 
 }

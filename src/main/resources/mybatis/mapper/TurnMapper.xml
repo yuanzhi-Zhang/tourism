@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuanzhi.tourism.dao.TurnMapper">
+  <resultMap id="BaseResultMap" type="com.yuanzhi.tourism.entity.Turn">
+    <id column="turn_id" jdbcType="INTEGER" property="turnId" />
+    <result column="turn_url" jdbcType="VARCHAR" property="turnUrl" />
+    <result column="turn_type" jdbcType="CHAR" property="turnType" />
+    <result column="turn_type_id" jdbcType="INTEGER" property="turnTypeId" />
+    <result column="turn_remarks" jdbcType="VARCHAR" property="turnRemarks" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    turn_id, turn_url, turn_type, turn_type_id, turn_remarks
+  </sql>
+  <select id="selectByExample" parameterType="com.yuanzhi.tourism.entity.TurnExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from turn
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from turn
+    where turn_id = #{turnId,jdbcType=INTEGER}
+  </select>
+  <select id="getAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from turn
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from turn
+    where turn_id = #{turnId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yuanzhi.tourism.entity.TurnExample">
+    delete from turn
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yuanzhi.tourism.entity.Turn">
+    insert into turn (turn_id, turn_url, turn_type, 
+      turn_type_id, turn_remarks)
+    values (#{turnId,jdbcType=INTEGER}, #{turnUrl,jdbcType=VARCHAR}, #{turnType,jdbcType=CHAR}, 
+      #{turnTypeId,jdbcType=INTEGER}, #{turnRemarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuanzhi.tourism.entity.Turn">
+    insert into turn
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="turnId != null">
+        turn_id,
+      </if>
+      <if test="turnUrl != null">
+        turn_url,
+      </if>
+      <if test="turnType != null">
+        turn_type,
+      </if>
+      <if test="turnTypeId != null">
+        turn_type_id,
+      </if>
+      <if test="turnRemarks != null">
+        turn_remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="turnId != null">
+        #{turnId,jdbcType=INTEGER},
+      </if>
+      <if test="turnUrl != null">
+        #{turnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="turnType != null">
+        #{turnType,jdbcType=CHAR},
+      </if>
+      <if test="turnTypeId != null">
+        #{turnTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="turnRemarks != null">
+        #{turnRemarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yuanzhi.tourism.entity.TurnExample" resultType="java.lang.Long">
+    select count(*) from turn
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update turn
+    <set>
+      <if test="record.turnId != null">
+        turn_id = #{record.turnId,jdbcType=INTEGER},
+      </if>
+      <if test="record.turnUrl != null">
+        turn_url = #{record.turnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.turnType != null">
+        turn_type = #{record.turnType,jdbcType=CHAR},
+      </if>
+      <if test="record.turnTypeId != null">
+        turn_type_id = #{record.turnTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.turnRemarks != null">
+        turn_remarks = #{record.turnRemarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update turn
+    set turn_id = #{record.turnId,jdbcType=INTEGER},
+      turn_url = #{record.turnUrl,jdbcType=VARCHAR},
+      turn_type = #{record.turnType,jdbcType=CHAR},
+      turn_type_id = #{record.turnTypeId,jdbcType=INTEGER},
+      turn_remarks = #{record.turnRemarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuanzhi.tourism.entity.Turn">
+    update turn
+    <set>
+      <if test="turnUrl != null">
+        turn_url = #{turnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="turnType != null">
+        turn_type = #{turnType,jdbcType=CHAR},
+      </if>
+      <if test="turnTypeId != null">
+        turn_type_id = #{turnTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="turnRemarks != null">
+        turn_remarks = #{turnRemarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where turn_id = #{turnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuanzhi.tourism.entity.Turn">
+    update turn
+    set turn_url = #{turnUrl,jdbcType=VARCHAR},
+      turn_type = #{turnType,jdbcType=CHAR},
+      turn_type_id = #{turnTypeId,jdbcType=INTEGER},
+      turn_remarks = #{turnRemarks,jdbcType=VARCHAR}
+    where turn_id = #{turnId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -4,49 +4,73 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script>
+    layui.use(['element'],function () {
+        var element = layui.element
+
+        element.on('nav(filter)', function(elem){
+            console.log(elem); //得到当前点击的DOM对象
+        });
+    })
+</script>
 <body>
     <ul class="layui-nav" lay-filter="" id="des_nav" th:fragment="header">
         <img class="head-logo" src="images/icon/logoIcon.png" th:src="@{/images/icon/logoIcon.png}" alt="">
         <li class="layui-nav-item"><a href="index.html" th:href="@{/}">首页</a></li>
         <!--layui-this 表示当前停留地方-->
-        <li class="layui-nav-item layui-this"><a href="destiny.html">目的地</a></li>
-        <li class="layui-nav-item"><a href="#/advice" th:href="@{/strategy}">旅游攻略</a></li>
-        <li class="layui-nav-item">
+        <!--<li class="layui-nav-item layui-this" id="header_destiny"><a href="destiny.html">目的地</a></li>-->
+        <li class="layui-nav-item layui-this" id="header_destiny"><a th:href="@{/albumworld}">相册</a></li>
+        <li class="layui-nav-item" id="header_strategy"><a href="#/advice" th:href="@{/strategy}">旅游攻略</a></li>
+        <!--<li class="layui-nav-item"  id="header_goHiking">
             <a href="javascript:;">去旅行</a>
             <dl class="layui-nav-child">
-                <!-- 二级菜单 -->
-                <dd><a href="#/freedom">自由行</a></dd>
-                <dd><a href="#/follow">跟团游</a></dd>
-                <dd><a href="#/local">当地游</a></dd>
+                &lt;!&ndash; 二级菜单 &ndash;&gt;
+                <dd><a href="#/freedom" th:href="@{/freeTour}">自由行</a></dd>
+                <dd><a href="#/follow" th:href="@{/groupTour}">跟团游</a></dd>
+                <dd><a href="#/local" th:href="@{/localTour}">当地游</a></dd>
             </dl>
-        </li>
-        <li class="layui-nav-item"><a href="#/ticket" th:href="@{/flight}">机票</a></li>
-        <li class="layui-nav-item"><a href="#/order" th:href="@{/hotel}">订酒店</a></li>
-        <li class="layui-nav-item">
+        </li>-->
+        <li class="layui-nav-item" id="header_flight"><a href="#/ticket" th:href="@{/scene}">景点</a></li>
+        <li class="layui-nav-item" id="header_hotel"><a href="#/order" th:href="@{/hotel}">订酒店</a></li>
+        <li class="layui-nav-item" id="header_company"><a href="#/order" th:href="@{/company}">结伴</a></li>
+        <!--<li class="layui-nav-item" id="header_company">
             <a href="javascript:;">社区</a>
             <dl class="layui-nav-child">
-                <!-- 二级菜单 -->
-                <dd><a href="#/answer">问答</a></dd>
-                <dd><a href="#/around">周边</a></dd>
-                <dd><a href="#/company">结伴</a></dd>
+                &lt;!&ndash; 二级菜单 &ndash;&gt;
+                <dd><a href="#/answer" th:href="@{/askAnswer}">问答</a></dd>
+                <dd><a href="#/company" th:href="@{/company}">结伴</a></dd>
             </dl>
+        </li>-->
+        <li class="layui-nav-item"  id="header_notification">
+            <a th:href="@{/note}"><span class="layui-badge" id="unReadNum"></span><i class="layui-icon layui-icon-notice"></i>消息</a>
+            <!--<dl class="layui-nav-child">
+                &lt;!&ndash; 二级菜单 &ndash;&gt;
+                <dd><a href="#/answer" th:href="@{/note}">系统通知</a></dd>
+                <dd><a href="#/company" th:href="@{/company}">好友消息</a></dd>
+            </dl>-->
         </li>
         <li class="layui-nav-item" th:if="${session.loginUser==null}">
             <ul class="album_ul">
                 <li class="album_li">
-                    <a href="userLogin.html" th:href="@{/account}" style="font-size:18px;">登录</a>
+                    <a href="userLogin.html" th:href="@{/account}" target="_blank" style="font-size:18px;">登录</a>
                 </li>
                 <li class="album_li">
-                    <a href="#" th:href="@{/register}" style="font-size:18px;">注册</a>
+                    <a href="#" th:href="@{/register}" target="_blank" style="font-size:18px;">注册</a>
                 </li>
             </ul>
         </li>
-        <li class="layui-nav-item" th:if="${session.loginUser!=null}">
-            <a href="" th:href="@{/self}"><img th:src="${session.loginUser.getImgurl()}" class="layui-nav-img">我</a>
+        <li class="layui-nav-item" th:if="${session.loginUser!=null}" id="header_self">
+            <a href="" th:href="@{/self}">
+                <img th:src="${session.loginUser.getImgurl() != null ? session.loginUser.getImgurl():'http://rwx.yuanz.top/ac019e8f-2d09-4897-9ce9-2f070dd79cd4'}"
+                     class="layui-nav-img">我
+            </a>
             <dl class="layui-nav-child">
                 <dd><a href="javascript:;" th:href="@{/self}">[[${session.loginUser.getUsername()}]]</a></dd>
                 <dd><a href="javascript:;" th:href="@{/setting}">修改信息</a></dd>
                 <dd><a href="javascript:;" th:href="@{/journeyPublish}">写游记</a></dd>
+                <dd><a href="javascript:;" th:href="@{/strategyPublish}">写攻略</a></dd>
+                <dd><a href="javascript:;" th:href="@{/albumUpload}">传相册</a></dd>
+                <dd><a href="javascript:;" th:href="@{/company/publish}">发布结伴</a></dd>
                 <dd><a href="javascript:;" th:href="@{/account}">切换账号</a></dd>
                 <dd><a href="javascript:;">安全管理</a></dd>
                 <dd><a href="javascript:;" th:href="@{/signout}" class="signout">退了</a></dd>
@@ -57,36 +81,45 @@
     <ul class="layui-nav" lay-filter="headerLikeIndex" id="headerLikeIndex">
         <img class="head-logo" src="images/icon/logoIcon.png" th:src="@{/images/icon/logoIcon.png}" alt="">
         <i class="fa fa-panelings fa-3x"></i>
-        <li class="layui-nav-item layui-this"><a href="#/home" th:href="@{/}">首页</a></li>
+        <li class="layui-nav-item layui-this" id="header_index"><a href="#/home" th:href="@{/}">首页</a></li>
         <!--layui-this 表示当前停留地方-->
-        <li class="layui-nav-item"><a href="destiny.html" >目的地</a></li>
+        <!--<li class="layui-nav-item"><a href="destiny.html" >目的地</a></li>-->
+        <li class="layui-nav-item" id="header_album"><a th:href="@{/albumworld}">相册</a></li>
         <li class="layui-nav-item"><a href="#/advice" th:href="@{/strategy}">旅游攻略</a></li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">去旅行</a>
+        <!--<li class="layui-nav-item">
+            <a href="javascript:;"  th:href="@{/freeTour}">去旅行</a>
             <dl class="layui-nav-child">
-                <!-- 二级菜单 -->
-                <dd><a href="#/freedom">自由行</a></dd>
-                <dd><a href="#/follow">跟团游</a></dd>
-                <dd><a href="#/local">当地游</a></dd>
+                &lt;!&ndash; 二级菜单 &ndash;&gt;
+                <dd><a href="#/freedom" th:href="@{/freeTour}">自由行</a></dd>
+                <dd><a href="#/follow" th:href="@{/groupTour}">跟团游</a></dd>
+                <dd><a href="#/local" th:href="@{/localTour}">当地游</a></dd>
             </dl>
-        </li>
-        <li class="layui-nav-item"><a href="#/ticket" th:href="@{/flight}">机票</a></li>
+        </li>-->
+        <!--<li class="layui-nav-item">
+            <a href="javascript:;"><span class="layui-badge" id="unReadNum">9</span><i class="layui-icon layui-icon-notice"></i>消息</a>
+            <dl class="layui-nav-child">
+                &lt;!&ndash; 二级菜单 &ndash;&gt;
+                <dd><a href="#/answer" th:href="@{/note}">系统通知</a></dd>
+                <dd><a href="#/company" th:href="@{/company}">好友消息</a></dd>
+            </dl>
+        </li>-->
+        <li class="layui-nav-item"><a href="#/ticket" th:href="@{/scene}">景点</a></li>
         <li class="layui-nav-item"><a href="#/order" th:href="@{/hotel}">订酒店</a></li>
-        <li class="layui-nav-item">
+        <li class="layui-nav-item"><a href="#/order" th:href="@{/company}">结伴</a></li>
+        <!--<li class="layui-nav-item">
             <a href="javascript:;">社区</a>
             <dl class="layui-nav-child">
-                <!-- 二级菜单 -->
-                <dd><a href="#/answer">问答</a></dd>
-                <dd><a href="#/around">周边</a></dd>
-                <dd><a href="#/company">结伴</a></dd>
+                &lt;!&ndash; 二级菜单 &ndash;&gt;
+                <dd><a href="#/answer" th:href="@{/askAnswer}">问答</a></dd>
+                <dd><a href="#/company" th:href="@{/company}">结伴</a></dd>
             </dl>
-        </li>
+        </li>-->
         <!--搜索框-->
         <li class="layui-nav-item search">
             <div class="d1">
                 <form>
-                    <input type="text" placeholder="诗与远方,从这里开始...">
-                    <button type="submit"></button>
+                    <input id="searchAll" type="text" placeholder="诗与远方,从这里开始...">
+                    <button type="button" onclick="search()"></button>
                 </form>
             </div>
         </li>
@@ -97,21 +130,27 @@
         <li class="layui-nav-item" th:if="${session.loginUser==null}">
             <ul class="album_ul">
                 <li class="album_li">
-                    <a href="userLogin.html" th:href="@{/account}" style="font-size:18px;">登录</a>
+                    <a href="userLogin.html" th:href="@{/account}" target="_blank" style="font-size:18px;">登录</a>
                 </li>
                 <li class="album_li">
-                    <a href="#" th:href="@{/register}" style="font-size:18px;">注册</a>
+                    <a href="#" th:href="@{/register}" target="_blank" style="font-size:18px;">注册</a>
                 </li>
             </ul>
         </li>
         <li class="layui-nav-item" th:if="${session.loginUser!=null}">
-            <a href="" th:href="@{/self}"><img th:src="${session.loginUser.getImgurl()}" class="layui-nav-img">我</a>
+            <a href="" th:href="@{/self}">
+                <img th:src="${session.loginUser.getImgurl() != null ? session.loginUser.getImgurl():'http://rwx.yuanz.top/ac019e8f-2d09-4897-9ce9-2f070dd79cd4'}"
+                     class="layui-nav-img"><span class="layui-badge-dot unReadNumIndex" style="margin-top: -15px;margin-left: 15px;"></span>我
+            </a>
             <dl class="layui-nav-child">
                 <dd><a href="javascript:;" th:href="@{/self}">[[${session.loginUser.getUsername()}]]</a></dd>
                 <dd><a href="javascript:;" th:href="@{/setting}">修改信息</a></dd>
                 <dd><a href="javascript:;" th:href="@{/journeyPublish}">写游记</a></dd>
+                <dd><a href="javascript:;" th:href="@{/strategyPublish}">写攻略</a></dd>
+                <dd><a href="javascript:;" th:href="@{/albumUpload}">问达人</a></dd>
+                <dd><a href="javascript:;" th:href="@{/company/publish}">发布结伴</a></dd>
                 <dd><a href="javascript:;" th:href="@{/account}">切换账号</a></dd>
-                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;" th:href="@{/note}">消息通知<span class="layui-badge" id="unReadNumIndex">9</span></a></dd>
                 <dd><a href="javascript:;" th:href="@{/signout}" class="signout">退了</a></dd>
             </dl>
         </li>

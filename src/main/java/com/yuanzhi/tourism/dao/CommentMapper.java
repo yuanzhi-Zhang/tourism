@@ -4,7 +4,9 @@ import com.yuanzhi.tourism.entity.Comment;
 import com.yuanzhi.tourism.entity.CommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CommentMapper {
     long countByExample(CommentExample example);
 
@@ -31,4 +33,10 @@ public interface CommentMapper {
     List<Comment> selectWithUser();
 
     int incCommentCount(Integer cid);
+
+    void downCommentCount(Integer cid);
+
+    void incCommentPraiseNum(Integer cid);
+
+    void downCommentPraiseNum(Integer cid);
 }

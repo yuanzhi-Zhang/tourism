@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="images/iconImg.jpg" rel="shortcut icon">
+    <link rel="stylesheet" href="public/css/layui2.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/askPublish.css">
+
+    <script src="public/js/jquery-3.2.1.min.js"></script>
+    <script src="public/layui.js"></script>
+    <script src="js/background.js" th:src="@{/js/askPublish.js}"></script>
+
+    <title>我要提问@任我行</title>
+</head>
+<body>
+<!--头部导航-->
+    <div class="askPublish_head">
+        <div th:replace="user/common/header::header"></div>
+    </div>
+<!--提问题区-->
+    <div class="askPublish_content">
+        <div class="wrapper" id="_js_qa_wrapper" data-is_bind_mobile="0" data-ask_uid="0">
+            <div class="qt-container clearfix">
+                <!-- 提问主要内容 -->
+                <div class="qt-main">
+                    <!-- 面包屑导航 -->
+                    <div class="crumb">
+                        <a th:href="@{/askAnswer}">旅游问答</a> &gt; <span>我要提问</span>
+                    </div>
+                    <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+                    <!-- 问题标题 -->
+                    <div class="qt-tit">
+                        <h5>问题标题</h5>
+                        <div class="qt-con">
+                            <input type="text" placeholder="标题不小于10字哦" class="_j_title">
+                            <span class="count"><span class="_j_title_num">0</span>/80 字</span>
+                            <span class="_j_min_num hide">10</span>
+                            <span class="error err-tips _j_title_error hide"></span>
+                        </div>
+                    </div>
+                    <!-- 问题详细内容 -->
+                    <input type="file" hidden="hidden" id="selectJourneyImg" name="file" onchange="getImg(this)">
+                    <button type="button" class="layui-btn layui-btn-danger" id="questionImg" onclick="selectImg()">
+                        <i class="layui-icon">&#xe67c;</i>上传问题封面&ensp;<span class="file"></span>
+                    </button>
+                    <textarea id="qt-content" placeholder="请输入提问内容..."></textarea>
+
+                    <!-- 选择目的地 -->
+                    <div class="flight_ticket_startCity">
+                        <h5>目的地</h5>
+                        <input type="text" value="" size="15" id="homecity_name" name="homecity_name" mod="address|notice" mod_address_source="hotel" mod_address_suggest="@Beijing|北京|53@Shanghai|上海|321@Shenzhen|深圳|91@Guangzhou|广州|80@Qingdao|青岛|292@Chengdu|成都|324@Hangzhou|杭州|383@Wuhan|武汉|192@Tianjin|天津|343@Dalian|大连|248@Xiamen|厦门|61@Chongqing|重庆|394@" mod_address_reference="cityid" mod_notice_tip="中文/拼音" />
+                        <input id="cityid" name="cityid" type="hidden" value="{$cityid}" />
+                    </div>
+                    <div id="jsContainer" class="jsContainer" style="height:0">
+                        <div id="tuna_alert" style="display:none;position:absolute;z-index:999;overflow:hidden;"></div>
+                        <div id="tuna_jmpinfo" style="visibility:hidden;position:absolute;z-index:120;"></div>
+                    </div>
+
+                    <!--兴趣标签-->
+                    <div class="qt-interest _qa_block" id="_qa_interest">
+                        <h5 style="margin-top: 10px;">选择兴趣标签</h5>
+                        <div class="qt-con _j_interest_list">
+                            <dl class="interest-description">
+                                <dt><i></i><span>什么是兴趣标签</span></dt>
+                                <dd>兴趣标签是一个问题的类型，它有助于为你的问题匹配擅长该类问题的蜂蜂回答。目前仅开放了以下几个话题，更多类型我们会逐步开放。</dd>
+                            </dl>
+                            <div class="interest-tags">
+                                <a class="btn-interest _j_interest" data-id="1016">自驾</a>
+                                <a class="btn-interest _j_interest" data-id="1052">亲子</a>
+                                <a class="btn-interest _j_interest" data-id="1040">摄影</a>
+                                <a class="btn-interest _j_interest" data-id="1036">美食</a>
+                                <a class="btn-interest _j_interest" data-id="1044">滑雪</a>
+                                <a class="btn-interest _j_interest" data-id="1068">购物</a>
+                                <a class="btn-interest _j_interest" data-id="1112">徒步</a>
+                                <a class="btn-interest _j_interest" data-id="1048">潜水</a>
+                                <a class="btn-interest _j_interest" data-id="1096">骑行</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 通知 -->
+
+
+                    <!-- 发布按钮 -->
+                    <div class="publish_question">
+                        <a class="qt-post-btn _j_publish" title="发布问题">发布问题</a>
+                    </div>
+
+                </div>
+
+                <!-- 提问侧边栏 -->
+                <div class="qt-sider">
+                    <div class="qts-tit">提问的正确姿势</div>
+                    <div class="qts-con">
+                        <p>1.问题要【具体】【真实】【诚恳】，问题较多，需全面阐述时，可以添加问题补充。结伴/交易/与旅行无关的提问将被删除。</p>
+                        <p>2.给问题添加目的地，并打上正确的标签将有助于更快地获得回答。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--页脚区域-->
+    <div th:replace="user/common/footer::foot"></div>
+<script src="js/fixdiv.js" th:src="@{/js/fixdiv.js}"></script>
+<script src="js/address.js" th:src="@{/js/address.js}"></script>
+</body>
+</html>

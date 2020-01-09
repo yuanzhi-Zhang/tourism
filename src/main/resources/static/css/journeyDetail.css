@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+a:hover{
+    text-decoration: none;
+}
+
 /* 头部导航以及中间大图 */
 .pic_img img {
     position: relative;
@@ -79,7 +83,8 @@
 }
 .journey_detail_content{
     width: 100%;
-    background: linear-gradient(45deg, rgba(254, 172, 94, 0.3), rgba(199, 121, 208, 0.3), rgba(75, 192, 200, 0.6));
+    /*background: linear-gradient(45deg, rgba(254, 172, 94, 0.3), rgba(199, 121, 208, 0.3), rgba(75, 192, 200, 0.6));*/
+    background: linear-gradient(45deg, rgba(254, 172, 94, 0.3), rgba(199, 121, 208, 0.3), rgba(75, 192, 200, 0.24));
     padding-top: 80px;
     text-align: center;
 }
@@ -283,6 +288,12 @@
 .journeyDetail_control{
     margin-bottom: 20px;
 }
+.journeyDetail_control p{
+    text-align: center;
+    font-size: 18px;
+    position: relative;
+    top: 10px;
+}
 .journeyDetail_control img{
     width: 40px;
     height: 40px;
@@ -304,7 +315,7 @@
     width: 280px;
     height: 200px;
 }
-.jour_detail_main_right p:last-child{
+.jour_detai_relative p:last-child{
     color: white;
     font-size: 36px;
     position: absolute;
@@ -356,3 +367,7 @@
     letter-spacing: 1px;
     line-height: 10px;
 }
+/*
+.layui-fixbar .layui-fixbar-top {
+    background-color: rgb(95, 184, 120);
+}*/

@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/userLogin.css}">
 
     <script src="public/js/jquery-3.2.1.min.js" th:href="@{/public/js/jquery-3.2.1.min.js}"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <script src="js/userLogin.js" th:href="@{/js/userLogin.js}"></script>
     <title>账号登录@任我行</title>
 </head>
@@ -21,29 +22,25 @@
 			</span>
     </div>
     <!--登录表单-->
-    <form class="login" th:action="@{/password}" method="post">
+    <div class="login">
+    <!--<form class="login" th:action="@{/password}" method="post">-->
         <img class="login_img" src="images/321924.jpg" th:href="@{/images/321924.jpg}">
         <h3 style="text-align:center;">
             <p style=" color:red;" th:text="${failmsg}" th:if="${not #strings.isEmpty(failmsg)}"></p>
         </h3>
-        <input type="text" name="email" autocomplete="off" placeholder="请输入手机号"
+        <input type="text" name="account" autocomplete="off" placeholder="请输入手机号或邮箱"
                id="account" class="layui-input account"> <br>
         <input type="password" name="password" placeholder="请输入密码" id="password"
                class="layui-input account">
 
-        <button class="layui-btn layui-btn-cyan layui-btn-radius btn_login" type="submit">
+        <button class="layui-btn layui-btn-cyan layui-btn-radius btn_login">
             &emsp;&emsp;&emsp;&ensp;登&emsp;录&ensp;&emsp;&emsp;&emsp;</button>
+        <!--<button class="layui-btn layui-btn-cyan layui-btn-radius btn_login" type="submit">-->
+            <!--&emsp;&emsp;&emsp;&ensp;登&emsp;录&ensp;&emsp;&emsp;&emsp;</button>-->
         <div class="register_jump">
-            <a href="#">新用户?点击这里注册</a>
+            <a href="#" th:href="@{/register}">新用户?点击这里注册</a>
         </div>
-    </form>
+    </div>
 </div>
-<!--<script>-->
-    <!--$(function () {-->
-        <!--$(".register_jump").click(function () {-->
-                <!--console.log($("#account").val());-->
-             <!--})-->
-    <!--})-->
-<!--</script>-->
 </body>
 </html>

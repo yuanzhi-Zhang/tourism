@@ -104,543 +104,903 @@ public class SceneExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
+        public Criteria andSceneIdIsNull() {
+            addCriterion("scene_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+        public Criteria andSceneIdIsNotNull() {
+            addCriterion("scene_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+        public Criteria andSceneIdEqualTo(Integer value) {
+            addCriterion("scene_id =", value, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+        public Criteria andSceneIdNotEqualTo(Integer value) {
+            addCriterion("scene_id <>", value, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+        public Criteria andSceneIdGreaterThan(Integer value) {
+            addCriterion("scene_id >", value, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andSceneIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("scene_id >=", value, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+        public Criteria andSceneIdLessThan(Integer value) {
+            addCriterion("scene_id <", value, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+        public Criteria andSceneIdLessThanOrEqualTo(Integer value) {
+            addCriterion("scene_id <=", value, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+        public Criteria andSceneIdIn(List<Integer> values) {
+            addCriterion("scene_id in", values, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+        public Criteria andSceneIdNotIn(List<Integer> values) {
+            addCriterion("scene_id not in", values, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+        public Criteria andSceneIdBetween(Integer value1, Integer value2) {
+            addCriterion("scene_id between", value1, value2, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+        public Criteria andSceneIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("scene_id not between", value1, value2, "sceneId");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameIsNull() {
-            addCriterion("sceneName is null");
+        public Criteria andSceneNameIsNull() {
+            addCriterion("scene_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameIsNotNull() {
-            addCriterion("sceneName is not null");
+        public Criteria andSceneNameIsNotNull() {
+            addCriterion("scene_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameEqualTo(String value) {
-            addCriterion("sceneName =", value, "scenename");
+        public Criteria andSceneNameEqualTo(String value) {
+            addCriterion("scene_name =", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameNotEqualTo(String value) {
-            addCriterion("sceneName <>", value, "scenename");
+        public Criteria andSceneNameNotEqualTo(String value) {
+            addCriterion("scene_name <>", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameGreaterThan(String value) {
-            addCriterion("sceneName >", value, "scenename");
+        public Criteria andSceneNameGreaterThan(String value) {
+            addCriterion("scene_name >", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameGreaterThanOrEqualTo(String value) {
-            addCriterion("sceneName >=", value, "scenename");
+        public Criteria andSceneNameGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_name >=", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameLessThan(String value) {
-            addCriterion("sceneName <", value, "scenename");
+        public Criteria andSceneNameLessThan(String value) {
+            addCriterion("scene_name <", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameLessThanOrEqualTo(String value) {
-            addCriterion("sceneName <=", value, "scenename");
+        public Criteria andSceneNameLessThanOrEqualTo(String value) {
+            addCriterion("scene_name <=", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameLike(String value) {
-            addCriterion("sceneName like", value, "scenename");
+        public Criteria andSceneNameLike(String value) {
+            addCriterion("scene_name like", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameNotLike(String value) {
-            addCriterion("sceneName not like", value, "scenename");
+        public Criteria andSceneNameNotLike(String value) {
+            addCriterion("scene_name not like", value, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameIn(List<String> values) {
-            addCriterion("sceneName in", values, "scenename");
+        public Criteria andSceneNameIn(List<String> values) {
+            addCriterion("scene_name in", values, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameNotIn(List<String> values) {
-            addCriterion("sceneName not in", values, "scenename");
+        public Criteria andSceneNameNotIn(List<String> values) {
+            addCriterion("scene_name not in", values, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameBetween(String value1, String value2) {
-            addCriterion("sceneName between", value1, value2, "scenename");
+        public Criteria andSceneNameBetween(String value1, String value2) {
+            addCriterion("scene_name between", value1, value2, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andScenenameNotBetween(String value1, String value2) {
-            addCriterion("sceneName not between", value1, value2, "scenename");
+        public Criteria andSceneNameNotBetween(String value1, String value2) {
+            addCriterion("scene_name not between", value1, value2, "sceneName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameIsNull() {
-            addCriterion("cityName is null");
+        public Criteria andSceneCityNameIsNull() {
+            addCriterion("scene_city_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameIsNotNull() {
-            addCriterion("cityName is not null");
+        public Criteria andSceneCityNameIsNotNull() {
+            addCriterion("scene_city_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameEqualTo(String value) {
-            addCriterion("cityName =", value, "cityname");
+        public Criteria andSceneCityNameEqualTo(String value) {
+            addCriterion("scene_city_name =", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameNotEqualTo(String value) {
-            addCriterion("cityName <>", value, "cityname");
+        public Criteria andSceneCityNameNotEqualTo(String value) {
+            addCriterion("scene_city_name <>", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameGreaterThan(String value) {
-            addCriterion("cityName >", value, "cityname");
+        public Criteria andSceneCityNameGreaterThan(String value) {
+            addCriterion("scene_city_name >", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameGreaterThanOrEqualTo(String value) {
-            addCriterion("cityName >=", value, "cityname");
+        public Criteria andSceneCityNameGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_city_name >=", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameLessThan(String value) {
-            addCriterion("cityName <", value, "cityname");
+        public Criteria andSceneCityNameLessThan(String value) {
+            addCriterion("scene_city_name <", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameLessThanOrEqualTo(String value) {
-            addCriterion("cityName <=", value, "cityname");
+        public Criteria andSceneCityNameLessThanOrEqualTo(String value) {
+            addCriterion("scene_city_name <=", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameLike(String value) {
-            addCriterion("cityName like", value, "cityname");
+        public Criteria andSceneCityNameLike(String value) {
+            addCriterion("scene_city_name like", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameNotLike(String value) {
-            addCriterion("cityName not like", value, "cityname");
+        public Criteria andSceneCityNameNotLike(String value) {
+            addCriterion("scene_city_name not like", value, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameIn(List<String> values) {
-            addCriterion("cityName in", values, "cityname");
+        public Criteria andSceneCityNameIn(List<String> values) {
+            addCriterion("scene_city_name in", values, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameNotIn(List<String> values) {
-            addCriterion("cityName not in", values, "cityname");
+        public Criteria andSceneCityNameNotIn(List<String> values) {
+            addCriterion("scene_city_name not in", values, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameBetween(String value1, String value2) {
-            addCriterion("cityName between", value1, value2, "cityname");
+        public Criteria andSceneCityNameBetween(String value1, String value2) {
+            addCriterion("scene_city_name between", value1, value2, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andCitynameNotBetween(String value1, String value2) {
-            addCriterion("cityName not between", value1, value2, "cityname");
+        public Criteria andSceneCityNameNotBetween(String value1, String value2) {
+            addCriterion("scene_city_name not between", value1, value2, "sceneCityName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameIsNull() {
-            addCriterion("areaName is null");
+        public Criteria andSceneAreaNameIsNull() {
+            addCriterion("scene_area_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameIsNotNull() {
-            addCriterion("areaName is not null");
+        public Criteria andSceneAreaNameIsNotNull() {
+            addCriterion("scene_area_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameEqualTo(String value) {
-            addCriterion("areaName =", value, "areaname");
+        public Criteria andSceneAreaNameEqualTo(String value) {
+            addCriterion("scene_area_name =", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameNotEqualTo(String value) {
-            addCriterion("areaName <>", value, "areaname");
+        public Criteria andSceneAreaNameNotEqualTo(String value) {
+            addCriterion("scene_area_name <>", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameGreaterThan(String value) {
-            addCriterion("areaName >", value, "areaname");
+        public Criteria andSceneAreaNameGreaterThan(String value) {
+            addCriterion("scene_area_name >", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameGreaterThanOrEqualTo(String value) {
-            addCriterion("areaName >=", value, "areaname");
+        public Criteria andSceneAreaNameGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_area_name >=", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameLessThan(String value) {
-            addCriterion("areaName <", value, "areaname");
+        public Criteria andSceneAreaNameLessThan(String value) {
+            addCriterion("scene_area_name <", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameLessThanOrEqualTo(String value) {
-            addCriterion("areaName <=", value, "areaname");
+        public Criteria andSceneAreaNameLessThanOrEqualTo(String value) {
+            addCriterion("scene_area_name <=", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameLike(String value) {
-            addCriterion("areaName like", value, "areaname");
+        public Criteria andSceneAreaNameLike(String value) {
+            addCriterion("scene_area_name like", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameNotLike(String value) {
-            addCriterion("areaName not like", value, "areaname");
+        public Criteria andSceneAreaNameNotLike(String value) {
+            addCriterion("scene_area_name not like", value, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameIn(List<String> values) {
-            addCriterion("areaName in", values, "areaname");
+        public Criteria andSceneAreaNameIn(List<String> values) {
+            addCriterion("scene_area_name in", values, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameNotIn(List<String> values) {
-            addCriterion("areaName not in", values, "areaname");
+        public Criteria andSceneAreaNameNotIn(List<String> values) {
+            addCriterion("scene_area_name not in", values, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameBetween(String value1, String value2) {
-            addCriterion("areaName between", value1, value2, "areaname");
+        public Criteria andSceneAreaNameBetween(String value1, String value2) {
+            addCriterion("scene_area_name between", value1, value2, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAreanameNotBetween(String value1, String value2) {
-            addCriterion("areaName not between", value1, value2, "areaname");
+        public Criteria andSceneAreaNameNotBetween(String value1, String value2) {
+            addCriterion("scene_area_name not between", value1, value2, "sceneAreaName");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNull() {
-            addCriterion("address is null");
+        public Criteria andSceneAddressIsNull() {
+            addCriterion("scene_address is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNotNull() {
-            addCriterion("address is not null");
+        public Criteria andSceneAddressIsNotNull() {
+            addCriterion("scene_address is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressEqualTo(String value) {
-            addCriterion("address =", value, "address");
+        public Criteria andSceneAddressEqualTo(String value) {
+            addCriterion("scene_address =", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotEqualTo(String value) {
-            addCriterion("address <>", value, "address");
+        public Criteria andSceneAddressNotEqualTo(String value) {
+            addCriterion("scene_address <>", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThan(String value) {
-            addCriterion("address >", value, "address");
+        public Criteria andSceneAddressGreaterThan(String value) {
+            addCriterion("scene_address >", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("address >=", value, "address");
+        public Criteria andSceneAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_address >=", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThan(String value) {
-            addCriterion("address <", value, "address");
+        public Criteria andSceneAddressLessThan(String value) {
+            addCriterion("scene_address <", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThanOrEqualTo(String value) {
-            addCriterion("address <=", value, "address");
+        public Criteria andSceneAddressLessThanOrEqualTo(String value) {
+            addCriterion("scene_address <=", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLike(String value) {
-            addCriterion("address like", value, "address");
+        public Criteria andSceneAddressLike(String value) {
+            addCriterion("scene_address like", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotLike(String value) {
-            addCriterion("address not like", value, "address");
+        public Criteria andSceneAddressNotLike(String value) {
+            addCriterion("scene_address not like", value, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIn(List<String> values) {
-            addCriterion("address in", values, "address");
+        public Criteria andSceneAddressIn(List<String> values) {
+            addCriterion("scene_address in", values, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotIn(List<String> values) {
-            addCriterion("address not in", values, "address");
+        public Criteria andSceneAddressNotIn(List<String> values) {
+            addCriterion("scene_address not in", values, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressBetween(String value1, String value2) {
-            addCriterion("address between", value1, value2, "address");
+        public Criteria andSceneAddressBetween(String value1, String value2) {
+            addCriterion("scene_address between", value1, value2, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotBetween(String value1, String value2) {
-            addCriterion("address not between", value1, value2, "address");
+        public Criteria andSceneAddressNotBetween(String value1, String value2) {
+            addCriterion("scene_address not between", value1, value2, "sceneAddress");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceIsNull() {
-            addCriterion("scenePrice is null");
+        public Criteria andScenePriceIsNull() {
+            addCriterion("scene_price is null");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceIsNotNull() {
-            addCriterion("scenePrice is not null");
+        public Criteria andScenePriceIsNotNull() {
+            addCriterion("scene_price is not null");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceEqualTo(Integer value) {
-            addCriterion("scenePrice =", value, "sceneprice");
+        public Criteria andScenePriceEqualTo(String value) {
+            addCriterion("scene_price =", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceNotEqualTo(Integer value) {
-            addCriterion("scenePrice <>", value, "sceneprice");
+        public Criteria andScenePriceNotEqualTo(String value) {
+            addCriterion("scene_price <>", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceGreaterThan(Integer value) {
-            addCriterion("scenePrice >", value, "sceneprice");
+        public Criteria andScenePriceGreaterThan(String value) {
+            addCriterion("scene_price >", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceGreaterThanOrEqualTo(Integer value) {
-            addCriterion("scenePrice >=", value, "sceneprice");
+        public Criteria andScenePriceGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_price >=", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceLessThan(Integer value) {
-            addCriterion("scenePrice <", value, "sceneprice");
+        public Criteria andScenePriceLessThan(String value) {
+            addCriterion("scene_price <", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceLessThanOrEqualTo(Integer value) {
-            addCriterion("scenePrice <=", value, "sceneprice");
+        public Criteria andScenePriceLessThanOrEqualTo(String value) {
+            addCriterion("scene_price <=", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceIn(List<Integer> values) {
-            addCriterion("scenePrice in", values, "sceneprice");
+        public Criteria andScenePriceLike(String value) {
+            addCriterion("scene_price like", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceNotIn(List<Integer> values) {
-            addCriterion("scenePrice not in", values, "sceneprice");
+        public Criteria andScenePriceNotLike(String value) {
+            addCriterion("scene_price not like", value, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceBetween(Integer value1, Integer value2) {
-            addCriterion("scenePrice between", value1, value2, "sceneprice");
+        public Criteria andScenePriceIn(List<String> values) {
+            addCriterion("scene_price in", values, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andScenepriceNotBetween(Integer value1, Integer value2) {
-            addCriterion("scenePrice not between", value1, value2, "sceneprice");
+        public Criteria andScenePriceNotIn(List<String> values) {
+            addCriterion("scene_price not in", values, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameIsNull() {
-            addCriterion("provinceName is null");
+        public Criteria andScenePriceBetween(String value1, String value2) {
+            addCriterion("scene_price between", value1, value2, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameIsNotNull() {
-            addCriterion("provinceName is not null");
+        public Criteria andScenePriceNotBetween(String value1, String value2) {
+            addCriterion("scene_price not between", value1, value2, "scenePrice");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameEqualTo(String value) {
-            addCriterion("provinceName =", value, "provincename");
+        public Criteria andSceneProvinceNameIsNull() {
+            addCriterion("scene_province_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameNotEqualTo(String value) {
-            addCriterion("provinceName <>", value, "provincename");
+        public Criteria andSceneProvinceNameIsNotNull() {
+            addCriterion("scene_province_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameGreaterThan(String value) {
-            addCriterion("provinceName >", value, "provincename");
+        public Criteria andSceneProvinceNameEqualTo(String value) {
+            addCriterion("scene_province_name =", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameGreaterThanOrEqualTo(String value) {
-            addCriterion("provinceName >=", value, "provincename");
+        public Criteria andSceneProvinceNameNotEqualTo(String value) {
+            addCriterion("scene_province_name <>", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameLessThan(String value) {
-            addCriterion("provinceName <", value, "provincename");
+        public Criteria andSceneProvinceNameGreaterThan(String value) {
+            addCriterion("scene_province_name >", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameLessThanOrEqualTo(String value) {
-            addCriterion("provinceName <=", value, "provincename");
+        public Criteria andSceneProvinceNameGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_province_name >=", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameLike(String value) {
-            addCriterion("provinceName like", value, "provincename");
+        public Criteria andSceneProvinceNameLessThan(String value) {
+            addCriterion("scene_province_name <", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameNotLike(String value) {
-            addCriterion("provinceName not like", value, "provincename");
+        public Criteria andSceneProvinceNameLessThanOrEqualTo(String value) {
+            addCriterion("scene_province_name <=", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameIn(List<String> values) {
-            addCriterion("provinceName in", values, "provincename");
+        public Criteria andSceneProvinceNameLike(String value) {
+            addCriterion("scene_province_name like", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameNotIn(List<String> values) {
-            addCriterion("provinceName not in", values, "provincename");
+        public Criteria andSceneProvinceNameNotLike(String value) {
+            addCriterion("scene_province_name not like", value, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameBetween(String value1, String value2) {
-            addCriterion("provinceName between", value1, value2, "provincename");
+        public Criteria andSceneProvinceNameIn(List<String> values) {
+            addCriterion("scene_province_name in", values, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andProvincenameNotBetween(String value1, String value2) {
-            addCriterion("provinceName not between", value1, value2, "provincename");
+        public Criteria andSceneProvinceNameNotIn(List<String> values) {
+            addCriterion("scene_province_name not in", values, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryIsNull() {
-            addCriterion("summary is null");
+        public Criteria andSceneProvinceNameBetween(String value1, String value2) {
+            addCriterion("scene_province_name between", value1, value2, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryIsNotNull() {
-            addCriterion("summary is not null");
+        public Criteria andSceneProvinceNameNotBetween(String value1, String value2) {
+            addCriterion("scene_province_name not between", value1, value2, "sceneProvinceName");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryEqualTo(String value) {
-            addCriterion("summary =", value, "summary");
+        public Criteria andSceneSummaryIsNull() {
+            addCriterion("scene_summary is null");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryNotEqualTo(String value) {
-            addCriterion("summary <>", value, "summary");
+        public Criteria andSceneSummaryIsNotNull() {
+            addCriterion("scene_summary is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryGreaterThan(String value) {
-            addCriterion("summary >", value, "summary");
+        public Criteria andSceneSummaryEqualTo(String value) {
+            addCriterion("scene_summary =", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryGreaterThanOrEqualTo(String value) {
-            addCriterion("summary >=", value, "summary");
+        public Criteria andSceneSummaryNotEqualTo(String value) {
+            addCriterion("scene_summary <>", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryLessThan(String value) {
-            addCriterion("summary <", value, "summary");
+        public Criteria andSceneSummaryGreaterThan(String value) {
+            addCriterion("scene_summary >", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryLessThanOrEqualTo(String value) {
-            addCriterion("summary <=", value, "summary");
+        public Criteria andSceneSummaryGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_summary >=", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryLike(String value) {
-            addCriterion("summary like", value, "summary");
+        public Criteria andSceneSummaryLessThan(String value) {
+            addCriterion("scene_summary <", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryNotLike(String value) {
-            addCriterion("summary not like", value, "summary");
+        public Criteria andSceneSummaryLessThanOrEqualTo(String value) {
+            addCriterion("scene_summary <=", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryIn(List<String> values) {
-            addCriterion("summary in", values, "summary");
+        public Criteria andSceneSummaryLike(String value) {
+            addCriterion("scene_summary like", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryNotIn(List<String> values) {
-            addCriterion("summary not in", values, "summary");
+        public Criteria andSceneSummaryNotLike(String value) {
+            addCriterion("scene_summary not like", value, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryBetween(String value1, String value2) {
-            addCriterion("summary between", value1, value2, "summary");
+        public Criteria andSceneSummaryIn(List<String> values) {
+            addCriterion("scene_summary in", values, "sceneSummary");
             return (Criteria) this;
         }
 
-        public Criteria andSummaryNotBetween(String value1, String value2) {
-            addCriterion("summary not between", value1, value2, "summary");
+        public Criteria andSceneSummaryNotIn(List<String> values) {
+            addCriterion("scene_summary not in", values, "sceneSummary");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneSummaryBetween(String value1, String value2) {
+            addCriterion("scene_summary between", value1, value2, "sceneSummary");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneSummaryNotBetween(String value1, String value2) {
+            addCriterion("scene_summary not between", value1, value2, "sceneSummary");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionIsNull() {
+            addCriterion("scene_attention is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionIsNotNull() {
+            addCriterion("scene_attention is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionEqualTo(String value) {
+            addCriterion("scene_attention =", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionNotEqualTo(String value) {
+            addCriterion("scene_attention <>", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionGreaterThan(String value) {
+            addCriterion("scene_attention >", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_attention >=", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionLessThan(String value) {
+            addCriterion("scene_attention <", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionLessThanOrEqualTo(String value) {
+            addCriterion("scene_attention <=", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionLike(String value) {
+            addCriterion("scene_attention like", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionNotLike(String value) {
+            addCriterion("scene_attention not like", value, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionIn(List<String> values) {
+            addCriterion("scene_attention in", values, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionNotIn(List<String> values) {
+            addCriterion("scene_attention not in", values, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionBetween(String value1, String value2) {
+            addCriterion("scene_attention between", value1, value2, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneAttentionNotBetween(String value1, String value2) {
+            addCriterion("scene_attention not between", value1, value2, "sceneAttention");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeIsNull() {
+            addCriterion("scene_opentime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeIsNotNull() {
+            addCriterion("scene_opentime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeEqualTo(String value) {
+            addCriterion("scene_opentime =", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeNotEqualTo(String value) {
+            addCriterion("scene_opentime <>", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeGreaterThan(String value) {
+            addCriterion("scene_opentime >", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_opentime >=", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeLessThan(String value) {
+            addCriterion("scene_opentime <", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeLessThanOrEqualTo(String value) {
+            addCriterion("scene_opentime <=", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeLike(String value) {
+            addCriterion("scene_opentime like", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeNotLike(String value) {
+            addCriterion("scene_opentime not like", value, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeIn(List<String> values) {
+            addCriterion("scene_opentime in", values, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeNotIn(List<String> values) {
+            addCriterion("scene_opentime not in", values, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeBetween(String value1, String value2) {
+            addCriterion("scene_opentime between", value1, value2, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneOpentimeNotBetween(String value1, String value2) {
+            addCriterion("scene_opentime not between", value1, value2, "sceneOpentime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponIsNull() {
+            addCriterion("scene_coupon is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponIsNotNull() {
+            addCriterion("scene_coupon is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponEqualTo(String value) {
+            addCriterion("scene_coupon =", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponNotEqualTo(String value) {
+            addCriterion("scene_coupon <>", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponGreaterThan(String value) {
+            addCriterion("scene_coupon >", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_coupon >=", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponLessThan(String value) {
+            addCriterion("scene_coupon <", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponLessThanOrEqualTo(String value) {
+            addCriterion("scene_coupon <=", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponLike(String value) {
+            addCriterion("scene_coupon like", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponNotLike(String value) {
+            addCriterion("scene_coupon not like", value, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponIn(List<String> values) {
+            addCriterion("scene_coupon in", values, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponNotIn(List<String> values) {
+            addCriterion("scene_coupon not in", values, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponBetween(String value1, String value2) {
+            addCriterion("scene_coupon between", value1, value2, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneCouponNotBetween(String value1, String value2) {
+            addCriterion("scene_coupon not between", value1, value2, "sceneCoupon");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsIsNull() {
+            addCriterion("scene_pics is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsIsNotNull() {
+            addCriterion("scene_pics is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsEqualTo(String value) {
+            addCriterion("scene_pics =", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsNotEqualTo(String value) {
+            addCriterion("scene_pics <>", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsGreaterThan(String value) {
+            addCriterion("scene_pics >", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_pics >=", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsLessThan(String value) {
+            addCriterion("scene_pics <", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsLessThanOrEqualTo(String value) {
+            addCriterion("scene_pics <=", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsLike(String value) {
+            addCriterion("scene_pics like", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsNotLike(String value) {
+            addCriterion("scene_pics not like", value, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsIn(List<String> values) {
+            addCriterion("scene_pics in", values, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsNotIn(List<String> values) {
+            addCriterion("scene_pics not in", values, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsBetween(String value1, String value2) {
+            addCriterion("scene_pics between", value1, value2, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andScenePicsNotBetween(String value1, String value2) {
+            addCriterion("scene_pics not between", value1, value2, "scenePics");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarIsNull() {
+            addCriterion("scene_star is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarIsNotNull() {
+            addCriterion("scene_star is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarEqualTo(String value) {
+            addCriterion("scene_star =", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarNotEqualTo(String value) {
+            addCriterion("scene_star <>", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarGreaterThan(String value) {
+            addCriterion("scene_star >", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarGreaterThanOrEqualTo(String value) {
+            addCriterion("scene_star >=", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarLessThan(String value) {
+            addCriterion("scene_star <", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarLessThanOrEqualTo(String value) {
+            addCriterion("scene_star <=", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarLike(String value) {
+            addCriterion("scene_star like", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarNotLike(String value) {
+            addCriterion("scene_star not like", value, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarIn(List<String> values) {
+            addCriterion("scene_star in", values, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarNotIn(List<String> values) {
+            addCriterion("scene_star not in", values, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarBetween(String value1, String value2) {
+            addCriterion("scene_star between", value1, value2, "sceneStar");
+            return (Criteria) this;
+        }
+
+        public Criteria andSceneStarNotBetween(String value1, String value2) {
+            addCriterion("scene_star not between", value1, value2, "sceneStar");
             return (Criteria) this;
         }
     }

@@ -21,6 +21,7 @@
 <div class="set_content">
     <!--正文部分-->
     <div class="set_main">
+        <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
         <ul class="jour_ul">
             <li class="jour_li" style="float: left;">
                 <div th:replace="user/common/bar::slidebar(activeUri='setting/modifyPwd')"></div>

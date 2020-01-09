@@ -294,6 +294,146 @@ public class QuestionExample {
             return (Criteria) this;
         }
 
+        public Criteria andQuestionTitleIsNull() {
+            addCriterion("question_title is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleIsNotNull() {
+            addCriterion("question_title is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleEqualTo(String value) {
+            addCriterion("question_title =", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleNotEqualTo(String value) {
+            addCriterion("question_title <>", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleGreaterThan(String value) {
+            addCriterion("question_title >", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("question_title >=", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleLessThan(String value) {
+            addCriterion("question_title <", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleLessThanOrEqualTo(String value) {
+            addCriterion("question_title <=", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleLike(String value) {
+            addCriterion("question_title like", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleNotLike(String value) {
+            addCriterion("question_title not like", value, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleIn(List<String> values) {
+            addCriterion("question_title in", values, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleNotIn(List<String> values) {
+            addCriterion("question_title not in", values, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleBetween(String value1, String value2) {
+            addCriterion("question_title between", value1, value2, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionTitleNotBetween(String value1, String value2) {
+            addCriterion("question_title not between", value1, value2, "questionTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgIsNull() {
+            addCriterion("question_img is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgIsNotNull() {
+            addCriterion("question_img is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgEqualTo(String value) {
+            addCriterion("question_img =", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgNotEqualTo(String value) {
+            addCriterion("question_img <>", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgGreaterThan(String value) {
+            addCriterion("question_img >", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgGreaterThanOrEqualTo(String value) {
+            addCriterion("question_img >=", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgLessThan(String value) {
+            addCriterion("question_img <", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgLessThanOrEqualTo(String value) {
+            addCriterion("question_img <=", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgLike(String value) {
+            addCriterion("question_img like", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgNotLike(String value) {
+            addCriterion("question_img not like", value, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgIn(List<String> values) {
+            addCriterion("question_img in", values, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgNotIn(List<String> values) {
+            addCriterion("question_img not in", values, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgBetween(String value1, String value2) {
+            addCriterion("question_img between", value1, value2, "questionImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionImgNotBetween(String value1, String value2) {
+            addCriterion("question_img not between", value1, value2, "questionImg");
+            return (Criteria) this;
+        }
+
         public Criteria andQuestionContentIsNull() {
             addCriterion("question_content is null");
             return (Criteria) this;
@@ -361,6 +501,76 @@ public class QuestionExample {
 
         public Criteria andQuestionContentNotBetween(String value1, String value2) {
             addCriterion("question_content not between", value1, value2, "questionContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyIsNull() {
+            addCriterion("question_destiny is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyIsNotNull() {
+            addCriterion("question_destiny is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyEqualTo(String value) {
+            addCriterion("question_destiny =", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyNotEqualTo(String value) {
+            addCriterion("question_destiny <>", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyGreaterThan(String value) {
+            addCriterion("question_destiny >", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyGreaterThanOrEqualTo(String value) {
+            addCriterion("question_destiny >=", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyLessThan(String value) {
+            addCriterion("question_destiny <", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyLessThanOrEqualTo(String value) {
+            addCriterion("question_destiny <=", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyLike(String value) {
+            addCriterion("question_destiny like", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyNotLike(String value) {
+            addCriterion("question_destiny not like", value, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyIn(List<String> values) {
+            addCriterion("question_destiny in", values, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyNotIn(List<String> values) {
+            addCriterion("question_destiny not in", values, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyBetween(String value1, String value2) {
+            addCriterion("question_destiny between", value1, value2, "questionDestiny");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionDestinyNotBetween(String value1, String value2) {
+            addCriterion("question_destiny not between", value1, value2, "questionDestiny");
             return (Criteria) this;
         }
 

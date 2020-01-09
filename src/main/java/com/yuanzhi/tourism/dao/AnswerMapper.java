@@ -4,7 +4,9 @@ import com.yuanzhi.tourism.entity.Answer;
 import com.yuanzhi.tourism.entity.AnswerExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AnswerMapper {
     long countByExample(AnswerExample example);
 

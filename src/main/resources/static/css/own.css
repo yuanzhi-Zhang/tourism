@@ -147,6 +147,12 @@
     font-family: "幼圆";
     line-height: 45px;
 }
+.userMale{
+    color: #0f88eb;
+}
+.userFemale{
+    color: #b92c28;
+}
 .own_setting{
     opacity: 0.8;
 }
@@ -187,6 +193,7 @@
 }
 .own_tab_content{
     max-height: 370px;
+    min-height: 150px;
     overflow-y: auto;
     margin-top: 10px;
 }
@@ -200,8 +207,11 @@
     object-fit: cover;
     margin-top: -37px;
 }
+.own_attention:hover{
+    cursor: pointer;
+}
 .own_attention_people p:first-child{
-    font-size: 18px;
+    font-size: 17px;
     font-family: "幼圆";
 }
 .own_haveAttended,.own_send_message{
@@ -351,9 +361,10 @@
 }
 .common_block_personal_info{
     border: 0;
-    background-color: #f5dc52;
+    background-color: #f5dc522e;
     /*background-color: #439fe930;*/
-    box-shadow: 2px 3px 0 #dfca58;
+    box-shadow: 2px 3px 0 #dfca584f;
+    /*box-shadow: 2px 3px 0 #dfca58;*/
     padding: 28px 30px 30px;
     margin-bottom: 30px;
 }
@@ -361,6 +372,7 @@
     font-size: 14px;
     color: #333;
     line-height: 30px;
+    text-align: left;
 }
 .personal_tips p strong{
     font-size: 18px;
@@ -477,4 +489,272 @@
     font-size: 25px;
     float: left;
     margin-top: -4px;
+}
+.own_strategy_img{
+    width: 100%;
+}
+.strategy_info{
+    /*border-top: 1px solid silver;*/
+    margin-top: 20px;
+    padding: 0 20px;
+    background-color: #dcdcdc;
+}
+.strategy_info:hover{
+    background-color: silver;
+    cursor: pointer;
+}
+.strategy_partInfo{
+    width: 780px;
+    line-height: 25px;
+}
+.strategy_partmain_title{
+    font-size: 20px;
+    line-height: 60px;
+}
+.strategy_info img{
+    width: 200px;
+    height: 130px;
+    margin: 20px 5px;
+}
+.strategy_description{
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+.own_history{
+    width: 100%;
+}
+.postnormal.review {
+    margin-top: 30px;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 3px rgba(249, 249, 249, 0.08), 0 0 0 1px rgba(26, 53, 71, .04), 0 1px 1px rgba(26, 53, 71, .06)
+}
+
+.postnormal.review .review-item {
+    position: relative;
+    overflow: visible;
+    margin-top: 1.5em;
+    border-radius: 6px 6px 0 0;
+    min-height: 150px
+}
+
+.postnormal.review .post-container {
+    margin-top: 0;
+    z-index: 2
+}
+
+.postnormal .post-container {
+    background: white;
+    margin-top: 10px;
+    padding: 1.3rem 1.3rem 1.3rem;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.postnormal.review .review-item .review-item-wrapper {
+    position: relative;
+    z-index: 1;
+    color: white
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px
+}
+
+.wendaImg {
+    position: absolute;
+    width: 230px;
+    height: 190px;
+    top: -50px;
+    right: 25px;
+    border-radius: 7px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    background-position: top center
+}
+
+.review-item-title {
+    max-width: 378px;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1)
+}
+
+.review-item-creator {
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0.5em 0;
+}
+
+.review-item-info {
+    display: block;
+    font-size: 1em;
+    opacity: .8
+}
+
+.review-bg-wrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 6px 6px 0 0;
+    z-index: 0;
+}
+
+.bg-blur {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    border-radius: 6px;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -o-object-fit: cover;
+    object-fit: cover;
+    pointer-events: none
+}
+
+.bg-blur:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: -webkit-linear-gradient(top, rgba(105, 105, 105, 0.1) 0%, #fff 85%);
+    background: linear-gradient(to bottom, rgba(105, 105, 105, 0.1) 0%, #fff 85%)
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -o-object-fit: cover;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -99;
+}
+
+.bg:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0) 0%, rgba(105, 105, 105, 0.1) 100%);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(105, 105, 105, 0.1) 100%)
+}
+
+.flex-xs-middle {
+    -ms-flex-item-align: center;
+    margin-left: 15px;
+    align-self: center;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.col-xs-4{
+    width: 33.33333333333333%;
+}
+
+.col-xs-4 a {
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 43%;
+    margin-left: 22%;
+}
+
+.col-xs-4 img {
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+    transition: opacity .2s;
+}
+
+.album-thumb [class*='col-'] {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05)
+}
+
+.no-gutter>[class*='col-'] {
+    padding-right: 0;
+    padding-left: 0
+}
+
+.row.content {
+    width: 100%;
+    position: relative;
+    margin: 0 auto
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    padding: 10px 0;
+}
+
+.contentext {
+    width: 58%;
+    color: #fff;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.album-thumb-width {
+    width: 33%
+}
+
+.album-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.album-content {
+    width: 90%;
+    line-height: 1.75;
+    margin-top: -5px;
+}
+
+.post-album {
+    margin-top: 30px;
+    padding: 0 0.5rem 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(249, 249, 249, 0.08), 0 0 0 1px rgba(26, 53, 71, .04), 0 1px 1px rgba(26, 53, 71, .06);
+}
+
+[data-aos=fade-up] {
+    transform: translateY(1px)
 }

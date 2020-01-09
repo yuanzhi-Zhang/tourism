@@ -17,10 +17,4 @@ public class FriendResultDTO {
 
     private User user;
 
-    private Long journeyCount;
-
-    private Long fansCount;
-
-    private Long historyCount;
-
 }

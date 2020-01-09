@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" th:href="@{/images/iconImg.jpg}">
+    <link rel="stylesheet" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" th:href="@{/css/background.css}">
+    <link rel="stylesheet" th:href="@{/css/routeDetail.css}">
+
+    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
+    <script src="js/companyDetail.js" th:src="@{/js/routeDetail.js}"></script>
+    <title>[[${scene.sceneName}]]详情@任我行,旅游攻略</title>
+</head>
+<body>
+<!--头部导航-->
+    <div class="routeDetail_head">
+        <div th:replace="user/common/header::header"></div>
+    </div>
+<!--主要内容-->
+    <div class="routeDetail_content">
+        <input type="hidden" class="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+        <input type="hidden" class="userId" th:if="${session.loginUser==null}" th:value="0"/>
+        <div class="prosum_box">
+            <dl class="prosum_left">
+                <dt>
+                    <img alt="" class="big_img" src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">
+                </dt>
+                <dd>
+                    <a class="up_img up_img_disable"></a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m40920d0669855e745d97f9ad1df966ebb.jpg">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m20920d0669855e745d97f9ad1df966ebb.jpg">
+                    </a>
+                    <a title="" class="little_img cur_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m29788843d72171643297ccc033d9288ee.jpg">
+                    </a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m4531a8dbceefa2c44e6d0e35627cd2689.jpg">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m2531a8dbceefa2c44e6d0e35627cd2689.jpg">
+                    </a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m46d8cb900e9f6c0a762aca19eae40c00c.jpg">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m26d8cb900e9f6c0a762aca19eae40c00c.jpg">
+                    </a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m45ea00f6eba562a767b5095bbf8cffe07.jpg" style="display:none;">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m25ea00f6eba562a767b5095bbf8cffe07.jpg">
+                    </a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m4265ec488cd1bc7ce749bc8c9b34b87bc.jpg" style="display:none;">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m2265ec488cd1bc7ce749bc8c9b34b87bc.jpg">
+                    </a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m4e7e964909d7dd1a9f6e5494d4dc0c847.jpg" style="display:none;">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m2e7e964909d7dd1a9f6e5494d4dc0c847.jpg">
+                    </a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m467db00e1b76718fab0fe8b96e10f4d35.jpg" style="display:none;">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m267db00e1b76718fab0fe8b96e10f4d35.jpg">
+                    </a>
+                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m487bbbc6e43eba6aa6a36cc1a182f7a20.jpg" style="display:none;">
+                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m287bbbc6e43eba6aa6a36cc1a182f7a20.jpg">
+                    </a>
+                    <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
+                </dd>
+            </dl>
+            <div class="prosum_right">
+                <p class="pros_title">[[${scene.sceneName}]]
+                    <span style="color: #5e5e5e;font-size: 16px;">（[[${scene.sceneCityName}]]  [[${scene.sceneAreaName}]]）</span>
+                </p>
+                <div class="pros_other">
+                    <p>经营商家  ：黑马国旅</p>
+                    <p>开放时间 : [[${scene.sceneOpentime}]]</p>
+                    <p>地址 ： [[${scene.sceneAddress}]]</p>
+                </div>
+                <div class="pros_price">
+                    <p class="price" th:if="${scene.scenePrice} != 'null'"><strong>¥[[${scene.scenePrice}]]</strong><span>起</span></p>
+                    <p class="price" th:if="${scene.scenePrice} == 'null'">暂无定价</p>
+                    <p class="collect">
+                        <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+
+                        <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                        <!--<span>已收藏100次</span>-->
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h2 style="margin-bottom: 10px;color: #1e9fff;">简要介绍</h2>
+            <p class="hot">[[${scene.sceneSummary}]]</p>
+            <h2 style="margin-bottom: 10px;color: #ff5722;">特别注意</h2>
+            <p class="hot">[[${scene.sceneAttention}]]</p>
+        </div>
+    </div>
+<!--页脚区域-->
+    <div th:replace="user/common/footer::foot"></div>
+</body>
+</html>

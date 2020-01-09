@@ -10,7 +10,13 @@ public class Question {
 
     private Integer questionCreatorId;
 
+    private String questionTitle;
+
+    private String questionImg;
+
     private String questionContent;
+
+    private String questionDestiny;
 
     private Integer viewCount;
 
@@ -44,12 +50,36 @@ public class Question {
         this.questionCreatorId = questionCreatorId;
     }
 
+    public String getQuestionTitle() {
+        return questionTitle;
+    }
+
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle == null ? null : questionTitle.trim();
+    }
+
+    public String getQuestionImg() {
+        return questionImg;
+    }
+
+    public void setQuestionImg(String questionImg) {
+        this.questionImg = questionImg == null ? null : questionImg.trim();
+    }
+
     public String getQuestionContent() {
         return questionContent;
     }
 
     public void setQuestionContent(String questionContent) {
         this.questionContent = questionContent == null ? null : questionContent.trim();
+    }
+
+    public String getQuestionDestiny() {
+        return questionDestiny;
+    }
+
+    public void setQuestionDestiny(String questionDestiny) {
+        this.questionDestiny = questionDestiny == null ? null : questionDestiny.trim();
     }
 
     public Integer getViewCount() {

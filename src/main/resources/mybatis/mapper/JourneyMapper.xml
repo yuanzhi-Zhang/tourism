@@ -33,6 +33,27 @@
       <result column="backImg" jdbcType="VARCHAR" property="backimg" />
     </association>
   </resultMap>
+  <resultMap id="BaseResultMapWithUserName" type="com.yuanzhi.tourism.dto.JourneyDTO">
+    <id column="tid" jdbcType="INTEGER" property="tid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="publishTime" jdbcType="VARCHAR" property="publishtime" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="people" jdbcType="VARCHAR" property="people" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="daysNum" jdbcType="VARCHAR" property="daysnum" />
+    <result column="jourTitle" jdbcType="VARCHAR" property="jourtitle" />
+    <result column="jourContent" jdbcType="VARCHAR" property="jourcontent" />
+    <result column="readTimes" jdbcType="INTEGER" property="readtimes" />
+    <result column="praiseTimes" jdbcType="INTEGER" property="praisetimes" />
+    <result column="mainImg" jdbcType="VARCHAR" property="mainimg" />
+    <result column="commentCount" jdbcType="INTEGER" property="commentcount" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+  <resultMap id="RefreshNumResultMap" type="com.yuanzhi.tourism.dto.RefreshNumDTO">
+    <result column="readTimes" jdbcType="INTEGER" property="readTimes" />
+    <result column="praiseTimes" jdbcType="INTEGER" property="praiseTimes" />
+    <result column="commentCount" jdbcType="INTEGER" property="commentNum" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -115,11 +136,24 @@
     from journey
     where tid = #{tid,jdbcType=INTEGER}
   </select>
+  <select id="getAll" resultMap="BaseResultMapWithUserName">
+    select
+    tid, userId, publishTime, startTime, people, money, daysNum, jourTitle, jourContent,
+    readTimes, praiseTimes, mainImg, commentCount, userName
+    from journey LEFT JOIN `user` ON journey.userId = `user`.uid
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="refreshNum" parameterType="java.lang.Integer" resultMap="RefreshNumResultMap">
+    SELECT readTimes,praiseTimes,commentCount FROM journey WHERE tid = #{tid,jdbcType=INTEGER}
+  </select>
   <select id="selectWithUser" resultMap="ResultMapWithUser">
     SELECT * FROM journey LEFT JOIN `user` ON journey.userId = `user`.uid ORDER BY publishTime DESC
   </select>
   <select id="selectWithUserByPrimaryKey" resultMap="ResultMapWithUser">
     SELECT * FROM journey LEFT JOIN `user` ON journey.userId = `user`.uid where tid = #{tid}
+  </select>
+  <select id="selectThreePraiseMost" resultMap="BaseResultMap">
+    SELECT readTimes,mainImg,jourTitle FROM journey ORDER BY (journey.readTimes + journey.praiseTimes) DESC LIMIT 0,3
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from journey
@@ -360,6 +394,12 @@
   </update>
   <update id="incView" parameterType="com.yuanzhi.tourism.entity.Journey">
     update journey set readTimes = readTimes + 1 where tid = #{tid}
+  </update>
+  <update id="incPrise" parameterType="java.lang.Integer">
+    update journey set praiseTimes = praiseTimes + 1 where tid = #{tid}
+  </update>
+  <update id="downPrise" parameterType="java.lang.Integer">
+    update journey set praiseTimes = praiseTimes - 1 where tid = #{tid}
   </update>
   <update id="incCommentCount" parameterType="com.yuanzhi.tourism.entity.Journey">
     update journey set commentCount = commentCount + 1 where tid = #{tid}

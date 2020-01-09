@@ -10,6 +10,7 @@
     <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">
     <link rel="stylesheet" th:href="@{/public/css/layui2.css}">
+    <link rel="stylesheet" th:href="@{/css/company.css}">
     <link rel="stylesheet" th:href="@{/css/journeyDetail.css}">
     <link rel="stylesheet" th:href="@{/css/background.css}">
 
@@ -40,11 +41,16 @@
                     </li>
                     <li class="jour_li title_info_right">
                         <p class="journey_title" th:text="${journey.jourtitle}"></p>
+                        <input type="hidden" id="userId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
+                        <input type="hidden" id="authorId" th:value="${journey.user.uid}"/>
+                        <input type="hidden" id="typeName" th:value="${journey.jourtitle}"/>
+                        <input type="hidden" id="imgUrl" th:value="${journey.mainimg}"/>
                         <p class="journey_title_info">
                             <span class="title_author"><a href="#" th:text="${journey.user.username}"></a></span>
                             (<span th:text="${journey.user.address}"></span>)
-                            <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm" style="margin-top: -3px;">
-                                <i class="layui-icon">&#xe608;</i>关注
+                            <button type="button" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-warm attend"
+                                    onclick="attend()" style="margin-top: -3px;">
+                                <i class="layui-icon">&#xe608;关注</i>
                             </button>&emsp;&emsp;
                             <!--该游记的发布时间-->
                             <span class="publish_time" th:text="${journey.publishtime}">2019.06.21&ensp;16:24</span>&emsp;
@@ -76,37 +82,37 @@
                 </p>
                 <hr class="layui-bg-green" style="height: 5px;">
                 <div class="journeyDetailContent" th:utext="${journey.jourcontent}"></div>
-                <!--<span>初识 新加坡 ，从樟宜机场开始。<br>-->
-                <!--搭乘五星航空新航，经过一宿飞机  ，早上到达附有“最美机场”之称的 新加坡 樟宜机场。<br>-->
-                    <!--听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>-->
-                <!--<div class="jour_detail_main_div" style="position: relative;">-->
-                    <!--<a href="#"><img class="jour_detail_main_img" src="images/320231.jpg"></a>-->
-                    <!--<div class="jour_detail_main_img_contrl">-->
+                <!--<span>初识 新加坡 ，从樟宜机场开始。<br>
+                搭乘五星航空新航，经过一宿飞机  ，早上到达附有“最美机场”之称的 新加坡 樟宜机场。<br>
+                    听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>
+                <div class="jour_detail_main_div" style="position: relative;">
+                    <a href="#"><img class="jour_detail_main_img" src="images/320231.jpg"></a>
+                    <div class="jour_detail_main_img_contrl">
 
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<span>初识 新加坡 ，从樟宜机场开始。<br>-->
-                    <!--听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>-->
-                <!--<div class="jour_detail_main_div" style="position: relative;">-->
-                    <!--<a href="#"><img class="jour_detail_main_img" src="images/323256.jpg"></a>-->
-                    <!--<div class="jour_detail_main_img_contrl">-->
+                    </div>
+                </div>
+                <span>初识 新加坡 ，从樟宜机场开始。<br>
+                    听说光在樟宜机场就能玩上半天，下了飞机就直奔T1的室内大瀑布，樟宜机场一共4个航站楼，各个航站楼之间都有“小火车”来去很方便。</span>
+                <div class="jour_detail_main_div" style="position: relative;">
+                    <a href="#"><img class="jour_detail_main_img" src="images/323256.jpg"></a>
+                    <div class="jour_detail_main_img_contrl">
 
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<span>由于购买的是5号 绵阳 ✈️ 丽江 的机票，在 成都 的我当天很早就起床洗漱，出发前往 成都 南站，乘坐到 绵阳 的动车。1小时候后，我到达 绵阳 后吃了一个简单的早餐，不过不知道是不是在车站的原因，早餐味道并不是很理想。 </span>-->
-                <!--<div class="jour_detail_main_div" style="position: relative;">-->
-                    <!--<a href="#"><img class="jour_detail_main_img" src="images/322188.jpg"></a>-->
-                    <!--<div class="jour_detail_main_img_contrl">-->
+                    </div>
+                </div>
+                <span>由于购买的是5号 绵阳 ✈️ 丽江 的机票，在 成都 的我当天很早就起床洗漱，出发前往 成都 南站，乘坐到 绵阳 的动车。1小时候后，我到达 绵阳 后吃了一个简单的早餐，不过不知道是不是在车站的原因，早餐味道并不是很理想。 </span>
+                <div class="jour_detail_main_div" style="position: relative;">
+                    <a href="#"><img class="jour_detail_main_img" src="images/322188.jpg"></a>
+                    <div class="jour_detail_main_img_contrl">
 
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<span>吃完早餐后打了个滴滴前往南郊机场，办理登机。此时没有做过飞机  ️的我简直就是兴奋到像个大傻子  ，不过没多久我就兴奋不起来了，“各位旅客我们很抱歉的通知您，您乘坐的飞往 丽江 的sc46**航班，由于航空管制，航班无法按时起飞，对比我们深表歉意，请在候机室等候通知”。听到以后我也是第一次体会到飞机延误是啥感觉了  。因为延误的原因导致我后面的计划全部打乱了，真是应了那句“计划赶不上变化”。延误了大概1小时的时间终于开始登机了。“您好欢迎登机” 山东 航空的空姐带着微笑  的说着欢迎词。</span>-->
-                <!--<div class="jour_detail_main_div" style="position: relative;">-->
-                    <!--<a href="#"><img class="jour_detail_main_img" src="images/323143.jpg"></a>-->
-                    <!--<div class="jour_detail_main_img_contrl">-->
+                    </div>
+                </div>
+                <span>吃完早餐后打了个滴滴前往南郊机场，办理登机。此时没有做过飞机  ️的我简直就是兴奋到像个大傻子  ，不过没多久我就兴奋不起来了，“各位旅客我们很抱歉的通知您，您乘坐的飞往 丽江 的sc46**航班，由于航空管制，航班无法按时起飞，对比我们深表歉意，请在候机室等候通知”。听到以后我也是第一次体会到飞机延误是啥感觉了  。因为延误的原因导致我后面的计划全部打乱了，真是应了那句“计划赶不上变化”。延误了大概1小时的时间终于开始登机了。“您好欢迎登机” 山东 航空的空姐带着微笑  的说着欢迎词。</span>
+                <div class="jour_detail_main_div" style="position: relative;">
+                    <a href="#"><img class="jour_detail_main_img" src="images/323143.jpg"></a>
+                    <div class="jour_detail_main_img_contrl">
 
-                    <!--</div>-->
-                <!--</div>-->
+                    </div>
+                </div>-->
                 <div class="journey_comment">
                     <!--回复-->
                     <h4>
@@ -181,42 +187,120 @@
                 <!--操作控件-->
                 <ul class="jour_ul journeyDetail_control">
                     <li class="jour_li">
-                        <a href="#"><img th:src="@{/images/icon/edit1.png}"></a>
+                        <a href="#comment_section"><img th:src="@{/images/icon/edit1.png}"></a>
+                        <p class="commentNum" th:text="${journey.commentcount}">0</p>
                     </li>
-                    <li class="jour_li">
-                        <a href="#"><img th:src="@{/images/icon/collect1.png}"></a>
-                    </li>
+                    <!--<li class="jour_li">
+                        <a href="javascript:;">
+                            <img class="collect" onclick="collect()">
+                        </a>
+                        <p class="collectNum">0</p>
+                    </li>-->
                     <li class="jour_li">
                         <a href="#"><img th:src="@{/images/icon/share1.png}"></a>
+                        <p class="share">0</p>
                     </li>
                     <li class="jour_li">
-                        <a href="#"><img th:src="@{/images/icon/praise1.png}"></a>
+                        <a href="javascript:;"><img class="praise" onclick="praise()"></a>
+                        <p class="praiseNum" th:text="${journey.praisetimes}">0</p>
                     </li>
                 </ul>
-                <div class="jour_detai_relative">
+                <!--<div class="jour_detai_relative">
                     <a href="#"><p>相关目的地：</p>
                     <img class="relative_destiny" src="images/319282.jpg" th:src="@{/images/319282.jpg}"></a>
                     <p>丽江</p>
+                </div>-->
+                <div class="jour_detai_relative">
+                    <a href="javascript:"><p>相关旅游攻略：</p>
+                        <div class="layui-carousel" id="similarStrategyLunBo" style="margin: 20px auto;">
+                            <div carousel-item>
+                                <script id="SimilarStrategyDemo" type="text/html">
+                                    {{#  layui.each(d.list.strategyList, function(index, item){ }}
+                                    <div data-id="{{item.strategyId}}" onclick="toStrategyDetail(this)">
+                                        <img class="relative_destiny" src="{{item.firstImg}}">
+                                        <div style="position: absolute;top: 25px;left: 10px;color: white;">
+                                            <img src="/rwx/images/icon/blueeyes.png" class="readTimes" style="height: 28px;">
+                                            <sapn>&ensp;{{item.readTimes}}</sapn>
+                                        </div>
+                                        <p style="font-size: 18px;letter-spacing: 2px;left: 3px;bottom: 3px;text-align: left;">{{item.strategyTitle}}</p>
+                                    </div>
+                                    {{#  }); }}
+                                </script>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="jour_detai_relative">
-                    <a href="#"><p>相关旅游攻略：</p>
-                    <img class="relative_destiny" src="images/322433.jpg" th:src="@{/images/322433.jpg}"></a>
-                    <div style="position: absolute;top: 65px;left: 10px;color: white;">
-                        <img src="images/icon/blueeyes.png" th:src="@{/images/icon/blueeyes.png}" class="readTimes" style="height: 28px;"><sapn>&ensp;356</sapn>
-                    </div>
-                    <p style="font-size: 18px;letter-spacing: 2px;left: 3px;bottom: 3px;text-align: left;">丽江自由行攻略时光 | 岁月、丽江自由行攻略全攻略</p>
-                </div>
-                <div class="jour_detai_relative">
-                    <a href="#"><p>相关旅行游记：</p>
+                    <a href="javascript:"><p>相关旅行游记：</p>
+                        <div class="layui-carousel" id="similarJourneyLunBo" style="margin: 20px auto;">
+                            <div carousel-item>
+                                <script id="similarJourneyDemo" type="text/html">
+                                    {{#  layui.each(d.list.journeyList, function(index, item){ }}
+                                    <div data-id="{{item.tid}}" onclick="toStrategyDetail(this)">
+                                        <img class="relative_destiny" src="{{item.mainimg}}">
+                                        <div style="position: absolute;top: 25px;left: 10px;color: white;">
+                                            <img src="/rwx/images/icon/blueeyes.png" class="readTimes" style="height: 28px;">
+                                            <sapn>&ensp;{{item.readtimes}}</sapn>
+                                        </div>
+                                        <p style="font-size: 18px;letter-spacing: 2px;left: 3px;bottom: 3px;text-align: left;">{{item.jourtitle}}</p>
+                                    </div>
+                                    {{#  }); }}
+                                </script>
+                            </div>
+                        </div>
+                    </a>
+                    <!--<a href="#"><p>相关旅行游记：</p>
                     <img class="relative_destiny" src="images/323591.jpg" th:src="@{/images/323591.jpg}"></a>
                     <div style="position: absolute;top: 65px;left: 10px;color: white;">
                         <img src="images/icon/blueeyes.png" th:src="@{/images/icon/blueeyes.png}" class="readTimes" style="height: 28px;"><sapn>&ensp;1314</sapn>
                     </div>
-                    <p style="font-size: 18px;letter-spacing: 2px;left: 3px;bottom: 3px;text-align: left;">【宝藏纪念】“丽江+泸沽湖”自驾之旅，这场艳遇超值</p>
+                    <p style="font-size: 18px;letter-spacing: 2px;left: 3px;bottom: 3px;text-align: left;">【宝藏纪念】“丽江+泸沽湖”自驾之旅，这场艳遇超值</p>-->
                 </div>
                 <!--右侧的目录以及tab选项卡的内容-->
                 <div class="catalogue_and_tab">
-                    <!--目录-->
+                    <h3 class="hotCompany_advice" style="text-align: left">旅行结伴推荐</h3>
+                    <div class="layui-carousel" id="hotAdviceLunBo" style="margin: 20px auto;">
+                        <div carousel-item>
+                            <script id="hotAdviceDemo" type="text/html">
+                                {{#  layui.each(d.list.companyList, function(index, item){ }}
+                                <div>
+                                    <div class="bd together-list wrapper">
+                                        <ul class="clearfix _j_together_list" style="margin: 0px 10px 10px -35px;">
+                                            <li class="item" style="width: 300px;">
+                                                <a href="#" target="_blank" data-id="{{item.companyId}}" onclick="toCompanyDetail(this)"
+                                                   style="padding: 15px 10px 10px 25px;width: 300px;text-decoration: none;">
+                                                    <div class="image">
+                                                        <img src="{{item.companyMainImg}}" style="width: 260px;height: 180px;">
+                                                        <div class="after" style="right: -60px;width: 70px;height: 61px;"><b>{{item.companyStartTime}}</b>天后</div>
+                                                        <hr style="width: 175px;">
+                                                    </div>
+                                                    <h3 class="title" style="text-align: left;margin-left: 0px;">{{item.companyEndArea}}</h3>
+                                                    <div class="desc" style="text-align: left">{{item.companyTitle}}</div>
+                                                    <div class="user clearfix">
+                                                                <span class="avatar">
+                                                                    <img src="{{item.user.imgurl}}" width="48" height="48">
+                                                                    {{#  if(item.user.usersex === '男'){ }}
+                                                                        <i class="male" style="background-position: -160px -120px;"></i>
+                                                                    {{#  } }}
+                                                                    {{#  if(item.user.usersex === '女'){ }}
+                                                                        <i class="female"></i>
+                                                                    {{#  } }}
+                                                                </span>
+                                                        <span class="name" style="width: 200px;">{{item.user.username}}({{item.user.address}}) </span>
+                                                        <span class="level">{{item.companyTime}}</span>
+                                                    </div>
+                                                    <div class="attention" style="width: 265px;"><i class="icon-arrow"></i>已有<b>{{item.companyAttendNum}}</b>人关注</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                {{#  }); }}
+                            </script>
+                            <!--<div id="hotAdviceView"></div>-->
+                        </div>
+                    </div>
+                    <!--目录
                     <div class="catalogue">
                         <ul>
                             <p style="font-size: 22px;">游记目录</p>
@@ -228,7 +312,7 @@
                             <li><a href="#">岁月从不败美人</a></li>
                         </ul>
                     </div>
-                    <!--tab选项卡-->
+                    &lt;!&ndash;tab选项卡&ndash;&gt;
                     <div class="localHotel">
                         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                             <ul class="layui-tab-title" style="width: 285px;">
@@ -284,7 +368,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </li>
         </ul>

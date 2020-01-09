@@ -9,10 +9,11 @@
     <link href="images/iconImg.jpg" th:href="@{/images/iconImg.jpg}" rel="shortcut icon">
     <link rel="stylesheet" href="public/css/layui1.css" th:href="@{/public/css/layui1.css}">
     <link rel="stylesheet" href="css/background.css" th:href="@{/css/background.css}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    <link href="css/player.css" th:href="@{/asserts/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
     <link href="css/player.css" th:href="@{/css/player.css}" rel="stylesheet" type="text/css" />
 
-    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="public/js/jquery-3.2.1.min.js"></script>
     <script src="http://libs.baidu.com/jqueryui/1.9.2/jquery-ui.min.js"></script>
     <script src="public/layui.js" th:src="@{/public/layui.js}"></script>
     <!-- <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.js"></script> -->
@@ -46,87 +47,120 @@
             <div class="tourpic">
                 <h1 class="tour_album">旅行相册&ensp;<i class="layui layui-icon layui-icon-next next"></i> <span
                         class="find"><a href="findWorld.html" th:href="@{/albumworld}" target="_blank">发现世界</a></span>&emsp;<span
-                        class="upload"><a>上传照片,开始你的旅程分享吧</a></span>
+                        class="upload"><a th:href="@{/albumUpload}">上传照片,开始你的旅程分享吧</a></span>
                 </h1>
                 <ul class="album_ul">
-                    <li class="album_li">
-                        <div class="albumShare">
-                            <a href="#"><img th:src="@{/images/u=2142379088,4231822723&fm=26&gp=0.jpg}" class="sharePic"></a>
-                            <ul>
-                                <li><a><img src="images/u=44153646,977624522&fm=26&gp=0.jpg"></a></li>
-                                &emsp;<li class="textInfo">
-                                    <a href="#">
-                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
+                    <script id="albumDemo" type="text/html">
+                        {{#  layui.each(d.list.albumList, function(index, item){ }}
+                            <li class="album_li">
+                                <div class="albumShare">
+                                    <a href="javascript:" data-id="{{item.albumid}}" onclick="toAlbumDetail(this)">
+                                        <img src="{{item.pictureUrl}}" class="sharePic">
                                     </a>
-                                    <i class="layui-icon layui-icon-picture-fine"></i>
-                                    <span class="num">207</span>
-                                    &ensp;<i class="layui-icon layui-icon-log"></i>
-                                    <span class="num">1109</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="album_li">
-                        <div class="albumShare">
-                            <a href="#"><img src="images/u=3740020944,2982415550&fm=26&gp=0.jpg" class="sharePic"></a>
-                            <ul>
-                                <li><a><img src="images/u=856835359,1102430869&fm=26&gp=0.jpg"></a></li>
-                                &emsp;<li class="textInfo">
-                                    <a href="#">
-                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
-                                    </a>
-                                    <i class="layui-icon layui-icon-picture-fine"></i>
-                                    <span class="num">105</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="album_li">
-                        <div class="albumShare">
-                            <a href="#"><img src="images/u=1161439077,1932777676&fm=11&gp=0.jpg" class="sharePic"></a>
-                            <ul>
-                                <li><a><img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg"></a></li>
-                                &emsp;<li class="textInfo">
-                                    <a href="#">
-                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
-                                    </a>
-                                    <i class="layui-icon layui-icon-picture-fine"></i>
-                                    <span class="num">301</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="album_li">
-                        <div class="albumShare">
-                            <a href="#"><img src="images/u=856835359,1102430869&fm=26&gp=0.jpg" class="sharePic"></a>
-                            <ul>
-                                <li><a><img src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"></a></li>
-                                &emsp;<li class="textInfo">
-                                    <a href="#">
-                                        <p class="album_share_info">跟我去旅行,北海道以东又是...</p>
-                                    </a>
-                                    <i class="layui-icon layui-icon-picture-fine"></i>
-                                    <span class="num">407</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                                    <ul>
+                                        <li><a href="#"><img src="{{item.imgurl}}"></a></li>
+                                        &emsp;<li class="textInfo">
+                                            <a href="#">
+                                                <p class="album_share_info">{{item.albumtitle}}</p>
+                                            </a>
+                                            <i class="layui-icon layui-icon-picture-fine"></i>
+                                            <span class="num">{{item.pictureNum}}</span>
+                                            &ensp;<span class="num">{{item.publishtime}}</span>
+                                            &ensp;<span class="num">{{item.viewtimes}}浏览</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        {{#  }); }}
+                    </script>
+                    <div id="albumView"></div>
                 </ul>
                 <hr class="layui-bg-green" style="width: 1020px;margin:0 auto;margin-top:30px;">
             </div>
             <!--旅行游记分区-->
+            <input type="hidden" name="id" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.getUid()}"/>
             <div class="journey">
                 <h1 class="tour_journey">旅行游记&ensp;<i class="layui layui-icon layui-icon-next next"></i> <span
                         class="more"><a href="#">更多</a></span>&emsp;<a class="core" href="#">精华游记</a>&ensp;<span
                         style="font-size: 18px;">|</span>&ensp;<a class="essential" href="#">潜力精华</a></h1>
                 <ul class="jour_ul">
-                    <!--<li class="jour_li" style="position: relative;top:-65px;float: left;">-->
                     <li class="jour_li" style="float: left;width: 700px;">
+                        <script id="indexJourney" type="text/html">
+                            <ul class="jour_ul" th:each="journey:${journeyWithUser.data}" style="margin-bottom: 22px;">
+                                <li class="jour_li" style="position: relative;top:-67px;">
+                                <li class="jour_li" style="float: left;">
+                                    <a data-id="${journey.tid}" onclick="addHistory(this) " th:href="@{/journey/}+${journey.tid}">
+                                        <img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg" class="jour_img" th:src="${journey.mainimg}">
+                                    </a>
+                                </li>
+                                <!--图片右边总的区块-->
+                                <li class="jour_li" style="margin-bottom: 22px;">
+                                    <ul>
+                                        <li style="margin-top: -6px;">
+                                            <!--包含图片的游记标题和作者的上层区域-->
+                                            <ul class="jour_ul">
+                                                <!--游记作者图片-->
+                                                <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
+                                                                                               src="images/slide_05.jpg" th:src="${journey.user.imgurl}"></a></li>
+                                                <!--右边不含图片的游记标题和作者-->
+                                                <li class="jour_li jour_introduce">
+                                                    <a href="#">
+                                                        <p style="color: blue;font-size:90%;" th:text="${journey.jourtitle}"></p>
+                                                    </a>
+                                                    <span class="author">作者：<a href="#" th:text="${journey.user.username}"></a>
+                                                    &emsp;&emsp;&emsp;<span th:text="${journey.publishtime}"></span>&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-reply-fill"
+                                                                   style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
+                                                    <a href="#"><i class="layui-icon layui-icon-star-fill"
+                                                                   style="font-size: 10px;">&ensp;1104</i></a>
+                                                </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="indexJourneyContent" th:utext="${journey.jourcontent}"></li>
+                                    </ul>
+                                </li>
+                                <hr class="layui-bg-green">
+                            </ul>
+                            <div class="pagination">
+                                <ul class="jour_ul">
+                                    <li class="jour_li" th:if="${journeyWithUser.current_page != 1}">
+                                        <a th:href="@{/(page=1)}" aria-label="Previous">
+                                            <span aria-hidden="true">首页</span>
+                                        </a>
+                                    </li>
+                                    <li class="jour_li" th:if="${journeyWithUser.current_page != 1}">
+                                        <a th:href="@{/(page=${journeyWithUser.current_page - 1})}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">上一页</span>
+                                        </a>
+                                    </li>
+
+                                    <li th:each="page : ${journeyWithUser.pages}" th:class="${journeyWithUser.current_page == page}? 'jour_li active' : 'jour_li'">
+                                        <a th:href="@{/(page=${page})}" th:text="${page}"></a>
+                                    </li>
+
+                                    <li class="jour_li" th:if="${journeyWithUser.current_page != journeyWithUser.total_page}">
+                                        <a th:href="@{/(page=${journeyWithUser.current_page +1 })}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">下一页</span>
+                                        </a>
+                                    </li>
+                                    <li class="jour_li" th:if="${journeyWithUser.current_page != journeyWithUser.total_page}">
+                                        <a th:href="@{/(page=${journeyWithUser.total_page})}"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">尾页</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </script>
+                        <div id="indexJourneyView"></div>
                         <ul class="jour_ul" th:each="journey:${journeyWithUser.data}" style="margin-bottom: 22px;">
                             <!--<li class="jour_li" style="position: relative;top:-67px;">-->
                             <li class="jour_li" style="float: left;">
                                 <a href="#" th:href="@{/journey/}+${journey.tid}"><img src="images/u=2686431418,4247994209&fm=26&gp=0.jpg"
-                                        class="jour_img" th:src="${journey.mainimg}"></a>
+                                                                                       class="jour_img" th:src="${journey.mainimg}"></a>
                             </li>
                             <!--图片右边总的区块-->
                             <li class="jour_li" style="margin-bottom: 22px;">
@@ -136,7 +170,7 @@
                                         <ul class="jour_ul">
                                             <!--游记作者图片-->
                                             <li class="jour_li author_li"><a href="#"><img class="jour_author_img"
-                                                        src="images/slide_05.jpg" th:src="${journey.user.imgurl}"></a></li>
+                                                                                           src="images/slide_05.jpg" th:src="${journey.user.imgurl}"></a></li>
                                             <!--右边不含图片的游记标题和作者-->
                                             <li class="jour_li jour_introduce">
                                                 <a href="#">
@@ -145,9 +179,9 @@
                                                 <span class="author">作者：<a href="#" th:text="${journey.user.username}"></a>
                                                     &emsp;&emsp;&emsp;<span th:text="${journey.publishtime}"></span>&emsp;&emsp;
                                                     <a href="#"><i class="layui-icon layui-icon-reply-fill"
-                                                            style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;
+                                                                   style="font-size: 10px;">&ensp;[[${journey.commentcount}]]</i></a>&emsp;&emsp;
                                                     <a href="#"><i class="layui-icon layui-icon-star-fill"
-                                                            style="font-size: 10px;">&ensp;1104</i></a>
+                                                                   style="font-size: 10px;">&ensp;[[${journey.praisetimes}]]</i></a>
                                                 </span>
                                             </li>
                                         </ul>
@@ -190,45 +224,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <!--<hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -40px;">-->
-                        <!--<ul class="jour_ul">-->
-                            <!--<li class="jour_li" style="position: relative;top:-67px;">-->
-                                <!--<a href="#"><img src="images/slide_04.jpg" class="jour_img"></a>-->
-                            <!--</li>-->
-                            <!--&lt;!&ndash;图片右边总的区块&ndash;&gt;-->
-                            <!--<li class="jour_li">-->
-                                <!--<ul>-->
-                                    <!--<li>-->
-                                        <!--&lt;!&ndash;包含图片的游记标题和作者的上层区域&ndash;&gt;-->
-                                        <!--<ul class="jour_ul">-->
-                                            <!--&lt;!&ndash;游记封面图片&ndash;&gt;-->
-                                            <!--<li class="jour_li author_li"><a href="#"><img class="jour_author_img"-->
-                                                        <!--src="images/slide_02.jpg"></a></li>-->
-                                            <!--&lt;!&ndash;右边不含图片的游记标题和作者&ndash;&gt;-->
-                                            <!--<li class="jour_li jour_introduce">-->
-                                                <!--<a href="#">-->
-                                                    <!--<p style="color: blue;font-size:90%;">你说，这是纷繁之地，我说，这是文明之美...</p>-->
-                                                <!--</a>-->
-                                                <!--<span class="author">作者：<a href="#">站在远处看从前</a>-->
-                                                    <!--&emsp;&emsp;&emsp;&emsp;2019-09-10&emsp;&emsp;-->
-                                                    <!--<a href="#"><i class="layui-icon layui-icon-reply-fill"-->
-                                                            <!--style="font-size: 10px;">&ensp;235</i></a>&emsp;&emsp;-->
-                                                    <!--<a href="#"><i class="layui-icon layui-icon-star-fill"-->
-                                                            <!--style="font-size: 10px;">&ensp;1104</i></a>-->
-                                                <!--</span>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    <!--</li>-->
-                                    <!--<li style="width: 420px;margin-left: 20px;margin-top:20px;line-height: 25px;"><a-->
-                                            <!--href="#">大连-->
-                                            <!--旅游的特点是以大海为背景，以绿色为依托，以漂亮的城市环境为品牌，以大型旅游活动为载体，以特色旅游项目和时装城、足球城、田径之乡、夜光城为吸引力的年轻而现代的浪漫之都。-->
-                                            <!--大连-->
-                                            <!--的浪漫主要体现在浪漫的广场、绿地、喷泉——城市建在花园里...</a></li>-->
-                                <!--</ul>-->
-                            <!--</li>-->
-                        <!--</ul>-->
                     </li>
-                    <!--<li class="jour_li" style="margin-left: 56px;position: relative;top:-60px;float: right">-->
                     <li class="jour_li" style="margin-left: 40px;float: right;margin-top: -63px;">
                         <ul>
                             <li>
@@ -246,126 +242,55 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="activity">
+                                <div class="activity" style="width: 280px;">
                                     <h1>人气驴友推荐</h1>
                                     <!-- <img src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"> -->
-                                    <ul>
-                                        <li>
-                                            <ul class="jour_ul">
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"></a>
-                                                        <p>站远处看从前</p>
-                                                    </div>
-                                                </li>
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/slide_05.jpg"></a>
-                                                        <p>alexleel</p>
-                                                    </div>
-                                                </li>
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/slide_02.jpg"></a>
-                                                        <p>JolinGuan</p>
-                                                    </div>
-                                                </li>
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/slide_03.jpg"></a>
-                                                        <p>laurie_hou</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li><br>
-                                        <li>
-                                            <ul class="jour_ul">
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/slide_04.jpg"></a>
-                                                        <p>山今鸟飞呀</p>
-                                                    </div>
-                                                </li>
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/slide_01.jpg"></a>
-                                                        <p>红乌贼</p>
-                                                    </div>
-                                                </li>
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/u=3740020944,2982415550&fm=26&gp=0.jpg"></a>
-                                                        <p>啦啦啦0910</p>
-                                                    </div>
-                                                </li>
-                                                <li class="jour_li">
-                                                    <div class="advice_author"><a href="#"><img
-                                                                src="images/slide_05.jpg"></a>
-                                                        <p>honeytxin</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                    <ul class="jour_ul">
+                                        <script id="userDemo" type="text/html">
+                                            {{#  layui.each(d.list.userList, function(index, item){ }}
+                                            <li class="jour_li" style="margin-bottom: 35px;">
+                                                <div class="advice_author">
+                                                    <a href="javascript:" data-id="{{item.uid}}" onclick="toOthers(this)"><img src="{{item.imgurl}}"></a>
+                                                    <p>{{item.username}}</p>
+                                                </div>
+                                            </li>
+                                            {{#  }); }}
+                                        </script>
+                                        <div id="userView"></div>
                                     </ul>
                                     <hr class="layui-bg-cyan" style="margin-bottom:10px;margin-top: 20px;">
                                 </div>
                             </li>
                             <li>
-                                <div class="activity">
+                                <div class="activity" style="width: 280px;">
                                     <h1>旅游攻略推荐</h1>
-                                    <a href="#"><img src="images/slide_02.jpg" style="margin-bottom: 7px;"></a>
-                                    <a href="#">
-                                        <h3 style="color:rgb(209, 63, 209)">胡日耳镇的美术馆</h3>
-                                    </a>
-                                    <h4 style="width: 280px;">我最终从胡日尔的美术馆里带走了一幅画，画的是冬日的萨满岩，是日落时分。</h4>
+                                    <div class="layui-carousel" id="similarStrategyLunBo" style="margin: 20px auto;">
+                                        <div carousel-item>
+                                            <script id="SimilarStrategyDemo" type="text/html">
+                                                {{#  layui.each(d.list.strategyList, function(index, item){ }}
+                                                <div class="indexToStrategy" data-id="{{item.strategyId}}" onclick="toStrategyDetail(this)">
+                                                    <img src="{{item.firstImg}}" style="margin-bottom: 7px;"></a>
+                                                    <h3 style="color:rgb(209, 63, 209);width: 280px;height: 30px;overflow: hidden;text-overflow: ellipsis;">
+                                                        {{item.strategyTitle}}
+                                                    </h3>
+                                                    <h4 style="width: 280px;">{{item.strategyIntro}}</h4>
+                                                </div>
+                                                {{#  }); }}
+                                            </script>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
                     </li>
-                    <!--<div id="demo2-1"></div>-->
-                    <!--<nav aria-label="Page navigation">-->
-                        <!--<ul class="pagination">-->
-                            <!--<li th:if="${journeyWithUser.current_page == 1}">-->
-                                <!--<a th:href="@{/(page=1)}" aria-label="Previous">-->
-                                    <!--<span aria-hidden="true">&lt;&lt;</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li th:if="${journeyWithUser.current_page != 1}">-->
-                                <!--<a th:href="@{/(page=${journeyWithUser.current_page - 1})}"-->
-                                   <!--aria-label="Previous">-->
-                                    <!--<span aria-hidden="true">&lt;</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-
-                            <!--<li th:each="page : ${journeyWithUser.total_page}" th:class="${journeyWithUser.current_page == page}? 'active' : ''">-->
-                                <!--<a th:href="@{/(page=${page})}" th:text="${page}"></a>-->
-                            <!--</li>-->
-
-                            <!--<li th:if="${journeyWithUser.current_page != journeyWithUser.total_page}">-->
-                                <!--<a th:href="@{/(page=${journeyWithUser.current_page +1 })}"-->
-                                   <!--aria-label="Previous">-->
-                                    <!--<span aria-hidden="true">&gt;</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                            <!--<li th:if="${journeyWithUser.current_page == journeyWithUser.total_page}">-->
-                                <!--<a th:href="@{/(page=${journeyWithUser.total_page})}"-->
-                                   <!--aria-label="Previous">-->
-                                    <!--<span aria-hidden="true">&gt;&gt;</span>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</nav>-->
                 </ul>
-                <!-- <hr class="layui-bg-green" style="margin-bottom:25px;margin-top: -100px;"> -->
             </div>
             <!--旅行景点推荐-->
             <div class="scenic">
-                <!--<hr class="layui-bg-green" style="width: 1020px;margin:0 auto;margin-bottom:25px;">-->
-                <!--<hr class="layui-bg-green">-->
                 <h1 style="margin-left: -15px;">旅行景点&ensp;<i class="layui layui-icon layui-icon-next next"></i>
-                    <span class="hope"><a href="#">&ensp;心驰神往</a></span>&emsp;
+                    <span class="hope"><a th:href="@{/scene}">&ensp;心驰神往</a></span>&emsp;
                     <a class="core" href="#">热门景点推荐</a></h1>
-                <ul class="jour_ul">
+                <!--<ul class="jour_ul">
                     <li class="jour_li">
                         <div class="shuli">
                             <p>【<b>成都&emsp;锦里</b>】</p>
@@ -380,7 +305,31 @@
                     <li class="jour_li"><a href="#"><img src="images/slide_03.jpg" class="scen_img"></a></li>
                     <li class="jour_li"><a href="#"><img src="images/slide_04.jpg" class="scen_img"></a></li>
                     <li class="jour_li"><a href="#"><img src="images/slide_01.jpg" class="scen_img"></a></li>
-                </ul>
+                </ul>-->
+                <script id="sceneDemo" type="text/html">
+                    {{#  layui.each(d.list.data, function(index, item){ }}
+                    <ul class="jour_ul" style="width: 1020px" data-id="{{item.sceneId}}" onclick="toScene(this)">
+                        <li class="jour_li">
+                            <div class="shuli">
+                                <p>【<b>{{item.sceneCityName}}&emsp;{{item.sceneName}}</b>】</p>
+                                <sapn style="font-family: '幼圆';">{{item.sceneSummary}}</sapn>
+                            </div>
+                        </li>
+                        <li class="jour_li" style="float: right"><a href="#">
+                            <img src="{{item.scenePics[0]}}" class="scen_img" style="margin-top: 27px;"></a>
+                        </li>
+                    </ul>
+                    <ul class="jour_ul scen_other_img" data-id="{{item.sceneId}}" onclick="toScene(this)">
+                        <li class="jour_li"><a href="#"><img src="{{item.scenePics[1]}}" class="scen_img"></a></li>
+                        <li class="jour_li"><a href="#"><img src="{{item.scenePics[2]}}" class="scen_img"></a></li>
+                        <li class="jour_li"><a href="#"><img src="{{item.scenePics[3]}}" class="scen_img"></a></li>
+                    </ul>
+                    {{#  }); }}
+                    {{#  if(d.list.length === 0){ }}
+                    暂时还没有留言哦~
+                    {{#  } }}
+                </script>
+                <div id="sceneView"></div>
             </div>
         </div>
         <!--页脚区域-->

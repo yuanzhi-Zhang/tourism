@@ -1753,11 +1753,11 @@ a cite {
 
 .layui-colla-title {
     position: relative;
-    height: 42px;
+    /*height: 42px;*/
     line-height: 42px;
     padding: 0 15px 0 35px;
     color: #333;
-    background-color: #f2f2f2;
+    /*background-color: #f2f2f2;*/
     cursor: pointer;
     font-size: 14px;
     overflow: hidden
@@ -1767,7 +1767,7 @@ a cite {
     display: none;
     padding: 10px 15px;
     line-height: 22px;
-    color: #666
+    /*color: #666*/
 }
 
 .layui-colla-icon {
@@ -1905,7 +1905,8 @@ a cite {
 .layui-tab-title,
 .layui-tab-title .layui-this:after,
 .layui-textarea {
-    border-color: #e6e6e6
+    /*border-color: #e6e6e6*/
+    border-color: #c2b66a
 }
 
 .layui-timeline-item:before,
@@ -4605,7 +4606,8 @@ body .layui-table-tips .layui-layer-content {
     text-align: center;
     cursor: pointer;
     font-size: 30px;
-    background-color: #9F9F9F;
+    /*background-color: #9F9F9F;*/
+    background-color: #17a2b8c9;
     color: #fff;
     border-radius: 2px;
     opacity: .95
@@ -4621,7 +4623,8 @@ body .layui-table-tips .layui-layer-content {
 
 .layui-fixbar .layui-fixbar-top {
     display: none;
-    font-size: 40px
+    font-size: 40px;
+    background-color: rgb(95, 184, 120);
 }
 
 body .layui-util-face {
